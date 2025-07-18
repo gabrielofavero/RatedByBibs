@@ -7,8 +7,9 @@
     content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, minimum-scale=1">
 
   <title>Rated! By Bibs</title>
-  <meta content="A quick way to rate games, movies or TV Shows on your favorite social network 😁" name="description">
-  <meta property="og:description" content="A quick way to rate games, movies or TV Shows on your favorite social network 😁">
+  <meta content="A quick way to rate Games, Movies or TV Shows on your favorite social network 😁" name="description">
+  <meta property="og:description"
+    content="A quick way to rate Games, Movies or TV Shows on your favorite social network 😁">
   <meta content="" name="keywords">
 
   <meta name="mobile-web-app-capable" content="yes" />
@@ -30,7 +31,12 @@
 
   <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
 
-  <input type="file" accept="image/*" id="upload" />
+
+  <input type="file" accept="image/*" id="upload" hidden />
+  <label for="upload" class="upload-label">
+    Upload Cover Art
+  </label>
+
 
   <div id="star-rating">
     <span class="star" data-value="1">★</span>

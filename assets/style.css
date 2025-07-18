@@ -37,6 +37,25 @@ body {
     font-size: 0.7rem;
 }
 
+.upload-label {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.upload-label:hover {
+    background: linear-gradient(135deg, #5a75f9, #9b5de5);
+    transform: scale(1.05);
+}
+
+
 .sticker-container {
     width: 480px;
     height: 640px;
