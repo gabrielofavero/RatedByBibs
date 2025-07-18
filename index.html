@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Rated! By Bibs</title>
@@ -35,7 +36,7 @@
       background-repeat: no-repeat;
       background-position: center;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
     .rating-section {
@@ -45,7 +46,7 @@
 
     .platform-section {
       font-size: 18px;
-      color: #ccc;
+      color: #888;
       margin-top: 5px;
     }
 
@@ -72,7 +73,9 @@
       color: gold;
     }
 
-    input[type="file"], select, input[type="text"] {
+    input[type="file"],
+    select,
+    input[type="text"] {
       margin: 10px 0;
       padding: 5px;
       font-size: 14px;
@@ -92,8 +95,35 @@
       border-radius: 12px;
       margin-top: 10px;
     }
+
+    #star-rating {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    .options {
+      margin-bottom: 1em;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .platform-section img {
+      display: block;
+    }
+
+    .gaming-id-section {
+      display: flex;
+      align-items: center;
+    }
   </style>
 </head>
+
 <body>
 
   <h1>🎮 Rated! By Bibs</h1>
@@ -108,17 +138,18 @@
     <span class="star" data-value="5">★</span>
   </div>
 
-  <select id="platform-select">
-    <option value="">Select Platform</option>
-    <option>Steam</option>
-    <option>Xbox</option>
-    <option>Playstation</option>
-    <option>Nintendo</option>
-  </select>
+  <div class="options">
+    <select id="platform-select">
+      <option value="">Select Platform</option>
+      <option value="xbox">Xbox</option>
+      <option value="switch2">Nintendo Switch 2</option>
+      <option value="switch">Nintendo Switch</option>
+      <option value="steam">Steam</option>
+      <option value="playstation">Playstation</option>
+    </select>
 
-  <input type="text" id="gaming-id" placeholder="Enter your Gaming ID (optional)" />
-
-  <br>
+    <input type="text" id="gaming-id" placeholder="Gaming ID (optional)" />
+  </div>
 
   <button onclick="generateStory()">📸 Generate Story</button>
   <button onclick="downloadStory()">⬇️ Download</button>
@@ -129,8 +160,10 @@
   <div id="story-container" style="display: none;">
     <div class="game-cover" id="game-cover"></div>
     <div class="rating-section" id="rating-stars">★★★★★</div>
-    <div class="platform-section" id="platform-display">PC</div>
-    <div class="gaming-id-section" id="gaming-id-display"></div>
+    <div class="info-row">
+      <div class="platform-section" id="platform-display"></div>
+      <div class="gaming-id-section" id="gaming-id-display"></div>
+    </div>
     <div class="footer">Rated with RatedByBibs</div>
   </div>
 
@@ -138,6 +171,45 @@
     let selectedStars = 0;
     let uploadedImage = null;
     let generatedImageData = '';
+
+    document.getElementById('platform-select').value = localStorage.getItem('selectedPlatform') || '';
+    document.getElementById('gaming-id').value = localStorage.getItem('gamingId') || '';
+
+    document.getElementById('platform-select').addEventListener('change', (e) => {
+      localStorage.setItem('selectedPlatform', e.target.value);
+      updateInputPlaceholder(e.target.value);
+    });
+
+    document.getElementById('gaming-id').addEventListener('input', (e) => {
+      localStorage.setItem('gamingId', e.target.value);
+    });
+
+    function updateInputPlaceholder(platform) {
+      let placeholder;
+
+      switch (platform) {
+        case 'xbox':
+          placeholder = 'Gamertag';
+          break;
+        case 'switch':
+        case 'switch2':
+          placeholder = 'Nintendo Account';
+          break;
+        case 'steam':
+          placeholder = 'Steam ID';
+          break;
+        case 'playstation':
+          placeholder = 'PSN ID';
+          break;
+        default:
+          placeholder = 'Gaming ID';
+      }
+
+      const gamingIdInput = document.getElementById('gaming-id');
+      if (gamingIdInput) {
+        gamingIdInput.placeholder = `${placeholder} (optional)`;
+      }
+    }
 
     const stars = document.querySelectorAll('.star');
     stars.forEach(star => {
@@ -167,18 +239,25 @@
     });
 
     async function generateStory() {
-      const platform = document.getElementById('platform-select').value;
-      const gamingId = document.getElementById('gaming-id').value.trim();
-
       if (!uploadedImage || selectedStars === 0) {
-        alert("Please upload an image, select a star rating and choose a platform.");
+        alert("Please upload an image and select a star rating.");
         return;
       }
 
       const rating = '★'.repeat(selectedStars) + '☆'.repeat(5 - selectedStars);
       document.getElementById('rating-stars').textContent = rating;
-      document.getElementById('platform-display').textContent = platform || '';
+
+      const gamingId = document.getElementById('gaming-id').value.trim();
       document.getElementById('gaming-id-display').textContent = gamingId ? gamingId : '';
+
+      const platform = document.getElementById('platform-select').value;
+      if (platform) {
+        const platformIcon = document.createElement('img');
+        platformIcon.src = `icons/${platform}.png`;
+        platformIcon.style.height = '20px';
+        document.getElementById('platform-display').innerHTML = '';
+        document.getElementById('platform-display').appendChild(platformIcon);
+      }
 
       const story = document.getElementById('story-container');
       story.style.display = 'flex';
@@ -196,10 +275,9 @@
       story.style.display = 'none';
     }
 
-    function downloadStory() {
+    async function downloadStory() {
       if (!generatedImageData) {
-        generateStory();
-        return;
+        await generateStory();
       }
       const a = document.createElement('a');
       a.href = generatedImageData;
@@ -209,8 +287,7 @@
 
     async function shareStory() {
       if (!generatedImageData) {
-        generateStory();
-        return;
+        await generateStory();
       }
 
       const res = await fetch(generatedImageData);
@@ -231,8 +308,9 @@
         alert("Sharing not supported on this browser/device.");
       }
     }
-  
+
   </script>
 
 </body>
+
 </html>
