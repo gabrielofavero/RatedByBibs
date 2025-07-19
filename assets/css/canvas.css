@@ -2,19 +2,17 @@
    Main Containers
    ======================= */
 
-.story-canvas {
+.canvas {
     width: 1080px;
     height: 1920px;
     background: linear-gradient(to bottom, #151119, #000);
 }
 
-.sticker-content,
-.story-content {
-    width: 480px;
-    height: 640px;
+.content {
+    width: 960px;
+    height: 1240px;
     margin: auto;
     border-radius: 20px;
-    background: linear-gradient(to bottom, #1f1f1f, #000);
     padding: 20px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
     position: relative;
@@ -24,18 +22,12 @@
     justify-content: space-between;
 }
 
-.story-content {
-    width: 960px;
-    height: 1240px;
-    background: none;
-}
-
 
 /* =======================
      Game Cover Displays
      ======================= */
 
-.cover {
+#cover {
     width: 100%;
     height: 60%;
     background-size: contain;
@@ -51,25 +43,25 @@
      ======================= */
 
 .rating-section {
-    font-size: 30px;
+    font-size: 60px;
 }
 
 .title-section {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
     color: #fff;
 }
 
 .platform-section {
-    font-size: 18px;
+    font-size: 36px;
     color: #888;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .gaming-id-section {
-    font-size: 16px;
+    font-size: 32px;
     color: #888;
-    margin-top: 3px;
+    margin-top: 6px;
     display: flex;
     align-items: center;
 }
@@ -77,14 +69,14 @@
 .info-container {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 1em;
 }
 
 .platform-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 /* =======================
@@ -104,4 +96,21 @@
 
 .platform-section img {
     display: block;
+}
+
+/* =======================
+   Logo
+   ======================= */
+
+.logo-canvas {
+    margin: 1rem;
+}
+
+.rated-canvas {
+    font-size: 3rem;
+    margin-right: 0.4em;
+}
+
+.by-bibs-canvas {
+    font-size: 2.4rem;
 }

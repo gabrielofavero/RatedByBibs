@@ -63,7 +63,7 @@ function upload(file) {
     const reader = new FileReader();
     reader.onload = function (event) {
         UPLOAD_IMAGE = event.target.result;
-        document.getElementById('cover-container').style.backgroundImage = `url(${UPLOAD_IMAGE})`;
+        document.getElementById('cover').style.backgroundImage = `url(${UPLOAD_IMAGE})`;
     };
     reader.readAsDataURL(file);
     document.getElementById('upload-instructions').style.display = 'none';

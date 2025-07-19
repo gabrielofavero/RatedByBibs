@@ -62,11 +62,6 @@ function getAlertMessage() {
 }
 
 async function renderCanvas() {
-    const type = document.getElementById('include-background').checked ? 'story' : 'sticker';
-    
-    loadContainerByType('canvas', type);
-    loadContainerByType('content', type);
-
     const canvasContainer = document.getElementById('canvas-container');
     canvasContainer.style.display = 'flex';
 
@@ -82,12 +77,6 @@ async function renderCanvas() {
 
     canvasContainer.style.display = 'none';
     document.getElementById('download-share-buttons').style.display = 'block';
-}
-
-function loadContainerByType(name, canvasType) {
-    const container = document.getElementById(`${name}-container`);
-    container.className = "";
-    container.classList.add(`${canvasType}-${name}`);
 }
 
 function render(id, value) {
@@ -106,7 +95,7 @@ function renderPlatform() {
     if (platform) {
         const platformIcon = document.createElement('img');
         platformIcon.src = `assets/icons/${platform}.png`;
-        platformIcon.style.height = '20px';
+        platformIcon.style.height = '40px';
         document.getElementById('platform-display').innerHTML = '';
         document.getElementById('platform-display').appendChild(platformIcon);
     }

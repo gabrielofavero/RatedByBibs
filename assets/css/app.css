@@ -13,17 +13,18 @@ body {
 a {
     background: linear-gradient(135deg, #6e8efb, #a777e3);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-decoration: none;
     font-weight: bold;
-  }
+}
 
 /* =======================
    Logo
    ======================= */
 
 .logo,
-.logo-small {
+.logo-canvas {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
@@ -33,12 +34,8 @@ a {
     margin: 1.5rem;
 }
 
-.logo-small {
-    margin: 0.5rem;
-}
-
 .rated,
-.rated-small {
+.rated-canvas {
     color: #ffcc00;
 }
 
@@ -47,15 +44,6 @@ a {
     margin-right: 0.3em;
 }
 
-.rated-small {
-    font-size: 1.5rem;
-    margin-right: 0.2em;
-}
-
 .by-bibs {
     font-size: 1.5rem;
-}
-
-.by-bibs-small {
-    font-size: 1.2rem;
 }

@@ -38,12 +38,13 @@
   <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
 
   <div class="form-controls">
-    <div id="upload-container">
+    <div class="upload-container">
       <input type="file" accept="image/*" id="upload" hidden />
       <label for="upload" class="upload-label">
         Upload Cover Art
       </label>
-      <div id="upload-instructions" class="instructions">Click to upload an image. We recomend looking at <a href="https://www.steamgriddb.com/">Steam Grid DB</a></div>
+      <div id="upload-instructions" class="instructions">Click to upload an image. We recomend looking at <a
+          href="https://www.steamgriddb.com/">Steam Grid DB</a></div>
       <div id="upload-success" class="instructions" style="display: none;">Image Uploaded successfully<br></div>
     </div>
 
@@ -70,19 +71,14 @@
 
     <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
 
-    <label for="include-background">
-      <input type="checkbox" id="include-background">
-      Include Background
-    </label>
-
     <button id="generate-canvas">Generate Canvas</button>
   </div>
 
   <div id="preview"></div>
 
-  <div id="canvas-container" style="display: none;">
-    <div id="content-container">
-      <div id="cover-container" class="cover"></div>
+  <div id="canvas-container" class="canvas" style="display: none;">
+    <div class="content">
+      <div id="cover"></div>
       <div class="info-container">
         <div class="title-section" id="title-display" stlye="display: none">Title</div>
         <div class="platform-container">
@@ -91,7 +87,7 @@
         </div>
       </div>
       <div class="rating-section" id="star-rating-display">★★★★★</div>
-      <div class="logo-small"><span class="rated-small">Rated!</span><span class="by-bibs-small">By Bibs</span></div>
+      <div class="logo-canvas"><span class="rated-canvas">Rated!</span><span class="by-bibs-canvas">By Bibs</span></div>
     </div>
   </div>
 
