@@ -10,6 +10,14 @@ body {
     padding: 2rem;
 }
 
+a {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
 /* =======================
    Logo
    ======================= */

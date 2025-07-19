@@ -66,6 +66,8 @@ function upload(file) {
         document.getElementById('cover-container').style.backgroundImage = `url(${UPLOAD_IMAGE})`;
     };
     reader.readAsDataURL(file);
+    document.getElementById('upload-instructions').style.display = 'none';
+    document.getElementById('upload-success').style.display = 'block';
 }
 
 function loadStarsListeners() {
@@ -76,7 +78,34 @@ function loadStarsListeners() {
             stars.forEach(star => {
                 const val = parseInt(star.dataset.value);
                 star.classList.toggle('selected', val <= STARS);
+                updateStarRatingLabel();
             });
         });
     });
+}
+
+function updateStarRatingLabel() {
+    let label;
+
+    switch (STARS) {
+        case 1:
+            label = 'Terrible';
+            break;
+        case 2:
+            label = 'Bad';
+            break;
+        case 3:
+            label = 'Okay';
+            break;
+        case 4:
+            label = 'Good';
+            break;
+        case 5:
+            label = 'Excellent';
+            break;
+        default:
+            label = 'Select a Rating';
+    }
+
+    document.getElementById('star-rating-label').textContent = label;
 }

@@ -26,6 +26,11 @@ button {
     cursor: pointer;
 }
 
+.instructions {
+    font-size: 14px;
+    color: rgb(235, 235, 235);
+}
+
 /* =======================
    Upload Cover Art
    ======================= */
@@ -46,6 +51,12 @@ button {
 .upload-label:hover {
     background: linear-gradient(135deg, #5a75f9, #9b5de5);
     transform: scale(1.05);
+}
+
+#upload-instructions,
+#upload-success {
+    margin-top: 10px;
+    width: 250px;
 }
 
 /* =======================

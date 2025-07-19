@@ -38,10 +38,15 @@
   <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
 
   <div class="form-controls">
-    <input type="file" accept="image/*" id="upload" hidden />
-    <label for="upload" class="upload-label">
-      Upload Cover Art
-    </label>
+    <div id="upload-container">
+      <input type="file" accept="image/*" id="upload" hidden />
+      <label for="upload" class="upload-label">
+        Upload Cover Art
+      </label>
+      <div id="upload-instructions" class="instructions">Click to upload an image. We recomend looking at <a href="https://www.steamgriddb.com/">Steam Grid DB</a></div>
+      <div id="upload-success" class="instructions" style="display: none;">Image Uploaded successfully<br></div>
+    </div>
+
 
     <div id="star-rating">
       <span class="star" data-value="1">★</span>
@@ -49,6 +54,7 @@
       <span class="star" data-value="3">★</span>
       <span class="star" data-value="4">★</span>
       <span class="star" data-value="5">★</span>
+      <div id="star-rating-label" class="instructions">Select a Rating</div>
     </div>
 
     <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
