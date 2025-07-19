@@ -1,0 +1,69 @@
+/* =======================
+   Form Controls
+   ======================= */
+
+.form-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="file"],
+select,
+input[type="text"] {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 14px;
+}
+
+button {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* =======================
+   Upload Cover Art
+   ======================= */
+
+.upload-label {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.upload-label:hover {
+    background: linear-gradient(135deg, #5a75f9, #9b5de5);
+    transform: scale(1.05);
+}
+
+/* =======================
+   Star Rating
+   ======================= */
+
+#star-rating {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.star {
+    cursor: pointer;
+    font-size: 30px;
+    color: #444;
+    transition: color 0.2s ease;
+}
+
+.star.selected {
+    color: gold;
+}

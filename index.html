@@ -7,11 +7,14 @@
     content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, minimum-scale=1">
 
   <title>Rated! By Bibs</title>
+
+  <!-- Description -->
   <meta content="A quick way to rate Games, Movies or TV Shows on your favorite social network 😁" name="description">
   <meta property="og:description"
     content="A quick way to rate Games, Movies or TV Shows on your favorite social network 😁">
   <meta content="" name="keywords">
 
+  <!-- Mobile Metadata -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-touch-fullscreen" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Rated! By Bibs" />
@@ -19,9 +22,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <link href="assets/style.css" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link href="assets/css/app.css" rel="stylesheet">
+  <link href="assets/css/canvas.css" rel="stylesheet">
+  <link href="assets/css/forms.css" rel="stylesheet">
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
@@ -31,22 +37,22 @@
 
   <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
 
+  <div class="form-controls">
+    <input type="file" accept="image/*" id="upload" hidden />
+    <label for="upload" class="upload-label">
+      Upload Cover Art
+    </label>
 
-  <input type="file" accept="image/*" id="upload" hidden />
-  <label for="upload" class="upload-label">
-    Upload Cover Art
-  </label>
+    <div id="star-rating">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
 
+    <input type="text" id="title" placeholder="Title (optional)" />
 
-  <div id="star-rating">
-    <span class="star" data-value="1">★</span>
-    <span class="star" data-value="2">★</span>
-    <span class="star" data-value="3">★</span>
-    <span class="star" data-value="4">★</span>
-    <span class="star" data-value="5">★</span>
-  </div>
-
-  <div class="options">
     <select id="platform-select">
       <option value="">Select Platform</option>
       <option value="xbox">Xbox</option>
@@ -63,28 +69,30 @@
       Include Background
     </label>
 
+    <button id="generate-canvas">Generate Canvas</button>
   </div>
-
-  <button onclick="generateCanvas()">Generate Canvas</button>
 
   <div id="preview"></div>
 
   <div id="canvas-container" style="display: none;">
     <div id="game-cover"></div>
-    <div class="rating-section" id="rating-stars">★★★★★</div>
+
     <div class="info-row">
-      <div class="platform-section" id="platform-display"></div>
-      <div class="gaming-id-section" id="gaming-id-display"></div>
+      <div class="title-section" id="title-display" stlye="display: none">Title</div>
+      <div class="platform-section" id="platform-display" stlye="display: none"></div>
+      <div class="gaming-id-section" id="gaming-id-display" stlye="display: none"></div>
     </div>
-    <div class="footer">Rated with RatedByBibs</div>
+    <div class="rating-section" id="star-rating-display">★★★★★</div>
+    <div class="logo-small"><span class="rated-small">Rated!</span><span class="by-bibs-small">By Bibs</span></div>
   </div>
 
   <div id="download-share-buttons" style="display: none;">
-    <button onclick="downloadStory()">Download</button>
-    <button onclick="shareStory()">Share</button>
+    <button id="download">Download</button>
+    <button id="share">Share</button>
   </div>
 
-  <script src="assets/app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script type="module" src="assets/js/app.js"></script>
 
 </body>
 

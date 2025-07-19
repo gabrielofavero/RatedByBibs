@@ -1,0 +1,77 @@
+import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
+
+export let UPLOAD_IMAGE = null;
+export let STARS = 0;
+
+export function updateInputsWithLocalStorage() {
+    document.getElementById('title').value = localStorage.getItem('title') || '';
+    document.getElementById('platform-select').value = localStorage.getItem('selectedPlatform') || '';
+    document.getElementById('gaming-id').value = localStorage.getItem('gamingId') || '';
+    updatePlatformPlaceHolder(document.getElementById('platform-select').value);
+}
+
+export function loadEventListeners() {
+    loadStarsListeners();
+    document.getElementById('title').onchange = e => localStorage.setItem('title', e.target.value);
+    document.getElementById('platform-select').onchange = e => updatePlatform(e.target.value);
+    document.getElementById('gaming-id').oninput = e => localStorage.setItem('gamingId', e.target.value);
+    document.getElementById('upload').onchange = e => upload(e.target.files[0]);
+    document.getElementById('generate-canvas').addEventListener('click', generateCanvas);
+    document.getElementById('share').addEventListener('click', shareCanvas);
+    document.getElementById('download').addEventListener('click', downloadCanvas);
+}
+
+function updatePlatform(value) {
+    localStorage.setItem('selectedPlatform', value);
+    updatePlatformPlaceHolder(value);
+}
+
+function updatePlatformPlaceHolder(value) {
+    let placeholder;
+
+    switch (value) {
+        case 'xbox':
+            placeholder = 'Gamertag';
+            break;
+        case 'switch':
+        case 'switch2':
+            placeholder = 'Nintendo Account';
+            break;
+        case 'steam':
+            placeholder = 'Steam ID';
+            break;
+        case 'playstation':
+            placeholder = 'PSN ID';
+            break;
+        default:
+            placeholder = 'Gaming ID';
+    }
+
+    const gamingIdInput = document.getElementById('gaming-id');
+    if (gamingIdInput) {
+        gamingIdInput.placeholder = `${placeholder} (optional)`;
+    }
+}
+
+function upload(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        UPLOAD_IMAGE = event.target.result;
+        document.getElementById('game-cover').style.backgroundImage = `url(${UPLOAD_IMAGE})`;
+    };
+    reader.readAsDataURL(file);
+}
+
+function loadStarsListeners() {
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            STARS = parseInt(star.dataset.value);
+            stars.forEach(star => {
+                const val = parseInt(star.dataset.value);
+                star.classList.toggle('selected', val <= STARS);
+            });
+        });
+    });
+}
