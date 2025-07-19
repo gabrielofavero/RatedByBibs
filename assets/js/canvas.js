@@ -52,9 +52,8 @@ export async function shareCanvas() {
 async function renderCanvas() {
     const type = document.getElementById('include-background').checked ? 'story' : 'sticker';
     
-    loadContainerByType('background', type);
+    loadContainerByType('canvas', type);
     loadContainerByType('content', type);
-    loadContainerByType('cover', type);
 
     const canvasContainer = document.getElementById('canvas-container');
     canvasContainer.style.display = 'flex';
