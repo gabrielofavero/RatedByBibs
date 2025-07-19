@@ -58,7 +58,7 @@ function upload(file) {
     const reader = new FileReader();
     reader.onload = function (event) {
         UPLOAD_IMAGE = event.target.result;
-        document.getElementById('game-cover').style.backgroundImage = `url(${UPLOAD_IMAGE})`;
+        document.getElementById('cover-container').style.backgroundImage = `url(${UPLOAD_IMAGE})`;
     };
     reader.readAsDataURL(file);
 }

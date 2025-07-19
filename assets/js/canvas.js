@@ -51,27 +51,32 @@ export async function shareCanvas() {
 
 async function renderCanvas() {
     const type = document.getElementById('include-background').checked ? 'story' : 'sticker';
+    
+    loadContainerByType('background', type);
+    loadContainerByType('content', type);
+    loadContainerByType('cover', type);
 
-    const container = document.getElementById('canvas-container');
-    container.style.display = 'flex';
-    container.classList.remove('sticker-container', 'story-container');
-    container.classList.add(`${type}-container`);
+    const canvasContainer = document.getElementById('canvas-container');
+    canvasContainer.style.display = 'flex';
 
-    const gameCover = document.getElementById('game-cover');
-    gameCover.classList.remove('sticker-game-cover', 'story-game-cover');
-    gameCover.classList.add(`${type}-game-cover`);
-
-    const canvas = await html2canvas(container, { backgroundColor: null });
+    const canvas = await html2canvas(canvasContainer, { backgroundColor: null });
     const dataUrl = canvas.toDataURL('image/png');
     GENERATED_IMAGE = dataUrl;
 
     const img = document.createElement('img');
     img.src = dataUrl;
     const preview = document.getElementById('preview');
-    preview.innerHTML = '<h3>Preview:</h3>';
+    preview.innerHTML = '';
     preview.appendChild(img);
 
-    container.style.display = 'none';
+    canvasContainer.style.display = 'none';
+    document.getElementById('download-share-buttons').style.display = 'block';
+}
+
+function loadContainerByType(name, canvasType) {
+    const container = document.getElementById(`${name}-container`);
+    container.className = "";
+    container.classList.add(`${canvasType}-${name}`);
 }
 
 function render(id, value) {
