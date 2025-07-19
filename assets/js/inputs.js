@@ -7,7 +7,7 @@ export function updateInputsWithLocalStorage() {
     document.getElementById('title').value = localStorage.getItem('title') || '';
     document.getElementById('platform-select').value = localStorage.getItem('selectedPlatform') || '';
     document.getElementById('gaming-id').value = localStorage.getItem('gamingId') || '';
-    updatePlatformPlaceHolder(document.getElementById('platform-select').value);
+    updatePlatformProperties(document.getElementById('platform-select').value);
 }
 
 export function loadEventListeners() {
@@ -23,34 +23,39 @@ export function loadEventListeners() {
 
 function updatePlatform(value) {
     localStorage.setItem('selectedPlatform', value);
-    updatePlatformPlaceHolder(value);
+    updatePlatformProperties(value);
 }
 
-function updatePlatformPlaceHolder(value) {
+function updatePlatformProperties(value) {
     let placeholder;
+    let length;
 
     switch (value) {
         case 'xbox':
             placeholder = 'Gamertag';
+            length = 12;
             break;
         case 'switch':
         case 'switch2':
             placeholder = 'Nintendo Account';
+            length = 20;
             break;
         case 'steam':
             placeholder = 'Steam ID';
+            length = 32;
             break;
         case 'playstation':
             placeholder = 'PSN ID';
+            length = 16;
             break;
         default:
             placeholder = 'Gaming ID';
+            length = 32;
     }
 
     const gamingIdInput = document.getElementById('gaming-id');
-    if (gamingIdInput) {
-        gamingIdInput.placeholder = `${placeholder} (optional)`;
-    }
+    gamingIdInput.placeholder = `${placeholder} (optional)`;
+    gamingIdInput.maxLength = length;
 }
 
 function upload(file) {
