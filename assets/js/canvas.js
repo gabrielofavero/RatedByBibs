@@ -4,7 +4,7 @@ let GENERATED_IMAGE = '';
 
 export async function generateCanvas() {
     if (!UPLOAD_IMAGE || STARS === 0) {
-        alert("Please upload an image and select a star rating.");
+        alert(getAlertMessage());
         return;
     }
     const rating = '★'.repeat(STARS) + '☆'.repeat(5 - STARS);
@@ -46,6 +46,18 @@ export async function shareCanvas() {
         }
     } else {
         alert("Sharing not supported on this browser/device.");
+    }
+}
+
+function getAlertMessage() {
+    if (!UPLOAD_IMAGE && STARS === 0) {
+        return "Please upload an image and select a star rating.";
+    } else if (!UPLOAD_IMAGE) {
+        return "Please upload an image.";
+    } else if (STARS === 0) {
+        return "Please select a star rating.";
+    } else {
+        return "An unexpected error occurred. Please try again.";
     }
 }
 
