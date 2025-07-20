@@ -9,5 +9,7 @@
         "other": "Other"
     },
     "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
-    "begin": "Begin rating"
+    "begin": "Begin rating",
+    "next": "Continue",
+    "finish": "Generate rating"
 }

@@ -1,4 +1,5 @@
 import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
+import { translate } from "./translation.js";
 
 export let TYPE;
 export let UPLOAD_IMAGE = null;
@@ -8,9 +9,11 @@ export function loadEventListeners() {
     loadTypeListeners();
 
     loadStarsListeners();
-    document.getElementById('title').onchange = e => localStorage.setItem('title', e.target.value);
-    document.getElementById('platform-select').onchange = e => updatePlatform(e.target.value);
-    document.getElementById('gaming-id').oninput = e => localStorage.setItem('gamingId', e.target.value);
+
+    document.getElementById('next').addEventListener('click', nextStep);
+    document.getElementById('back').addEventListener('click', previousStep);
+
+    document.getElementById('platform-select').onchange = e => updatePlatformProperties(e.target.value);
     document.getElementById('upload').onchange = e => upload(e.target.files[0]);
     document.getElementById('generate-canvas').addEventListener('click', generateCanvas);
     document.getElementById('share').addEventListener('click', shareCanvas);
@@ -31,11 +34,6 @@ function loadTypeListeners() {
             }
         });
     };
-}
-
-function updatePlatform(value) {
-    localStorage.setItem('selectedPlatform', value);
-    updatePlatformProperties(value);
 }
 
 function updatePlatformProperties(value) {
@@ -120,4 +118,93 @@ function updateStarRatingLabel() {
     }
 
     document.getElementById('star-rating-label').textContent = label;
+}
+
+function transitionStep(direction) {
+    const next = document.getElementById('next');
+    const back = document.getElementById('next');
+    const target = direction === 'next' ? next : back;
+
+    if (target.classList.contains('disabled')) return;
+
+    let from, to;
+    let j = 1;
+ 
+    while (!from && !to) {
+        const step = document.getElementById(`step-${j}`);
+        if (!step) break;
+
+        if (step.classList.contains('visible')) {
+            from = step;
+            const offset = direction === 'next' ? 1 : -1;
+            to = document.getElementById(`step-${j + offset}`);
+        } else {
+            j++;
+        }
+    }
+
+    if (!from || !to) return;
+ 
+    const hideClass = direction === 'next' ? 'hidden-left' : 'hidden-right';
+
+    from.classList.remove('visible');
+    from.classList.add(hideClass);
+
+    to.classList.remove('hidden', 'hidden-left', 'hidden-right');
+    to.classList.add('visible');
+
+    const stepID = to.id;
+    next.textContent = getStepTextContent(stepID);
+
+    if (isStepRequired(stepID)) {
+        next.classList.add('disabled');
+    } else {
+        next.classList.remove('disabled');
+    }
+
+    if (isStepReturnable(stepID)) {
+        back.classList.add('disabled');
+    } else {
+        back.classList.remove('disabled');
+    }
+}
+
+function nextStep() {
+    transitionStep('next');
+}
+
+function previousStep() {
+    transitionStep('back');
+}
+
+
+function getStepTextContent(stepID) {
+    switch (stepID) {
+        case 'step-1':
+            return translate('begin');
+        case 'step-4':
+            return translate('finish');
+        default:
+            return translate('next');
+    }
+}
+
+function isStepRequired(stepID) {
+    switch (stepID) {
+        case 'step-1':
+        case 'step-4':
+            return true;
+        default:
+            return false;
+    }
+}
+
+function isStepReturnable(stepID) {
+    switch (stepID) {
+        case 'step-1':
+        case 'step-4':
+            return false;
+        default:
+            return true;
+    }
 }

@@ -105,10 +105,35 @@ button {
    Step, next and previous
    ======================= */
 
+.steps-wrapper {
+}
+
 .step {
     margin: 50px 0px;
     min-height: 350px;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    transform: translateX(100%);
+    display: none;
 }
+
+.step.visible {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.step.hidden-left {
+    display: block;
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.step.hidden-right {
+    display: block;
+    opacity: 0;
+    transform: translateX(100%);
+  }
 
 .next-container {
     display: flex;

@@ -42,7 +42,7 @@
 <body>
 
   <div class="header">
-    <div id="previous" style="visibility: hidden">
+    <div id="back" class="disabled" style="visibility: hidden">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M21.293 16.2929C21.6835 15.9024 22.3165 15.9024 22.707 16.2929C23.0976 16.6834 23.0976 17.3164 22.707 17.707L17.4141 22.9999H33C33.5523 22.9999 34 23.4476 34 23.9999C34 24.5522 33.5523 24.9999 33 24.9999H17.4141L22.707 30.2929C23.0976 30.6834 23.0976 31.3164 22.707 31.707C22.3165 32.0975 21.6835 32.0975 21.293 31.707L14.291 24.705C14.1962 24.6097 14.1246 24.4998 14.0762 24.3827C14.0273 24.2648 14 24.1355 14 23.9999C14 23.8643 14.0273 23.735 14.0762 23.6171C14.125 23.4992 14.1971 23.3887 14.293 23.2929L21.293 16.2929Z"
@@ -72,34 +72,39 @@
     <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
     <div class="subtitle" data-translate="description"></div>
 
+    <div class="steps-wrapper">
+      <div id="step-1" class="step visible">
+        <div class="grid-container-type">
+          <div class="grid-button type-button" id="movie">
+            <img src="assets/icons/type/movie.svg" class="grid-icon">
+            <div class="grid-label" data-translate="type.movie"></div>
+          </div>
+          <div class="grid-button type-button" id="tv">
+            <img src="assets/icons/type/tv.svg" class="grid-icon">
+            <div class="grid-label" data-translate="type.tv"></div>
+          </div>
+          <div class="grid-button type-button" id="game">
+            <img src="assets/icons/type/game.svg" class="grid-icon">
+            <div class="grid-label" data-translate="type.game"></div>
+          </div>
+          <div class="grid-button type-button" id="music">
+            <img src="assets/icons/type/music.svg" class="grid-icon">
+            <div class="grid-label" data-translate="type.music"></div>
+          </div>
+          <div class="grid-button type-button" id="book">
+            <img src="assets/icons/type/book.svg" class="grid-icon">
+            <div class="grid-label" data-translate="type.book"></div>
+          </div>
+          <div class="grid-button type-button" id="other">
+            <img src="assets/icons/type/other.svg" class="grid-icon">
+            <div class="grid-label" data-translate="type.other"></div>
+          </div>
+        </div>
+      </div>
 
-
-    <div id="step-1" class="step">
-      <div class="grid-container-type">
-        <div class="grid-button type-button" id="movie">
-          <img src="assets/icons/type/movie.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.movie"></div>
-        </div>
-        <div class="grid-button type-button" id="tv">
-          <img src="assets/icons/type/tv.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.tv"></div>
-        </div>
-        <div class="grid-button type-button" id="game">
-          <img src="assets/icons/type/game.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.game"></div>
-        </div>
-        <div class="grid-button type-button" id="music">
-          <img src="assets/icons/type/music.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.music"></div>
-        </div>
-        <div class="grid-button type-button" id="book">
-          <img src="assets/icons/type/book.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.book"></div>
-        </div>
-        <div class="grid-button type-button" id="other">
-          <img src="assets/icons/type/other.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.other"></div>
-        </div>
+      <div id="step-2" class="step">
+        <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
+        <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
       </div>
     </div>
 
@@ -138,7 +143,7 @@
           <div id="star-rating-label" class="instructions">Select a Rating</div>
         </div>
 
-        <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
+
 
         <select id="platform-select">
           <option value="">Select Platform</option>
@@ -149,7 +154,7 @@
           <option value="playstation">Playstation</option>
         </select>
 
-        <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
+
 
         <button id="generate-canvas">Generate Canvas</button>
       </div>
@@ -179,8 +184,6 @@
 
     </div>
   </div>
-
-
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script type="module" src="assets/js/app.js"></script>

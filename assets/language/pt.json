@@ -9,5 +9,7 @@
         "other": "Outro"
     },
     "language_confirmation": "Alterar o idioma irá recarregar a página e descartar qualquer progresso não salvo. Tem certeza de que deseja continuar?",
-    "begin": "Começar avaliação"
+    "begin": "Começar avaliação",
+    "next": "Continuar",
+    "finish": "Gerar avaliação"
 }
