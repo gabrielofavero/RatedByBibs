@@ -102,11 +102,8 @@ button {
 }
 
 /* =======================
-   Step, next and previous
+   Step, next and back
    ======================= */
-
-.steps-wrapper {
-}
 
 .step {
     margin: 50px 0px;
@@ -187,6 +184,15 @@ button {
 
 #previous {
     cursor: pointer;
+}
+
+#back {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 1;
+}
+
+#back.disabled {
+    opacity: 0;
 }
 
 /* =======================
