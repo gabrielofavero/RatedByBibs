@@ -31,69 +31,114 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+  <div class="language-container">
+    <button class="language-button">
+      <img src="assets/icons/flags/brazil.svg" class="flag">
+      <img src="assets/icons/forms/trailing.svg" class="trailing">
+    </button>
+  </div>
+
+
   <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
+  <div class="subtitle">A quick way to rate games, movies or TV Shows on your favorite social network</div>
 
-  <div class="form-controls">
-    <div class="upload-container">
-      <input type="file" accept="image/*" id="upload" hidden />
-      <label for="upload" class="upload-label">
-        Upload Cover Art
-      </label>
-      <div id="upload-instructions" class="instructions">Click to upload an image. We recomend looking at <a
-          href="https://www.steamgriddb.com/">Steam Grid DB</a></div>
-      <div id="upload-success" class="instructions" style="display: none;">Image Uploaded successfully<br></div>
-    </div>
-
-
-    <div id="star-rating">
-      <span class="star" data-value="1">★</span>
-      <span class="star" data-value="2">★</span>
-      <span class="star" data-value="3">★</span>
-      <span class="star" data-value="4">★</span>
-      <span class="star" data-value="5">★</span>
-      <div id="star-rating-label" class="instructions">Select a Rating</div>
-    </div>
-
-    <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
-
-    <select id="platform-select">
-      <option value="">Select Platform</option>
-      <option value="xbox">Xbox</option>
-      <option value="switch2">Nintendo Switch 2</option>
-      <option value="switch">Nintendo Switch</option>
-      <option value="steam">Steam</option>
-      <option value="playstation">Playstation</option>
-    </select>
-
-    <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
-
-    <button id="generate-canvas">Generate Canvas</button>
-  </div>
-
-  <div id="preview"></div>
-
-  <div id="canvas-container" class="canvas" style="display: none;">
-    <div class="content">
-      <div id="cover"></div>
-      <div class="info-container">
-        <div class="title-section" id="title-display" stlye="display: none">Title</div>
-        <div class="platform-container">
-          <div class="platform-section" id="platform-display" stlye="display: none"></div>
-          <div class="gaming-id-section" id="gaming-id-display" stlye="display: none"></div>
-        </div>
+  <div id="step-1" class="step">
+    <div class="grid-container-2">
+      <div class="grid-button">
+        <img src="assets/icons/type/game.svg" class="grid-icon">
+        <div class="grid-label">Game</div>
       </div>
-      <div class="rating-section" id="star-rating-display">★★★★★</div>
-      <div class="logo-canvas"><span class="rated-canvas">Rated!</span><span class="by-bibs-canvas">By Bibs</span></div>
+      <div class="grid-button">
+        <img src="assets/icons/type/music.svg" class="grid-icon">
+        <div class="grid-label">Music</div>
+      </div>
+      <div class="grid-button">
+        <img src="assets/icons/type/tv-show.svg" class="grid-icon">
+        <div class="grid-label">TV Show</div>
+      </div>
+      <div class="grid-button">
+        <img src="assets/icons/type/movie.svg" class="grid-icon">
+        <div class="grid-label">Movie</div>
+      </div>
     </div>
   </div>
 
-  <div id="download-share-buttons" style="display: none;">
-    <button id="download">Download</button>
-    <button id="share">Share</button>
+
+
+
+
+
+
+  <div id="to-do" style="display: none">
+
+    <div class="form-controls">
+      <div class="upload-container">
+        <input type="file" accept="image/*" id="upload" hidden />
+        <label for="upload" class="upload-label">
+          Upload Cover Art
+        </label>
+        <div id="upload-instructions" class="instructions">Click to upload an image. We recomend looking at <a
+            href="https://www.steamgriddb.com/">Steam Grid DB</a></div>
+        <div id="upload-success" class="instructions" style="display: none;">Image Uploaded successfully<br></div>
+      </div>
+  
+  
+      <div id="star-rating">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+        <div id="star-rating-label" class="instructions">Select a Rating</div>
+      </div>
+  
+      <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
+  
+      <select id="platform-select">
+        <option value="">Select Platform</option>
+        <option value="xbox">Xbox</option>
+        <option value="switch2">Nintendo Switch 2</option>
+        <option value="switch">Nintendo Switch</option>
+        <option value="steam">Steam</option>
+        <option value="playstation">Playstation</option>
+      </select>
+  
+      <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
+  
+      <button id="generate-canvas">Generate Canvas</button>
+    </div>
+  
+    <div id="preview"></div>
+  
+    <div id="canvas-container" class="canvas" style="display: none;">
+      <div class="content">
+        <div id="cover"></div>
+        <div class="info-container">
+          <div class="title-section" id="title-display" stlye="display: none">Title</div>
+          <div class="platform-container">
+            <div class="platform-section" id="platform-display" stlye="display: none"></div>
+            <div class="gaming-id-section" id="gaming-id-display" stlye="display: none"></div>
+          </div>
+        </div>
+        <div class="rating-section" id="star-rating-display">★★★★★</div>
+        <div class="logo-canvas"><span class="rated-canvas">Rated!</span><span class="by-bibs-canvas">By Bibs</span></div>
+      </div>
+    </div>
+  
+    <div id="download-share-buttons" style="display: none;">
+      <button id="download">Download</button>
+      <button id="share">Share</button>
+    </div>
+  
+  
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

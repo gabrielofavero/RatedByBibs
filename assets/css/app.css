@@ -2,9 +2,15 @@
    Page Base
    ======================= */
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #121212;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #1A1A1A, #000000);
     color: #fff;
     text-align: center;
     padding: 2rem;
@@ -36,14 +42,14 @@ a {
 
 .rated,
 .rated-canvas {
-    color: #ffcc00;
+    color: #E5A000;
 }
 
 .rated {
-    font-size: 2.5rem;
+    font-size: 48px;
     margin-right: 0.3em;
 }
 
 .by-bibs {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }

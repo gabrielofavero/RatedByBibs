@@ -9,14 +9,6 @@
     gap: 10px;
 }
 
-input[type="file"],
-select,
-input[type="text"] {
-    margin: 10px 0;
-    padding: 5px;
-    font-size: 14px;
-}
-
 button {
     margin: 10px 5px;
     padding: 10px 20px;
@@ -30,6 +22,81 @@ button {
     font-size: 14px;
     color: rgb(235, 235, 235);
 }
+
+/* =======================
+   Language Selection
+   ======================= */
+
+.language-container {
+    display: grid;
+    justify-items: end;
+}
+
+.language-button {
+    display: flex;
+    align-items: center;
+    width: 71px;
+    height: 38px;
+    background: #212121;
+    border-radius: 800px;
+    padding: 4px;
+    gap: 2px;
+}
+
+.flag {
+    width: 34px;
+    height: 34px;
+}
+
+.trailing {
+    width: 24px;
+    height: 24px;
+}
+
+/* =======================
+   Steps
+   ======================= */
+
+.step {
+    margin: 30px
+}
+
+/* =======================
+   Grid Buttons
+   ======================= */
+
+   .grid-container-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 17px;
+    max-width: calc((2 * 166px) + 17px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.grid-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #212121;
+    border-radius: 16px;
+    width: 166px;
+    height: 110px;
+}
+
+.grid-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.grid-label {
+    color: white;
+    font-size: 14px;
+}
+
+
 
 /* =======================
    Upload Cover Art

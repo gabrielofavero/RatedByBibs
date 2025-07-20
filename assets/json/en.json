@@ -1,0 +1,8 @@
+{
+    "type": {
+        "game": "Game",
+        "music": "Music",
+        "movie": "Movie",
+        "tv": "TV Show"
+    }
+}
