@@ -38,7 +38,7 @@ export async function shareCanvas() {
         try {
             await navigator.share({
                 files: [file],
-                title: 'My Game Rating',
+                title: 'Rated! By Bibs',
                 text: `I rated a game ${STARS}/5 on ${document.getElementById('platform-select').value}! 🎮`
             });
         } catch (err) {
