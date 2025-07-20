@@ -1,4 +1,4 @@
-import { updateInputsWithLocalStorage, loadEventListeners } from "./inputs.js";
+import { updateInputsWithLocalStorage, loadEventListeners } from "./forms.js";
 
 document.addEventListener("DOMContentLoaded", function () {
 

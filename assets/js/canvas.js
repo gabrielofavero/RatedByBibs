@@ -1,4 +1,4 @@
-import { UPLOAD_IMAGE, STARS } from "./inputs.js";
+import { UPLOAD_IMAGE, STARS } from "./forms.js";
 
 let GENERATED_IMAGE = '';
 

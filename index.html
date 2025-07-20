@@ -39,7 +39,7 @@
 
 <body>
 
-  <div class="language-container">
+  <div class="end-container">
     <button class="language-button">
       <img src="assets/icons/flags/brazil.svg" class="flag">
       <img src="assets/icons/forms/trailing.svg" class="trailing">
@@ -50,26 +50,46 @@
   <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
   <div class="subtitle">A quick way to rate games, movies or TV Shows on your favorite social network</div>
 
+  <div class="previous-container vertical-margin">
+    <button id="previous" class="step-button" disabled>
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="scale(-1,1) translate(-25,0)">
+          <path d="M5.58228 12.86H19.6445M19.6445 12.86L12.6134 5.82892M19.6445 12.86L12.6134 19.8912"
+                stroke="#2C2C2C" stroke-width="2.26" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>            
+    </button>
+  </div>
+
   <div id="step-1" class="step">
     <div class="grid-container-2">
-      <div class="grid-button">
+      <div class="grid-button" id="game">
         <img src="assets/icons/type/game.svg" class="grid-icon">
         <div class="grid-label">Game</div>
       </div>
-      <div class="grid-button">
+      <div class="grid-button" id="music">
         <img src="assets/icons/type/music.svg" class="grid-icon">
         <div class="grid-label">Music</div>
       </div>
-      <div class="grid-button">
+      <div class="grid-button" id="tv-show">
         <img src="assets/icons/type/tv-show.svg" class="grid-icon">
         <div class="grid-label">TV Show</div>
       </div>
-      <div class="grid-button">
+      <div class="grid-button" id="movie">
         <img src="assets/icons/type/movie.svg" class="grid-icon">
         <div class="grid-label">Movie</div>
       </div>
     </div>
   </div>
+
+  <div class="end-container vertical-margin">
+    <button id="next" class="step-button" disabled>
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.58228 12.86H19.6445M19.6445 12.86L12.6134 5.82892M19.6445 12.86L12.6134 19.8912" stroke="#2C2C2C" stroke-width="2.26" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>        
+    </button>
+  </div>
+
 
 
 

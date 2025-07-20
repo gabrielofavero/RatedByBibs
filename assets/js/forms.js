@@ -1,5 +1,7 @@
 import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
 
+let TYPES = ['game', 'music', 'tv-show', 'movie']
+export let TYPE;
 export let UPLOAD_IMAGE = null;
 export let STARS = 0;
 
@@ -11,6 +13,8 @@ export function updateInputsWithLocalStorage() {
 }
 
 export function loadEventListeners() {
+    loadTypeListeners();
+    
     loadStarsListeners();
     document.getElementById('title').onchange = e => localStorage.setItem('title', e.target.value);
     document.getElementById('platform-select').onchange = e => updatePlatform(e.target.value);
@@ -19,6 +23,22 @@ export function loadEventListeners() {
     document.getElementById('generate-canvas').addEventListener('click', generateCanvas);
     document.getElementById('share').addEventListener('click', shareCanvas);
     document.getElementById('download').addEventListener('click', downloadCanvas);
+}
+
+function loadTypeListeners() {
+    for (const type of TYPES) {
+        document.getElementById(type).addEventListener('click', () => {
+            TYPE = type;
+            for (const t of TYPES) {
+                const element = document.getElementById(t);
+                element.classList.toggle('selected', t === type);
+            }
+            const next = document.getElementById('next');
+            if (TYPE) {
+                next.removeAttribute('disabled');
+            }
+        });
+    };
 }
 
 function updatePlatform(value) {
