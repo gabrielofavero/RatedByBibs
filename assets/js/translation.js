@@ -35,6 +35,7 @@ function loadLanguageSelector() {
     const langOptions = document.querySelector('.language-options');
     document.querySelector('.language-button').addEventListener('click', () => {
         langOptions.classList.toggle('show');
+        document.getElementById('trailing').classList.toggle('show');
     });
 
     for (const option of document.querySelectorAll('.language-option')) {

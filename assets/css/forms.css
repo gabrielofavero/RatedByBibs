@@ -59,6 +59,14 @@ button {
     height: 24px;
 }
 
+#trailing {
+    transition: transform 0.3s ease;
+}
+
+#trailing.show {
+    transform: rotate(180deg);
+}
+
 .language-selector {
     position: relative;
 }
