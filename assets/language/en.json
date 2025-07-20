@@ -8,5 +8,6 @@
         "book": "Book",
         "other": "Other"
     },
-    "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?"
+    "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
+    "begin": "Begin rating"
 }

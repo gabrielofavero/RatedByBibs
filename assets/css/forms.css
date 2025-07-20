@@ -28,7 +28,6 @@ button {
     justify-items: end;
 }
 
-
 /* =======================
    Language Selection
    ======================= */
@@ -103,7 +102,7 @@ button {
 }
 
 /* =======================
-   Steps
+   Step, next and previous
    ======================= */
 
 .step {
@@ -111,26 +110,58 @@ button {
     min-height: 350px;
 }
 
-.step-button {
-    width: 50px;
-    height: 50px;
-    background: #E5A000;
-    border-radius: 100%;
+.next-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
+    align-items: center;
+}
+
+@media screen and (max-width: 430px) {
+    .next-container {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 400px;
+        pointer-events: auto;
+        z-index: 1000;
+    }
+}
+
+.next-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 345px;
+    height: 49px;
+    background: #E5A000;
+    color: #2C2C2C;
+    border-radius: 16px;
     transition: background 0.3s ease;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    cursor: pointer;
 }
 
-.step-button:disabled {
-    background: #444;
+.next-button.disabled {
+    background: #D9D9D9;
+    color: #757575;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-.step-icon {
+.next-icon {
     width: 25px;
     height: 25px;
+}
+
+#previous {
+    cursor: pointer;
 }
 
 /* =======================
@@ -189,6 +220,11 @@ button {
     color: white;
     font-size: 14px;
     margin-top: 8px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 140%;
+    text-align: center;
 }
 
 /* =======================
@@ -236,12 +272,4 @@ button {
 
 .star.selected {
     color: gold;
-}
-
-/* =======================
-   Previous and Next buttons
-   ======================= */
-
-#previous {
-    cursor: pointer;
 }

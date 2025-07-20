@@ -4,16 +4,9 @@ export let TYPE;
 export let UPLOAD_IMAGE = null;
 export let STARS = 0;
 
-export function updateInputsWithLocalStorage() {
-    document.getElementById('title').value = localStorage.getItem('title') || '';
-    document.getElementById('platform-select').value = localStorage.getItem('selectedPlatform') || '';
-    document.getElementById('gaming-id').value = localStorage.getItem('gamingId') || '';
-    updatePlatformProperties(document.getElementById('platform-select').value);
-}
-
 export function loadEventListeners() {
     loadTypeListeners();
-    
+
     loadStarsListeners();
     document.getElementById('title').onchange = e => localStorage.setItem('title', e.target.value);
     document.getElementById('platform-select').onchange = e => updatePlatform(e.target.value);
@@ -34,7 +27,7 @@ function loadTypeListeners() {
             }
             const next = document.getElementById('next');
             if (TYPE) {
-                next.removeAttribute('disabled');
+                next.classList.remove('disabled')
             }
         });
     };
