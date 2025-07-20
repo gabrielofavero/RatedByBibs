@@ -23,11 +23,6 @@ button {
     color: rgb(235, 235, 235);
 }
 
-.previous-container {
-    margin-top: 30px;
-    display: none;
-}
-
 .end-container {
     display: grid;
     justify-items: end;
@@ -112,7 +107,7 @@ button {
    ======================= */
 
 .step {
-    margin: 30px 0px;
+    margin: 50px 0px;
     min-height: 350px;
 }
 
@@ -241,4 +236,12 @@ button {
 
 .star.selected {
     color: gold;
+}
+
+/* =======================
+   Previous and Next buttons
+   ======================= */
+
+#previous {
+    cursor: pointer;
 }

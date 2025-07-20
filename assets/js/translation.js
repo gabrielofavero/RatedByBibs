@@ -1,3 +1,5 @@
+import { TYPE } from "./forms.js";
+
 let USER_LANGUAGE;
 let LANGUAGE_PACK;
 
@@ -47,8 +49,8 @@ function loadLanguageSelector() {
     }
 
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.language-selector')) {
-            langOptions.style.display = 'none';
+        if (!e.target.closest('.language-selector') && langOptions.classList.contains('show')) {
+            langOptions.classList.toggle('show');
         }
     });
 }
@@ -86,11 +88,13 @@ function initUserLanguage() {
 
 function updateUserLanguage(language) {
     const previousLang = localStorage.getItem("userLanguage");
-    localStorage.setItem("userLanguage", language);
 
-    if (previousLang !== language) {
-        window.location.reload();
+    if (language == previousLang || (TYPE && !window.confirm(translate('language_confirmation')))) {
+        return;
     }
+
+    localStorage.setItem("userLanguage", language);
+    window.location.reload();
 }
 
 function searchObject(obj, key, strict = true) {
