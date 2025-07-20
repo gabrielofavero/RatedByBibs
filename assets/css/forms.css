@@ -134,7 +134,7 @@ button {
    Grid Buttons
    ======================= */
 
-.grid-container-2 {
+.grid-container-type {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -143,9 +143,9 @@ button {
     margin-right: auto;
 }
 
-@media screen and (min-width: 480px) {
-    .grid-container-2 {
-        max-width: calc((2 * 166px) + 17px);
+@media screen and (min-width: 620px) {
+    .grid-container-type {
+        max-width: 600px;
     }
 }
 

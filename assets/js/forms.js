@@ -1,6 +1,5 @@
 import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
 
-let TYPES = ['game', 'music', 'tv-show', 'movie']
 export let TYPE;
 export let UPLOAD_IMAGE = null;
 export let STARS = 0;
@@ -26,12 +25,12 @@ export function loadEventListeners() {
 }
 
 function loadTypeListeners() {
-    for (const type of TYPES) {
-        document.getElementById(type).addEventListener('click', () => {
-            TYPE = type;
-            for (const t of TYPES) {
-                const element = document.getElementById(t);
-                element.classList.toggle('selected', t === type);
+    const divs = document.getElementsByClassName('type-button');
+    for (const div of divs) {
+        div.addEventListener('click', () => {
+            TYPE = div.id;
+            for (const innerDiv of divs) {
+                innerDiv.classList.toggle('selected', innerDiv.id === div.id);
             }
             const next = document.getElementById('next');
             if (TYPE) {

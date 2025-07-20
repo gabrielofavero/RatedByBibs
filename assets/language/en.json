@@ -4,6 +4,8 @@
         "game": "Game",
         "music": "Music",
         "movie": "Movie",
-        "tv": "TV Show"
+        "tv": "TV Show",
+        "book": "Book",
+        "other": "Other"
     }
 }
