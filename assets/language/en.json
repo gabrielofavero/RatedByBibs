@@ -1,4 +1,5 @@
 {
+    "description": "A quick way to rate your favorite content and share it to social network",
     "type": {
         "game": "Game",
         "music": "Music",

@@ -33,31 +33,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
 
-  <div class="end-container">
+  <div class="language-selector end-container">
     <button class="language-button">
-      <img src="assets/icons/flags/brazil.svg" class="flag">
+      <img id="user-language" src="" class="flag">
       <img src="assets/icons/forms/trailing.svg" class="trailing">
     </button>
+    <div class="language-options">
+      <div class="language-option" data-lang="en">
+        <img src="assets/icons/language/en.svg" class="flag">
+        <span class="language-label">EN</span>
+      </div>
+      <div class="language-option" data-lang="pt">
+        <img src="assets/icons/language/pt.svg" class="flag">
+        <span class="language-label">PT</span>
+      </div>
+    </div>
   </div>
 
 
   <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
-  <div class="subtitle">A quick way to rate games, movies or TV Shows on your favorite social network</div>
+  <div class="subtitle" data-translate="description"></div>
 
   <div class="previous-container">
     <button id="previous" class="step-button" disabled>
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g transform="scale(-1,1) translate(-25,0)">
-          <path d="M5.58228 12.86H19.6445M19.6445 12.86L12.6134 5.82892M19.6445 12.86L12.6134 19.8912"
-                stroke="#2C2C2C" stroke-width="2.26" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5.58228 12.86H19.6445M19.6445 12.86L12.6134 5.82892M19.6445 12.86L12.6134 19.8912" stroke="#2C2C2C"
+            stroke-width="2.26" stroke-linecap="round" stroke-linejoin="round" />
         </g>
-      </svg>            
+      </svg>
     </button>
   </div>
 
@@ -65,19 +77,19 @@
     <div class="grid-container-2">
       <div class="grid-button" id="game">
         <img src="assets/icons/type/game.svg" class="grid-icon">
-        <div class="grid-label">Game</div>
+        <div class="grid-label" data-translate="type.game"></div>
       </div>
       <div class="grid-button" id="music">
         <img src="assets/icons/type/music.svg" class="grid-icon">
-        <div class="grid-label">Music</div>
+        <div class="grid-label" data-translate="type.music"></div>
       </div>
       <div class="grid-button" id="tv-show">
         <img src="assets/icons/type/tv-show.svg" class="grid-icon">
-        <div class="grid-label">TV Show</div>
+        <div class="grid-label" data-translate="type.tv"></div>
       </div>
       <div class="grid-button" id="movie">
         <img src="assets/icons/type/movie.svg" class="grid-icon">
-        <div class="grid-label">Movie</div>
+        <div class="grid-label" data-translate="type.movie"></div>
       </div>
     </div>
   </div>
@@ -85,8 +97,9 @@
   <div class="end-container">
     <button id="next" class="step-button" disabled>
       <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5.58228 12.86H19.6445M19.6445 12.86L12.6134 5.82892M19.6445 12.86L12.6134 19.8912" stroke="#2C2C2C" stroke-width="2.26" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>        
+        <path d="M5.58228 12.86H19.6445M19.6445 12.86L12.6134 5.82892M19.6445 12.86L12.6134 19.8912" stroke="#2C2C2C"
+          stroke-width="2.26" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
     </button>
   </div>
 
@@ -109,8 +122,8 @@
             href="https://www.steamgriddb.com/">Steam Grid DB</a></div>
         <div id="upload-success" class="instructions" style="display: none;">Image Uploaded successfully<br></div>
       </div>
-  
-  
+
+
       <div id="star-rating">
         <span class="star" data-value="1">★</span>
         <span class="star" data-value="2">★</span>
@@ -119,9 +132,9 @@
         <span class="star" data-value="5">★</span>
         <div id="star-rating-label" class="instructions">Select a Rating</div>
       </div>
-  
+
       <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
-  
+
       <select id="platform-select">
         <option value="">Select Platform</option>
         <option value="xbox">Xbox</option>
@@ -130,14 +143,14 @@
         <option value="steam">Steam</option>
         <option value="playstation">Playstation</option>
       </select>
-  
+
       <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
-  
+
       <button id="generate-canvas">Generate Canvas</button>
     </div>
-  
+
     <div id="preview"></div>
-  
+
     <div id="canvas-container" class="canvas" style="display: none;">
       <div class="content">
         <div id="cover"></div>
@@ -149,16 +162,16 @@
           </div>
         </div>
         <div class="rating-section" id="star-rating-display">★★★★★</div>
-        <div class="logo-canvas"><span class="rated-canvas">Rated!</span><span class="by-bibs-canvas">By Bibs</span></div>
+        <div class="logo-canvas"><span class="rated-canvas">Rated!</span><span class="by-bibs-canvas">By Bibs</span>
+        </div>
       </div>
     </div>
-  
+
     <div id="download-share-buttons" style="display: none;">
       <button id="download">Download</button>
       <button id="share">Share</button>
     </div>
-  
-  
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

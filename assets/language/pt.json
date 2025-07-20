@@ -1,0 +1,9 @@
+{
+    "description": "Uma forma rápida de avaliar seu conteúdo favorito e compartilhar nas redes sociais",
+    "type": {
+        "game": "Game",
+        "music": "Música",
+        "movie": "Filme",
+        "tv": "Série"
+    }
+}
