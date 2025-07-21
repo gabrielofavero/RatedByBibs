@@ -11,5 +11,17 @@
     "language_confirmation": "Alterar o idioma irá recarregar a página e descartar qualquer progresso não salvo. Tem certeza de que deseja continuar?",
     "begin": "Começar avaliação",
     "next": "Continuar",
-    "finish": "Gerar avaliação"
+    "finish": "Gerar avaliação",
+    "optional": "Opcional",
+    "game": {
+        "title": "Nome do jogo",
+        "id": {
+            "default": "ID de Jogador",
+            "steam": "Steam ID",
+            "playstation": "PSN ID",
+            "xbox": "Gamertag",
+            "switch": "Nintendo Account",
+            "switch2": "Nintendo Account"
+        }
+    }
 }

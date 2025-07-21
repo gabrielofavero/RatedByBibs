@@ -70,13 +70,13 @@
 
   <div class="content">
     <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
-    <div class="description" data-translate="description"></div>
 
     <div class="step-wrapper">
       <div class="step-slider" id="slider">
         <div class="step visible" id="step-1">
           <div class="step-content">
             <!-- Rating Type Selection -->
+            <div class="description" data-translate="description"></div>
             <div class="grid-container-type">
               <div class="grid-button type-button" id="movie">
                 <img src="assets/icons/type/movie.svg" class="grid-icon">
@@ -108,9 +108,15 @@
         <div class="step" id="step-2">
           <div class="step-content">
             <!-- Optional Inputs -->
-            <div class="form-controls">
-              <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
-              <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
+            <div class="options" id="game-option">
+              <div class="option">
+                <label for="game-title" data-translate="game.title"></label>
+                <input type="text" id="game-title" placeholder="Opcional" maxlength="32" data-translate="optional"/>
+              </div>
+              <div class="option">
+                <label for="game-id" data-translate="game.id.default"></label>
+                <input type="text" id="game-id" placeholder="Opcional" maxlength="32" data-translate="optional"/>
+              </div>
             </div>
           </div>
         </div>
