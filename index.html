@@ -70,40 +70,50 @@
 
   <div class="content">
     <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
-    <div class="subtitle" data-translate="description"></div>
+    <div class="description" data-translate="description"></div>
 
-    <div id="step-1" class="step visible">
-      <div class="grid-container-type">
-        <div class="grid-button type-button" id="movie">
-          <img src="assets/icons/type/movie.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.movie"></div>
+    <div class="step-wrapper">
+      <div class="step-slider" id="slider">
+        <div class="step visible" id="step-1">
+          <div class="step-content">
+            <div class="grid-container-type">
+              <div class="grid-button type-button" id="movie">
+                <img src="assets/icons/type/movie.svg" class="grid-icon">
+                <div class="grid-label" data-translate="type.movie"></div>
+              </div>
+              <div class="grid-button type-button" id="tv">
+                <img src="assets/icons/type/tv.svg" class="grid-icon">
+                <div class="grid-label" data-translate="type.tv"></div>
+              </div>
+              <div class="grid-button type-button" id="game">
+                <img src="assets/icons/type/game.svg" class="grid-icon">
+                <div class="grid-label" data-translate="type.game"></div>
+              </div>
+              <div class="grid-button type-button" id="music">
+                <img src="assets/icons/type/music.svg" class="grid-icon">
+                <div class="grid-label" data-translate="type.music"></div>
+              </div>
+              <div class="grid-button type-button" id="book">
+                <img src="assets/icons/type/book.svg" class="grid-icon">
+                <div class="grid-label" data-translate="type.book"></div>
+              </div>
+              <div class="grid-button type-button" id="other">
+                <img src="assets/icons/type/other.svg" class="grid-icon">
+                <div class="grid-label" data-translate="type.other"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="grid-button type-button" id="tv">
-          <img src="assets/icons/type/tv.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.tv"></div>
-        </div>
-        <div class="grid-button type-button" id="game">
-          <img src="assets/icons/type/game.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.game"></div>
-        </div>
-        <div class="grid-button type-button" id="music">
-          <img src="assets/icons/type/music.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.music"></div>
-        </div>
-        <div class="grid-button type-button" id="book">
-          <img src="assets/icons/type/book.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.book"></div>
-        </div>
-        <div class="grid-button type-button" id="other">
-          <img src="assets/icons/type/other.svg" class="grid-icon">
-          <div class="grid-label" data-translate="type.other"></div>
+        <div class="step" id="step-2">
+          <div class="step-content">
+            <!-- <div class="form-controls"> -->
+            <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
+            <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
+            <!-- </div> -->
+
+          </div>
         </div>
       </div>
-    </div>
-
-    <div id="step-2" class="step">
-      <input type="text" id="title" maxlength="32" placeholder="Title (optional)" />
-      <input type="text" id="gaming-id" maxlength="32" placeholder="Gaming ID (optional)" />
     </div>
 
     <div class="bottom-sheet"></div>

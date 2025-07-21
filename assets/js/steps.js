@@ -1,6 +1,9 @@
 import { TYPE } from "./forms.js";
 import { translate } from "./translation.js";
 
+let CURRENT_STEP = 1;
+let IS_ANIMATING = false;
+
 export function nextStep() {
     transitionStep('next');
 }
@@ -10,58 +13,36 @@ export function previousStep() {
 }
 
 function transitionStep(direction) {
-    const next = document.getElementById('next');
-    const back = document.getElementById('back');
-    const target = direction === 'next' ? next : back;
-
+    const target = document.getElementById(direction);
     if (target.classList.contains('disabled')) return;
 
-    let from, to;
-    let j = 1;
-
-    while (!from && !to) {
-        const step = document.getElementById(`step-${j}`);
-        if (!step) break;
-
-        if (step.classList.contains('visible')) {
-            from = step;
-            const offset = direction === 'next' ? 1 : -1;
-            to = document.getElementById(`step-${j + offset}`);
-        } else {
-            j++;
-        }
-    }
-
-    if (!from || !to) return;
-
-    animate(from, to, direction);
-    loadStepButtonsVisibility(to.id, back, next);
+    const newStep = direction === 'next' ? CURRENT_STEP + 1 : CURRENT_STEP - 1
+    animate(newStep);
+    loadStepButtonsVisibility(`step-${newStep + 1}`, back, next);
 }
 
-function animate(from, to, direction) {
-    const hideClass = direction === 'next' ? 'hidden-left' : 'hidden-right';
+function animate(newStep) {
+    const slider = document.getElementById('slider');
+    const steps = slider.querySelectorAll('.step');
 
-    // Prepare the incoming step
-    to.classList.remove('hidden', 'hidden-left', 'hidden-right');
-    to.style.display = 'block'; // Ensure it's rendered
+    if (IS_ANIMATING || newStep === CURRENT_STEP) return;
+    IS_ANIMATING = true;
 
-    // Force a reflow to make sure the next style change gets transitioned
-    void to.offsetWidth;
+    const i = CURRENT_STEP - 1;
+    const j = newStep - 1;
 
-    // Show incoming step
-    to.classList.add('visible');
+    // Show both current and next box
+    steps[i].style.visibility = 'visible';
+    steps[j].style.visibility = 'visible';
 
-    // Animate the outgoing step
-    from.classList.remove('visible');
-    from.classList.add(hideClass);
+    slider.style.transform = `translateX(-${j * 100}vw)`;
 
-    // After animation, hide the outgoing step
-    from.addEventListener('transitionend', function handler(e) {
-        if (e.propertyName === 'transform') {
-            from.style.display = 'none';
-            from.classList.remove(hideClass); // optional: clean up
-            from.removeEventListener('transitionend', handler);
-        }
+    // Wait for transition to end
+    slider.addEventListener('transitionend', function handler() {
+        steps[i].style.visibility = 'hidden';
+        CURRENT_STEP = newStep;
+        IS_ANIMATING = false;
+        slider.removeEventListener('transitionend', handler);
     });
 }
 

@@ -11,6 +11,7 @@ body {
     background: linear-gradient(to bottom, #1A1A1A, #000000);
     color: #fff;
     text-align: center;
+    margin: 0;
     padding: 2rem 0;
 }
 
@@ -58,11 +59,12 @@ a {
     font-size: 2rem;
 }
 
-.subtitle {
+.description {
     font-weight: 400;
     font-size: 16px;
     font-style: normal;
     line-height: 100%;
+    padding: 0 2em
 }
 
 /* =======================
@@ -79,10 +81,6 @@ a {
     padding: 0 1em;
 }
 
-.content {
-    padding: 0 2em
-}
-
 /* =======================
    Footer and Bottom Sheet
    ======================= */
@@ -97,4 +95,105 @@ a {
         background: #000000;
         z-index: 999;
     }
+}
+
+/* =======================
+   Page Navigation (Steps)
+   ======================= */
+
+.step-wrapper {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.step-slider {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.step {
+    width: 100vw;
+    flex-shrink: 0;
+    visibility: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.step.visible {
+    visibility: visible;
+}
+
+
+.step-content {
+    margin: 50px 0px;
+    min-height: 350px;
+}
+
+
+.next-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 430px) {
+    .next-container {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 400px;
+        pointer-events: auto;
+        z-index: 1000;
+    }
+}
+
+.next-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 345px;
+    height: 49px;
+    background: #E5A000;
+    color: #2C2C2C;
+    border-radius: 16px;
+    transition: background 0.3s ease;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    cursor: pointer;
+}
+
+.next-button.disabled {
+    background: #D9D9D9;
+    color: #757575;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.next-icon {
+    width: 25px;
+    height: 25px;
+}
+
+#previous {
+    cursor: pointer;
+}
+
+#back {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 1;
+}
+
+#back.disabled {
+    opacity: 0;
 }

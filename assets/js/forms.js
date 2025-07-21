@@ -7,7 +7,6 @@ export let STARS = 0;
 
 export function loadEventListeners() {
     loadTypeListeners();
-
     loadStarsListeners();
 
     document.getElementById('next').addEventListener('click', nextStep);
