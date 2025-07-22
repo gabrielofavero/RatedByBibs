@@ -22,6 +22,22 @@
             "xbox": "Gamertag",
             "switch": "Nintendo Account",
             "switch2": "Nintendo Account"
+        },
+        "platform_label": "Escolha a plataforma ou serviço",
+        "platform": {
+            "steam": "Steam",
+            "playstation": "Playstation",
+            "xbox": "Xbox",
+            "switch": "Nintento Switch",
+            "switch2": "Nintendo Switch 2",
+            "other": "Other",
+            "epic": "Epic Games",
+            "gog": "GOG",
+            "humble": "Humble Bundle",
+            "origin": "Origin",
+            "itch": "itch.io",
+            "pc": "PC (Genérico)",
+            "console": "Console (Genérico)"
         }
     }
 }
