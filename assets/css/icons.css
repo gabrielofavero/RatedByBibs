@@ -1,0 +1,473 @@
+/* =======================
+   Default Icon Styles
+   ======================= */
+
+.background {
+    height: 46px;
+    width: 46px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background.default {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+}
+
+.icon.default {
+    width: 28px;
+    fill: #fff
+}
+
+.icon-canvas {
+    fill: #888;
+    height: 40px;
+    width: 40px;
+}
+
+.back {
+    width: 48px;
+    height: 48px;
+}
+
+.trailing {
+    fill: white;
+}
+
+.flag {
+    width: 28px;
+    height: 28px;
+}
+
+#user-language {
+    margin-top: 3px;
+}
+
+.grid-icon {
+    width: 50px;
+    height: 50px;
+}
+
+/* =======================
+   Games
+   ======================= */
+
+
+/* Apple (Generic) */
+.background.apple {
+    background: black;
+}
+
+.icon.apple {
+    width: 20px;
+    fill: white;
+}
+
+/* Battlenet */
+.background.battlenet {
+    background: #0074E0
+}
+
+.icon.battlenet {
+    width: 30px;
+    fill: white;
+}
+
+/* EA Play */
+.background.ea {
+    background: #0B1145
+}
+
+.icon.ea {
+    width: 30px;
+    fill: #FE3C3C;
+}
+
+/* Epic Games Store */
+.background.epic {
+    background: #1B1B1B
+}
+
+.icon.epic {
+    width: 24px;
+    fill: white;
+}
+
+/* GOG */
+.background.gog {
+    background: linear-gradient(to bottom, #BC27FF, #6911CE);
+}
+
+.icon.gog {
+    width: 26px;
+    fill: white;
+}
+
+/* Google Play */
+.background.google {
+    background: white;
+}
+
+.icon.google {
+    width: 24px;
+}
+
+.google1 {
+    fill: #EA4335;
+}
+
+.google2 {
+    fill: #FBBC04;
+}
+
+.google3 {
+    fill: #4285F4;
+}
+
+.google4 {
+    fill: #34A853;
+}
+
+/* Humble Bundle */
+.background.humble {
+    background: white;
+}
+
+.icon.humble {
+    width: 36px;
+    fill: #CB272C
+}
+
+/* itch.io */
+.background.itch {
+    background: #fa5c5c;
+}
+
+.icon.itch {
+    width: 28px;
+    fill: white
+}
+
+/* Playstation */
+.background.playstation {
+    background: #003791;
+}
+
+.icon.playstation {
+    width: 30px;
+    fill: white
+}
+
+/* Steam */
+.background.steam {
+    background: #206495;
+}
+
+.icon.steam {
+    width: 30px;
+    fill: white;
+}
+
+/* Nintendo Switch */
+.background.switch {
+    background: #E90000;
+}
+
+.icon.switch {
+    width: 22px;
+    fill: white;
+}
+
+/* Nintendo Switch 2 */
+.background.switch2 {
+    background: #E90000;
+}
+
+.icon.switch2 {
+    width: 28px;
+    fill: white;
+}
+
+/* Ubisoft */
+.background.ubisoft {
+    background: conic-gradient(from 315deg, #582c82 0deg, #792c63 45deg, #9b3f2d 90deg, #989633 135deg, #4d7f3f 180deg, #35616a 225deg, #22376b 270deg, #1b2a49 315deg, #582c82 360deg);
+}
+
+.icon.ubisoft {
+    width: 28px;
+    fill: white;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Xbox */
+.background.xbox {
+    background: #027D00;
+}
+
+.icon.xbox {
+    width: 30px;
+    fill: white;
+}
+
+
+/* =======================
+   Music
+   ======================= */
+
+/* Amazon Music */
+.background.amazon-music {
+    background: #42E8F0;
+}
+
+.icon.amazon-music {
+    width: 32px;
+    fill: black;
+}
+
+/* Apple Music */
+.background.apple-music {
+    background: #FB233B;
+}
+
+.icon.apple-music {
+    width: 36px;
+    fill: white;
+}
+
+/* Deezer */
+.background.deezer {
+    background: black
+}
+
+.icon.deezer {
+    width: 26px;
+    fill: #A238FF;
+}
+
+/* Qobuz */
+.background.qobuz {
+    background: black
+}
+
+.icon.qobuz {
+    width: 30px;
+    fill: white;
+}
+
+/* SoundCloud */
+.background.soundcloud {
+    background: linear-gradient(to bottom, #FC9419, #F83601);
+}
+
+.icon.soundcloud {
+    width: 30px;
+    fill: white;
+}
+
+/* Spotify */
+.background.spotify {
+    background: #181413;
+}
+
+.icon.spotify {
+    width: 30px;
+    fill: #1ED860;
+}
+
+/* Tidal */
+.background.tidal {
+    background: black;
+}
+
+.icon.tidal {
+    width: 26px;
+    fill: white;
+}
+
+/* Youtube Music */
+.youtube-music1 {
+    fill: #FF0000;
+}
+
+.youtube-music2 {
+    fill: white;
+}
+
+.youtube-music1.canvas {
+    fill: #888;
+}
+
+/* =======================
+   Video (TV and Movies)
+   ======================= */
+
+/* Amazon Prime Video */
+.background.amazon {
+    background: #0779FF;
+}
+
+.icon.amazon {
+    width: 27px;
+    fill: white;
+}
+
+/* Apple TV */
+.background.apple-tv {
+    background: black;
+}
+
+.icon.apple-tv {
+    width: 27px;
+    fill: white;
+}
+
+/* CrunchyRoll */
+.background.crunchyroll {
+    background: #f27620;
+}
+
+.icon.crunchyroll {
+    width: 27px;
+    fill: white;
+}
+
+/* Discovery Plus */
+.background.discovery {
+    background: #121317;
+}
+
+.icon.discovery {
+    width: 26px;
+}
+
+.icon.discovery.gray {
+    fill: #888;
+    width: 26px;
+}
+
+/* Disney Plus */
+.background.disney {
+    background: linear-gradient(to bottom, #002336, #00a0a6);
+}
+
+.icon.disney {
+    width: 38px;
+    fill: white;
+}
+
+/* Globo Play */
+.background.globo {
+    background: linear-gradient(to bottom right, #ff0033 0%, #ff3300 55%, #ff5500 75%, #ff7c00 100%);
+}
+
+.icon.globo {
+    width: 32px;
+    fill: white;
+}
+
+/* HBO Max */
+.background.hbo-max {
+    background: black;
+}
+
+.icon.hbo-max {
+    width: 26px;
+    fill: white;
+}
+
+/* Hulu */
+.background.hulu {
+    background: linear-gradient(to top right,
+            #06070b 0%,
+            #06070b 60%,
+            #101a27 75%,
+            #183545 100%);
+}
+
+.icon.hulu {
+    width: 30px;
+    fill: #1de783;
+}
+
+/* Mubi */
+.background.mubi {
+    background: #001489;
+}
+
+.icon.mubi {
+    width: 20px;
+    fill: white;
+}
+
+/* Netflix */
+.background.netflix {
+    background: black;
+}
+
+.icon.netflix {
+    width: 16px;
+}
+
+.netflix-color-solid-1 {
+    fill: var(--red-base, #C20000);
+}
+
+.netflix-color-solid-2 {
+    fill: var(--red-strong, #FA0000);
+}
+
+.netflix-gray-solid-1 {
+    fill: var(--gray-base, #555555);
+}
+
+.netflix-gray-solid-2 {
+    fill: var(--gray-strong, rgb(107, 107, 107));
+}
+
+.netflix-color-gradient-1 {
+    fill: url(#grad-netflix-1);
+}
+
+.netflix-color-gradient-2 {
+    fill: url(#grad-netflix-2);
+}
+
+/* Paramount Plus */
+.background.paramount {
+    background: #0064ff
+}
+
+.icon.paramount {
+    width: 24px;
+    fill: white;
+}
+
+/* Star Plus */
+.background.star {
+    background: #090e21
+}
+
+.icon.star {
+    width: 34px;
+    fill: white;
+}
+
+.star-star {
+    fill: #fd5231;
+}
+
+.icon.star.gray {
+    width: 34px;
+    fill: #888;
+}
+
+/* YouTube */
+.background.youtube {
+    background: white
+}
+
+.icon.youtube {
+    width: 24px;
+    fill: #ff0000;
+}

@@ -91,11 +91,6 @@ input {
     gap: 2px;
 }
 
-.flag {
-    width: 30px;
-    height: 30px;
-}
-
 .trailing {
     width: 24px;
     height: 24px;
@@ -196,11 +191,6 @@ input {
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-.grid-icon {
-    width: 50px;
-    height: 50px;
-}
-
 .grid-label {
     color: white;
     font-size: 14px;
@@ -257,4 +247,32 @@ input {
 
 .star.selected {
     color: gold;
+}
+
+
+/* =======================
+   Grid Container (Platform)
+   ======================= */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 103px);
+    gap: 19px;
+    width: 347px;
+    /* 3 * 103 + 2 * 19 */
+    margin: 0 auto;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+
+    width: 103px;
+    height: 94px;
+
+    background: #212121;
+    border-radius: 16px;
 }

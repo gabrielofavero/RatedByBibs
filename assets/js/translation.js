@@ -32,7 +32,7 @@ export function translate(key, replacements = {}, strict = true) {
 }
 
 function loadLanguageSelector() {
-    document.getElementById('user-language').src = `assets/icons/language/${USER_LANGUAGE}.svg`
+    document.getElementById('user-language').innerHTML = `<svg class="flag"><use href="#icon-${USER_LANGUAGE}"></svg>`
 
     const langOptions = document.querySelector('.language-options');
     document.querySelector('.language-button').addEventListener('click', () => {
