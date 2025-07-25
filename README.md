@@ -34,6 +34,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 🏆 **F009:** Add web icon
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
   - 🏆 **F001:** [E004] Create Grid design
   - 🏆 **F002:** [E004] Create inputs design
