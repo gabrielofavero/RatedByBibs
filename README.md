@@ -7,22 +7,25 @@ Development made by Bibs [me!](https://www.linkedin.com/in/gabrielfavero/) using
 Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado-1797a31bb/). You can find his Figma template [here](https://www.figma.com/design/pAblSLtZEBadSkxbuGNwB5/Rated--by-bibs?node-id=0-1&t=mz8OdJOHVDZHonEO-1).
 
 ## Taks
+
 - ⚔️: Epic
 - 🐞: Bug
 - 🏆: Feature
 - 📈: Improvement
 
-
 ### Doing
+
+- 📈 **I001:** Improve logo
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
-    - 🏆 **F004:** [E004] Create radio design
+  - 🏆 **F004:** [E004] Create radio design
 
 ### Backlog
+
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
-    - 🏆 **F005:** [E003] Create Bottomsheet design
-    - 🏆 **F006:** [E004] Create HTML elements according to type
-    - 🏆 **F007:** [E004] Dynamic elements visibility according to type
-    - 🏆 **F008:** [E004] Store user values dynamically
+  - 🏆 **F005:** [E003] Create Bottomsheet design
+  - 🏆 **F006:** [E004] Create HTML elements according to type
+  - 🏆 **F007:** [E004] Dynamic elements visibility according to type
+  - 🏆 **F008:** [E004] Store user values dynamically
 - ⚔️ **E005:** Implement "Step 3": Image upload and rating selection
 - ⚔️ **E005:** Implement "Step 4": Loading screen
 - ⚔️ **E006:** Implement "Step 5": Preview and Download / Share
@@ -30,10 +33,11 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 🐞 **B001:** Fix visibility issues with Portrait Canvas
 
 ### Done
+
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
-    - 🏆 **F001:** [E004] Create Grid design
-    - 🏆 **F002:** [E004] Create inputs design
-    - 🏆 **F003:** [E003] Prepare necessary icons
+  - 🏆 **F001:** [E004] Create Grid design
+  - 🏆 **F002:** [E004] Create inputs design
+  - 🏆 **F003:** [E003] Prepare necessary icons
 - ⚔️ **E003:** Implement "Step 1": Select a content type
 - ⚔️ **E002:** Create navigation elements (single-page)
 - ⚔️ **E001:** Alpha version (POC, no design elements)
