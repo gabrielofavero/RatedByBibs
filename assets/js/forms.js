@@ -2,17 +2,18 @@ import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
 import { nextStep, previousStep } from "./steps.js";
 
 export let TYPE;
+export const TYPES = ['movie', 'tv', 'game', 'music', 'book', 'other']
 export let UPLOAD_IMAGE = null;
 export let STARS = 0;
 
 export function loadEventListeners() {
     loadTypeListeners();
+    loadInputListeners();
     loadStarsListeners();
 
     document.getElementById('next').addEventListener('click', nextStep);
     document.getElementById('back').addEventListener('click', previousStep);
 
-    document.getElementById('platform-select').onchange = e => updatePlatformProperties(e.target.value);
     document.getElementById('upload').onchange = e => upload(e.target.files[0]);
     document.getElementById('generate-canvas').addEventListener('click', generateCanvas);
     document.getElementById('share').addEventListener('click', shareCanvas);
@@ -35,36 +36,17 @@ function loadTypeListeners() {
     };
 }
 
-function updatePlatformProperties(value) {
-    let placeholder;
-    let length;
+function loadInputListeners() {
+    document.getElementById('tv-season').onchange = () => blockTVShowNumber('tv-season');
+    document.getElementById('tv-episode').onchange = () => blockTVShowNumber('tv-episode');
+}
 
-    switch (value) {
-        case 'xbox':
-            placeholder = 'Gamertag';
-            length = 12;
-            break;
-        case 'switch':
-        case 'switch2':
-            placeholder = 'Nintendo Account';
-            length = 20;
-            break;
-        case 'steam':
-            placeholder = 'Steam ID';
-            length = 32;
-            break;
-        case 'playstation':
-            placeholder = 'PSN ID';
-            length = 16;
-            break;
-        default:
-            placeholder = 'Gaming ID';
-            length = 32;
+function blockTVShowNumber(id) {
+    const input = document.getElementById(id);
+    const value = parseInt(input.value);
+    if (isNaN(value) || value < 1) {
+        input.value = '';
     }
-
-    const gamingIdInput = document.getElementById('gaming-id');
-    gamingIdInput.placeholder = `${placeholder} (optional)`;
-    gamingIdInput.maxLength = length;
 }
 
 function upload(file) {

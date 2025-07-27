@@ -1,4 +1,4 @@
-import { TYPE } from "./forms.js";
+import { TYPE, TYPES } from "./forms.js";
 import { translate } from "./translation.js";
 
 let CURRENT_STEP = 1;
@@ -17,8 +17,10 @@ function transitionStep(direction) {
     if (target.classList.contains('disabled')) return;
 
     const newStep = direction === 'next' ? CURRENT_STEP + 1 : CURRENT_STEP - 1
+    const stepID = `step-${newStep}`;
+    loadStepActions(stepID);
     animate(newStep);
-    loadStepButtonsVisibility(`step-${newStep + 1}`, back, next);
+    loadStepButtonsVisibility(stepID, back, next);
 }
 
 function animate(newStep) {
@@ -63,11 +65,11 @@ function disableIfInactive(isDisabled, div) {
 function getStepTextContent(stepID) {
     switch (stepID) {
         case 'step-1':
-            return translate('begin');
+            return translate('navigation.begin');
         case 'step-4':
-            return translate('finish');
+            return translate('navigation.finish');
         default:
-            return translate('next');
+            return translate('navigation.next');
     }
 }
 
@@ -89,5 +91,18 @@ function isBackDisabled(stepID) {
             return true;
         default:
             return false;
+    }
+}
+
+function loadStepActions(stepID) {
+    switch (stepID) {
+        case 'step-2':
+            loadStep2Options();
+    }
+}
+
+function loadStep2Options() {
+    for (const type of TYPES) {
+        document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
     }
 }

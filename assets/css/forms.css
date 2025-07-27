@@ -34,6 +34,13 @@ input {
     border-radius: 9999px;
 }
 
+label {
+    font-size: 14px;
+    color: #F5F5F5;
+    margin-bottom: 5px;
+    font-family: 'Inter';
+}
+
 @media screen and (max-width: 430px) {
     input {
         width: 300px
@@ -63,7 +70,7 @@ input {
 }
 
 .options {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 8px;
     text-align: start;
@@ -163,7 +170,7 @@ input {
     }
 }
 
-.grid-button {
+.type-button {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -176,17 +183,17 @@ input {
 }
 
 @media screen and (max-width: 430px) {
-    .grid-button {
+    .type-button {
         width: 80%;
     }
 }
 
-.grid-button:hover {
+.type-button:hover {
     background: #272727;
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-.grid-button.selected {
+.type-button.selected {
     box-shadow: inset 0 0 0 2px #E5A000;
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
@@ -254,16 +261,15 @@ input {
    Grid Container (Platform)
    ======================= */
 
-.grid-container {
+.grid-container-platform {
     display: grid;
     grid-template-columns: repeat(3, 103px);
     gap: 19px;
     width: 347px;
     /* 3 * 103 + 2 * 19 */
-    margin: 0 auto;
 }
 
-.grid-item {
+.grid-item-platform {
     display: flex;
     flex-direction: column;
     justify-content: center;

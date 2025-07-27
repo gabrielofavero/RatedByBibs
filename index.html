@@ -18,8 +18,7 @@
 
   <!-- Description -->
   <meta content="A quick way to rate your favorite content and share it to social network" name="description">
-  <meta property="og:description"
-    content="A quick way to rate your favorite content and share it to social network">
+  <meta property="og:description" content="A quick way to rate your favorite content and share it to social network">
   <meta content="" name="keywords">
 
   <!-- Mobile Metadata -->
@@ -86,43 +85,44 @@
 
     <div class="step-wrapper">
       <div class="step-slider" id="slider">
+
+        <!-- Step 1: Select a Type -->
         <div class="step visible" id="step-1">
           <div class="step-content">
-            <!-- Rating Type Selection -->
             <div class="description" data-translate="description"></div>
             <div class="grid-container-type">
-              <div class="grid-button type-button" id="movie">
-                <svg class="grid-icon">
+              <div class="type-button" id="movie">
+                <svg class="type-icon">
                   <use href="#icon-movie" />
                 </svg>
                 <div class="grid-label" data-translate="type.movie"></div>
               </div>
-              <div class="grid-button type-button" id="tv">
-                <svg class="grid-icon">
+              <div class="type-button" id="tv">
+                <svg class="type-icon">
                   <use href="#icon-tv" />
                 </svg>
                 <div class="grid-label" data-translate="type.tv"></div>
               </div>
-              <div class="grid-button type-button" id="game">
-                <svg class="grid-icon">
+              <div class="type-button" id="game">
+                <svg class="type-icon">
                   <use href="#icon-game" />
                 </svg>
                 <div class="grid-label" data-translate="type.game"></div>
               </div>
-              <div class="grid-button type-button" id="music">
-                <svg class="grid-icon">
+              <div class="type-button" id="music">
+                <svg class="type-icon">
                   <use href="#icon-music" />
                 </svg>
                 <div class="grid-label" data-translate="type.music"></div>
               </div>
-              <div class="grid-button type-button" id="book">
-                <svg class="grid-icon">
+              <div class="type-button" id="book">
+                <svg class="type-icon">
                   <use href="#icon-book" />
                 </svg>
                 <div class="grid-label" data-translate="type.book"></div>
               </div>
-              <div class="grid-button type-button" id="other">
-                <svg class="grid-icon">
+              <div class="type-button" id="other">
+                <svg class="type-icon">
                   <use href="#icon-other" />
                 </svg>
                 <div class="grid-label" data-translate="type.other"></div>
@@ -130,17 +130,127 @@
             </div>
           </div>
         </div>
+
+        <!-- Step 2: Optional Inputs -->
         <div class="step" id="step-2">
           <div class="step-content">
-            <!-- Optional Inputs -->
-            <div class="options" id="game-option">
+
+            <!-- Movie Options -->
+            <div class="options" id="movie-options">
               <div class="option">
-                <label for="game-title" data-translate="game.title"></label>
-                <input type="text" id="game-title" placeholder="Opcional" maxlength="32" data-translate="optional"/>
+                <label for="movie-title" data-translate="input.movie.title"></label>
+                <input type="text" id="movie-title" maxlength="32" data-translate="input.optional" />
+              </div>
+            </div>
+
+            <!-- TV Show Options -->
+            <div class="options" id="tv-options">
+              <div class="option">
+                <label for="tv-title" data-translate="input.tv.title"></label>
+                <input type="text" id="tv-title" maxlength="32" data-translate="input.optional" />
               </div>
               <div class="option">
-                <label for="game-id" data-translate="game.id.default"></label>
-                <input type="text" id="game-id" placeholder="Opcional" maxlength="32" data-translate="optional"/>
+                <label for="tv-season" data-translate="input.tv.season"></label>
+                <input type="number" id="tv-season" min="1" data-translate="input.optional" />
+              </div>
+              <div class="option">
+                <label for="tv-episode" data-translate="input.tv.episode"></label>
+                <input type="number" id="tv-episode" min="1" data-translate="input.optional" />
+              </div>
+            </div>
+
+            <!-- Gaming Options -->
+            <div class="options" id="game-options">
+              <div class="option">
+                <label for="game-title" data-translate="input.game.title"></label>
+                <input type="text" id="game-title" maxlength="32" data-translate="input.optional" />
+              </div>
+              <div class="option">
+                <label for="game-id" data-translate="input.game.id.default"></label>
+                <input type="text" id="game-id" maxlength="32" data-translate="input.optional" />
+              </div>
+            </div>
+
+            <!-- Music Options -->
+            <div class="options" id="music-options">
+              <div class="option">
+                <label for="music-song" data-translate="input.music.song"></label>
+                <input type="text" id="music-song" maxlength="32" data-translate="input.optional" />
+              </div>
+              <div class="option">
+                <label for="music-artist" data-translate="input.music.artist"></label>
+                <input type="text" id="music-artist" maxlength="32" data-translate="input.optional" />
+              </div>
+              <div class="option">
+                <label for="music-album" data-translate="input.music.album"></label>
+                <input type="text" id="music-album" maxlength="32" data-translate="input.optional" />
+              </div>
+            </div>
+
+            <!-- Book Options -->
+            <div class="options" id="book-options">
+              <div class="option">
+                <label for="book-title" data-translate="input.book.title"></label>
+                <input type="text" id="book-title" maxlength="32" data-translate="input.optional" />
+              </div>
+              <div class="option">
+                <label for="book-author" data-translate="input.book.author"></label>
+                <input type="text" id="book-author" maxlength="32" data-translate="input.optional" />
+              </div>
+            </div>
+
+            <!-- Other Options -->
+            <div class="options" id="other-options">
+              <div class="option">
+                <label for="other-title" data-translate="input.other.title"></label>
+                <input type="text" id="other-title" maxlength="32" data-translate="input.optional" />
+              </div>
+              <div class="option">
+                <label for="other-subtitle" data-translate="input.other.subtitle"></label>
+                <input type="text" id="other-subtitle" maxlength="32" data-translate="input.optional" />
+              </div>
+            </div>
+
+            <div class="grid-container-platform">
+              <div class="grid-item-platform selected">
+                  <div id="platform-background-1" class="background default">
+                      <svg class="icon default">
+                          <use href="#icon-none" />
+                      </svg>
+                  </div>
+                  <div class="grid-label" data-translate="input.none"></div>
+              </div>
+              <div class="grid-item-platform">
+                  <div id="platform-background-2" class="background">
+                      <svg class="icon"></svg>
+                  </div>
+                  <div class="grid-label" data-translate="input.none"></div>
+              </div>
+              <div class="grid-item-platform">
+                  <div id="platform-background-3" class="background">
+                      <svg class="icon"></svg>
+                  </div>
+                  <div class="grid-label" data-translate="input.none"></div>
+              </div>
+              <div class="grid-item-platform">
+                  <div id="platform-background-4" class="background">
+                      <svg class="icon"></svg>
+                  </div>
+                  <div class="grid-label" data-translate="input.none"></div>
+              </div>
+              <div class="grid-item-platform">
+                  <div id="platform-background-5" class="background">
+                      <svg class="icon default"></svg>
+                  </div>
+                  <div class="grid-label" data-translate="input.none"></div>
+              </div>
+              <div class="grid-item-platform">
+                  <div id="platform-background-6" class="background default">
+                      <svg class="icon default">
+                          <use href="#icon-more" />
+                      </svg>
+                  </div>
+                  <div class="grid-label" data-translate="input.more"></div>
               </div>
             </div>
           </div>
@@ -160,7 +270,7 @@
 
     <div class="bottom-sheet"></div>
     <div class="next-container">
-      <div id="next" class="next-button disabled" data-translate="begin"></div>
+      <div id="next" class="next-button disabled" data-translate="navigation.begin"></div>
     </div>
 
 

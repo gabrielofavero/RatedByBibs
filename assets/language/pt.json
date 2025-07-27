@@ -1,5 +1,6 @@
 {
     "description": "Uma forma rápida de avaliar seu conteúdo favorito e compartilhar nas redes sociais",
+    "language_confirmation": "Alterar o idioma irá recarregar a página e descartar qualquer progresso não salvo. Tem certeza de que deseja continuar?",
     "type": {
         "game": "Game",
         "music": "Música",
@@ -8,36 +9,61 @@
         "book": "Livro",
         "other": "Outro"
     },
-    "language_confirmation": "Alterar o idioma irá recarregar a página e descartar qualquer progresso não salvo. Tem certeza de que deseja continuar?",
-    "begin": "Começar avaliação",
-    "next": "Continuar",
-    "finish": "Gerar avaliação",
-    "optional": "Opcional",
-    "game": {
-        "title": "Nome do jogo",
-        "id": {
-            "default": "ID de Jogador",
-            "steam": "Steam ID",
-            "playstation": "PSN ID",
-            "xbox": "Gamertag",
-            "switch": "Nintendo Account",
-            "switch2": "Nintendo Account"
+    "navigation": {
+        "begin": "Começar avaliação",
+        "next": "Continuar",
+        "finish": "Gerar avaliação"
+    },
+    "input": {
+        "optional": "Opcional",
+        "none": "Nenhum",
+        "more": "Mais",
+        "movie": {
+            "title": "Nome do filme"
         },
-        "platform_label": "Escolha a plataforma ou serviço",
-        "platform": {
-            "steam": "Steam",
-            "playstation": "Playstation",
-            "xbox": "Xbox",
-            "switch": "Nintento Switch",
-            "switch2": "Nintendo Switch 2",
-            "other": "Other",
-            "epic": "Epic Games",
-            "gog": "GOG",
-            "humble": "Humble Bundle",
-            "origin": "Origin",
-            "itch": "itch.io",
-            "pc": "PC (Genérico)",
-            "console": "Console (Genérico)"
+        "tv": {
+            "title": "Nome da série",
+            "season": "Temporada",
+            "episode": "Episódio"
+        },
+        "game": {
+            "title": "Nome do jogo",
+            "id": {
+                "default": "ID de Jogador",
+                "steam": "Steam ID",
+                "playstation": "PSN ID",
+                "xbox": "Gamertag",
+                "nintendo": "Nintendo Account"
+            },
+            "platform": {
+                "label": "Escolha a plataforma ou serviço",
+                "steam": "Steam",
+                "playstation": "Playstation",
+                "xbox": "Xbox",
+                "switch": "Nintento Switch",
+                "switch2": "Nintendo Switch 2",
+                "other": "Other",
+                "epic": "Epic Games",
+                "gog": "GOG",
+                "humble": "Humble Bundle",
+                "origin": "Origin",
+                "itch": "itch.io",
+                "pc": "PC (Genérico)",
+                "console": "Console (Genérico)"
+            }
+        },
+        "music": {
+            "song": "Música",
+            "artist": "Artista",
+            "album": "Álbum"
+        },
+        "book": {
+            "title": "Livro",
+            "author": "Autor"
+        },
+        "other": {
+            "title": "Título",
+            "subtitle": "Subtítulo"
         }
     }
 }

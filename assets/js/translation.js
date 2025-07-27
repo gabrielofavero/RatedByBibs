@@ -2,6 +2,7 @@ import { TYPE } from "./forms.js";
 
 let USER_LANGUAGE;
 let LANGUAGE_PACK;
+let MISSING_TRANSLATIONS = new Set();
 
 export async function loadUserLanguage() {
     initUserLanguage();

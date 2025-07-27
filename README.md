@@ -18,12 +18,12 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 📈 **I001:** Improve logo
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
   - 🏆 **F004:** [E004] Create radio design
+  - 🏆 **F006:** [E004] Create HTML elements according to type
 
 ### Backlog
 
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
   - 🏆 **F005:** [E003] Create Bottomsheet design
-  - 🏆 **F006:** [E004] Create HTML elements according to type
   - 🏆 **F007:** [E004] Dynamic elements visibility according to type
   - 🏆 **F008:** [E004] Store user values dynamically
 - ⚔️ **E005:** Implement "Step 3": Image upload and rating selection

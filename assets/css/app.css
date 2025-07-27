@@ -30,6 +30,10 @@ a {
     font-weight: bold;
 }
 
+.gradient {
+    background: linear-gradient(45deg, #FDC090 0%, #B8B7F7 100%);
+}
+
 /* =======================
    Logo and description
    ======================= */
@@ -80,6 +84,10 @@ a {
     align-items: center;
     box-sizing: border-box;
     padding: 0 1em;
+}
+
+#back {
+    cursor: pointer;
 }
 
 /* =======================
@@ -196,4 +204,5 @@ a {
 
 #back.disabled {
     opacity: 0;
+    cursor: auto;
 }
