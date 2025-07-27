@@ -1,6 +1,7 @@
 import { TYPE } from "./forms.js";
+import { getJson } from "./app.js";
 
-let USER_LANGUAGE;
+export let USER_LANGUAGE;
 let LANGUAGE_PACK;
 let MISSING_TRANSLATIONS = new Set();
 
@@ -57,15 +58,7 @@ function loadLanguageSelector() {
 }
 
 async function loadLanguagePack() {
-    try {
-        const response = await fetch(`./assets/language/${USER_LANGUAGE}.json`);
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        LANGUAGE_PACK = await response.json();
-    } catch (error) {
-        console.error("Error fetching language pack:", error);
-    }
+    LANGUAGE_PACK = await getJson(`./assets/language/${USER_LANGUAGE}.json`)
 }
 
 function initUserLanguage() {

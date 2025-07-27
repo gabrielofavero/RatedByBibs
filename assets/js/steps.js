@@ -1,5 +1,7 @@
 import { TYPE, TYPES } from "./forms.js";
 import { translate } from "./translation.js";
+import { PLATFORMS } from "./app.js";
+import { USER_LANGUAGE } from "./translation.js";
 
 let CURRENT_STEP = 1;
 let IS_ANIMATING = false;
@@ -77,10 +79,8 @@ function isNextDisabled(stepID) {
     switch (stepID) {
         case 'step-1':
             return !TYPE;
-        case 'step-4':
-            return true;
         default:
-            return false;
+            return true;
     }
 }
 
@@ -98,12 +98,50 @@ function loadStepActions(stepID) {
     switch (stepID) {
         case 'step-2':
             loadStep2Options();
+        default:
+            adjustNewStep(stepID);
     }
+}
+
+function adjustNewStep(stepID) {
+    const height = document.getElementById(stepID).offsetHeight;
+    document.getElementById('step-wrapper').style.height = `${height + 91}px`
 }
 
 function loadStep2Options() {
     for (const type of TYPES) {
         document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
     }
-    document.getElementById('platform-container').style.display = ['book', 'other'].includes(TYPE) ? 'none' : '';
+
+    const platformContainer = document.getElementById('platform-container');
+
+    if (['book', 'other'].includes(TYPE)) {
+        platformContainer.style.display = 'none';
+    } else {
+        platformContainer.style.display = '';
+        loadStep2Platforms();
+    }
+}
+
+function loadStep2Platforms() {
+    const platforms = PLATFORMS?.[TYPE]?.[USER_LANGUAGE];
+    if (platforms && platforms.length > 0) {
+        for (let j = 1; j <= 5; j++) {
+            const platform = platforms[j - 1];
+            const background = document.getElementById(`platform-background-${j}`);
+            const icon = document.getElementById(`platform-icon-${j}`);
+            const label = document.getElementById(`platform-label-${j}`);
+
+            background.className = 'background';
+            icon.setAttribute("class", "icon");
+            label.textContent = '';
+
+            if (platform) {
+                background.classList.add(platform);
+                icon.classList.add(platform);
+                label.textContent = translate(`label.${TYPE}.platform.${platform}`)
+                icon.querySelector("use").setAttribute("href", `#icon-${platform}`);
+            }
+        }
+    }
 }

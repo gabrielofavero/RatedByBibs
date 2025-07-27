@@ -1,0 +1,22 @@
+{
+    "movie": {
+        "all": [],
+        "en": [],
+        "pt": []
+    },
+    "tv": {
+        "all": [],
+        "en": [],
+        "pt": []
+    },
+    "game": {
+        "all": ["pc", "console", "apple", "battlenet", "ea", "epic", "gog", "google", "humble", "itch", "playstation", "steam", "switch", "switch2", "ubisoft", "xbox"],
+        "en": ["xbox", "playstation", "steam", "switch", "switch2"],
+        "pt": ["xbox", "playstation", "steam", "switch", "switch2"]
+    },
+    "music": {
+        "all": [],
+        "en": [],
+        "pt": []
+    }
+}

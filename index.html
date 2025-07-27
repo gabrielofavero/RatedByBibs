@@ -83,7 +83,7 @@
   <div class="content">
     <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
 
-    <div class="step-wrapper">
+    <div id="step-wrapper" class="step-wrapper">
       <div class="step-slider" id="slider">
 
         <!-- Step 1: Select a Type -->
@@ -138,119 +138,128 @@
             <!-- Movie Options -->
             <div class="options" id="movie-options">
               <div class="option">
-                <label for="movie-title" data-translate="input.movie.title"></label>
-                <input type="text" id="movie-title" maxlength="32" data-translate="input.optional" />
+                <label for="movie-title" data-translate="label.movie.title"></label>
+                <input type="text" id="movie-title" maxlength="32" data-translate="label.required" />
               </div>
             </div>
 
             <!-- TV Show Options -->
             <div class="options" id="tv-options">
               <div class="option">
-                <label for="tv-title" data-translate="input.tv.title"></label>
-                <input type="text" id="tv-title" maxlength="32" data-translate="input.optional" />
+                <label for="tv-title" data-translate="label.tv.title"></label>
+                <input type="text" id="tv-title" maxlength="32" data-translate="label.required" />
               </div>
               <div class="option">
-                <label for="tv-season" data-translate="input.tv.season"></label>
-                <input type="number" id="tv-season" min="1" data-translate="input.optional" />
+                <label for="tv-season" data-translate="label.tv.season"></label>
+                <input type="number" id="tv-season" min="1" data-translate="label.optional" />
               </div>
               <div class="option">
-                <label for="tv-episode" data-translate="input.tv.episode"></label>
-                <input type="number" id="tv-episode" min="1" data-translate="input.optional" />
+                <label for="tv-episode" data-translate="label.tv.episode"></label>
+                <input type="number" id="tv-episode" min="1" data-translate="label.optional" />
               </div>
             </div>
 
             <!-- Gaming Options -->
             <div class="options" id="game-options">
               <div class="option">
-                <label for="game-title" data-translate="input.game.title"></label>
-                <input type="text" id="game-title" maxlength="32" data-translate="input.optional" />
+                <label for="game-title" data-translate="label.game.title"></label>
+                <input type="text" id="game-title" maxlength="32" data-translate="label.required" />
               </div>
               <div class="option">
-                <label for="game-id" data-translate="input.game.id.default"></label>
-                <input type="text" id="game-id" maxlength="32" data-translate="input.optional" />
+                <label for="game-id" data-translate="label.game.id.default"></label>
+                <input type="text" id="game-id" maxlength="32" data-translate="label.optional" />
               </div>
             </div>
 
             <!-- Music Options -->
             <div class="options" id="music-options">
               <div class="option">
-                <label for="music-song" data-translate="input.music.song"></label>
-                <input type="text" id="music-song" maxlength="32" data-translate="input.optional" />
+                <label for="music-song" data-translate="label.music.song"></label>
+                <input type="text" id="music-song" maxlength="32" data-translate="label.optional" />
               </div>
               <div class="option">
-                <label for="music-artist" data-translate="input.music.artist"></label>
-                <input type="text" id="music-artist" maxlength="32" data-translate="input.optional" />
+                <label for="music-artist" data-translate="label.music.artist"></label>
+                <input type="text" id="music-artist" maxlength="32" data-translate="label.optional" />
               </div>
               <div class="option">
-                <label for="music-album" data-translate="input.music.album"></label>
-                <input type="text" id="music-album" maxlength="32" data-translate="input.optional" />
+                <label for="music-album" data-translate="label.music.album"></label>
+                <input type="text" id="music-album" maxlength="32" data-translate="label.optional" />
               </div>
             </div>
 
             <!-- Book Options -->
             <div class="options" id="book-options">
               <div class="option">
-                <label for="book-title" data-translate="input.book.title"></label>
-                <input type="text" id="book-title" maxlength="32" data-translate="input.optional" />
+                <label for="book-title" data-translate="label.book.title"></label>
+                <input type="text" id="book-title" maxlength="32" data-translate="label.required" />
               </div>
               <div class="option">
-                <label for="book-author" data-translate="input.book.author"></label>
-                <input type="text" id="book-author" maxlength="32" data-translate="input.optional" />
+                <label for="book-author" data-translate="label.book.author"></label>
+                <input type="text" id="book-author" maxlength="32" data-translate="label.optional" />
               </div>
             </div>
 
             <!-- Other Options -->
             <div class="options" id="other-options">
               <div class="option">
-                <label for="other-title" data-translate="input.other.title"></label>
-                <input type="text" id="other-title" maxlength="32" data-translate="input.optional" />
+                <label for="other-title" data-translate="label.other.title"></label>
+                <input type="text" id="other-title" maxlength="32" data-translate="label.required" />
               </div>
               <div class="option">
-                <label for="other-subtitle" data-translate="input.other.subtitle"></label>
-                <input type="text" id="other-subtitle" maxlength="32" data-translate="input.optional" />
+                <label for="other-subtitle" data-translate="label.other.subtitle"></label>
+                <input type="text" id="other-subtitle" maxlength="32" data-translate="label.optional" />
               </div>
             </div>
 
             <div id="platform-container">
-              <div class="grid-label" id="platform-label">Teste:</div>
+              <div id="platform-label" data-translate="label.platform"></div>
               <div id="platform-grid-container" class="grid-container platform">
-                <div class="grid-item platform selected">
+                <div class="grid-item platform">
                   <div id="platform-background-1" class="background">
-                    <svg class="icon"></svg>
+                    <svg class="icon" id="platform-icon-1">
+                      <use href="" />
+                    </svg>
                   </div>
-                  <div class="grid-label" data-translate="input.none"></div>
+                  <div class="grid-label" id="platform-label-1"></div>
                 </div>
                 <div class="grid-item platform">
                   <div id="platform-background-2" class="background">
-                    <svg class="icon"></svg>
+                    <svg class="icon" id="platform-icon-2">
+                      <use href="" />
+                    </svg>
                   </div>
-                  <div class="grid-label" data-translate="input.none"></div>
+                  <div class="grid-label" id="platform-label-2"></div>
                 </div>
                 <div class="grid-item platform">
                   <div id="platform-background-3" class="background">
-                    <svg class="icon"></svg>
+                    <svg class="icon" id="platform-icon-3">
+                      <use href="" />
+                    </svg>
                   </div>
-                  <div class="grid-label" data-translate="input.none"></div>
+                  <div class="grid-label" id="platform-label-3"></div>
                 </div>
                 <div class="grid-item platform">
                   <div id="platform-background-4" class="background">
-                    <svg class="icon"></svg>
+                    <svg class="icon" id="platform-icon-4">
+                      <use href="" />
+                    </svg>
                   </div>
-                  <div class="grid-label" data-translate="input.none"></div>
+                  <div class="grid-label" id="platform-label-4"></div>
                 </div>
                 <div class="grid-item platform">
                   <div id="platform-background-5" class="background">
-                    <svg class="icon default"></svg>
+                    <svg class="icon" id="platform-icon-5">
+                      <use href="" />
+                    </svg>
                   </div>
-                  <div class="grid-label" data-translate="input.none"></div>
+                  <div class="grid-label" id="platform-label-5"></div>
                 </div>
                 <div class="grid-item platform">
-                  <div id="platform-background-6" class="background">
+                  <div class="background">
                     <svg class="icon default">
                       <use href="#icon-more" />
                     </svg>
                   </div>
-                  <div class="grid-label" data-translate="input.more"></div>
                 </div>
               </div>
             </div>
@@ -325,10 +334,10 @@
 
       <div id="canvas-container" class="canvas" style="display: none;">
         <div class="canvas-content">
-          <div id="cover"></div>
-          <div class="info-container">
+          <div id="canvas-cover"></div>
+          <div class="canvas-info-container">
             <div class="title-section" id="title-display" stlye="display: none">Title</div>
-            <div class="platform-container">
+            <div class="canvas-platform-container">
               <div class="platform-section" id="platform-display" stlye="display: none"></div>
               <div class="gaming-id-section" id="gaming-id-display" stlye="display: none"></div>
             </div>

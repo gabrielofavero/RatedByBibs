@@ -73,6 +73,13 @@ a {
     margin-bottom: 30px
 }
 
+@media screen and (min-width: 580px) {
+    .description {
+        margin-bottom: 48px;
+    }
+}
+
+
 /* =======================
    Header and Content
    ======================= */
@@ -209,4 +216,19 @@ a {
 #back.disabled {
     opacity: 0;
     cursor: auto;
+}
+
+#platform-container {
+    margin-top: 48px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.01px;
+    color: #F5F5F5;
+    text-align: left;
+}
+
+#platform-label {
+    margin-bottom: 24px;
 }

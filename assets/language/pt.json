@@ -14,10 +14,12 @@
         "next": "Continuar",
         "finish": "Gerar avaliação"
     },
-    "input": {
+    "label": {
+        "required": "Obrigatório",
         "optional": "Opcional",
         "none": "Nenhum",
         "more": "Mais",
+        "platform": "Escolha a plataforma",
         "movie": {
             "title": "Nome do filme"
         },
@@ -36,20 +38,22 @@
                 "nintendo": "Nintendo Account"
             },
             "platform": {
-                "label": "Escolha a plataforma ou serviço",
-                "steam": "Steam",
-                "playstation": "Playstation",
-                "xbox": "Xbox",
-                "switch": "Nintento Switch",
-                "switch2": "Nintendo Switch 2",
-                "other": "Other",
+                "pc": "PC",
+                "console": "Console",
+                "apple": "Apple",
+                "battlenet": "Battlenet",
+                "ea": "EA Play",
                 "epic": "Epic Games",
                 "gog": "GOG",
-                "humble": "Humble Bundle",
-                "origin": "Origin",
+                "google": "Google Play",
+                "humble": "Humble",
                 "itch": "itch.io",
-                "pc": "PC (Genérico)",
-                "console": "Console (Genérico)"
+                "playstation": "Playstation",
+                "steam": "Steam",
+                "switch": "Switch",
+                "switch2": "Switch 2",
+                "ubisoft": "Ubisoft",
+                "xbox": "Xbox"
             }
         },
         "music": {
