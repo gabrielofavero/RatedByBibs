@@ -21,7 +21,7 @@ export function loadEventListeners() {
 }
 
 function loadTypeListeners() {
-    const divs = document.getElementsByClassName('type-button');
+    const divs = document.getElementsByClassName('grid-item type');
     for (const div of divs) {
         div.addEventListener('click', () => {
             TYPE = div.id;

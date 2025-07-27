@@ -105,4 +105,5 @@ function loadStep2Options() {
     for (const type of TYPES) {
         document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
     }
+    document.getElementById('platform-container').style.display = ['book', 'other'].includes(TYPE) ? 'none' : '';
 }

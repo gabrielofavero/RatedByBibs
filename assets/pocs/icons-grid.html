@@ -21,6 +21,32 @@
             margin: 0;
             padding: 2rem 0;
         }
+
+        /* =======================
+        Grid Container (Platform)
+        ======================= */
+
+        .grid-container-platform {
+            display: grid;
+            grid-template-columns: repeat(3, 103px);
+            gap: 19px;
+            width: 347px;
+            /* 3 * 103 + 2 * 19 */
+        }
+
+        .grid-item-platform {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+
+            width: 103px;
+            height: 94px;
+
+            background: #212121;
+            border-radius: 16px;
+        }
     </style>
 </head>
 
