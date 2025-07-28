@@ -19,7 +19,7 @@
         "optional": "Optional",
         "none": "None",
         "more": "More",
-        "platform": "Select the plataform",
+        "platform": "Platform",
         "movie": {
             "title": "Movie"
         },
