@@ -2,6 +2,10 @@
    Default Icon Styles
    ======================= */
 
+:root {
+    --icon-gray: #888;
+}
+
 .background {
     height: 46px;
     width: 46px;
@@ -21,7 +25,7 @@
 }
 
 .icon-canvas {
-    fill: #888;
+    fill: var(--icon-gray);
     height: 40px;
     width: 40px;
 }
@@ -245,6 +249,19 @@
     fill: #A238FF;
 }
 
+/* Pandora */
+.background.pandora {
+    background: white
+}
+
+.icon.pandora {
+    width: 40px;
+}
+
+.icon.pandora.gray {
+    fill: var(--icon-gray)
+}
+
 /* Qobuz */
 .background.qobuz {
     background: black
@@ -295,7 +312,7 @@
 }
 
 .youtube-music1.canvas {
-    fill: #888;
+    fill: var(--icon-gray);
 }
 
 /* =======================
@@ -342,7 +359,7 @@
 }
 
 .icon.discovery.gray {
-    fill: #888;
+    fill: var(--icon-gray);
     width: 26px;
 }
 
@@ -443,6 +460,19 @@
     fill: white;
 }
 
+/* Peacock */
+.background.peacock {
+    background: linear-gradient(to bottom left, #3c3c3c, #000000);
+}
+
+.icon.peacock {
+    width: 26px;
+}
+
+.icon.peacock.gray {
+    fill: var(--icon-gray);
+}
+
 /* Star Plus */
 .background.star {
     background: #090e21
@@ -459,7 +489,13 @@
 
 .icon.star.gray {
     width: 34px;
-    fill: #888;
+    fill: var(--icon-gray);
+}
+
+/* TV / Streaming */
+.icon.tv-streaming{
+    width: 26px;
+    fill: white; 
 }
 
 /* YouTube */
