@@ -1,6 +1,6 @@
 import { TYPE, disableIfInactive } from "../forms.js";
 import { translate } from "../translation.js";
-import { loadStep2 } from "./step-2.js";
+import { loadStep2, isStep2NextDisabled } from "./step-2.js";
 
 let CURRENT_STEP = 1;
 let IS_ANIMATING = false;
@@ -11,6 +11,20 @@ export function nextStep() {
 
 export function previousStep() {
     transitionStep('back');
+}
+
+export function isNextDisabled(stepID) {
+    if (!stepID) {
+        stepID = `step-${CURRENT_STEP}`;
+    }
+    switch (stepID) {
+        case 'step-1':
+            return !TYPE;
+        case 'step-2':
+            return isStep2NextDisabled();
+        default:
+            return true;
+    }
 }
 
 function transitionStep(direction) {
@@ -63,15 +77,6 @@ function getStepTextContent(stepID) {
             return translate('navigation.finish');
         default:
             return translate('navigation.next');
-    }
-}
-
-function isNextDisabled(stepID) {
-    switch (stepID) {
-        case 'step-1':
-            return !TYPE;
-        default:
-            return true;
     }
 }
 

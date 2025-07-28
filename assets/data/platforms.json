@@ -1,13 +1,72 @@
 {
     "movie": {
-        "all": [],
-        "en": [],
-        "pt": []
+        "all": [
+            "cinema",
+            "tv-streaming",
+            "amazon",
+            "apple-tv",
+            "crunchyroll",
+            "discovery",
+            "disney",
+            "globo",
+            "hbo-max",
+            "hulu",
+            "mubi",
+            "netflix",
+            "paramount",
+            "peacock",
+            "star",
+            "youtube",
+            "piracy"
+        ],
+        "en": [
+            "cinema",
+            "netflix",
+            "amazon",
+            "disney",
+            "hbo-max"
+        ],
+        "pt": [
+            "cinema",
+            "netflix",
+            "globo",
+            "amazon",
+            "disney"
+        ]
     },
     "tv": {
-        "all": [],
-        "en": [],
-        "pt": []
+        "all": [
+            "tv-streaming",
+            "amazon",
+            "apple-tv",
+            "crunchyroll",
+            "discovery",
+            "disney",
+            "globo",
+            "hbo-max",
+            "hulu",
+            "mubi",
+            "netflix",
+            "paramount",
+            "peacock",
+            "star",
+            "youtube",
+            "piracy"
+        ],
+        "en": [
+            "cinema",
+            "netflix",
+            "amazon",
+            "disney",
+            "hulu"
+        ],
+        "pt": [
+            "cinema",
+            "netflix",
+            "amazon",
+            "disney",
+            "youtube"
+        ]
     },
     "game": {
         "all": [
@@ -44,8 +103,97 @@
         ]
     },
     "music": {
-        "all": [],
-        "en": [],
-        "pt": []
+        "all": [
+            "amazon-music",
+            "apple-music",
+            "deezer",
+            "qobuz",
+            "soundcloud",
+            "spotify",
+            "tidal",
+            "youtube-music",
+            "piracy"
+        ],
+        "en": [
+            "spotify",
+            "amazon-music",
+            "amazon-music",
+            "youtube-music",
+            "pandora"
+        ],
+        "pt": [
+            "spotify",
+            "youtube-music",
+            "deezer",
+            "apple-music",
+            "amazon-music"
+        ]
+    },
+    "properties": {
+        "video": {
+            "cinema": {
+                "background": "default",
+                "icon": "default"
+            },
+            "tv-streaming": {
+                "background": "default",
+                "icon": "default"
+            },
+            "piracy": {
+                "background": "default",
+                "icon": "default"
+            },
+            "discovery": {
+                "has-svg": true,
+                "svg": {
+                    "height": 26,
+                    "width": 26
+                },
+                "has-simplified-icon": true
+            },
+            "netflix": {
+                "has-simplified-icon": true,
+                "preserve-icon-color": true
+            },
+            "peacock": {
+                "has-svg": true,
+                "svg": {
+                    "width": 26
+                },
+                "has-simplified-icon": true
+            },
+            "starplus": {
+                "has-svg": true,
+                "svg": {
+                    "height": 34,
+                    "width": 34
+                },
+                "has-simplified-icon": true
+            }
+        },
+        "game": {
+            "pc": {
+                "background": "default",
+                "icon": "default"
+            },
+            "console": {
+                "background": "default",
+                "icon": "default"
+            }
+        },
+        "music": {
+            "piracy": {
+                "background": "default",
+                "icon": "default"
+            },
+            "pandora": {
+                "has-svg": true,
+                "svg": {
+                    "height": 40,
+                    "width": 40
+                },
+                "has-simplified-icon": true
+            }
+        }
     }
 }

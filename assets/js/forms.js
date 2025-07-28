@@ -1,5 +1,6 @@
 import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
 import { nextStep, previousStep } from "./steps/steps.js";
+import { isNextDisabled } from "./steps/steps.js";
 
 export let TYPE;
 export let PLATFORM;
@@ -19,10 +20,20 @@ export function loadEventListeners() {
     document.getElementById('generate-canvas').addEventListener('click', generateCanvas);
     document.getElementById('share').addEventListener('click', shareCanvas);
     document.getElementById('download').addEventListener('click', downloadCanvas);
+
+    Array.from(document.getElementsByClassName('required-input')).forEach(input => {
+        input.addEventListener('input', () => {
+            const isDisabled = isNextDisabled();
+            disableIfInactive(isDisabled);
+        });
+    });
+
+
 }
 
-export function disableIfInactive(isDisabled, div) {
+export function disableIfInactive(isDisabled, div = document.getElementById('next')) {
     if (isDisabled) {
+        if (div.classList.contains('disabled')) return;
         div.classList.add('disabled');
     } else {
         div.classList.remove('disabled');
@@ -64,12 +75,7 @@ function loadGridListeners() {
                 innerDiv.classList.toggle('selected', criteria);
             }
 
-            const next = document.getElementById('next');
-            if (PLATFORM) {
-                next.classList.remove('disabled')
-            } else {
-                next.classList.add('disabled')
-            }
+            disableIfInactive(isNextDisabled());
         });
     };
 }
