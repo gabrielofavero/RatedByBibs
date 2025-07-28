@@ -1,7 +1,6 @@
-import { TYPE, TYPES } from "./forms.js";
-import { translate } from "./translation.js";
-import { PLATFORMS } from "./app.js";
-import { USER_LANGUAGE } from "./translation.js";
+import { TYPE, disableIfInactive } from "../forms.js";
+import { translate } from "../translation.js";
+import { loadStep2 } from "./step-2.js";
 
 let CURRENT_STEP = 1;
 let IS_ANIMATING = false;
@@ -56,14 +55,6 @@ function loadStepButtonsVisibility(stepID, back, next) {
     disableIfInactive(isBackDisabled(stepID), back);
 }
 
-function disableIfInactive(isDisabled, div) {
-    if (isDisabled) {
-        div.classList.add('disabled');
-    } else {
-        div.classList.remove('disabled');
-    }
-}
-
 function getStepTextContent(stepID) {
     switch (stepID) {
         case 'step-1':
@@ -98,44 +89,5 @@ function loadStepActions(stepID) {
     switch (stepID) {
         case 'step-2':
             loadStep2();
-    }
-}
-
-function loadStep2() {
-    for (const type of TYPES) {
-        document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
-    }
-
-    const platformContainer = document.getElementById('platform-container');
-
-    if (['book', 'other'].includes(TYPE)) {
-        platformContainer.style.display = 'none';
-    } else {
-        platformContainer.style.display = '';
-        loadStep2Platforms();
-    }
-}
-
-function loadStep2Platforms() {
-    const platforms = PLATFORMS?.[TYPE]?.[USER_LANGUAGE];
-    if (platforms && platforms.length > 0) {
-        for (let j = 1; j <= 5; j++) {
-            const platform = platforms[j - 1];
-            const background = document.getElementById(`platform-background-${j}`);
-            const icon = document.getElementById(`platform-icon-${j}`);
-            const label = document.getElementById(`platform-label-${j}`);
-
-            background.className = 'background';
-            icon.setAttribute("class", "icon");
-            label.textContent = '';
-
-            if (platform) {
-                background.classList.add(platform);
-                icon.classList.add(platform);
-                label.textContent = translate(`label.${TYPE}.platform.${platform}`)
-                icon.querySelector("use").setAttribute("href", `#icon-${platform}`);
-                document.getElementById(`platform-${j}`).setAttribute('platform', platform);
-            }
-        }
     }
 }

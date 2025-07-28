@@ -1,5 +1,5 @@
 import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
-import { nextStep, previousStep } from "./steps.js";
+import { nextStep, previousStep } from "./steps/steps.js";
 
 export let TYPE;
 export let PLATFORM;
@@ -19,6 +19,14 @@ export function loadEventListeners() {
     document.getElementById('generate-canvas').addEventListener('click', generateCanvas);
     document.getElementById('share').addEventListener('click', shareCanvas);
     document.getElementById('download').addEventListener('click', downloadCanvas);
+}
+
+export function disableIfInactive(isDisabled, div) {
+    if (isDisabled) {
+        div.classList.add('disabled');
+    } else {
+        div.classList.remove('disabled');
+    }
 }
 
 function loadGridListeners() {
