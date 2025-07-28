@@ -1,6 +1,6 @@
 import { TYPE, TYPES } from "./forms.js";
 import { translate } from "./translation.js";
-import { PLATFORMS, adjustPageHeight } from "./app.js";
+import { PLATFORMS } from "./app.js";
 import { USER_LANGUAGE } from "./translation.js";
 
 let CURRENT_STEP = 1;
@@ -97,13 +97,11 @@ function isBackDisabled(stepID) {
 function loadStepActions(stepID) {
     switch (stepID) {
         case 'step-2':
-            loadStep2Options();
-        default:
-            adjustPageHeight();
+            loadStep2();
     }
 }
 
-function loadStep2Options() {
+function loadStep2() {
     for (const type of TYPES) {
         document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
     }
