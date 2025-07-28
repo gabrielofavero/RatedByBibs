@@ -41,21 +41,9 @@ label {
     font-family: 'Inter';
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 460px) {
     input {
-        width: 300px
-    }
-}
-
-@media screen and (max-width: 400px) {
-    input {
-        width: 250px
-    }
-}
-
-@media screen and (max-width: 340px) {
-    input {
-        width: 80%
+        width: 75vw;
     }
 }
 
@@ -73,6 +61,8 @@ label {
     display: none;
     flex-direction: column;
     gap: 8px;
+    align-items: center;
+    justify-content: center;
     text-align: start;
 }
 
@@ -275,5 +265,3 @@ label {
 .star.selected {
     color: gold;
 }
-
-

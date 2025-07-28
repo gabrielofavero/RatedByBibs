@@ -2,12 +2,13 @@ import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
 import { nextStep, previousStep } from "./steps.js";
 
 export let TYPE;
+export let PLATFORM;
 export const TYPES = ['movie', 'tv', 'game', 'music', 'book', 'other']
 export let UPLOAD_IMAGE = null;
 export let STARS = 0;
 
 export function loadEventListeners() {
-    loadTypeListeners();
+    loadGridListeners();
     loadInputListeners();
     loadStarsListeners();
 
@@ -20,17 +21,46 @@ export function loadEventListeners() {
     document.getElementById('download').addEventListener('click', downloadCanvas);
 }
 
-function loadTypeListeners() {
-    const divs = document.getElementsByClassName('grid-item type');
-    for (const div of divs) {
-        div.addEventListener('click', () => {
-            TYPE = div.id;
-            for (const innerDiv of divs) {
-                innerDiv.classList.toggle('selected', innerDiv.id === div.id);
+function loadGridListeners() {
+    const types = document.getElementsByClassName('grid-item type');
+    for (const type of types) {
+        type.addEventListener('click', () => {
+            const isDisabling = TYPE === type.id;
+            const newType = isDisabling ? '' : type.id;
+            TYPE = newType;
+
+            for (const innerDiv of types) {
+                const criteria = isDisabling ? false : innerDiv.id === type.id;
+                innerDiv.classList.toggle('selected', criteria);
             }
+
             const next = document.getElementById('next');
             if (TYPE) {
                 next.classList.remove('disabled')
+            } else {
+                next.classList.add('disabled')
+            }
+        });
+    };
+
+    const platforms = document.getElementsByClassName('grid-item platform');
+    for (const div of platforms) {
+        div.addEventListener('click', () => {
+            const platform = div.getAttribute('platform');
+            const isDisabling = PLATFORM === platform;
+            const newPlatform = isDisabling ? '' : platform;
+            PLATFORM = newPlatform;
+
+            for (const innerDiv of platforms) {
+                const criteria = isDisabling ? false : innerDiv.getAttribute('platform') === platform;
+                innerDiv.classList.toggle('selected', criteria);
+            }
+
+            const next = document.getElementById('next');
+            if (PLATFORM) {
+                next.classList.remove('disabled')
+            } else {
+                next.classList.add('disabled')
             }
         });
     };

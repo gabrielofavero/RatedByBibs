@@ -232,3 +232,10 @@ a {
 #platform-label {
     margin-bottom: 24px;
 }
+
+@media screen and (max-width: 433px) {
+    #platform-container {
+        margin-left: 9vw;
+        margin-right: 9vw;
+    }
+}

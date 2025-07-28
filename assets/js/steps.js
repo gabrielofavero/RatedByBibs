@@ -1,6 +1,6 @@
 import { TYPE, TYPES } from "./forms.js";
 import { translate } from "./translation.js";
-import { PLATFORMS } from "./app.js";
+import { PLATFORMS, adjustPageHeight } from "./app.js";
 import { USER_LANGUAGE } from "./translation.js";
 
 let CURRENT_STEP = 1;
@@ -99,13 +99,8 @@ function loadStepActions(stepID) {
         case 'step-2':
             loadStep2Options();
         default:
-            adjustNewStep(stepID);
+            adjustPageHeight();
     }
-}
-
-function adjustNewStep(stepID) {
-    const height = document.getElementById(stepID).offsetHeight;
-    document.getElementById('step-wrapper').style.height = `${height + 91}px`
 }
 
 function loadStep2Options() {
@@ -141,6 +136,7 @@ function loadStep2Platforms() {
                 icon.classList.add(platform);
                 label.textContent = translate(`label.${TYPE}.platform.${platform}`)
                 icon.querySelector("use").setAttribute("href", `#icon-${platform}`);
+                document.getElementById(`platform-${j}`).setAttribute('platform', platform);
             }
         }
     }
