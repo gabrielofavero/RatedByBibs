@@ -192,6 +192,18 @@ label {
     width: 112px;
 }
 
+@media (min-width: 320px) and (max-width: 433px) {
+    .grid-item.platform {
+        width: 38vw;
+    }
+}
+
+@media (max-width: 293px) {
+    .grid-item.platform {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 430px) {
     .grid-item.type {
         width: 80%;
