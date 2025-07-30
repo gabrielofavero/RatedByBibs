@@ -20,6 +20,27 @@
         "none": "Nenhum",
         "more": "Mais",
         "platform": "Plataforma",
+        "video": {
+            "platform": {
+                "cinema": "Cinema",
+                "tv-streaming": "TV / Streaming",
+                "amazon": "Prime Video",
+                "apple-tv": "Apple TV",
+                "crunchyroll": "Crunchyroll",
+                "discovery": "Discovery+",
+                "disney": "Disney+",
+                "globo": "GloboPlay",
+                "hbo-max": "HBO MAX",
+                "hulu": "Hulu",
+                "mubi": "MUBI",
+                "netflix": "Netflix",
+                "paramount": "Paramount+",
+                "peacock": "Peacock",
+                "star": "Star+",
+                "youtube": "YouTube",
+                "piracy": "Outro 😏"
+            }
+        },
         "movie": {
             "title": "Nome do filme"
         },
@@ -59,7 +80,18 @@
         "music": {
             "song": "Música",
             "artist": "Artista",
-            "album": "Álbum"
+            "album": "Álbum",
+            "platform": {
+                "amazon-music": "Amazon Music",
+                "apple-music": "Apple Music",
+                "deezer": "Deezer",
+                "qobuz": "Qobuz",
+                "soundcloud": "SoundCloud",
+                "spotify": "Spotify",
+                "tidal": "TIDAL",
+                "youtube-music": "YouTube Music",
+                "piracy": "Outro 😏"
+            }
         },
         "book": {
             "title": "Livro",

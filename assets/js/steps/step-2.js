@@ -19,7 +19,7 @@ export function loadStep2() {
 }
 
 export function isStep2NextDisabled() {
-    const titleValue = document.getElementById(`${TYPE}-title`).value.trim();
+    const titleValue = TYPE === 'music' ? true : document.getElementById(`${TYPE}-title`).value.trim();
 
     if (TYPE === 'book' || TYPE === 'other') {
         return !titleValue;
@@ -46,7 +46,7 @@ function loadStep2Platforms() {
 }
 
 function getMacroType(type) {
-    return ['movies', 'tv'].includes(type) ? 'video' : type;
+    return ['movie', 'tv'].includes(type) ? 'video' : type;
 }
 
 function getPlatformProperties(macroType, platform) {
@@ -77,7 +77,7 @@ function resetPlatformSlot({ div, background, internalIcon, externalIcon, label 
 
 function updatePlatformSlot({ div, background, internalIcon, externalIcon, label }, platform, properties) {
     div.setAttribute('platform', platform);
-    label.textContent = translate(`label.${TYPE}.platform.${platform}`);
+    label.textContent = translate(`label.${getMacroType(TYPE)}.platform.${platform}`);
 
     background.classList.add(properties.background || platform);
 

@@ -303,16 +303,14 @@
 }
 
 /* Youtube Music */
-.youtube-music1 {
+
+.background.youtube-music {
+    background: white;
+}
+
+.icon.youtube-music {
+    width: 32px;
     fill: #FF0000;
-}
-
-.youtube-music2 {
-    fill: white;
-}
-
-.youtube-music1.canvas {
-    fill: var(--icon-gray);
 }
 
 /* =======================

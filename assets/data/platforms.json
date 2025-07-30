@@ -54,15 +54,15 @@
             "piracy"
         ],
         "en": [
-            "cinema",
             "netflix",
             "amazon",
             "disney",
+            "hbo-max",
             "hulu"
         ],
         "pt": [
-            "cinema",
             "netflix",
+            "globo",
             "amazon",
             "disney",
             "youtube"
