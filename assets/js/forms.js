@@ -1,6 +1,5 @@
 import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
-import { nextStep, previousStep } from "./steps/steps.js";
-import { isNextDisabled } from "./steps/steps.js";
+import { nextStep, previousStep, isNextDisabled } from "./steps/steps.js";
 
 export let TYPE;
 export let PLATFORM;
@@ -8,7 +7,7 @@ export const TYPES = ['movie', 'tv', 'game', 'music', 'book', 'other']
 export let UPLOAD_IMAGE = null;
 export let STARS = 0;
 
-export function loadEventListeners() {
+export function loadFormEventListeners() {
     loadGridListeners();
     loadInputListeners();
     loadStarsListeners();

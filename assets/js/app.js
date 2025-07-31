@@ -1,4 +1,4 @@
-import { loadEventListeners } from "./forms.js";
+import { loadFormEventListeners } from "./forms.js";
 import { loadUserLanguage } from "./translation.js";
 
 export let PLATFORMS;
@@ -19,4 +19,8 @@ export async function getJson(path) {
 
 async function loadStaticData() {
     PLATFORMS = await getJson('./assets/data/platforms.json');
+}
+
+function loadEventListeners() {
+    loadFormEventListeners();
 }

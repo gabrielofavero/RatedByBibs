@@ -149,32 +149,33 @@
                 <div class="step-label" data-translate="label.im-rating"></div>
                 <div class="top-row">
                   <label>
-                    <input type="radio" name="option" value="tv">
-                    <span data-translate="label.tv.radio.tv"></span>
+                    <input type="radio" name="tv-radio" id="tv-radio-episode" value="episode" checked>
+                    <span data-translate="label.tv.radio.episode"></span>
                   </label>
                   <label>
-                    <input type="radio" name="option" value="season">
+                    <input type="radio" name="tv-radio" id="tv-radio-season" value="season">
                     <span data-translate="label.tv.radio.season"></span>
                   </label>
-                      <label>
-                    <input type="radio" name="option" value="episode">
-                    <span data-translate="label.tv.radio.episode"></span>
+                  <label>
+                    <input type="radio" name="tv-radio" id="tv-radio-title" value="title">
+                    <span data-translate="label.tv.radio.tv"></span>
                   </label>
                 </div>
               </div>
 
-              <div class="option first">
-                <label for="tv-title" data-translate="label.tv.title"></label>
-                <input class="required-input" type="text" id="tv-title" maxlength="32" data-translate="label.required" />
+              <div class="option first" id="tv-episode-option">
+                <label for="tv-episode" data-translate="label.tv.episode"></label>
+                <input type="number" id="tv-episode" min="1" data-translate="label.optional"/>
               </div>
-              <div class="option">
+              <div class="option" id="tv-season-option">
                 <label for="tv-season" data-translate="label.tv.season"></label>
                 <input type="number" id="tv-season" min="1" data-translate="label.optional" />
               </div>
-              <div class="option last">
-                <label for="tv-episode" data-translate="label.tv.episode"></label>
-                <input type="number" id="tv-episode" min="1" data-translate="label.optional" />
+              <div class="option last" id="tv-title-option">
+                <label for="tv-title" data-translate="label.tv.title"></label>
+                <input class="required-input" type="text" id="tv-title" maxlength="32" data-translate="label.required" />
               </div>
+
             </div>
 
             <!-- Gaming Options -->
@@ -195,31 +196,31 @@
                 <div class="step-label" data-translate="label.im-rating"></div>
                 <div class="top-row">
                   <label>
-                    <input type="radio" name="option" value="song">
+                    <input type="radio" name="music-radio" id="music-radio-song" value="song">
                     <span data-translate="label.music.radio.song"></span>
                   </label>
                   <label>
-                    <input type="radio" name="option" value="album">
+                    <input type="radio" name="music-radio" id="music-radio-album" value="album">
                     <span data-translate="label.music.radio.album"></span>
                   </label>
                       <label>
-                    <input type="radio" name="option" value="artist">
+                    <input type="radio" name="music-radio" id="music-radio-artist" value="artist">
                     <span data-translate="label.music.radio.artist"></span>
                   </label>
                 </div>
               </div>
 
-              <div class="option first">
+              <div class="option first" id="music-song-option">
                 <label for="music-song" data-translate="label.music.song"></label>
-                <input type="text" id="music-song" maxlength="32" data-translate="label.optional" />
+                <input type="text" id="music-song" maxlength="32" data-translate="label.optional" checked/>
               </div>
-              <div class="option">
-                <label for="music-artist" data-translate="label.music.artist"></label>
-                <input type="text" id="music-artist" maxlength="32" data-translate="label.optional" />
-              </div>
-              <div class="option last">
+              <div class="option" id="music-album-option">
                 <label for="music-album" data-translate="label.music.album"></label>
                 <input type="text" id="music-album" maxlength="32" data-translate="label.optional" />
+              </div>
+              <div class="option last" id="music-artist-option">
+                <label for="music-artist" data-translate="label.music.artist"></label>
+                <input type="text" id="music-artist" maxlength="32" data-translate="label.optional" />
               </div>
             </div>
 

@@ -3,19 +3,15 @@ import { TYPE, TYPES, PLATFORM } from "../forms.js";
 import { PLATFORMS } from "../app.js";
 import { USER_LANGUAGE } from "../translation.js";
 
+const SUBTYPE = {
+    tv: '',
+    music: ''
+}
+
 export function loadStep2() {
-    for (const type of TYPES) {
-        document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
-    }
-
-    const platformContainer = document.getElementById('platform-container');
-
-    if (['book', 'other'].includes(TYPE)) {
-        platformContainer.style.display = 'none';
-    } else {
-        platformContainer.style.display = '';
-        loadStep2Platforms();
-    }
+    loadStep2Listeners();
+    loadStep2Inputs();
+    loadStep2Platforms();
 }
 
 export function isStep2NextDisabled() {
@@ -28,7 +24,71 @@ export function isStep2NextDisabled() {
     }
 }
 
+function loadStep2Listeners() {
+    document.getElementById('music-radio-song').onchange = () => loadCheckboxInput('music');
+    document.getElementById('music-radio-artist').onchange = () => loadCheckboxInput('music');
+    document.getElementById('music-radio-album').onchange = () => loadCheckboxInput('music');
+
+    document.getElementById('tv-radio-title').onchange = () => loadCheckboxInput('tv');
+    document.getElementById('tv-radio-season').onchange = () => loadCheckboxInput('tv');
+    document.getElementById('tv-radio-episode').onchange = () => loadCheckboxInput('tv');
+}
+
+function loadCheckboxInput(type) {
+    const value = document.querySelector(`input[name="${type}-radio"]:checked`)?.value;
+    
+    if (!value) {
+        SUBTYPE[type] = '';
+        return;
+    }
+    
+    const shouldBeVisible = getOptionVisibilityObject(type, value)
+
+   for (const key in shouldBeVisible) {
+    document.getElementById(`${type}-${key}-option`).style.display = shouldBeVisible[key] ? '' : 'none'
+   }
+
+   SUBTYPE[type] = value;
+}
+
+function getOptionVisibilityObject(type, value) {
+    switch (type) {
+        case 'tv': 
+        return {
+            title: true,
+            season: ['episode', 'season'].includes(value),
+            episode: value === 'episode'
+        }
+        case "music":
+            return {
+                song: value === 'song',
+                artist: true,
+                album: ['song', 'album'].includes(value)
+            }
+        default:
+            return {}
+    }
+}
+
+function loadStep2Inputs() {
+    for (const type of TYPES) {
+        document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
+    }
+
+    loadCheckboxInput('tv');
+    loadCheckboxInput('music');
+
+}
+
 function loadStep2Platforms() {
+    const platformContainer = document.getElementById('platform-container');
+    if (['book', 'other'].includes(TYPE)) {
+        platformContainer.style.display = 'none';
+        return;
+    } else {
+        platformContainer.style.display = '';
+    }
+
     const platforms = PLATFORMS?.[TYPE]?.[USER_LANGUAGE];
     if (!Array.isArray(platforms) || platforms.length === 0) return;
 
