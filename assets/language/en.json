@@ -19,6 +19,7 @@
         "optional": "Optional",
         "none": "None",
         "more": "More",
+        "im-rating": "I'm rating:",
         "platform": "Platform",
         "video": {
             "platform": {
@@ -47,7 +48,12 @@
         "tv": {
             "title": "TV Show",
             "season": "Season",
-            "episode": "Episode"
+            "episode": "Episode",
+            "radio": {
+                "tv": "A TV Show",
+                "season": "A Season",
+                "episode": "An Episode"
+            }
         },
         "game": {
             "title": "Game",
@@ -81,6 +87,11 @@
             "song": "Song",
             "artist": "Artist",
             "album": "Album",
+            "radio": {
+                "song": "A song",
+                "artist": "An artist",
+                "album": "An album"
+            },
             "platform": {
                 "amazon-music": "Amazon Music",
                 "apple-music": "Apple Music",

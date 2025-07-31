@@ -20,6 +20,7 @@
         "none": "Nenhum",
         "more": "Mais",
         "platform": "Plataforma",
+        "im-rating": "Estou avaliando:",
         "video": {
             "platform": {
                 "cinema": "Cinema",
@@ -47,7 +48,12 @@
         "tv": {
             "title": "Nome da série",
             "season": "Temporada",
-            "episode": "Episódio"
+            "episode": "Episódio",
+            "radio": {
+                "tv": "Uma série",
+                "season": "Uma temporada",
+                "episode": "Um episódio"
+            }
         },
         "game": {
             "title": "Nome do jogo",
@@ -81,6 +87,11 @@
             "song": "Música",
             "artist": "Artista",
             "album": "Álbum",
+            "radio": {
+                "song": "Uma música",
+                "artist": "Um artista",
+                "album": "Um álbum"
+            },
             "platform": {
                 "amazon-music": "Amazon Music",
                 "apple-music": "Apple Music",
