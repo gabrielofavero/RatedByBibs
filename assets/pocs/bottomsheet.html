@@ -26,6 +26,28 @@
             cursor: pointer;
         }
 
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 5;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .bottomsheet {
+            z-index: 10;
+        }
+
         .bottomsheet {
             position: fixed;
             left: 0;
@@ -128,6 +150,7 @@
 <body>
     <button class="open-btn">Open Bottomsheet</button>
 
+    <div class="overlay"></div>
     <div class="bottomsheet">
         <div class="sheet-content">
             <div class="bottomsheet-title">
@@ -156,11 +179,13 @@
         const bottomsheet = document.querySelector('.bottomsheet');
         const emojis = document.querySelectorAll('.emoji');
         const confirmBtn = document.querySelector('.confirm-btn');
+        const overlay = document.querySelector('.overlay');
 
         let selectedEmoji = null;
 
         openBtn.addEventListener('click', () => {
             bottomsheet.classList.add('active');
+            overlay.classList.add('active');
         });
 
         emojis.forEach(emoji => {
@@ -238,6 +263,7 @@
         function closeSheet(fromDrag = false) {
             if (!bottomsheet.classList.contains('active')) return;
 
+            overlay.classList.remove('active');
             bottomsheet.style.transition = '';
 
             if (!fromDrag) {
