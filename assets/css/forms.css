@@ -54,9 +54,9 @@ label {
 }
 
 @media screen and (max-width: 460px) {
+
     input[type="text"],
-    input[type="number"],
-    .radio-group {
+    input[type="number"] {
         width: 75vw;
     }
 }
@@ -84,10 +84,11 @@ label {
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-.option {
-    margin: 10px 0; /* common elements */
+    margin: 10px 0;
+    overflow: hidden;
+    max-height: 80px;
+    opacity: 1;
+    transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease, padding 0.3s ease;
 }
 
 .option.first {
@@ -98,54 +99,76 @@ label {
     margin: 10px 0 0 0;
 }
 
+.option.hidden {
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    margin-top: -16px;
+}
+
 /* =======================
    Radio
    ======================= */
 
 .radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 378.6px;
-  margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 378.6px;
+    margin-bottom: 32px;
 }
 
-.radio-group .top-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 16px;
+.radio-group .radios {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+@media (max-width: 460px) {
+    .radio-group {
+        width: 75vw;
+    }
+
+    .radio-group .radios {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 24px;
+    }
+
+    .radio-group .radios label {
+        flex: 1 1 120px;
+        min-width: 100px;
+    }
 }
 
 .radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.radio-group .bottom {
-  margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .radio-group input[type="radio"] {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--forms-highlight);
-  border-radius: 50%;
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.2s ease;
-  margin: 0;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--forms-highlight);
+    border-radius: 50%;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+    margin: 0;
 }
 
 .radio-group input[type="radio"]:checked {
-  background-color: var(--forms-highlight);
-  transform: scale(1.1);
+    background-color: var(--forms-highlight);
+    transform: scale(1.1);
 }
 
 .radio-group input[type="radio"]:not(:checked) {
-  transform: scale(1);
+    transform: scale(1);
 }
 
 /* =======================

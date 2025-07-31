@@ -45,7 +45,12 @@ function loadCheckboxInput(type) {
     const shouldBeVisible = getOptionVisibilityObject(type, value)
 
    for (const key in shouldBeVisible) {
-    document.getElementById(`${type}-${key}-option`).style.display = shouldBeVisible[key] ? '' : 'none'
+    const option = document.getElementById(`${type}-${key}-option`);
+    if (shouldBeVisible[key] === true) {
+        option.classList.remove('hidden');
+    } else {
+        option.classList.add('hidden');
+    }
    }
 
    SUBTYPE[type] = value;
