@@ -96,15 +96,18 @@ function loadStep2Platforms() {
 
     const platforms = PLATFORMS?.[TYPE]?.[USER_LANGUAGE];
     if (!Array.isArray(platforms) || platforms.length === 0) return;
+    processPlatformContainer(platforms, 5);
+}
 
-    for (let j = 1; j <= 5; j++) {
+function processPlatformContainer(platforms, size=platforms.length) {
+    for (let j = 1; j <= size; j++) {
         const platform = platforms[j - 1];
         const elements = getPlatformElements(j);
         resetPlatformSlot(elements);
 
         if (platform) {
             const macroType = getMacroType(TYPE);
-            const properties = getPlatformProperties(macroType, platform);
+            const properties = PLATFORMS?.properties?.[macroType]?.[platform] || {};
             updatePlatformSlot(elements, platform, properties);
         }
     }
@@ -112,10 +115,6 @@ function loadStep2Platforms() {
 
 function getMacroType(type) {
     return ['movie', 'tv'].includes(type) ? 'video' : type;
-}
-
-function getPlatformProperties(macroType, platform) {
-    return PLATFORMS?.properties?.[macroType]?.[platform] || {};
 }
 
 function getPlatformElements(index) {
@@ -176,4 +175,28 @@ function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
         internalIcon.setAttribute('class', `icon ${properties.icon || platform}`);
         internalIcon.style.display = 'block';
     }
+}
+
+export function loadMore() {
+    const items = PLATFORMS?.[getMacroType(TYPE)]?.all || [];
+    const container =  document.getElementById('platform-grid-container-more');
+    container.innerHTML = '';
+
+    let innerHTML = '';
+    for (let j = 1; j <= items.length; j++) {
+        innerHTML += `
+        <div class="grid-item platform" id="more-platform-${j}">
+            <div id="more-platform-background-${j}" class="background">
+            <div id="more-platform-icon-container-${j}">
+                <svg id="more-platform-internal-icon-${j}" style="display: none">
+                <use href="" />
+                </svg>
+                <img id="platform-external-icon-${j}" src="" style="display: none">
+            </div>
+            </div>
+            <div class="grid-label" id="platform-label-${j}"></div>
+        </div>`
+    }
+    container.innerHTML = innerHTML;
+    
 }

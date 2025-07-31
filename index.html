@@ -306,7 +306,7 @@
                   </div>
                   <div class="grid-label" id="platform-label-5"></div>
                 </div>
-                <div class="grid-item platform">
+                <div class="grid-item platform" id="more">
                   <div class="background">
                     <svg class="icon default">
                       <use href="#icon-more" />
@@ -331,18 +331,23 @@
       </div>
     </div>
 
-    <div id="footer">
-      <div class="bottom-sheet"></div>
-      <div class="next-container">
-        <div id="next" class="next-button disabled" data-translate="navigation.begin"></div>
-      </div>
+    <div class="next-container">
+      <div id="next" class="btn disabled" data-translate="navigation.begin"></div>
     </div>
 
-
-
-
-
-
+    <div class="overlay"></div>
+    <div class="bottomsheet">
+        <div class="sheet-content">
+            <div class="bottomsheet-title">
+                <div class="drag-handle"></div>
+                <div class="step-label" data-translate="label.platform"></div>
+            </div>
+            <div id="platform-grid-container-more" class="grid-container platform"></div>
+            <div class="bottomsheet-button">
+                <button id="confirm-bottomsheet" class="btn confirm-bottomsheet" disabled>Confirm</button>
+            </div>
+        </div>
+    </div>
 
 
 

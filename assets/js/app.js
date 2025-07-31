@@ -1,4 +1,5 @@
 import { loadFormEventListeners } from "./forms.js";
+import { loadBottomsheetEventListeners } from "./navigation/bottomsheet.js";
 import { loadUserLanguage } from "./translation.js";
 
 export let PLATFORMS;
@@ -23,4 +24,5 @@ async function loadStaticData() {
 
 function loadEventListeners() {
     loadFormEventListeners();
+    loadBottomsheetEventListeners();
 }

@@ -19,8 +19,9 @@
         "optional": "Opcional",
         "none": "Nenhum",
         "more": "Mais",
-        "platform": "Plataforma",
         "im-rating": "Estou avaliando:",
+        "platform": "Plataforma",
+        "confirm": "Confirmar",
         "video": {
             "platform": {
                 "cinema": "Cinema",
