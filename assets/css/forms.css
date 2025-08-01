@@ -243,6 +243,16 @@ label {
    Grid Container
    ======================= */
 
+   .bottomsheet-label {
+    font-weight: 600;
+    font-size: 18px;
+    font-style: normal;
+    line-height: 24px;
+    letter-spacing: -0.01px;
+    color: #F5F5F5;
+    text-align: left;
+}
+
 .grid-container {
     display: flex;
     flex-wrap: wrap;
@@ -252,9 +262,30 @@ label {
     margin-right: auto;
 }
 
+.grid-container.platform-bottomsheet,
+.bottomsheet-label {
+    width: 80vw;
+}
+
+@media screen and (min-width: 1120px) {
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: 1015px;
+    }
+}
+
 @media screen and (min-width: 433px) {
     .grid-container.platform {
         width: 378.6px;
+    }
+}
+
+@media (max-width: 293px) {
+    .grid-container.platform
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: 100%;
+        padding: 20vw
     }
 }
 

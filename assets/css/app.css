@@ -3,7 +3,7 @@
    ======================= */
 html,
 body {
-    min-height: 100%;
+    height: 100%;
 }
 
 body {
@@ -284,6 +284,8 @@ a {
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .bottomsheet-title {
@@ -307,4 +309,14 @@ a {
 
 .drag-handle:active {
     cursor: grabbing;
+}
+
+.bottomsheet-body {
+    overflow-y: auto;
+    flex: 1;
+    width: 100%;
+}
+
+.bottomsheet-button {
+    margin-top: 24px;
 }
