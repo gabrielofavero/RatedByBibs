@@ -1,8 +1,8 @@
 /* =======================
    Page Base
    ======================= */
-body {
-    min-height: 100vh;
+:root {
+    --next-container-height: 91px;
 }
 
 body {
@@ -11,12 +11,14 @@ body {
     color: #fff;
     text-align: center;
     margin: 0;
-    padding: 1rem 0;
+    padding-top: 1rem;
+    min-height: calc(100vh - 1rem);
 }
 
 @media screen and (max-width: 580px) {
     body {
-        padding: 0;
+        padding-bottom: var(--next-container-height);
+        min-height: calc(100vh - 1rem - var(--next-container-height));
     }
 }
 
@@ -190,7 +192,7 @@ a {
     left: 50%;
     transform: translateX(-50%);
     width: 100vw;
-    height: 91px;
+    height: var(--next-container-height);
     pointer-events: auto;
     z-index: 5;
     margin-top: 0;
