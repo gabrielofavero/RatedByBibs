@@ -4,6 +4,8 @@
 
 :root {
     --forms-highlight: #E5A000;
+    --platform-grid-item-width: 112px;
+    --grid-item-gap: 16px;
 }
 
 .form-controls {
@@ -243,7 +245,7 @@ label {
    Grid Container
    ======================= */
 
-   .bottomsheet-label {
+.bottomsheet-label {
     font-weight: 600;
     font-size: 18px;
     font-style: normal;
@@ -257,49 +259,18 @@ label {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 17px;
+    gap: var(--grid-item-gap);
     margin-left: auto;
     margin-right: auto;
 }
 
+.grid-container.platform-bottomsheet {
+    justify-content: left;
+}
+
 .grid-container.platform-bottomsheet,
 .bottomsheet-label {
-    width: 80vw;
-}
-
-@media screen and (min-width: 1120px) {
-    .grid-container.platform-bottomsheet,
-    .bottomsheet-label {
-        width: 1015px;
-    }
-}
-
-@media screen and (min-width: 433px) {
-    .grid-container.platform {
-        width: 378.6px;
-    }
-}
-
-@media (max-width: 293px) {
-    .grid-container.platform
-    .grid-container.platform-bottomsheet,
-    .bottomsheet-label {
-        width: 100%;
-        padding: 20vw
-    }
-}
-
-@media screen and (min-width: 620px) {
-    .grid-container.type {
-        max-width: 600px;
-    }
-}
-
-@media (min-width: 532px) and (max-width: 645px) {
-    .grid-container.type {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
+    width: calc((var(--platform-grid-item-width) * 8) + (var(--grid-item-gap) * 7));
 }
 
 .grid-item {
@@ -317,26 +288,9 @@ label {
     width: 166px;
 }
 
-.grid-item.platform {
-    width: 112px;
-}
-
-@media (min-width: 320px) and (max-width: 433px) {
-    .grid-item.platform {
-        width: 38vw;
-    }
-}
-
-@media (max-width: 293px) {
-    .grid-item.platform {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 430px) {
-    .grid-item.type {
-        width: 80%;
-    }
+.grid-item.platform,
+.grid-item.platform-bottomsheet {
+    width: var(--platform-grid-item-width);
 }
 
 .grid-item:hover {
@@ -358,6 +312,115 @@ label {
     font-size: 14px;
     line-height: 140%;
     text-align: center;
+}
+
+@media screen and (max-width: 1150px) {
+
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: calc((var(--platform-grid-item-width) * 7) + (var(--grid-item-gap) * 6));
+    }
+}
+
+@media screen and (max-width: 980px) {
+
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: calc((var(--platform-grid-item-width) * 6) + (var(--grid-item-gap) * 5));
+    }
+}
+
+@media screen and (max-width: 845px) {
+
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: calc((var(--platform-grid-item-width) * 5) + (var(--grid-item-gap) * 4));
+    }
+}
+
+@media screen and (max-width: 735px) {
+
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: calc((var(--platform-grid-item-width) * 4) + (var(--grid-item-gap) * 3));
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: calc((var(--platform-grid-item-width) * 3) + (var(--grid-item-gap) * 2));
+    }
+}
+
+@media screen and (max-width: 490px) {
+
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: calc((var(--platform-grid-item-width) * 2) + (var(--grid-item-gap) * 1));
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .grid-item.type {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .grid-container.platform-bottomsheet,
+    .bottomsheet-label {
+        width: var(--platform-grid-item-width);
+    }
+}
+
+@media (max-width: 293px) {
+    .grid-container.platform,
+    .grid-container.platform-bottomsheet {
+        width: 100%;
+    }
+
+    .grid-container.platform-bottomsheet {
+        justify-content: center;
+    }
+
+    .bottomsheet-label {
+        text-align: center;
+    }
+
+    .grid-item.platform {
+        width: 100%;
+    }
+
+    .grid-item.platform-bottomsheet {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 433px) {
+    .grid-container.platform {
+        width: 378.6px;
+    }
+}
+
+@media screen and (min-width: 620px) {
+    .grid-container.type {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 532px) and (max-width: 645px) {
+    .grid-container.type {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 433px) {
+    .grid-item.platform {
+        width: 38vw;
+    }
 }
 
 /* =======================

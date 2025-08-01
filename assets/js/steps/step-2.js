@@ -185,7 +185,7 @@ export function loadMore() {
     let innerHTML = '';
     for (let j = 1; j <= items.length; j++) {
         innerHTML += `
-        <div class="grid-item platform" id="more-platform-${j}">
+        <div class="grid-item platform-bottomsheet" id="more-platform-${j}">
             <div id="more-platform-background-${j}" class="background">
             <div id="more-platform-icon-container-${j}">
                 <svg id="more-platform-internal-icon-${j}" style="display: none">
