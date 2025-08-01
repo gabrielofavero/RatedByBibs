@@ -35,7 +35,7 @@ function transitionStep(direction) {
     const stepID = `step-${newStep}`;
     loadStepActions(stepID);
     animate(newStep);
-    loadStepButtonsVisibility(stepID, back, next);
+    loadStepButtonsVisibility(stepID);
 }
 
 function animate(newStep) {
@@ -63,10 +63,10 @@ function animate(newStep) {
     });
 }
 
-function loadStepButtonsVisibility(stepID, back, next) {
+function loadStepButtonsVisibility(stepID) {
     next.textContent = getStepTextContent(stepID);
-    disableIfInactive(isNextDisabled(stepID), next);
-    disableIfInactive(isBackDisabled(stepID), back);
+    disableIfInactive(isNextDisabled(stepID), 'next');
+    disableIfInactive(isBackDisabled(stepID), 'back');
 }
 
 function getStepTextContent(stepID) {

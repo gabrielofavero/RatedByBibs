@@ -9,7 +9,6 @@ export let STARS = 0;
 
 export function loadFormEventListeners() {
     loadGridListeners();
-    loadInputListeners();
     loadStarsListeners();
 
     document.getElementById('next').addEventListener('click', nextStep);
@@ -30,7 +29,8 @@ export function loadFormEventListeners() {
 
 }
 
-export function disableIfInactive(isDisabled, div = document.getElementById('next')) {
+export function disableIfInactive(isDisabled, divID = 'next') {
+    const div = document.getElementById(divID);
     if (isDisabled) {
         if (div.classList.contains('disabled')) return;
         div.classList.add('disabled');
@@ -40,6 +40,11 @@ export function disableIfInactive(isDisabled, div = document.getElementById('nex
 }
 
 function loadGridListeners() {
+    loadGridTypeListeners();
+    loadGridPlatformListeners();
+}
+
+function loadGridTypeListeners() {
     const types = document.getElementsByClassName('grid-item type');
     for (const type of types) {
         type.addEventListener('click', () => {
@@ -60,8 +65,10 @@ function loadGridListeners() {
             }
         });
     };
+}
 
-    const platforms = document.getElementsByClassName('grid-item platform');
+export function loadGridPlatformListeners(platformID = 'platform', disableID = 'next', disableCriteria = isNextDisabled) {
+    const platforms = document.getElementsByClassName(`grid-item ${platformID}`);
     for (const div of platforms) {
         div.addEventListener('click', () => {
             const platform = div.getAttribute('platform');
@@ -74,22 +81,9 @@ function loadGridListeners() {
                 innerDiv.classList.toggle('selected', criteria);
             }
 
-            disableIfInactive(isNextDisabled());
+            disableIfInactive(disableCriteria(), disableID);
         });
     };
-}
-
-function loadInputListeners() {
-    document.getElementById('tv-season').onchange = () => blockTVShowNumber('tv-season');
-    document.getElementById('tv-episode').onchange = () => blockTVShowNumber('tv-episode');
-}
-
-function blockTVShowNumber(id) {
-    const input = document.getElementById(id);
-    const value = parseInt(input.value);
-    if (isNaN(value) || value < 1) {
-        input.value = '';
-    }
 }
 
 function upload(file) {

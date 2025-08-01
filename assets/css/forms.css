@@ -264,11 +264,11 @@ label {
     margin-right: auto;
 }
 
-.grid-container.platform-bottomsheet {
+.grid-container.more-platform {
     justify-content: left;
 }
 
-.grid-container.platform-bottomsheet,
+.grid-container.more-platform,
 .bottomsheet-label {
     width: calc((var(--platform-grid-item-width) * 8) + (var(--grid-item-gap) * 7));
 }
@@ -289,7 +289,7 @@ label {
 }
 
 .grid-item.platform,
-.grid-item.platform-bottomsheet {
+.grid-item.more-platform {
     width: var(--platform-grid-item-width);
 }
 
@@ -316,7 +316,7 @@ label {
 
 @media screen and (max-width: 1150px) {
 
-    .grid-container.platform-bottomsheet,
+    .grid-container.more-platform,
     .bottomsheet-label {
         width: calc((var(--platform-grid-item-width) * 7) + (var(--grid-item-gap) * 6));
     }
@@ -324,7 +324,7 @@ label {
 
 @media screen and (max-width: 980px) {
 
-    .grid-container.platform-bottomsheet,
+    .grid-container.more-platform,
     .bottomsheet-label {
         width: calc((var(--platform-grid-item-width) * 6) + (var(--grid-item-gap) * 5));
     }
@@ -332,7 +332,7 @@ label {
 
 @media screen and (max-width: 845px) {
 
-    .grid-container.platform-bottomsheet,
+    .grid-container.more-platform,
     .bottomsheet-label {
         width: calc((var(--platform-grid-item-width) * 5) + (var(--grid-item-gap) * 4));
     }
@@ -340,7 +340,7 @@ label {
 
 @media screen and (max-width: 735px) {
 
-    .grid-container.platform-bottomsheet,
+    .grid-container.more-platform,
     .bottomsheet-label {
         width: calc((var(--platform-grid-item-width) * 4) + (var(--grid-item-gap) * 3));
     }
@@ -348,7 +348,7 @@ label {
 
 @media screen and (max-width: 600px) {
 
-    .grid-container.platform-bottomsheet,
+    .grid-container.more-platform,
     .bottomsheet-label {
         width: calc((var(--platform-grid-item-width) * 3) + (var(--grid-item-gap) * 2));
     }
@@ -356,7 +356,7 @@ label {
 
 @media screen and (max-width: 490px) {
 
-    .grid-container.platform-bottomsheet,
+    .grid-container.more-platform,
     .bottomsheet-label {
         width: calc((var(--platform-grid-item-width) * 2) + (var(--grid-item-gap) * 1));
     }
@@ -369,7 +369,7 @@ label {
 }
 
 @media screen and (max-width: 320px) {
-    .grid-container.platform-bottomsheet,
+    .grid-container.more-platform,
     .bottomsheet-label {
         width: var(--platform-grid-item-width);
     }
@@ -377,11 +377,11 @@ label {
 
 @media (max-width: 293px) {
     .grid-container.platform,
-    .grid-container.platform-bottomsheet {
+    .grid-container.more-platform {
         width: 100%;
     }
 
-    .grid-container.platform-bottomsheet {
+    .grid-container.more-platform {
         justify-content: center;
     }
 
@@ -393,7 +393,7 @@ label {
         width: 100%;
     }
 
-    .grid-item.platform-bottomsheet {
+    .grid-item.more-platform {
         width: 80%;
     }
 }

@@ -1,4 +1,4 @@
-import { loadMore } from "../steps/step-2.js";
+import { loadMorePlatforms } from "../steps/step-2.js";
 
 const bottomsheet = document.querySelector('.bottomsheet');
 const emojis = document.querySelectorAll('.emoji');
@@ -15,7 +15,7 @@ let currentY = 0;
 
 export function loadBottomsheetEventListeners() {
     document.getElementById('more').addEventListener('click', () => {
-        loadMore();
+        loadMorePlatforms();
         bottomsheet.classList.add('active');
         overlay.classList.add('active');
     });

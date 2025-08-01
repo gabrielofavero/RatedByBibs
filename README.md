@@ -17,7 +17,6 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 - 📈 **I001:** Improve page visibility and responsiviness
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
-  - 🏆 **F006:** [E004] Create HTML elements according to type
   - 🏆 **F008:** [E004] Store user values dynamically
 
 ### Backlog
@@ -37,6 +36,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
   - 🏆 **F003:** [E003] Prepare necessary icons
   - 🏆 **F004:** [E004] Create radio design
   - 🏆 **F005:** [E003] Create Bottomsheet design
+  - 🏆 **F006:** [E004] Create HTML elements according to type
   - 🏆 **F007:** [E004] Dynamic elements visibility according to type
 - ⚔️ **E003:** Implement "Step 1": Select a content type
 - ⚔️ **E002:** Create navigation elements (single-page)

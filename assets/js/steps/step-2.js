@@ -1,11 +1,20 @@
 import { translate } from "../translation.js";
-import { TYPE, TYPES, PLATFORM } from "../forms.js";
+import { TYPE, TYPES, PLATFORM, loadGridPlatformListeners } from "../forms.js";
 import { PLATFORMS } from "../app.js";
 import { USER_LANGUAGE } from "../translation.js";
 
 const SUBTYPE = {
     tv: '',
     music: ''
+}
+
+const MACROTYPE = {
+    movie: 'video',
+    tv: 'video',
+    game: 'game',
+    music: 'music',
+    book: 'book',
+    other: 'other'
 }
 
 export function loadStep2() {
@@ -32,6 +41,9 @@ function loadStep2Listeners() {
     document.getElementById('tv-radio-title').onchange = () => loadCheckboxInput('tv');
     document.getElementById('tv-radio-season').onchange = () => loadCheckboxInput('tv');
     document.getElementById('tv-radio-episode').onchange = () => loadCheckboxInput('tv');
+
+    document.getElementById('tv-season').onchange = () => blockTVShowNumber('tv-season');
+    document.getElementById('tv-episode').onchange = () => blockTVShowNumber('tv-episode');
 }
 
 function loadCheckboxInput(type) {
@@ -94,36 +106,31 @@ function loadStep2Platforms() {
         platformContainer.style.display = '';
     }
 
-    const platforms = PLATFORMS?.[TYPE]?.[USER_LANGUAGE];
+    const platforms = PLATFORMS?.[TYPE]?.[USER_LANGUAGE]?.slice(0, 5);
     if (!Array.isArray(platforms) || platforms.length === 0) return;
-    processPlatformContainer(platforms, 5);
+    processPlatformContainer(platforms);
 }
 
-function processPlatformContainer(platforms, size=platforms.length) {
-    for (let j = 1; j <= size; j++) {
+function processPlatformContainer(platforms, type='platform') {
+    for (let j = 1; j <= platforms.length; j++) {
         const platform = platforms[j - 1];
-        const elements = getPlatformElements(j);
+        const elements = getPlatformElements(j, type);
         resetPlatformSlot(elements);
 
         if (platform) {
-            const macroType = getMacroType(TYPE);
-            const properties = PLATFORMS?.properties?.[macroType]?.[platform] || {};
+            const properties = PLATFORMS?.properties?.[MACROTYPE[TYPE]]?.[platform] || {};
             updatePlatformSlot(elements, platform, properties);
         }
     }
 }
 
-function getMacroType(type) {
-    return ['movie', 'tv'].includes(type) ? 'video' : type;
-}
-
-function getPlatformElements(index) {
+function getPlatformElements(index, type) {
     return {
-        div: document.getElementById(`platform-${index}`),
-        background: document.getElementById(`platform-background-${index}`),
-        internalIcon: document.getElementById(`platform-internal-icon-${index}`),
-        externalIcon: document.getElementById(`platform-external-icon-${index}`),
-        label: document.getElementById(`platform-label-${index}`)
+        div: document.getElementById(`${type}-${index}`),
+        background: document.getElementById(`${type}-background-${index}`),
+        internalIcon: document.getElementById(`${type}-internal-icon-${index}`),
+        externalIcon: document.getElementById(`${type}-external-icon-${index}`),
+        label: document.getElementById(`${type}-label-${index}`)
     };
 }
 
@@ -141,7 +148,7 @@ function resetPlatformSlot({ div, background, internalIcon, externalIcon, label 
 
 function updatePlatformSlot({ div, background, internalIcon, externalIcon, label }, platform, properties) {
     div.setAttribute('platform', platform);
-    label.textContent = translate(`label.${getMacroType(TYPE)}.platform.${platform}`);
+    label.textContent = translate(`label.${MACROTYPE[TYPE]}.platform.${platform}`);
 
     background.classList.add(properties.background || platform);
 
@@ -177,26 +184,38 @@ function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
     }
 }
 
-export function loadMore() {
-    const items = PLATFORMS?.[getMacroType(TYPE)]?.all || [];
+export function loadMorePlatforms() {
+    const platforms = PLATFORMS?.[MACROTYPE[TYPE]]?.all || [];
     const container =  document.getElementById('platform-grid-container-more');
+    
     container.innerHTML = '';
+    document.getElementById('confirm-bottomsheet').classList.add('disabled');
 
     let innerHTML = '';
-    for (let j = 1; j <= items.length; j++) {
+    for (let j = 1; j <= platforms.length; j++) {
         innerHTML += `
-        <div class="grid-item platform-bottomsheet" id="more-platform-${j}">
+        <div class="grid-item more-platform" id="more-platform-${j}">
             <div id="more-platform-background-${j}" class="background">
             <div id="more-platform-icon-container-${j}">
                 <svg id="more-platform-internal-icon-${j}" style="display: none">
                 <use href="" />
                 </svg>
-                <img id="platform-external-icon-${j}" src="" style="display: none">
+                <img id="more-platform-external-icon-${j}" src="" style="display: none">
             </div>
             </div>
-            <div class="grid-label" id="platform-label-${j}"></div>
+            <div class="grid-label" id="more-platform-label-${j}"></div>
         </div>`
     }
     container.innerHTML = innerHTML;
-    
+
+    processPlatformContainer(platforms, 'more-platform');
+    loadGridPlatformListeners('more-platform', 'confirm-bottomsheet', false);
+}
+
+function blockTVShowNumber(id) {
+    const input = document.getElementById(id);
+    const value = parseInt(input.value);
+    if (isNaN(value) || value < 1) {
+        input.value = '';
+    }
 }
