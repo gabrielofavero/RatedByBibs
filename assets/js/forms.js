@@ -41,6 +41,22 @@ export function setButtonVisibility(isDisabled, divID) {
     }
 }
 
+export function getInputValue(input) {
+    if (!input) return null;
+    if (input.type === 'number') {
+        const value = input.valueAsNumber;
+        return isNaN(value) ? null : value;
+    }
+    return input.value.trim();
+}
+
+export function restrictToPositiveInputs(input) {
+    if (input.type === 'number') {
+        const value = parseInt(input.valueAsNumber);
+        input.value = isNaN(value) || value < 1 ? '' : value;
+    }
+}
+
 function isNextDisabled() {
     switch (CURRENT_STEP) {
         case 1:

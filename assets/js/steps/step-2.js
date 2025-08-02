@@ -1,5 +1,5 @@
 import { translate } from "../translation.js";
-import { TYPE, TYPES, PLATFORM, loadGridPlatformListeners, setNexButtontVisibility } from "../forms.js";
+import { TYPE, TYPES, PLATFORM, loadGridPlatformListeners, setNexButtontVisibility, getInputValue, restrictToPositiveInputs } from "../forms.js";
 import { PLATFORMS } from "../app.js";
 import { USER_LANGUAGE } from "../translation.js";
 import { BOTTOMSHEET, OVERLAY, closeSheet } from "../navigation/bottomsheet.js";
@@ -33,25 +33,31 @@ export function loadStep2() {
 
 export function isStep2NextDisabled() {
     if (!TYPE) return true;
-    const hasEmptyRequired = Array.from(document.querySelectorAll(`.step-2.input.${TYPE}[required]`)).some(input => input.value.trim() === '');
+    const emptyRequired = hasEmptyRequired();
     const isPlatformInvalid = ['book', 'other'].includes(TYPE) ? false : !PLATFORM;
-    return hasEmptyRequired || isPlatformInvalid;
+    return emptyRequired || isPlatformInvalid;
+}
+
+function hasEmptyRequired() {
+    const inputs = Array.from(document.querySelectorAll(`.step-2.input.${TYPE}[required]`));
+    return inputs.some(input => !getInputValue(input));
 }
 
 function loadStep2Listeners() {
     document.querySelectorAll(`.step-2.radio`).forEach(radio => {
         const type = radio.id.split("-")[0];
-        radio.onchange = () => loadCheckboxInput(type);
+        radio.onchange = () => {
+            loadCheckboxInput(type);
+            setNexButtontVisibility();
+        }
     });
 
     document.querySelectorAll(`.step-2.input`).forEach(input => {
         input.addEventListener('input', () => {
+            restrictToPositiveInputs(input);
             setNexButtontVisibility();
         });
     });
-
-    document.getElementById('tv-season').onchange = () => blockTVShowNumber('tv-season');
-    document.getElementById('tv-episode').onchange = () => blockTVShowNumber('tv-episode');
 
     const more = document.getElementById('more');
     more.addEventListener('click', () => {
@@ -61,7 +67,6 @@ function loadStep2Listeners() {
         setTimeout(() => {
             more.classList.remove('selected');
         }, 1000);
-
     });
 
     const confirmBtn = document.getElementById('confirm-bottomsheet');
@@ -84,7 +89,9 @@ function loadCheckboxInput(type) {
 
     for (const key in shouldBeVisible) {
         const option = document.getElementById(`${type}-${key}-option`);
-        option.required = shouldBeVisible[key];
+        const input = document.getElementById(`${type}-${key}`);
+
+        input.required = shouldBeVisible[key];
         if (shouldBeVisible[key] === true) {
             option.classList.remove('hidden');
         } else {
@@ -119,10 +126,8 @@ function loadStep2Inputs() {
         document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
     }
 
-    if (FIRST_LOAD) {
-        loadCheckboxInput('tv');
-        loadCheckboxInput('music');
-    }
+    loadCheckboxInput('tv');
+    loadCheckboxInput('music');
 }
 
 function loadStep2Platforms() {
@@ -179,7 +184,7 @@ function resetPlatformSlot({ div, background, internalIcon, externalIcon, label 
     div.removeAttribute('platform');
     div.removeAttribute('type');
     div.classList.remove('selected');
-    
+
     background.className = 'background';
     label.textContent = '';
 
@@ -258,14 +263,6 @@ function loadMorePlatforms() {
 
 function getAllPlatforms() {
     return PLATFORMS?.[TYPE]?.all || [];
-}
-
-function blockTVShowNumber(id) {
-    const input = document.getElementById(id);
-    const value = parseInt(input.value);
-    if (isNaN(value) || value < 1) {
-        input.value = '';
-    }
 }
 
 export function setNewPlatform() {
