@@ -16,6 +16,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 ### Doing
 
 - 📈 **I001:** Improve page visibility and responsiviness
+- 📈 **I002:** Padronize styling with Figma prototype
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
   - 🏆 **F008:** [E004] Store user values dynamically
 

@@ -264,8 +264,7 @@ a {
     transform: translateY(100%);
     background: #1A1A1A;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-radius: 24px 24px 0px 0px;
     transition: transform 0.6s ease-in-out;
     max-height: 80%;
     display: flex;
