@@ -2,7 +2,8 @@
     "movie": {
         "all": [
             "cinema",
-            "tv-streaming",
+            "streaming",
+            "tv",
             "amazon",
             "apple-tv",
             "crunchyroll",
@@ -36,7 +37,8 @@
     },
     "tv": {
         "all": [
-            "tv-streaming",
+            "streaming",
+            "tv",
             "amazon",
             "apple-tv",
             "crunchyroll",
@@ -135,7 +137,11 @@
                 "background": "default",
                 "icon": "default"
             },
-            "tv-streaming": {
+            "tv": {
+                "background": "default",
+                "icon": "default"
+            },
+            "streaming": {
                 "background": "default",
                 "icon": "default"
             },
@@ -162,7 +168,7 @@
                 },
                 "has-simplified-icon": true
             },
-            "starplus": {
+            "star": {
                 "has-svg": true,
                 "svg": {
                     "height": 34,

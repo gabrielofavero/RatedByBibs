@@ -25,14 +25,15 @@
         "video": {
             "platform": {
                 "cinema": "Cinema",
-                "tv-streaming": "TV / Streaming",
+                "tv": "TV",
+                "streaming": "Streaming",
                 "amazon": "Prime Video",
                 "apple-tv": "Apple TV",
                 "crunchyroll": "Crunchyroll",
                 "discovery": "Discovery+",
                 "disney": "Disney+",
                 "globo": "GloboPlay",
-                "hbo-max": "HBO MAX",
+                "hbo-max": "HBO Max",
                 "hulu": "Hulu",
                 "mubi": "MUBI",
                 "netflix": "Netflix",

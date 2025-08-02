@@ -490,9 +490,9 @@
     fill: var(--icon-gray);
 }
 
-/* TV / Streaming */
-.icon.tv-streaming{
-    width: 26px;
+/* Streaming */
+.icon.streaming{
+    width: 36px;
     fill: white; 
 }
 
