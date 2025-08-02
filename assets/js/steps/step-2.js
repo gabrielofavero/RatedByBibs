@@ -243,7 +243,7 @@ function loadMorePlatforms() {
 }
 
 function getAllPlatforms() {
-    return PLATFORMS?.[MACROTYPE[TYPE]]?.all || [];
+    return PLATFORMS?.[TYPE]?.all || [];
 }
 
 function blockTVShowNumber(id) {
