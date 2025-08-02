@@ -17,23 +17,25 @@ function transitionStep(direction) {
     const target = document.getElementById(direction);
     if (target.classList.contains('disabled')) return;
 
-    const newStep = direction === 'next' ? CURRENT_STEP + 1 : CURRENT_STEP - 1
-    loadStepActions(newStep);
-    animate(newStep);
-    loadStepButtonsVisibility(newStep);
+    const previousStep = CURRENT_STEP;
+    CURRENT_STEP = direction === 'next' ? CURRENT_STEP + 1 : CURRENT_STEP - 1
+
+    loadStepActions();
+    animate(previousStep);
+    loadStepButtonsVisibility();
 }
 
-function animate(newStep) {
+function animate(previousStep) {
     const slider = document.getElementById('slider');
     const steps = slider.querySelectorAll('.step');
 
-    if (IS_ANIMATING || newStep === CURRENT_STEP) return;
+    if (IS_ANIMATING || previousStep === CURRENT_STEP) return;
     IS_ANIMATING = true;
 
-    const i = CURRENT_STEP - 1;
-    const j = newStep - 1;
+    const i = previousStep - 1;
+    const j = CURRENT_STEP - 1;
 
-    // Show both current and next box
+    // Show both previous and current box
     steps[i].style.visibility = 'visible';
     steps[j].style.visibility = 'visible';
 
@@ -42,20 +44,19 @@ function animate(newStep) {
     // Wait for transition to end
     slider.addEventListener('transitionend', function handler() {
         steps[i].style.visibility = 'hidden';
-        CURRENT_STEP = newStep;
         IS_ANIMATING = false;
         slider.removeEventListener('transitionend', handler);
     });
 }
 
-function loadStepButtonsVisibility(step) {
-    document.getElementById('next').textContent = getStepTextContent(step);
+function loadStepButtonsVisibility() {
+    document.getElementById('next').textContent = getStepTextContent();
     setNexButtontVisibility();
     setBackButtontVisibility();
 }
 
-function getStepTextContent(step) {
-    switch (step) {
+function getStepTextContent() {
+    switch (CURRENT_STEP) {
         case 1:
             return translate('navigation.begin');
         case 4:
@@ -65,8 +66,8 @@ function getStepTextContent(step) {
     }
 }
 
-function loadStepActions(step) {
-    switch (step) {
+function loadStepActions() {
+    switch (CURRENT_STEP) {
         case 2:
             loadStep2();
     }
