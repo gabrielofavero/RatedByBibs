@@ -19,12 +19,6 @@ export function loadFormEventListeners() {
     document.getElementById('generate-canvas').addEventListener('click', generateCanvas);
     document.getElementById('share').addEventListener('click', shareCanvas);
     document.getElementById('download').addEventListener('click', downloadCanvas);
-
-    Array.from(document.getElementsByClassName('required-input')).forEach(input => {
-        input.addEventListener('input', () => {
-            setNexButtontVisibility();
-        });
-    });
 }
 
 export function setNexButtontVisibility(customCriteria) {

@@ -22,34 +22,33 @@ const MACROTYPE = {
 let TYPE_PLATFORMS;
 
 export function loadStep2() {
-    if (!FIRST_LOAD) {
-        return
-    }
-
-    loadStep2Listeners();
     loadStep2Inputs();
     loadStep2Platforms();
-    FIRST_LOAD = false;
+
+    if (FIRST_LOAD) {
+        loadStep2Listeners();
+        FIRST_LOAD = false;
+    }
 }
 
 export function isStep2NextDisabled() {
-    const titleValue = TYPE === 'music' ? true : document.getElementById(`${TYPE}-title`).value.trim();
-
-    if (TYPE === 'book' || TYPE === 'other') {
-        return !titleValue;
-    } else {
-        return !titleValue || !PLATFORM;
-    }
+    if (!TYPE) return true;
+    const hasEmptyRequired = Array.from(document.querySelectorAll(`.step-2.input.${TYPE}[required]`)).some(input => input.value.trim() === '');
+    const isPlatformInvalid = ['book', 'other'].includes(TYPE) ? false : !PLATFORM;
+    return hasEmptyRequired || isPlatformInvalid;
 }
 
 function loadStep2Listeners() {
-    document.getElementById('music-radio-song').onchange = () => loadCheckboxInput('music');
-    document.getElementById('music-radio-artist').onchange = () => loadCheckboxInput('music');
-    document.getElementById('music-radio-album').onchange = () => loadCheckboxInput('music');
+    document.querySelectorAll(`.step-2.radio`).forEach(radio => {
+        const type = radio.id.split("-")[0];
+        radio.onchange = () => loadCheckboxInput(type);
+    });
 
-    document.getElementById('tv-radio-title').onchange = () => loadCheckboxInput('tv');
-    document.getElementById('tv-radio-season').onchange = () => loadCheckboxInput('tv');
-    document.getElementById('tv-radio-episode').onchange = () => loadCheckboxInput('tv');
+    document.querySelectorAll(`.step-2.input`).forEach(input => {
+        input.addEventListener('input', () => {
+            setNexButtontVisibility();
+        });
+    });
 
     document.getElementById('tv-season').onchange = () => blockTVShowNumber('tv-season');
     document.getElementById('tv-episode').onchange = () => blockTVShowNumber('tv-episode');
@@ -85,6 +84,7 @@ function loadCheckboxInput(type) {
 
     for (const key in shouldBeVisible) {
         const option = document.getElementById(`${type}-${key}-option`);
+        option.required = shouldBeVisible[key];
         if (shouldBeVisible[key] === true) {
             option.classList.remove('hidden');
         } else {
@@ -119,9 +119,10 @@ function loadStep2Inputs() {
         document.getElementById(`${type}-options`).style.display = type === TYPE ? 'flex' : 'none';
     }
 
-    loadCheckboxInput('tv');
-    loadCheckboxInput('music');
-
+    if (FIRST_LOAD) {
+        loadCheckboxInput('tv');
+        loadCheckboxInput('music');
+    }
 }
 
 function loadStep2Platforms() {
@@ -133,8 +134,18 @@ function loadStep2Platforms() {
         platformContainer.style.display = '';
     }
 
+    const currentTypePlatforms = Array.from({ length: 5 }, (_, i) => {
+        const el = document.getElementById(`platform-${i + 1}`);
+        const platform = el?.getAttribute('platform') ?? null;
+        const type = el?.getAttribute('type') ?? null;
+        return (!platform || !type) ? null : { platform, type }
+    }).filter(Boolean);
+
+    if (currentTypePlatforms.length === 5 && currentTypePlatforms.every(obj => obj.type === TYPE)) return;
+
     TYPE_PLATFORMS = PLATFORMS?.[TYPE]?.[USER_LANGUAGE]?.slice(0, 5);
     if (!Array.isArray(TYPE_PLATFORMS) || TYPE_PLATFORMS.length === 0) return;
+
     processPlatformContainer();
 }
 
@@ -166,6 +177,9 @@ function getPlatformElements(index, containerName) {
 
 function resetPlatformSlot({ div, background, internalIcon, externalIcon, label }) {
     div.removeAttribute('platform');
+    div.removeAttribute('type');
+    div.classList.remove('selected');
+    
     background.className = 'background';
     label.textContent = '';
 

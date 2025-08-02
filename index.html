@@ -139,7 +139,7 @@
             <div class="options" id="movie-options">
               <div class="option">
                 <label for="movie-title" data-translate="label.movie.title"></label>
-                <input class="required-input" type="text" id="movie-title" maxlength="32" data-translate="label.required" />
+                <input class="step-2 input movie" type="text" id="movie-title" maxlength="32" data-translate="label.required" required />
               </div>
             </div>
 
@@ -149,15 +149,15 @@
                 <div class="step-label" data-translate="label.im-rating"></div>
                 <div class="radios">
                   <label>
-                    <input type="radio" name="tv-radio" id="tv-radio-episode" value="episode" checked>
+                    <input class="step-2 radio tv" type="radio" name="tv-radio" id="tv-radio-episode" value="episode" checked>
                     <span data-translate="label.tv.radio.episode"></span>
                   </label>
                   <label>
-                    <input type="radio" name="tv-radio" id="tv-radio-season" value="season">
+                    <input class="step-2 radio tv" type="radio" name="tv-radio" id="tv-radio-season" value="season">
                     <span data-translate="label.tv.radio.season"></span>
                   </label>
                   <label>
-                    <input type="radio" name="tv-radio" id="tv-radio-title" value="title">
+                    <input class="step-2 radio tv" type="radio" name="tv-radio" id="tv-radio-title" value="title">
                     <span data-translate="label.tv.radio.tv"></span>
                   </label>
                 </div>
@@ -165,15 +165,15 @@
 
               <div class="option first" id="tv-episode-option">
                 <label for="tv-episode" data-translate="label.tv.episode"></label>
-                <input type="number" id="tv-episode" min="1" data-translate="label.required"/>
+                <input class="step-2 input tv" type="number" id="tv-episode" min="1" data-translate="label.required"/>
               </div>
               <div class="option" id="tv-season-option">
                 <label for="tv-season" data-translate="label.tv.season"></label>
-                <input type="number" id="tv-season" min="1" data-translate="label.required" />
+                <input class="step-2 input tv" type="number" id="tv-season" min="1" data-translate="label.required" />
               </div>
               <div class="option last" id="tv-title-option">
                 <label for="tv-title" data-translate="label.tv.title"></label>
-                <input class="required-input" type="text" id="tv-title" maxlength="32" data-translate="label.required" />
+                <input class="step-2 input tv" type="text" id="tv-title" maxlength="32" data-translate="label.required" />
               </div>
 
             </div>
@@ -182,11 +182,11 @@
             <div class="options" id="game-options">
               <div class="option">
                 <label for="game-title" data-translate="label.game.title"></label>
-                <input class="required-input" type="text" id="game-title" maxlength="32" data-translate="label.required" />
+                <input class="step-2 input game" type="text" id="game-title" maxlength="32" data-translate="label.required" required />
               </div>
               <div class="option">
                 <label for="game-id" data-translate="label.game.id.default"></label>
-                <input type="text" id="game-id" maxlength="32" data-translate="label.optional" />
+                <input class="step-2 input game" type="text" id="game-id" maxlength="32" data-translate="label.optional" />
               </div>
             </div>
 
@@ -196,15 +196,15 @@
                 <div class="step-label" data-translate="label.im-rating"></div>
                 <div class="radios">
                   <label>
-                    <input type="radio" name="music-radio" id="music-radio-song" value="song">
+                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-song" value="song" checked>
                     <span data-translate="label.music.radio.song"></span>
                   </label>
                   <label>
-                    <input type="radio" name="music-radio" id="music-radio-album" value="album">
+                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-album" value="album">
                     <span data-translate="label.music.radio.album"></span>
                   </label>
                       <label>
-                    <input type="radio" name="music-radio" id="music-radio-artist" value="artist">
+                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-artist" value="artist">
                     <span data-translate="label.music.radio.artist"></span>
                   </label>
                 </div>
@@ -212,15 +212,15 @@
 
               <div class="option first" id="music-song-option">
                 <label for="music-song" data-translate="label.music.song"></label>
-                <input type="text" id="music-song" maxlength="32" data-translate="label.required" checked/>
+                <input class="step-2 input music" type="text" id="music-song" maxlength="32" data-translate="label.required"/>
               </div>
               <div class="option" id="music-album-option">
                 <label for="music-album" data-translate="label.music.album"></label>
-                <input type="text" id="music-album" maxlength="32" data-translate="label.required" />
+                <input class="step-2 input music" type="text" id="music-album" maxlength="32" data-translate="label.required" />
               </div>
               <div class="option last" id="music-artist-option">
                 <label for="music-artist" data-translate="label.music.artist"></label>
-                <input type="text" id="music-artist" maxlength="32" data-translate="label.required" />
+                <input class="step-2 input music" type="text" id="music-artist" maxlength="32" data-translate="label.required" />
               </div>
             </div>
 
@@ -228,11 +228,11 @@
             <div class="options" id="book-options">
               <div class="option">
                 <label for="book-title" data-translate="label.book.title"></label>
-                <input class="required-input" type="text" id="book-title" maxlength="32" data-translate="label.required" />
+                <input class="step-2 input book" type="text" id="book-title" maxlength="32" data-translate="label.required" required />
               </div>
               <div class="option">
                 <label for="book-author" data-translate="label.book.author"></label>
-                <input type="text" id="book-author" maxlength="32" data-translate="label.optional" />
+                <input class="step-2 input book" type="text" id="book-author" maxlength="32" data-translate="label.optional" required />
               </div>
             </div>
 
@@ -240,11 +240,11 @@
             <div class="options" id="other-options">
               <div class="option">
                 <label for="other-title" data-translate="label.other.title"></label>
-                <input class="required-input" type="text" id="other-title" maxlength="32" data-translate="label.required" />
+                <input class="step-2 input other" type="text" id="other-title" maxlength="32" data-translate="label.required" required />
               </div>
               <div class="option">
                 <label for="other-subtitle" data-translate="label.other.subtitle"></label>
-                <input type="text" id="other-subtitle" maxlength="32" data-translate="label.optional" />
+                <input class="step-2 input other" type="text" id="other-subtitle" maxlength="32" data-translate="label.optional" />
               </div>
             </div>
 
