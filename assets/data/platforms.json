@@ -16,7 +16,7 @@
             "netflix",
             "paramount",
             "peacock",
-            "star",
+            "starplus",
             "youtube",
             "piracy"
         ],
@@ -51,7 +51,7 @@
             "netflix",
             "paramount",
             "peacock",
-            "star",
+            "starplus",
             "youtube",
             "piracy"
         ],
@@ -168,7 +168,7 @@
                 },
                 "has-simplified-icon": true
             },
-            "star": {
+            "starplus": {
                 "has-svg": true,
                 "svg": {
                     "height": 34,

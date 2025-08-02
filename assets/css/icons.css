@@ -4,6 +4,7 @@
 
 :root {
     --icon-gray: #888;
+    --icon-theme: #E5A000;
 }
 
 .background {
@@ -42,6 +43,29 @@
 .flag {
     width: 28px;
     height: 28px;
+}
+
+.icon.star {
+    width: 26px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.icon.star.rated {
+    fill: var(--icon-theme);
+    stroke: var(--icon-theme);
+}
+
+.icon.star.unrated {
+    fill: none;
+    stroke: #E3E3E3;
+}
+
+.icon.image {
+    height: 24.11px;
+    width: 24.11px;
+    fill: none;
+    stroke: #F3F3F3;
 }
 
 #user-language {
@@ -472,28 +496,28 @@
 }
 
 /* Star Plus */
-.background.star {
+.background.starplus {
     background: #090e21
 }
 
-.icon.star {
+.icon.starplus {
     width: 34px;
     fill: white;
 }
 
-.star-star {
+.starplus-starplus {
     fill: #fd5231;
 }
 
-.icon.star.gray {
+.icon.starplus.gray {
     width: 34px;
     fill: var(--icon-gray);
 }
 
 /* Streaming */
-.icon.streaming{
+.icon.streaming {
     width: 36px;
-    fill: white; 
+    fill: white;
 }
 
 /* YouTube */
