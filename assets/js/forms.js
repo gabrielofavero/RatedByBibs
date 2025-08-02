@@ -1,5 +1,6 @@
 import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
-import { nextStep, previousStep, isNextDisabled } from "./steps/steps.js";
+import { CURRENT_STEP, nextStep, previousStep } from "./steps/steps.js";
+import { isStep2NextDisabled } from "./steps/step-2.js";
 
 export let TYPE;
 export let PLATFORM;
@@ -21,21 +22,49 @@ export function loadFormEventListeners() {
 
     Array.from(document.getElementsByClassName('required-input')).forEach(input => {
         input.addEventListener('input', () => {
-            const isDisabled = isNextDisabled();
-            disableIfInactive(isDisabled);
+            setNexButtontVisibility();
         });
     });
-
-
 }
 
-export function disableIfInactive(isDisabled, divID = 'next') {
+export function setNexButtontVisibility(customCriteria) {
+    const isDisabled = customCriteria || isNextDisabled();
+    setButtonVisibility(isDisabled, 'next');
+}
+
+export function setBackButtontVisibility(customCriteria) {
+    const isDisabled = customCriteria || isBackDisabled();
+    setButtonVisibility(isDisabled, 'back');
+}
+
+export function setButtonVisibility(isDisabled, divID) {
     const div = document.getElementById(divID);
     if (isDisabled) {
         if (div.classList.contains('disabled')) return;
         div.classList.add('disabled');
     } else {
         div.classList.remove('disabled');
+    }
+}
+
+function isNextDisabled() {
+    switch (CURRENT_STEP) {
+        case 1:
+            return !TYPE;
+        case 2:
+            return isStep2NextDisabled();
+        default:
+            return true;
+    }
+}
+
+function isBackDisabled() {
+    switch (CURRENT_STEP) {
+        case 1:
+        case 4:
+            return true;
+        default:
+            return false;
     }
 }
 
@@ -48,40 +77,35 @@ function loadGridTypeListeners() {
     const types = document.getElementsByClassName('grid-item type');
     for (const type of types) {
         type.addEventListener('click', () => {
-            const isDisabling = TYPE === type.id;
-            const newType = isDisabling ? '' : type.id;
+            const unselected = TYPE === type.id;
+            const newType = unselected ? '' : type.id;
             TYPE = newType;
 
             for (const innerDiv of types) {
-                const criteria = isDisabling ? false : innerDiv.id === type.id;
+                const criteria = unselected ? false : innerDiv.id === type.id;
                 innerDiv.classList.toggle('selected', criteria);
             }
 
-            const next = document.getElementById('next');
-            if (TYPE) {
-                next.classList.remove('disabled')
-            } else {
-                next.classList.add('disabled')
-            }
+            setNexButtontVisibility(!TYPE)
         });
     };
 }
 
-export function loadGridPlatformListeners(platformID = 'platform', disableID = 'next', disableCriteria = isNextDisabled) {
+export function loadGridPlatformListeners(platformID = 'platform', disableID = 'next') {
     const platforms = document.getElementsByClassName(`grid-item ${platformID}`);
     for (const div of platforms) {
         div.addEventListener('click', () => {
             const platform = div.getAttribute('platform');
-            const isDisabling = PLATFORM === platform;
-            const newPlatform = isDisabling ? '' : platform;
-            PLATFORM = newPlatform;
+            const unselected = PLATFORM === platform;
+            PLATFORM = unselected ? '' : platform;
 
             for (const innerDiv of platforms) {
-                const criteria = isDisabling ? false : innerDiv.getAttribute('platform') === platform;
-                innerDiv.classList.toggle('selected', criteria);
+                const isSelected = unselected ? false : innerDiv.getAttribute('platform') === platform;
+                innerDiv.classList.toggle('selected', isSelected);
             }
 
-            disableIfInactive(disableCriteria(), disableID);
+            const disableCriteria = disableID === 'next' ? isNextDisabled() : !PLATFORM;
+            setButtonVisibility(disableCriteria, disableID);
         });
     };
 }
@@ -114,7 +138,6 @@ function loadStarsListeners() {
 
 function updateStarRatingLabel() {
     let label;
-
     switch (STARS) {
         case 1:
             label = 'Terrible';

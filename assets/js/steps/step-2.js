@@ -1,8 +1,10 @@
 import { translate } from "../translation.js";
-import { TYPE, TYPES, PLATFORM, loadGridPlatformListeners } from "../forms.js";
+import { TYPE, TYPES, PLATFORM, loadGridPlatformListeners, setNexButtontVisibility } from "../forms.js";
 import { PLATFORMS } from "../app.js";
 import { USER_LANGUAGE } from "../translation.js";
+import { BOTTOMSHEET, OVERLAY, closeSheet } from "../navigation/bottomsheet.js";
 
+let FIRST_LOAD = true;
 const SUBTYPE = {
     tv: '',
     music: ''
@@ -17,10 +19,17 @@ const MACROTYPE = {
     other: 'other'
 }
 
+let TYPE_PLATFORMS;
+
 export function loadStep2() {
+    if (!FIRST_LOAD) {
+        return
+    }
+
     loadStep2Listeners();
     loadStep2Inputs();
     loadStep2Platforms();
+    FIRST_LOAD = false;
 }
 
 export function isStep2NextDisabled() {
@@ -44,38 +53,56 @@ function loadStep2Listeners() {
 
     document.getElementById('tv-season').onchange = () => blockTVShowNumber('tv-season');
     document.getElementById('tv-episode').onchange = () => blockTVShowNumber('tv-episode');
+
+    const more = document.getElementById('more');
+    more.addEventListener('click', () => {
+        loadMorePlatforms();
+        BOTTOMSHEET.classList.add('active');
+        OVERLAY.classList.add('active');
+        setTimeout(() => {
+            more.classList.remove('selected');
+        }, 1000);
+
+    });
+
+    const confirmBtn = document.getElementById('confirm-bottomsheet');
+    confirmBtn.addEventListener('click', () => {
+        setNewPlatform();
+        closeSheet();
+        confirmBtn.disabled = true;
+    });
 }
 
 function loadCheckboxInput(type) {
     const value = document.querySelector(`input[name="${type}-radio"]:checked`)?.value;
-    
+
     if (!value) {
         SUBTYPE[type] = '';
         return;
     }
-    
+
     const shouldBeVisible = getOptionVisibilityObject(type, value)
 
-   for (const key in shouldBeVisible) {
-    const option = document.getElementById(`${type}-${key}-option`);
-    if (shouldBeVisible[key] === true) {
-        option.classList.remove('hidden');
-    } else {
-        option.classList.add('hidden');
+    for (const key in shouldBeVisible) {
+        const option = document.getElementById(`${type}-${key}-option`);
+        if (shouldBeVisible[key] === true) {
+            option.classList.remove('hidden');
+        } else {
+            option.classList.add('hidden');
+        }
     }
-   }
 
-   SUBTYPE[type] = value;
+    SUBTYPE[type] = value;
 }
 
 function getOptionVisibilityObject(type, value) {
     switch (type) {
-        case 'tv': 
-        return {
-            title: true,
-            season: ['episode', 'season'].includes(value),
-            episode: value === 'episode'
-        }
+        case 'tv':
+            return {
+                title: true,
+                season: ['episode', 'season'].includes(value),
+                episode: value === 'episode'
+            }
         case "music":
             return {
                 song: value === 'song',
@@ -106,31 +133,34 @@ function loadStep2Platforms() {
         platformContainer.style.display = '';
     }
 
-    const platforms = PLATFORMS?.[TYPE]?.[USER_LANGUAGE]?.slice(0, 5);
-    if (!Array.isArray(platforms) || platforms.length === 0) return;
-    processPlatformContainer(platforms);
+    TYPE_PLATFORMS = PLATFORMS?.[TYPE]?.[USER_LANGUAGE]?.slice(0, 5);
+    if (!Array.isArray(TYPE_PLATFORMS) || TYPE_PLATFORMS.length === 0) return;
+    processPlatformContainer();
 }
 
-function processPlatformContainer(platforms, type='platform') {
+function processPlatformContainer(platforms = TYPE_PLATFORMS, containerName = 'platform') {
     for (let j = 1; j <= platforms.length; j++) {
-        const platform = platforms[j - 1];
-        const elements = getPlatformElements(j, type);
-        resetPlatformSlot(elements);
-
-        if (platform) {
-            const properties = PLATFORMS?.properties?.[MACROTYPE[TYPE]]?.[platform] || {};
-            updatePlatformSlot(elements, platform, properties);
-        }
+        processPlatform(platforms[j - 1], j, containerName);
     }
 }
 
-function getPlatformElements(index, type) {
+function processPlatform(platform, j, containerName) {
+    const elements = getPlatformElements(j, containerName);
+    resetPlatformSlot(elements);
+
+    if (platform) {
+        const properties = PLATFORMS?.properties?.[MACROTYPE[TYPE]]?.[platform] || {};
+        updatePlatformSlot(elements, platform, properties);
+    }
+}
+
+function getPlatformElements(index, containerName) {
     return {
-        div: document.getElementById(`${type}-${index}`),
-        background: document.getElementById(`${type}-background-${index}`),
-        internalIcon: document.getElementById(`${type}-internal-icon-${index}`),
-        externalIcon: document.getElementById(`${type}-external-icon-${index}`),
-        label: document.getElementById(`${type}-label-${index}`)
+        div: document.getElementById(`${containerName}-${index}`),
+        background: document.getElementById(`${containerName}-background-${index}`),
+        internalIcon: document.getElementById(`${containerName}-internal-icon-${index}`),
+        externalIcon: document.getElementById(`${containerName}-external-icon-${index}`),
+        label: document.getElementById(`${containerName}-label-${index}`)
     };
 }
 
@@ -184,10 +214,10 @@ function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
     }
 }
 
-export function loadMorePlatforms() {
-    const platforms = PLATFORMS?.[MACROTYPE[TYPE]]?.all || [];
-    const container =  document.getElementById('platform-grid-container-more');
-    
+function loadMorePlatforms() {
+    const platforms = getAllPlatforms();
+    const container = document.getElementById('platform-grid-container-more');
+
     container.innerHTML = '';
     document.getElementById('confirm-bottomsheet').classList.add('disabled');
 
@@ -209,7 +239,11 @@ export function loadMorePlatforms() {
     container.innerHTML = innerHTML;
 
     processPlatformContainer(platforms, 'more-platform');
-    loadGridPlatformListeners('more-platform', 'confirm-bottomsheet', false);
+    loadGridPlatformListeners('more-platform', 'confirm-bottomsheet');
+}
+
+function getAllPlatforms() {
+    return PLATFORMS?.[MACROTYPE[TYPE]]?.all || [];
 }
 
 function blockTVShowNumber(id) {
@@ -217,5 +251,21 @@ function blockTVShowNumber(id) {
     const value = parseInt(input.value);
     if (isNaN(value) || value < 1) {
         input.value = '';
+    }
+}
+
+export function setNewPlatform() {
+    document.getElementById('more').classList.remove('selected');
+    if (!PLATFORM) {
+        return;
+    }
+
+    const platformIndex = TYPE_PLATFORMS.indexOf(PLATFORM);
+    if (platformIndex > -1) {
+        document.getElementById(`platform-${platformIndex + 1}`).classList.add('selected');
+    } else {
+        document.getElementById('platform-1').classList.add('selected');
+        processPlatform(PLATFORM, 1, 'platform');
+        setNexButtontVisibility();
     }
 }
