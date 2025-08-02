@@ -12,15 +12,8 @@ body {
     text-align: center;
     margin: 0;
     padding-top: 1rem;
-    min-height: calc(100vh - 1rem);
-}
-
-@media screen and (max-width: 580px),
-       screen and (max-height: 800px) {
-    body {
-        padding-bottom: var(--next-container-height);
-        min-height: calc(100vh - 1rem - var(--next-container-height) + 150px);
-    }
+    padding-bottom: var(--next-container-height);
+    min-height: calc(100vh + var(--next-container-height) + 42px);
 }
 
 a {
