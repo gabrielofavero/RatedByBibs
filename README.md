@@ -18,7 +18,6 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Padronize styling with Figma prototype
 - ⚔️ **E005:** Implement "Step 3": Image upload and rating selection
-  - 🏆 **F012:** [E005] Create Star Rating element and styling
   - 🏆 **F013:** [E005] Store user values dynamically
   
 
@@ -34,6 +33,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - ⚔️ **E005:** Implement "Step 3": Image upload and rating selection
   - 🏆 **F010:** [E005] Prepare Step 3 icons
   - 🏆 **F011:** [E005] Create Image Upload element and styling
+  - 🏆 **F012:** [E005] Create Star Rating element and styling
 - 🏆 **F009:** Add web icon
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
   - 🏆 **F001:** [E004] Create Grid design

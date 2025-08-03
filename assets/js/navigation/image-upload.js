@@ -2,7 +2,6 @@ const dropzone = document.getElementById('dropzone');
 const fileInput = document.getElementById('fileInput');
 const preview = document.getElementById('preview');
 
-
 export function loadImageUploadEventListeners() {
     dropzone.addEventListener('click', () => fileInput.click());
 
