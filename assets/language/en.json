@@ -15,6 +15,14 @@
         "next": "Continue",
         "finish": "Generate rating"
     },
+    "rating": {
+        "0": "Select a rating",
+        "1": "Terrible",
+        "2": "Bad",
+        "3": "Okay",
+        "4": "Good",
+        "5": "Excelent"
+    },
     "label": {
         "required": "Required",
         "optional": "Optional",

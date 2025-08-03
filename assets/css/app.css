@@ -45,12 +45,12 @@ a {
     margin-top: 0;
 }
 
-.rated,
+.logo .rated,
 .rated-canvas {
     color: #E5A000;
 }
 
-.rated {
+.logo .rated {
     font-size: 48px;
     margin-right: 0.3em;
 }

@@ -1,6 +1,7 @@
 import { generateCanvas, shareCanvas, downloadCanvas } from "./canvas.js";
 import { CURRENT_STEP, nextStep, previousStep } from "./steps/steps.js";
 import { isStep2NextDisabled } from "./steps/step-2.js";
+import { isStep3NextDisabled } from "./steps/step-3.js";
 
 export let TYPE;
 export let PLATFORM;
@@ -63,6 +64,8 @@ function isNextDisabled() {
             return !TYPE;
         case 2:
             return isStep2NextDisabled();
+        case 3:
+            return isStep3NextDisabled();
         default:
             return true;
     }

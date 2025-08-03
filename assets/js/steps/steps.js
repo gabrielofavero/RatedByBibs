@@ -1,6 +1,7 @@
-import { TYPE, setNexButtontVisibility, setBackButtontVisibility } from "../forms.js";
+import { setNexButtontVisibility, setBackButtontVisibility } from "../forms.js";
 import { translate } from "../translation.js";
-import { loadStep2, isStep2NextDisabled } from "./step-2.js";
+import { loadStep2 } from "./step-2.js";
+import { loadStep3 } from "./step-3.js";
 
 export let CURRENT_STEP = 1;
 let IS_ANIMATING = false;
@@ -59,7 +60,7 @@ function getStepTextContent() {
     switch (CURRENT_STEP) {
         case 1:
             return translate('navigation.begin');
-        case 4:
+        case 3:
             return translate('navigation.finish');
         default:
             return translate('navigation.next');
@@ -70,5 +71,7 @@ function loadStepActions() {
     switch (CURRENT_STEP) {
         case 2:
             loadStep2();
+        case 3:
+            loadStep3();
     }
 }

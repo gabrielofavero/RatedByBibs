@@ -17,13 +17,12 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Padronize styling with Figma prototype
-- ⚔️ **E005:** Implement "Step 3": Image upload and rating selection
-  - 🏆 **F013:** [E005] Store user values dynamically
+- ⚔️ **E006:** Implement "Step 4": Loading screen
+  
   
 
 ### Backlog
 
-- ⚔️ **E006:** Implement "Step 4": Loading screen
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
 - ⚔️ **E008:** Create Sticker Canvas
 - 🐞 **B001:** Fix visibility issues with Portrait Canvas
@@ -34,6 +33,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
   - 🏆 **F010:** [E005] Prepare Step 3 icons
   - 🏆 **F011:** [E005] Create Image Upload element and styling
   - 🏆 **F012:** [E005] Create Star Rating element and styling
+  - 🏆 **F013:** [E005] Store user values dynamically
 - 🏆 **F009:** Add web icon
 - ⚔️ **E004:** Implement "Step 2": Forms according to type
   - 🏆 **F001:** [E004] Create Grid design

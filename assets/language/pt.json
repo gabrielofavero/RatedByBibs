@@ -15,6 +15,14 @@
         "next": "Continuar",
         "finish": "Gerar avaliação"
     },
+    "rating": {
+        "0": "Selecione uma nota",
+        "1": "Péssimo",
+        "2": "Ruim",
+        "3": "Mediano",
+        "4": "Bom",
+        "5": "Ótimo"
+    },
     "label": {
         "required": "Obrigatório",
         "optional": "Opcional",
