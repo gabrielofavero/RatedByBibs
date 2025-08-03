@@ -1,6 +1,7 @@
 {
     "description": "A quick way to rate your favorite content and share it to social network",
     "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
+    "upload": "Add or drag the cover art",
     "type": {
         "movie": "Movie",
         "tv": "TV Show",

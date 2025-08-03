@@ -1,6 +1,7 @@
 {
     "description": "Uma forma rápida de avaliar seu conteúdo favorito e compartilhar nas redes sociais",
     "language_confirmation": "Alterar o idioma irá recarregar a página e descartar qualquer progresso não salvo. Tem certeza de que deseja continuar?",
+    "upload": "Adicione ou arraste a capa",
     "type": {
         "game": "Game",
         "music": "Música",

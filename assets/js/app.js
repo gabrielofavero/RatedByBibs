@@ -1,6 +1,7 @@
 import { loadFormEventListeners } from "./forms.js";
 import { loadBottomsheetEventListeners } from "./navigation/bottomsheet.js";
 import { loadUserLanguage } from "./translation.js";
+import { loadImageUploadEventListeners } from "./navigation/image-upload.js";
 
 export let PLATFORMS;
 
@@ -25,4 +26,5 @@ async function loadStaticData() {
 function loadEventListeners() {
     loadFormEventListeners();
     loadBottomsheetEventListeners();
+    loadImageUploadEventListeners();
 }
