@@ -1,7 +1,8 @@
+
 export const BOTTOMSHEET = document.querySelector('.bottomsheet');
 export const OVERLAY = document.querySelector('.overlay');
-const handle = document.querySelector('.drag-handle');
 
+const handle = document.querySelector('.drag-handle');
 
 let dragging = false;
 let startY = 0;

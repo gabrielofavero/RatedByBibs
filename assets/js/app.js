@@ -1,8 +1,14 @@
-import { loadFormEventListeners } from "./forms.js";
-import { loadBottomsheetEventListeners } from "./navigation/bottomsheet.js";
-import { loadUserLanguage } from "./translation.js";
+import { loadUserLanguage, translate } from "./translation/translation.js";
+import { loadBottomsheetEventListeners } from "./ui/bottomsheet.js";
+import { loadFormsListeners } from "./ui/forms.js";
+import { loadStep1Listeners } from "./ui/steps/step-1.js";
+import { loadStep2Listeners, setPlatforms } from "./ui/steps/step-2.js";
 
-export let PLATFORMS;
+export const NAVIAGATION_LABELS = {
+    begin: '',
+    next: '',
+    finish: ''
+}
 
 document.addEventListener("DOMContentLoaded", async function () {
     await loadUserLanguage();
@@ -19,10 +25,15 @@ export async function getJson(path) {
 }
 
 async function loadStaticData() {
-    PLATFORMS = await getJson('./assets/data/platforms.json');
+    setPlatforms(await getJson('./assets/data/platforms.json'));
+    NAVIAGATION_LABELS.begin = translate('navigation.begin');
+    NAVIAGATION_LABELS.next = translate('navigation.next');
+    NAVIAGATION_LABELS.finish = translate('navigation.finish');
 }
 
 function loadEventListeners() {
-    loadFormEventListeners();
+    loadFormsListeners();
+    loadStep1Listeners();
+    loadStep2Listeners();
     loadBottomsheetEventListeners();
 }

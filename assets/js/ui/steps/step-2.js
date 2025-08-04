@@ -1,10 +1,12 @@
-import { translate } from "../translation.js";
-import { TYPE, TYPES, PLATFORM, loadGridPlatformListeners, setNexButtontVisibility, getInputValue, restrictToPositiveInputs } from "../forms.js";
-import { PLATFORMS } from "../app.js";
-import { USER_LANGUAGE } from "../translation.js";
-import { BOTTOMSHEET, OVERLAY, closeSheet } from "../navigation/bottomsheet.js";
+import { NAVIAGATION_LABELS } from "../../app.js";
+import { USER_LANGUAGE, translate } from "../../translation/translation.js";
+import { BOTTOMSHEET, OVERLAY, closeSheet } from "../bottomsheet.js";
+import { disableNext, enableBack, enableNext, enableButton, disableButton, hasMissingRequiredInputs, restrictToPositiveInputs, updateNextTextContent } from "../forms.js";
+import { TYPE, TYPES } from "./step-1.js";
 
-let FIRST_LOAD = true;
+let PLATFORM;
+let PLATFORMS;
+
 const SUBTYPE = {
     tv: '',
     music: ''
@@ -21,41 +23,35 @@ const MACROTYPE = {
 
 let TYPE_PLATFORMS;
 
+// Step Initialization
+export function setPlatforms(value) {
+    PLATFORMS = value;
+}
+
 export function loadStep2() {
     loadStep2Inputs();
     loadStep2Platforms();
 
-    if (FIRST_LOAD) {
-        loadStep2Listeners();
-        FIRST_LOAD = false;
-    }
+    enableBack();
+    setNextVisibility();
+    updateNextTextContent(NAVIAGATION_LABELS.next);
 }
 
-export function isStep2NextDisabled() {
-    if (!TYPE) return true;
-    const emptyRequired = hasEmptyRequired();
-    const isPlatformInvalid = ['book', 'other'].includes(TYPE) ? false : !PLATFORM;
-    return emptyRequired || isPlatformInvalid;
-}
+export function loadStep2Listeners() {
+    loadGridPlatformListeners();
 
-function hasEmptyRequired() {
-    const inputs = Array.from(document.querySelectorAll(`.step-2.input.${TYPE}[required]`));
-    return inputs.some(input => !getInputValue(input));
-}
-
-function loadStep2Listeners() {
     document.querySelectorAll(`.step-2.radio`).forEach(radio => {
         const type = radio.id.split("-")[0];
         radio.onchange = () => {
             loadCheckboxInput(type);
-            setNexButtontVisibility();
+            setNextVisibility();
         }
     });
 
     document.querySelectorAll(`.step-2.input`).forEach(input => {
         input.addEventListener('input', () => {
             restrictToPositiveInputs(input);
-            setNexButtontVisibility();
+            setNextVisibility();
         });
     });
 
@@ -77,6 +73,93 @@ function loadStep2Listeners() {
     });
 }
 
+
+// Step Logic Control
+function isNextDisabled() {
+    if (!TYPE) return true;
+    const emptyRequired = hasMissingRequiredInputs();
+    const isPlatformInvalid = ['book', 'other'].includes(TYPE) ? false : !PLATFORM;
+    return emptyRequired || isPlatformInvalid;
+}
+
+function setNextVisibility() {
+    if (isNextDisabled()) {
+        disableNext();
+    } else {
+        enableNext();
+    }
+}
+
+// Event Handling
+function loadGridPlatformListeners(platformID = 'platform', buttonID = 'next') {
+    const platforms = document.getElementsByClassName(`grid-item ${platformID}`);
+    for (const div of platforms) {
+        div.addEventListener('click', () => {
+            const platform = div.getAttribute('platform');
+            const unselected = PLATFORM === platform;
+            PLATFORM = unselected ? '' : platform;
+
+            for (const innerDiv of platforms) {
+                const isSelected = unselected ? false : innerDiv.getAttribute('platform') === platform;
+                innerDiv.classList.toggle('selected', isSelected);
+            }
+
+            const isDisabled = buttonID === 'next' ? isNextDisabled() : !PLATFORM;
+
+            if (isDisabled) {
+                disableButton(buttonID);
+            } else {
+                enableButton(buttonID);
+            }
+        });
+    };
+}
+
+function loadMorePlatforms() {
+    const platforms = getAllPlatforms();
+    const container = document.getElementById('platform-grid-container-more');
+
+    container.innerHTML = '';
+    document.getElementById('confirm-bottomsheet').classList.add('disabled');
+
+    let innerHTML = '';
+    for (let j = 1; j <= platforms.length; j++) {
+        innerHTML += `
+        <div class="grid-item more-platform" id="more-platform-${j}">
+            <div id="more-platform-background-${j}" class="background">
+            <div id="more-platform-icon-container-${j}">
+                <svg id="more-platform-internal-icon-${j}" style="display: none">
+                <use href="" />
+                </svg>
+                <img id="more-platform-external-icon-${j}" src="" style="display: none">
+            </div>
+            </div>
+            <div class="grid-label" id="more-platform-label-${j}"></div>
+        </div>`
+    }
+    container.innerHTML = innerHTML;
+
+    processPlatformContainer(platforms, 'more-platform');
+    loadGridPlatformListeners('more-platform', 'confirm-bottomsheet');
+}
+
+function setNewPlatform() {
+    document.getElementById('more').classList.remove('selected');
+    if (!PLATFORM) {
+        return;
+    }
+
+    const platformIndex = TYPE_PLATFORMS.indexOf(PLATFORM);
+    if (platformIndex > -1) {
+        document.getElementById(`platform-${platformIndex + 1}`).classList.add('selected');
+    } else {
+        document.getElementById('platform-1').classList.add('selected');
+        processPlatform(PLATFORM, 1, 'platform');
+        setNextVisibility();
+    }
+}
+
+// Input Handling and Dynamic UI
 function loadCheckboxInput(type) {
     const value = document.querySelector(`input[name="${type}-radio"]:checked`)?.value;
 
@@ -154,6 +237,7 @@ function loadStep2Platforms() {
     processPlatformContainer();
 }
 
+// Platform Slot Processing
 function processPlatformContainer(platforms = TYPE_PLATFORMS, containerName = 'platform') {
     for (let j = 1; j <= platforms.length; j++) {
         processPlatform(platforms[j - 1], j, containerName);
@@ -233,50 +317,8 @@ function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
     }
 }
 
-function loadMorePlatforms() {
-    const platforms = getAllPlatforms();
-    const container = document.getElementById('platform-grid-container-more');
 
-    container.innerHTML = '';
-    document.getElementById('confirm-bottomsheet').classList.add('disabled');
-
-    let innerHTML = '';
-    for (let j = 1; j <= platforms.length; j++) {
-        innerHTML += `
-        <div class="grid-item more-platform" id="more-platform-${j}">
-            <div id="more-platform-background-${j}" class="background">
-            <div id="more-platform-icon-container-${j}">
-                <svg id="more-platform-internal-icon-${j}" style="display: none">
-                <use href="" />
-                </svg>
-                <img id="more-platform-external-icon-${j}" src="" style="display: none">
-            </div>
-            </div>
-            <div class="grid-label" id="more-platform-label-${j}"></div>
-        </div>`
-    }
-    container.innerHTML = innerHTML;
-
-    processPlatformContainer(platforms, 'more-platform');
-    loadGridPlatformListeners('more-platform', 'confirm-bottomsheet');
-}
-
+// Data Utilities
 function getAllPlatforms() {
     return PLATFORMS?.[TYPE]?.all || [];
-}
-
-export function setNewPlatform() {
-    document.getElementById('more').classList.remove('selected');
-    if (!PLATFORM) {
-        return;
-    }
-
-    const platformIndex = TYPE_PLATFORMS.indexOf(PLATFORM);
-    if (platformIndex > -1) {
-        document.getElementById(`platform-${platformIndex + 1}`).classList.add('selected');
-    } else {
-        document.getElementById('platform-1').classList.add('selected');
-        processPlatform(PLATFORM, 1, 'platform');
-        setNexButtontVisibility();
-    }
 }

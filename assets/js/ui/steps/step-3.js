@@ -1,20 +1,26 @@
-import { translate } from "../translation.js";
-import { setNexButtontVisibility } from "../forms.js";
-
-let FIRST_LOAD = true;
+import { translate } from "../../translation/translation.js";
+import { disableNext, enableBack, enableNext } from "../forms.js";
 
 let RATING = 0;
 let FILE;
 
 export function loadStep3() {
-    if (FIRST_LOAD) {
-        loadImageUploadEventListeners();
-        loadStarRatingEventListeners();
-        FIRST_LOAD = false;
+    loadImageUploadEventListeners();
+    loadStarRatingEventListeners();
+
+    enableBack();
+    setNextVisibility();
+}
+
+function setNextVisibility() {
+    if (isNextDisabled()) {
+        disableNext();
+    } else {
+        enableNext();
     }
 }
 
-export function isStep3NextDisabled() {
+function isNextDisabled() {
     return !RATING || !FILE;
 }
 
@@ -31,7 +37,7 @@ function loadImageUploadEventListeners() {
         } else {
             handleFile(files[0]);
         }
-        setNexButtontVisibility();
+        setNextVisibility();
     });
 
     dropzone.addEventListener('dragover', event => {
@@ -116,7 +122,7 @@ function loadStarRatingEventListeners() {
             });
 
             label.textContent = translate(`rating.${RATING}`);
-            setNexButtontVisibility();
+            setNextVisibility();
         });
     });
 }

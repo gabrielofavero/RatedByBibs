@@ -1,5 +1,5 @@
-import { TYPE } from "./forms.js";
-import { getJson } from "./app.js";
+import { getJson } from "../app.js";
+import { TYPE } from "../ui/steps/step-1.js";
 
 export let USER_LANGUAGE;
 let LANGUAGE_PACK;

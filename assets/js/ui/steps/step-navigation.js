@@ -1,9 +1,9 @@
-import { setNexButtontVisibility, setBackButtontVisibility } from "../forms.js";
-import { translate } from "../translation.js";
+import { loadStep1 } from "./step-1.js";
 import { loadStep2 } from "./step-2.js";
 import { loadStep3 } from "./step-3.js";
 
 export let CURRENT_STEP = 1;
+
 let IS_ANIMATING = false;
 
 export function nextStep() {
@@ -19,11 +19,17 @@ function transitionStep(direction) {
     if (target.classList.contains('disabled')) return;
 
     const previousStep = CURRENT_STEP;
-    CURRENT_STEP = direction === 'next' ? CURRENT_STEP + 1 : CURRENT_STEP - 1
+    const currentStep = direction === 'next' ? CURRENT_STEP + 1 : CURRENT_STEP - 1
+
+    if (currentStep < 1 || currentStep > 5) {
+        console.error('Cannot navigate to an inexistent step');
+        return;
+    }
+
+    CURRENT_STEP = currentStep;
 
     loadStepActions();
     animate(previousStep);
-    loadStepButtonsVisibility();
 }
 
 function animate(previousStep) {
@@ -50,28 +56,16 @@ function animate(previousStep) {
     });
 }
 
-function loadStepButtonsVisibility() {
-    document.getElementById('next').textContent = getStepTextContent();
-    setNexButtontVisibility();
-    setBackButtontVisibility();
-}
-
-function getStepTextContent() {
-    switch (CURRENT_STEP) {
-        case 1:
-            return translate('navigation.begin');
-        case 3:
-            return translate('navigation.finish');
-        default:
-            return translate('navigation.next');
-    }
-}
-
 function loadStepActions() {
     switch (CURRENT_STEP) {
+        case 1:
+            loadStep1();
+            break;
         case 2:
             loadStep2();
+            break;
         case 3:
             loadStep3();
+            break;
     }
 }

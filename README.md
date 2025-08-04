@@ -15,13 +15,10 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 📈 **I001:** Improve page visibility and responsiviness
-- 📈 **I002:** Padronize styling with Figma prototype
 - 🐞 **B002:** Platform bottomsheet can only confirm once
 
-
 ### Backlog
-- 🐞 **B003:** Next and back buttons visibility not always working properly
+
 - ⚔️ **E006:** Implement "Step 4": Loading screen
   - 🏆 **F014:** [E006] Dynamically hide next button
   - 🏆 **F015:** [E006] Create loading style
@@ -29,9 +26,12 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
 - ⚔️ **E008:** Create Sticker Canvas
 - 🐞 **B001:** Fix visibility issues with Portrait Canvas
+- 📈 **I001:** Improve page visibility and responsiviness
+- 📈 **I002:** Padronize styling with Figma prototype
 
 ### Done
 
+- 📈 **I003:** Refactor js files to improve clarity
 - ⚔️ **E005:** Implement "Step 3": Image upload and rating selection
   - 🏆 **F010:** [E005] Prepare Step 3 icons
   - 🏆 **F011:** [E005] Create Image Upload element and styling
