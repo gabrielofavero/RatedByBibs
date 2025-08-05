@@ -1,6 +1,7 @@
 import { loadStep1 } from "./step-1.js";
 import { loadStep2 } from "./step-2.js";
 import { loadStep3 } from "./step-3.js";
+import { loadStep4 } from "./step-4.js";
 
 export let CURRENT_STEP = 1;
 
@@ -66,6 +67,9 @@ function loadStepActions() {
             break;
         case 3:
             loadStep3();
+            break;
+        case 4:
+            loadStep4();
             break;
     }
 }

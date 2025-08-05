@@ -20,9 +20,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 ### Backlog
 
 - ⚔️ **E006:** Implement "Step 4": Loading screen
-  - 🏆 **F014:** [E006] Dynamically hide next button
-  - 🏆 **F015:** [E006] Create loading style
-  - 🏆 **F016:** [E006] Create loading dynamic elements
+  - 🏆 **F016:** [E006] Adjust loading styling
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
 - ⚔️ **E008:** Create Sticker Canvas
 - 🐞 **B001:** Fix visibility issues with Portrait Canvas
@@ -31,6 +29,9 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- ⚔️ **E006:** Implement "Step 4": Loading screen
+  - 🏆 **F014:** [E006] Dynamically hide next button
+  - 🏆 **F015:** [E006] Create loading bar (style + dynamic load)
 - 📈 **I003:** Refactor js files to improve clarity
 - ⚔️ **E005:** Implement "Step 3": Image upload and rating selection
   - 🏆 **F010:** [E005] Prepare Step 3 icons

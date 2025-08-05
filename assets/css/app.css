@@ -3,6 +3,7 @@
    ======================= */
 :root {
     --next-container-height: 91px;
+    --theme-color: #E5A000;
 }
 
 body {
@@ -47,7 +48,7 @@ a {
 
 .logo .rated,
 .rated-canvas {
-    color: #E5A000;
+    color: var(--theme-color);
 }
 
 .logo .rated {
@@ -201,7 +202,7 @@ a {
     gap: 8px;
     width: 345px;
     height: 49px;
-    background: #E5A000;
+    background: var(--theme-color);
     color: #2C2C2C;
     border-radius: 16px;
     transition: background 0.3s ease;
@@ -313,4 +314,36 @@ a {
 
 .bottomsheet-button {
     margin-top: 24px;
+}
+
+/* =======================
+   Loading Screen
+   ======================= */
+
+.loading-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 110%;
+    color: #F5F5F5;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.loading-bar-container {
+    width: 80vw;
+    max-width: 600px;
+    height: 4px;
+    background: #E6E4E4;;
+    border-radius: 100px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #000;
+}
+
+.loading-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--theme-color);
+    transition: width 1.5s ease;
 }
