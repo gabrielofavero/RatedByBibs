@@ -15,12 +15,12 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
+- ⚔️ **E006:** Implement "Step 4": Loading screen
+  - 🏆 **F016:** [E006] Adjust loading styling
 - 🐞 **B002:** Platform bottomsheet can only confirm once
 
 ### Backlog
 
-- ⚔️ **E006:** Implement "Step 4": Loading screen
-  - 🏆 **F016:** [E006] Adjust loading styling
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
 - ⚔️ **E008:** Create Sticker Canvas
 - 🐞 **B001:** Fix visibility issues with Portrait Canvas

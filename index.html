@@ -49,40 +49,41 @@
 
 <body>
 
-  <div class="header">
-    <div id="back" class="disabled">
-      <svg class="back">
-        <use href="#icon-back" />
-      </svg>
-    </div>
-
-    <div class="language-selector end-container">
-      <button class="language-button">
-        <div id="user-language"></div>
-        <svg class="trailing" id="trailing">
-          <use href="#icon-trailing" />
+  <div class="header" id="header">
+    <div class="header-bar">
+      <div id="back" class="disabled">
+        <svg class="back">
+          <use href="#icon-back" />
         </svg>
-      </button>
-      <div class="language-options">
-        <div class="language-option" data-lang="en">
-          <svg class="flag">
-            <use href="#icon-en" />
+      </div>
+  
+      <div class="language-selector end-container">
+        <button class="language-button">
+          <div id="user-language"></div>
+          <svg class="trailing" id="trailing">
+            <use href="#icon-trailing" />
           </svg>
-          <span class="language-label">EN</span>
-        </div>
-        <div class="language-option" data-lang="pt">
-          <svg class="flag">
-            <use href="#icon-pt" />
-          </svg>
-          <span class="language-label">PT</span>
+        </button>
+        <div class="language-options">
+          <div class="language-option" data-lang="en">
+            <svg class="flag">
+              <use href="#icon-en" />
+            </svg>
+            <span class="language-label">EN</span>
+          </div>
+          <div class="language-option" data-lang="pt">
+            <svg class="flag">
+              <use href="#icon-pt" />
+            </svg>
+            <span class="language-label">PT</span>
+          </div>
         </div>
       </div>
     </div>
+    <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
   </div>
 
   <div class="content">
-    <div class="logo"><span class="rated">Rated!</span><span class="by-bibs">By Bibs</span></div>
-
     <div id="step-wrapper" class="step-wrapper">
       <div class="step-slider" id="slider">
 
@@ -363,7 +364,7 @@
             </div>
           </div>
         </div>
-        <div class="step" id="step-4">
+        <div class="step" id="step-5">
           <div class="step-content">
             <!-- Image Generation -->
           </div>
