@@ -46,6 +46,14 @@ export function disableNext() {
     disableButton('next');
 }
 
+export function hideNext() {
+    document.getElementById('next-container').style.display = 'none' 
+}
+
+export function showNext() {
+    document.getElementById('next-container').style.display = 'flex';
+}
+
 export function enableBack() {
     enableButton('back');
 }
