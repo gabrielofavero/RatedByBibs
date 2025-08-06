@@ -15,16 +15,16 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 🐞 **B003:** Required fields for step 2 not always considered
-- 🐞 **B002:** Platform bottomsheet can only confirm once
+- ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
 
 ### Backlog
 
-- ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
-- ⚔️ **E008:** Create Sticker Canvas
 - 🐞 **B001:** Fix visibility issues with Portrait Canvas
+- 🐞 **B002:** Platform bottomsheet can only confirm once
+- 🐞 **B003:** Required fields for step 2 not always considered
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Padronize styling with Figma prototype
+- ⚔️ **E008:** Create Sticker Canvas
 
 ### Done
 
