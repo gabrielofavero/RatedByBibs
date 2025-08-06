@@ -321,11 +321,26 @@ a {
    ======================= */
 
 .loading-container {
-    margin-top: 500px;
+    position: fixed;
     flex-direction: column;
-    width: 80vw;
-    align-items: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
+
+    z-index: 15;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.loading-container.visible {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .loading-label {
@@ -337,13 +352,14 @@ a {
     color: #F5F5F5;
     text-align: left;
     margin-bottom: 16px;
+    width: 80vw;
 }
 
 .loading-bar-container {
     width: 80vw;
     max-width: 600px;
     height: 4px;
-    background: #E6E4E4;;
+    background: #E6E4E4;
     border-radius: 100px;
     overflow: hidden;
     box-shadow: 0 0 10px #000;

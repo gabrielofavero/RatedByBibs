@@ -15,8 +15,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- ⚔️ **E006:** Implement "Step 4": Loading screen
-  - 🏆 **F016:** [E006] Adjust loading styling
+- 🐞 **B003:** Required fields for step 2 not always considered
 - 🐞 **B002:** Platform bottomsheet can only confirm once
 
 ### Backlog
@@ -32,6 +31,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - ⚔️ **E006:** Implement "Step 4": Loading screen
   - 🏆 **F014:** [E006] Dynamically hide next button
   - 🏆 **F015:** [E006] Create loading bar (style + dynamic load)
+  - 🏆 **F016:** [E006] Adjust loading styling
 - 📈 **I003:** Refactor js files to improve clarity
 - ⚔️ **E005:** Implement "Step 3": Image upload and rating selection
   - 🏆 **F010:** [E005] Prepare Step 3 icons
