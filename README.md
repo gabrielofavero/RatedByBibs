@@ -16,9 +16,12 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 ### Doing
 
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
+  - 🏆 **F017:** [E007] Create Final page styling
 
 ### Backlog
 
+- ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
+  - 🏆 **F018:** [E007] Adapt Canvas generation
 - 🐞 **B001:** Fix visibility issues with Portrait Canvas
 - 🐞 **B002:** Platform bottomsheet can only confirm once
 - 🐞 **B003:** Required fields for step 2 not always considered
