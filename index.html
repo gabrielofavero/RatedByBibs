@@ -56,7 +56,7 @@
           <use href="#icon-back" />
         </svg>
       </div>
-  
+
       <div class="language-selector end-container">
         <button class="language-button">
           <div id="user-language"></div>
@@ -90,43 +90,43 @@
         <!-- Step 1: Select a Type -->
         <div class="step visible" id="step-1">
           <div class="step-content">
-            <div class="description" data-translate="description"></div>
+            <div class="description" data-translate="label.description"></div>
             <div class="grid-container type">
               <div class="grid-item type" id="movie">
                 <svg class="type-icon">
                   <use href="#icon-type-movie" />
                 </svg>
-                <div class="grid-label" data-translate="type.movie"></div>
+                <div class="grid-label" data-translate="movie.title"></div>
               </div>
               <div class="grid-item type" id="tv">
                 <svg class="type-icon">
                   <use href="#icon-type-tv" />
                 </svg>
-                <div class="grid-label" data-translate="type.tv"></div>
+                <div class="grid-label" data-translate="tv.title"></div>
               </div>
               <div class="grid-item type" id="game">
                 <svg class="type-icon">
                   <use href="#icon-type-game" />
                 </svg>
-                <div class="grid-label" data-translate="type.game"></div>
+                <div class="grid-label" data-translate="game.title"></div>
               </div>
               <div class="grid-item type" id="music">
                 <svg class="type-icon">
                   <use href="#icon-type-music" />
                 </svg>
-                <div class="grid-label" data-translate="type.music"></div>
+                <div class="grid-label" data-translate="music.title"></div>
               </div>
               <div class="grid-item type" id="book">
                 <svg class="type-icon">
                   <use href="#icon-type-book" />
                 </svg>
-                <div class="grid-label" data-translate="type.book"></div>
+                <div class="grid-label" data-translate="book.title"></div>
               </div>
               <div class="grid-item type" id="other">
                 <svg class="type-icon">
                   <use href="#icon-type-other" />
                 </svg>
-                <div class="grid-label" data-translate="type.other"></div>
+                <div class="grid-label" data-translate="other.title"></div>
               </div>
             </div>
           </div>
@@ -139,8 +139,9 @@
             <!-- Movie Options -->
             <div class="options" id="movie-options">
               <div class="option">
-                <label for="movie-title" data-translate="label.movie.title"></label>
-                <input class="step-2 input movie" type="text" id="movie-title" maxlength="32" data-translate="label.required" required />
+                <label for="movie-title" data-translate="movie.title-input"></label>
+                <input class="step-2 input movie" type="text" id="movie-title" maxlength="32"
+                  data-translate="label.required" required />
               </div>
             </div>
 
@@ -150,31 +151,33 @@
                 <div class="step-label" data-translate="label.im-rating"></div>
                 <div class="radios">
                   <label>
-                    <input class="step-2 radio tv" type="radio" name="tv-radio" id="tv-radio-episode" value="episode" checked>
-                    <span data-translate="label.tv.radio.episode"></span>
+                    <input class="step-2 radio tv" type="radio" name="tv-radio" id="tv-radio-episode" value="episode"
+                      checked>
+                    <span data-translate="tv.radio.episode"></span>
                   </label>
                   <label>
                     <input class="step-2 radio tv" type="radio" name="tv-radio" id="tv-radio-season" value="season">
-                    <span data-translate="label.tv.radio.season"></span>
+                    <span data-translate="tv.radio.season"></span>
                   </label>
                   <label>
                     <input class="step-2 radio tv" type="radio" name="tv-radio" id="tv-radio-title" value="title">
-                    <span data-translate="label.tv.radio.tv"></span>
+                    <span data-translate="tv.radio.tv"></span>
                   </label>
                 </div>
               </div>
 
               <div class="option first" id="tv-episode-option">
-                <label for="tv-episode" data-translate="label.tv.episode"></label>
+                <label for="tv-episode" data-translate="tv.episode"></label>
                 <input class="step-2 input tv" type="number" id="tv-episode" min="1" data-translate="label.required" />
               </div>
               <div class="option" id="tv-season-option">
-                <label for="tv-season" data-translate="label.tv.season"></label>
+                <label for="tv-season" data-translate="tv.season"></label>
                 <input class="step-2 input tv" type="number" id="tv-season" min="1" data-translate="label.required" />
               </div>
               <div class="option last" id="tv-title-option">
-                <label for="tv-title" data-translate="label.tv.title"></label>
-                <input class="step-2 input tv" type="text" id="tv-title" maxlength="32" data-translate="label.required" />
+                <label for="tv-title" data-translate="tv.title-input"></label>
+                <input class="step-2 input tv" type="text" id="tv-title" maxlength="32"
+                  data-translate="label.required" />
               </div>
 
             </div>
@@ -182,12 +185,14 @@
             <!-- Gaming Options -->
             <div class="options" id="game-options">
               <div class="option">
-                <label for="game-title" data-translate="label.game.title"></label>
-                <input class="step-2 input game" type="text" id="game-title" maxlength="32" data-translate="label.required" required />
+                <label for="game-title" data-translate="game.title-input"></label>
+                <input class="step-2 input game" type="text" id="game-title" maxlength="32"
+                  data-translate="label.required" required />
               </div>
               <div class="option">
-                <label for="game-id" data-translate="label.game.id.default"></label>
-                <input class="step-2 input game" type="text" id="game-id" maxlength="32" data-translate="label.optional" />
+                <label for="game-id" data-translate="game.id.default"></label>
+                <input class="step-2 input game" type="text" id="game-id" maxlength="32"
+                  data-translate="label.optional" />
               </div>
             </div>
 
@@ -197,55 +202,65 @@
                 <div class="step-label" data-translate="label.im-rating"></div>
                 <div class="radios">
                   <label>
-                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-song" value="song" checked>
-                    <span data-translate="label.music.radio.song"></span>
+                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-song" value="song"
+                      checked>
+                    <span data-translate="music.radio.song"></span>
                   </label>
                   <label>
-                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-album" value="album">
-                    <span data-translate="label.music.radio.album"></span>
+                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-album"
+                      value="album">
+                    <span data-translate="music.radio.album"></span>
                   </label>
-                      <label>
-                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-artist" value="artist">
-                    <span data-translate="label.music.radio.artist"></span>
+                  <label>
+                    <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-artist"
+                      value="artist">
+                    <span data-translate="music.radio.artist"></span>
                   </label>
                 </div>
               </div>
 
               <div class="option first" id="music-song-option">
-                <label for="music-song" data-translate="label.music.song"></label>
-                <input class="step-2 input music" type="text" id="music-song" maxlength="32" data-translate="label.required"/>
+                <label for="music-song" data-translate="music.song"></label>
+                <input class="step-2 input music" type="text" id="music-song" maxlength="32"
+                  data-translate="label.required" />
               </div>
               <div class="option" id="music-album-option">
-                <label for="music-album" data-translate="label.music.album"></label>
-                <input class="step-2 input music" type="text" id="music-album" maxlength="32" data-translate="label.required" />
+                <label for="music-album" data-translate="music.album"></label>
+                <input class="step-2 input music" type="text" id="music-album" maxlength="32"
+                  data-translate="label.required" />
               </div>
               <div class="option last" id="music-artist-option">
-                <label for="music-artist" data-translate="label.music.artist"></label>
-                <input class="step-2 input music" type="text" id="music-artist" maxlength="32" data-translate="label.required" />
+                <label for="music-artist" data-translate="music.artist"></label>
+                <input class="step-2 input music" type="text" id="music-artist" maxlength="32"
+                  data-translate="label.required" />
               </div>
             </div>
 
             <!-- Book Options -->
             <div class="options" id="book-options">
               <div class="option">
-                <label for="book-title" data-translate="label.book.title"></label>
-                <input class="step-2 input book" type="text" id="book-title" maxlength="32" data-translate="label.required" required />
+                <label for="book-title" data-translate="book.title"></label>
+                <input class="step-2 input book" type="text" id="book-title" maxlength="32"
+                  data-translate="label.required" required />
               </div>
               <div class="option">
-                <label for="book-author" data-translate="label.book.author"></label>
-                <input class="step-2 input book" type="text" id="book-author" maxlength="32" data-translate="label.optional" required />
+                <label for="book-author" data-translate="book.author"></label>
+                <input class="step-2 input book" type="text" id="book-author" maxlength="32"
+                  data-translate="label.optional" required />
               </div>
             </div>
 
             <!-- Other Options -->
             <div class="options" id="other-options">
               <div class="option">
-                <label for="other-title" data-translate="label.other.title"></label>
-                <input class="step-2 input other" type="text" id="other-title" maxlength="32" data-translate="label.required" required />
+                <label for="other-title" data-translate="other.title-input"></label>
+                <input class="step-2 input other" type="text" id="other-title" maxlength="32"
+                  data-translate="label.required" required />
               </div>
               <div class="option">
-                <label for="other-subtitle" data-translate="label.other.subtitle"></label>
-                <input class="step-2 input other" type="text" id="other-subtitle" maxlength="32" data-translate="label.optional" />
+                <label for="other-subtitle" data-translate="other.subtitle"></label>
+                <input class="step-2 input other" type="text" id="other-subtitle" maxlength="32"
+                  data-translate="label.optional" />
               </div>
             </div>
 
@@ -321,12 +336,12 @@
         </div>
         <div class="step" id="step-3">
           <div class="step-content">
-            <div class="upload-box" id="dropzone">
+            <div class="image-box" id="dropzone">
               <div class="upload-content">
                 <svg class="icon image">
                   <use href="#icon-image" />
                 </svg>
-                <span class="upload-text" data-translate="upload"></span>
+                <span class="upload-text" data-translate="label.upload"></span>
               </div>
               <input type="file" id="fileInput" accept="image/*">
               <img id="preview" style="display: none;" />
@@ -356,41 +371,74 @@
         <div class="step" id="step-4">
           <div class="step-content">
             <!-- Loading before Generation. Blank screen here since loading is a fixed component -->
-            
+
           </div>
         </div>
         <div class="step" id="step-5">
-          <div class="step-content">
-            <!-- Image Generation -->
+          <div class="step-content step-5">
+            <div class="image-box step-5">
+              <img id="step-5-image" />
+            </div>
+            <div id="step-5-title"></div>
+            <div id="step-5-platform-container">
+              <div id="step-5-icon">
+                <svg id="step-5-internal-icon" style="display: none">
+                  <use href="" />
+                </svg>
+                <img id="step-5-external-icon" src="" style="display: none">
+              </div>
+              <div id="step-5-platform"></div>
+            </div>
+            <div class="star-rating" id="step-5-stars">
+              <svg class="rating-step-5 icon star unrated" data-value="1">
+                <use href="#icon-star" />
+              </svg>
+              <svg class="rating-step-5 icon star unrated" data-value="2">
+                <use href="#icon-star" />
+              </svg>
+              <svg class="rating-step-5 icon star unrated" data-value="3">
+                <use href="#icon-star" />
+              </svg>
+              <svg class="rating-step-5 icon star unrated" data-value="4">
+                <use href="#icon-star" />
+              </svg>
+              <svg class="rating-step-5 icon star unrated" data-value="5">
+                <use href="#icon-star" />
+              </svg>
+            </div>
+            <div class="btn-box">
+              <div id="download" class="btn" data-translate="label.download"></div>
+              <div id="restart" class="btn secondary" data-translate="label.restart"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="next-container" id="next-container">
-      <div id="next" class="btn disabled" data-translate="navigation.begin"></div>
+      <div id="next" class="btn disabled" data-translate="label.begin"></div>
     </div>
 
     <div class="overlay"></div>
     <div class="bottomsheet">
-        <div class="sheet-content">
-            <div class="bottomsheet-title">
-                <div class="drag-handle"></div>
-                <div class="bottomsheet-label" data-translate="label.platform"></div>
-            </div>
-            
-            <div class="bottomsheet-body">
-              <div id="platform-grid-container-more" class="grid-container more-platform"></div>
-            </div>
-    
-            <div class="bottomsheet-button">
-                <button id="confirm-bottomsheet" class="btn confirm-bottomsheet disabled">Confirm</button>
-            </div>
+      <div class="sheet-content">
+        <div class="bottomsheet-title">
+          <div class="drag-handle"></div>
+          <div class="bottomsheet-label" data-translate="label.platform"></div>
         </div>
+
+        <div class="bottomsheet-body">
+          <div id="platform-grid-container-more" class="grid-container more-platform"></div>
+        </div>
+
+        <div class="bottomsheet-button">
+          <button id="confirm-bottomsheet" class="btn confirm-bottomsheet disabled">Confirm</button>
+        </div>
+      </div>
     </div>
 
     <div class="loading-container" id="loading-container">
-      <div class="loading-label" data-translate="loading"></div>
+      <div class="loading-label" data-translate="label.loading"></div>
       <div class="loading-bar-container">
         <div class="loading-bar" id="loaderBar"></div>
       </div>
@@ -399,36 +447,6 @@
 
 
     <div id="to-do" style="display: none">
-
-      <div class="form-controls">
-        <div class="upload-container">
-          <input type="file" accept="image/*" id="upload" hidden />
-          <label for="upload" class="upload-label">
-            Upload Cover Art
-          </label>
-          <div id="upload-instructions" class="instructions">Click to upload an image. We recomend looking at <a
-              href="https://www.steamgriddb.com/">Steam Grid DB</a></div>
-          <div id="upload-success" class="instructions" style="display: none;">Image Uploaded successfully<br></div>
-        </div>
-
-
-        <div id="star-rating">
-          <span class="star" data-value="1">★</span>
-          <span class="star" data-value="2">★</span>
-          <span class="star" data-value="3">★</span>
-          <span class="star" data-value="4">★</span>
-          <span class="star" data-value="5">★</span>
-          <div id="star-rating-label" class="instructions">Select a Rating</div>
-        </div>
-
-
-
-
-        <button id="generate-canvas">Generate Canvas</button>
-      </div>
-
-      <div id="preview"></div>
-
       <div id="canvas-container" class="canvas" style="display: none;">
         <div class="canvas-content">
           <div id="canvas-cover"></div>
@@ -444,12 +462,6 @@
           </div>
         </div>
       </div>
-
-      <div id="download-share-buttons" style="display: none;">
-        <button id="download">Download</button>
-        <button id="share">Share</button>
-      </div>
-
     </div>
   </div>
 

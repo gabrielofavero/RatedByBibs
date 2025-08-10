@@ -31,6 +31,12 @@
     width: 40px;
 }
 
+.icon-canvas-mini {
+    fill: var(--icon-gray);
+    height: 16px;
+    width: 16px;
+}
+
 .back {
     width: 48px;
     height: 48px;

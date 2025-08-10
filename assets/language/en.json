@@ -1,20 +1,101 @@
 {
-    "description": "A quick way to rate your favorite content and share it to social network",
-    "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
-    "upload": "Add or drag the cover art",
-    "loading": "Generating your rating...",
-    "type": {
-        "movie": "Movie",
-        "tv": "TV Show",
-        "game": "Game",
-        "music": "Music",
-        "book": "Book",
-        "other": "Other"
+    "movie": {
+        "title": "Movie",
+        "title-input": "Movie"
     },
-    "navigation": {
-        "begin": "Begin rating",
-        "next": "Continue",
-        "finish": "Generate rating"
+    "tv": {
+        "title": "TV Show",
+        "title-input": "TV Show",
+        "season": "Season",
+        "episode": "Episode",
+        "radio": {
+            "tv": "A TV Show",
+            "season": "A Season",
+            "episode": "An Episode"
+        }
+    },
+    "video": {
+        "platform": {
+            "cinema": "Cinema",
+            "tv": "TV",
+            "streaming": "Streaming",
+            "amazon": "Prime Video",
+            "apple-tv": "Apple TV",
+            "crunchyroll": "Crunchyroll",
+            "discovery": "Discovery+",
+            "disney": "Disney+",
+            "globo": "GloboPlay",
+            "hbo-max": "HBO Max",
+            "hulu": "Hulu",
+            "mubi": "MUBI",
+            "netflix": "Netflix",
+            "paramount": "Paramount+",
+            "peacock": "Peacock",
+            "starplus": "Star+",
+            "youtube": "YouTube",
+            "piracy": "Other 😏"
+        }
+    },
+    "game": {
+        "title": "Game",
+        "title-input": "Game",
+        "id": {
+            "default": "Gaming ID",
+            "steam": "Steam ID",
+            "playstation": "PSN ID",
+            "xbox": "Gamertag",
+            "nintendo": "Nintendo Account"
+        },
+        "platform": {
+            "pc": "PC",
+            "console": "Console",
+            "apple": "Apple",
+            "battlenet": "Battlenet",
+            "ea": "EA Play",
+            "epic": "Epic Games",
+            "gog": "GOG",
+            "google": "Google Play",
+            "humble": "Humble",
+            "itch": "itch.io",
+            "playstation": "Playstation",
+            "steam": "Steam",
+            "switch": "Switch",
+            "switch2": "Switch 2",
+            "ubisoft": "Ubisoft",
+            "xbox": "Xbox"
+        }
+    },
+    "music": {
+        "title": "Music",
+        "song": "Song",
+        "artist": "Artist",
+        "album": "Album",
+        "radio": {
+            "song": "A song",
+            "artist": "An artist",
+            "album": "An album"
+        },
+        "platform": {
+            "amazon-music": "Amazon Music",
+            "apple-music": "Apple Music",
+            "deezer": "Deezer",
+            "qobuz": "Qobuz",
+            "soundcloud": "SoundCloud",
+            "spotify": "Spotify",
+            "tidal": "TIDAL",
+            "youtube-music": "YouTube Music",
+            "pandora": "Pandora",
+            "piracy": "Other 😏"
+        }
+    },
+    "book": {
+        "title": "Book",
+        "author": "Author"
+    },
+    "other": {
+        "title": "Other",
+        "title-input": "Title",
+        "subtitle": "Subtitle"
     },
     "rating": {
         "0": "Select a rating",
@@ -25,6 +106,10 @@
         "5": "Excelent"
     },
     "label": {
+        "description": "A quick way to rate your favorite content and share it to social network",
+        "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
+        "upload": "Add or drag the cover art",
+        "loading": "Generating your rating...",
         "required": "Required",
         "optional": "Optional",
         "none": "None",
@@ -32,98 +117,10 @@
         "im-rating": "I'm rating:",
         "platform": "Platform",
         "confirm": "Confirm",
-        "video": {
-            "platform": {
-                "cinema": "Cinema",
-                "tv": "TV",
-                "streaming": "Streaming",
-                "amazon": "Prime Video",
-                "apple-tv": "Apple TV",
-                "crunchyroll": "Crunchyroll",
-                "discovery": "Discovery+",
-                "disney": "Disney+",
-                "globo": "GloboPlay",
-                "hbo-max": "HBO Max",
-                "hulu": "Hulu",
-                "mubi": "MUBI",
-                "netflix": "Netflix",
-                "paramount": "Paramount+",
-                "peacock": "Peacock",
-                "starplus": "Star+",
-                "youtube": "YouTube",
-                "piracy": "Other 😏"
-            }
-        },
-        "movie": {
-            "title": "Movie"
-        },
-        "tv": {
-            "title": "TV Show",
-            "season": "Season",
-            "episode": "Episode",
-            "radio": {
-                "tv": "A TV Show",
-                "season": "A Season",
-                "episode": "An Episode"
-            }
-        },
-        "game": {
-            "title": "Game",
-            "id": {
-                "default": "Gaming ID",
-                "steam": "Steam ID",
-                "playstation": "PSN ID",
-                "xbox": "Gamertag",
-                "nintendo": "Nintendo Account"
-            },
-            "platform": {
-                "pc": "PC",
-                "console": "Console",
-                "apple": "Apple",
-                "battlenet": "Battlenet",
-                "ea": "EA Play",
-                "epic": "Epic Games",
-                "gog": "GOG",
-                "google": "Google Play",
-                "humble": "Humble",
-                "itch": "itch.io",
-                "playstation": "Playstation",
-                "steam": "Steam",
-                "switch": "Switch",
-                "switch2": "Switch 2",
-                "ubisoft": "Ubisoft",
-                "xbox": "Xbox"
-            }
-        },
-        "music": {
-            "song": "Song",
-            "artist": "Artist",
-            "album": "Album",
-            "radio": {
-                "song": "A song",
-                "artist": "An artist",
-                "album": "An album"
-            },
-            "platform": {
-                "amazon-music": "Amazon Music",
-                "apple-music": "Apple Music",
-                "deezer": "Deezer",
-                "qobuz": "Qobuz",
-                "soundcloud": "SoundCloud",
-                "spotify": "Spotify",
-                "tidal": "TIDAL",
-                "youtube-music": "YouTube Music",
-                "pandora": "Pandora",
-                "piracy": "Other 😏"
-            }
-        },
-        "book": {
-            "title": "Book",
-            "author": "Author"
-        },
-        "other": {
-            "title": "Title",
-            "subtitle": "Subtitle"
-        }
+        "begin": "Begin rating",
+        "next": "Continue",
+        "finish": "Generate rating",
+        "restart": "Restart",
+        "download": "Download"
     }
 }

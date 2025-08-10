@@ -1,15 +1,17 @@
 import { translate } from "../../translation/translation.js";
-import { disableNext, enableBack, enableNext } from "../forms.js";
+import { disableNext, enableBack, enableNext, loadStars } from "../forms.js";
 
-let RATING = 0;
-let FILE;
+export let RATING = 0;
+export let COVER;
 
 export function loadStep3() {
-    loadImageUploadEventListeners();
-    loadStarRatingEventListeners();
-
     enableBack();
     setNextVisibility();
+}
+
+export function loadStep3Listeners() {
+    loadImageUploadEventListeners();
+    loadStarRatingEventListeners();
 }
 
 function setNextVisibility() {
@@ -21,7 +23,7 @@ function setNextVisibility() {
 }
 
 function isNextDisabled() {
-    return !RATING || !FILE;
+    return !RATING || !COVER;
 }
 
 function loadImageUploadEventListeners() {
@@ -63,8 +65,6 @@ function handleFile(file) {
         return;
     }
 
-    FILE = file;
-
     const dropzone = document.getElementById('dropzone');
     const preview = document.getElementById('preview');
 
@@ -75,8 +75,8 @@ function handleFile(file) {
             preview.style.display = 'block';
             dropzone.classList.add('has-image');
         };
-
-        preview.src = e.target.result;
+        COVER = e.target.result;
+        preview.src = COVER;
     };
     reader.readAsDataURL(file);
 }
@@ -93,7 +93,7 @@ function resetImageUpload() {
     dropzone.classList.remove('has-image');
 
     fileInput.value = '';
-    FILE = undefined;
+    COVER = '';
 }
 
 function loadStarRatingEventListeners() {
@@ -110,16 +110,7 @@ function loadStarRatingEventListeners() {
                 RATING = selectedValue;
             }
 
-            stars.forEach(s => {
-                const val = parseInt(s.dataset.value);
-                if (val <= RATING) {
-                    s.classList.add('rated');
-                    s.classList.remove('unrated');
-                } else {
-                    s.classList.remove('rated');
-                    s.classList.add('unrated');
-                }
-            });
+            loadStars(stars, RATING);
 
             label.textContent = translate(`rating.${RATING}`);
             setNextVisibility();

@@ -436,7 +436,7 @@ label {
    Image Upload
    ======================= */
 
-.upload-box {
+.image-box {
     margin-top: 24px;
     width: 235px;
     border-radius: 16px;
@@ -454,15 +454,19 @@ label {
     text-align: center;
 }
 
-.upload-box.dragover {
+.image-box.dragover {
     background-color: #2d291f;
+}
+
+.image-box.step-5 {
+    cursor: auto;
 }
 
 input[type="file"] {
     display: none;
 }
 
-.upload-box img {
+.image-box img {
     position: absolute;
     top: 0;
     left: 0;
@@ -495,13 +499,13 @@ input[type="file"] {
     color: white;
 }
 
-.upload-box:not(.has-image) .upload-content {
+.image-box:not(.has-image) .upload-content {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.upload-box.has-image .upload-content {
+.image-box.has-image .upload-content {
     bottom: 0rem;
     left: 50%;
     transform: translateX(-50%);
@@ -511,7 +515,7 @@ input[type="file"] {
     padding: 1em;
 }
 
-.upload-box.has-image .icon.image {
+.image-box.has-image .icon.image {
     display: none;
 }
 
@@ -530,6 +534,9 @@ input[type="file"] {
 
 .icon.star {
     transition: fill 0.5s ease, stroke 0.5s ease;
+}
+
+.rating.icon.star {
     cursor: pointer;
 }
 

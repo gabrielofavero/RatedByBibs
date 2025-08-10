@@ -1,5 +1,3 @@
-import { UPLOAD_IMAGE, STARS } from "./forms.js";
-
 let GENERATED_IMAGE = '';
 
 export async function generateCanvas() {

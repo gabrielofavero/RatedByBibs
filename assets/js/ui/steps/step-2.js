@@ -4,7 +4,7 @@ import { BOTTOMSHEET, OVERLAY, closeSheet } from "../bottomsheet.js";
 import { disableNext, enableBack, enableNext, enableButton, disableButton, hasMissingRequiredInputs, restrictToPositiveInputs, updateNextTextContent } from "../forms.js";
 import { TYPE, TYPES } from "./step-1.js";
 
-let PLATFORM;
+export let PLATFORM;
 let PLATFORMS;
 
 const SUBTYPE = {
@@ -12,7 +12,7 @@ const SUBTYPE = {
     music: ''
 }
 
-const MACROTYPE = {
+export const MACROTYPE = {
     movie: 'video',
     tv: 'video',
     game: 'game',
@@ -249,9 +249,15 @@ function processPlatform(platform, j, containerName) {
     resetPlatformSlot(elements);
 
     if (platform) {
-        const properties = PLATFORMS?.properties?.[MACROTYPE[TYPE]]?.[platform] || {};
+        const properties = getPlatformProperties(platform);
         updatePlatformSlot(elements, platform, properties);
     }
+}
+
+export function getPlatformProperties(platform, iconClass = 'icon') {
+    const properties = PLATFORMS?.properties?.[MACROTYPE[TYPE]]?.[platform] || {};
+    properties.class = iconClass;
+    return properties;
 }
 
 function getPlatformElements(index, containerName) {
@@ -281,15 +287,16 @@ function resetPlatformSlot({ div, background, internalIcon, externalIcon, label 
 
 function updatePlatformSlot({ div, background, internalIcon, externalIcon, label }, platform, properties) {
     div.setAttribute('platform', platform);
-    label.textContent = translate(`label.${MACROTYPE[TYPE]}.platform.${platform}`);
+    label.textContent = translate(`${MACROTYPE[TYPE]}.platform.${platform}`);
 
     background.classList.add(properties.background || platform);
 
     updatePlatformIcon(internalIcon, externalIcon, platform, properties);
 }
 
-function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
+export function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
     const hasSvg = properties['has-svg'] === true;
+    const iconClasses = `${properties.class} ${properties.icon || platform}`
 
     if (hasSvg) {
         externalIcon.src = `/assets/icons/${platform}.svg`;
@@ -306,13 +313,13 @@ function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
             externalIcon.removeAttribute("height");
         }
 
-        externalIcon.setAttribute('class', `icon ${properties.icon || platform}`);
+        externalIcon.setAttribute('class', iconClasses);
         externalIcon.style.display = 'block';
     } else {
         const use = internalIcon.querySelector('use');
         if (use) use.setAttribute('href', `#icon-${platform}`);
 
-        internalIcon.setAttribute('class', `icon ${properties.icon || platform}`);
+        internalIcon.setAttribute('class', iconClasses);
         internalIcon.style.display = 'block';
     }
 }

@@ -16,7 +16,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 ### Doing
 
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
-  - 🏆 **F017:** [E007] Create Final page styling
+  - 🏆 **F017:** [E007] Create Final page elements
 
 ### Backlog
 

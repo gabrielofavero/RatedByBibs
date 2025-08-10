@@ -47,7 +47,7 @@ export function disableNext() {
 }
 
 export function hideNext() {
-    document.getElementById('next-container').style.display = 'none' 
+    document.getElementById('next-container').style.display = 'none'
 }
 
 export function showNext() {
@@ -64,4 +64,18 @@ export function disableBack() {
 
 export function updateNextTextContent(textContent) {
     document.getElementById('next').textContent = textContent;
+}
+
+// Custom Components
+export function loadStars(stars, rating) {
+    stars.forEach(s => {
+        const val = parseInt(s.dataset.value);
+        if (val <= rating) {
+            s.classList.add('rated');
+            s.classList.remove('unrated');
+        } else {
+            s.classList.remove('rated');
+            s.classList.add('unrated');
+        }
+    });
 }
