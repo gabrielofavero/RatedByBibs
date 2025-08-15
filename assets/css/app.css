@@ -4,6 +4,7 @@
 :root {
     --next-container-height: 91px;
     --theme-color: #E5A000;
+    --theme-color-hover: #FFB300;
 }
 
 body {
@@ -220,10 +221,20 @@ a {
     cursor: pointer;
 }
 
+.btn:hover {
+    background: var(--theme-color-hover);
+}
+
 .btn.secondary {
     background: none;
     color: var(--theme-color);
     border: 1.5px solid var(--theme-color);
+}
+
+.btn.secondary:hover {
+    color: var(--theme-color-hover);
+    border: 1.5px solid var(--theme-color-hover);
+    background: rgba(229, 160, 0, 0.1)
 }
 
 @media screen and (max-width: 475px) {

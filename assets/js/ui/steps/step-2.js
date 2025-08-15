@@ -73,6 +73,25 @@ export function loadStep2Listeners() {
     });
 }
 
+export function resetStep2() {
+    PLATFORM = undefined;
+    const inputs = ['movie-title', 'tv-episode', 'tv-season', 'tv-title', 'game-title', 'game-id', 'music-song', 'music-album', 'music-artist', 'book-title', 'book-author', 'other-title', 'other-subtitle']
+    const radios = ['tv-radio-episode', 'music-radio-song']
+    const platforms = ['platform-1', 'platform-2', 'platform-3', 'platform-4', 'platform-5', 'more']
+
+    for (const input of inputs) {
+        document.getElementById(input).value = '';
+    }
+
+    for (const radio of radios) {
+        document.getElementById(radio).checked = true;
+    }
+
+    for (const platform of platforms) {
+        document.getElementById(platform).classList.remove('selected');
+    }
+}
+
 
 // Step Logic Control
 function isNextDisabled() {

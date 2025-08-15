@@ -16,21 +16,22 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 ### Doing
 
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
-  - 🏆 **F017:** [E007] Create Final page elements
+  - 🏆 **F018:** [E007] Adapt Canvas generation
 
 ### Backlog
 
-- ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
-  - 🏆 **F018:** [E007] Adapt Canvas generation
 - 🐞 **B001:** Fix visibility issues with Portrait Canvas
 - 🐞 **B002:** Platform bottomsheet can only confirm once
 - 🐞 **B003:** Required fields for step 2 not always considered
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Padronize styling with Figma prototype
 - ⚔️ **E008:** Create Sticker Canvas
+- ⚔️ **E009:** Get boxarts via API
 
 ### Done
 
+- ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
+  - 🏆 **F017:** [E007] Create Final page elements
 - ⚔️ **E006:** Implement "Step 4": Loading screen
   - 🏆 **F014:** [E006] Dynamically hide next button
   - 🏆 **F015:** [E006] Create loading bar (style + dynamic load)

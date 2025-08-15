@@ -1,6 +1,6 @@
-import { loadStep1 } from "./step-1.js";
-import { loadStep2 } from "./step-2.js";
-import { loadStep3 } from "./step-3.js";
+import { loadStep1, resetStep1 } from "./step-1.js";
+import { loadStep2, resetStep2 } from "./step-2.js";
+import { loadStep3, resetStep3 } from "./step-3.js";
 import { loadStep4 } from "./step-4.js";
 import { loadStep5 } from "./step-5.js";
 
@@ -19,6 +19,11 @@ export function previousStep() {
 export function resetSteps() {
     const previousStep = CURRENT_STEP;
     CURRENT_STEP = 1;
+
+    resetStep1();
+    resetStep2();
+    resetStep3();
+
     loadStepActions();
     animate(previousStep);
 }

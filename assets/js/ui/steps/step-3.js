@@ -14,6 +14,13 @@ export function loadStep3Listeners() {
     loadStarRatingEventListeners();
 }
 
+export function resetStep3() {
+    RATING = 0;
+    COVER = '';
+    resetImageUpload();
+    loadStars(document.querySelectorAll('.rating'), RATING);
+}
+
 function setNextVisibility() {
     if (isNextDisabled()) {
         disableNext();
