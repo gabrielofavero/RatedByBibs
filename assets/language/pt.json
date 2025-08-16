@@ -8,6 +8,7 @@
         "title-input": "Nome da série",
         "season": "Temporada",
         "episode": "Episódio",
+        "se": "S{{season}}E{{episode}}",
         "radio": {
             "tv": "Uma série",
             "season": "Uma temporada",

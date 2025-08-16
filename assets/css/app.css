@@ -35,8 +35,7 @@ a {
    Logo and description
    ======================= */
 
-.logo,
-.logo-canvas {
+.logo {
     font-family: "Bangers", system-ui;
     font-weight: 400;
     font-style: normal;
@@ -47,8 +46,7 @@ a {
     margin-top: 0;
 }
 
-.logo .rated,
-.rated-canvas {
+.logo .rated {
     color: var(--theme-color);
 }
 

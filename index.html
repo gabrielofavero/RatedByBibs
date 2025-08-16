@@ -148,7 +148,7 @@
             <div class="options" id="tv-options">
               <div class="radio-group">
                 <div class="step-label" data-translate="label.im-rating"></div>
-                <div class="radios">
+                <div class="radios tv">
                   <label>
                     <input class="step-2 radio tv" type="radio" name="tv-radio" id="tv-radio-episode" value="episode"
                       checked>
@@ -199,7 +199,7 @@
             <div class="options" id="music-options">
               <div class="radio-group">
                 <div class="step-label" data-translate="label.im-rating"></div>
-                <div class="radios">
+                <div class="radios music">
                   <label>
                     <input class="step-2 radio music" type="radio" name="music-radio" id="music-radio-song" value="song"
                       checked>
@@ -223,14 +223,14 @@
                 <input class="step-2 input music" type="text" id="music-song" maxlength="32"
                   data-translate="label.required" />
               </div>
-              <div class="option" id="music-album-option">
-                <label for="music-album" data-translate="music.album"></label>
-                <input class="step-2 input music" type="text" id="music-album" maxlength="32"
-                  data-translate="label.required" />
-              </div>
               <div class="option last" id="music-artist-option">
                 <label for="music-artist" data-translate="music.artist"></label>
                 <input class="step-2 input music" type="text" id="music-artist" maxlength="32"
+                  data-translate="label.required" />
+              </div>
+              <div class="option" id="music-album-option">
+                <label for="music-album" data-translate="music.album"></label>
+                <input class="step-2 input music" type="text" id="music-album" maxlength="32"
                   data-translate="label.required" />
               </div>
             </div>
@@ -443,28 +443,27 @@
       </div>
     </div>
 
-
-
-    <div id="to-do" style="display: none">
-      <div id="canvas-container" class="canvas" style="display: none;">
-        <div class="canvas-content">
-          <div id="canvas-cover"></div>
-          <div class="canvas-info-container">
-            <div class="title-section" id="title-display" stlye="display: none">Title</div>
-            <div class="canvas-platform-container">
-              <div class="platform-section" id="platform-display" stlye="display: none"></div>
-              <div class="gaming-id-section" id="gaming-id-display" stlye="display: none"></div>
-            </div>
+    <div id="canvas-container" class="canvas" style="display: none;">
+      <div class="canvas-content">
+        <div id="canvas-cover"></div>
+        <div class="canvas-info-container">
+          <div class="h1-section" id="title-display" stlye="display: none"></div>
+          <div class="h2-section" id="subtitle-display" stlye="display: none"></div>
+          <div class="h3-section" id="subtitle-display" stlye="display: none"></div>
+          <div class="canvas-platform-container">
+            <div class="platform-icon-section" id="platform-icon-display" stlye="display: none"></div>
+            <div class="platform-text-section" id="platform-text-display" stlye="display: none"></div>
           </div>
-          <div class="rating-section" id="star-rating-display">★★★★★</div>
-          <div class="logo-canvas"><span class="rated-canvas">Rated!</span><span class="by-bibs-canvas">By Bibs</span>
-          </div>
+        </div>
+        <div class="rating-section" id="star-rating-display">★★★★★</div>
+        <div class="logo-canvas"><span class="rated-canvas">Rated!</span><span class="by-bibs-canvas">By Bibs</span>
         </div>
       </div>
     </div>
+
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
   <script type="module" src="assets/js/app.js"></script>
 
   <!-- Symbols -->

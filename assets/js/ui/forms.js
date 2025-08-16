@@ -28,6 +28,10 @@ export function hasMissingRequiredInputs(className) {
     return inputs.some(input => !getInputValue(input));
 }
 
+export function getRadioCheckedID(className) {
+    const checked = document.querySelector(`${className} input[type="radio"]:checked`);
+    return checked?.id;
+}
 
 // Button Utils
 export function enableButton(buttonID) {

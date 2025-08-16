@@ -8,6 +8,7 @@
         "title-input": "TV Show",
         "season": "Season",
         "episode": "Episode",
+        "se": "S{{season}}E{{episode}}",
         "radio": {
             "tv": "A TV Show",
             "season": "A Season",

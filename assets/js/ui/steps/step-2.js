@@ -23,7 +23,7 @@ export const MACROTYPE = {
 
 let TYPE_PLATFORMS;
 
-// Step Initialization
+// Step Initialization and Reset
 export function setPlatforms(value) {
     PLATFORMS = value;
 }
@@ -342,7 +342,6 @@ export function updatePlatformIcon(internalIcon, externalIcon, platform, propert
         internalIcon.style.display = 'block';
     }
 }
-
 
 // Data Utilities
 function getAllPlatforms() {
