@@ -3,7 +3,7 @@
     color: white;
     width: 1080px;
     height: 1920px;
-    background: linear-gradient(to bottom, #151119, #000);
+    background: linear-gradient(to bottom, #111419, #000);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,46 +21,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2em;
-}
-
-#canvas-cover {
-    width: 50%;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.rating-section {
-    font-size: 60px;
-}
-
-.h1-section {
-    text-align: center;
-    font-size: 40px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.h2-section {
-    text-align: center;
-    font-size: 40px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.h3-section {
-    text-align: center;
-    font-size: 40px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.platform-text-section {
-    font-size: 32px;
-    color: #888;
-    margin-top: 6px;
-    display: flex;
-    align-items: center;
+    gap: 3em;
 }
 
 .canvas-info-container {
@@ -69,13 +30,46 @@
     gap: 1em;
 }
 
+#canvas-cover {
+    border-radius: 1em;
+}
+
+.h1-section {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.h2-section {
+    text-align: center;
+    font-size: 36px;
+}
+
+.platform-text-section {
+    font-size: 32px;
+    color: #888;
+    display: flex;
+    align-items: center;
+}
+
 .canvas-platform-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 1em;
 }
 
-#canvas-cover {
-    
+.canva-icon {
+    height: 32px;
+    width: 32px;
+    fill: #888;
+}
+
+.rating-section {
+    color: #E5A000;
+    font-size: 60px;
+}
+
+.canvas-logo {
+    width: 200px;
 }
