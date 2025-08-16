@@ -1,6 +1,6 @@
-import { downloadCanvas, getH1, getH2, getPlatformText } from "../../canvas.js";
+import { downloadCanvas, getH1, getH2, getPlatformText, renderPlatformIcon } from "../../canvas.js";
 import { disableBack, hideNext, loadStars } from "../forms.js";
-import { PLATFORM, getPlatformProperties, updatePlatformIcon } from "./step-2.js";
+import { PLATFORM } from "./step-2.js";
 import { COVER, RATING } from "./step-3.js";
 import { resetSteps } from "./step-navigation.js";
 
@@ -31,16 +31,9 @@ function loadTitles() {
 function loadPlatform() {
     if (!PLATFORM) return;
     loadPlatformLabel();
-    loadPlatformIcon();
+    renderPlatformIcon('step-5');
 }
 
 function loadPlatformLabel() {
     document.getElementById('step-5-platform').textContent = getPlatformText();
-}
-
-function loadPlatformIcon() {
-    const internalIcon = document.getElementById('step-5-internal-icon');
-    const externalIcon = document.getElementById('step-5-external-icon');
-    const properties = getPlatformProperties(PLATFORM, 'icon-canvas-mini');
-    updatePlatformIcon(internalIcon, externalIcon, PLATFORM, properties);
 }

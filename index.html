@@ -340,7 +340,7 @@
                 <svg class="icon image">
                   <use href="#icon-image" />
                 </svg>
-                <span class="upload-text" data-translate="label.upload"></span>
+                <span id="upload-text" class="upload-text" data-translate="label.upload-add"></span>
               </div>
               <input type="file" id="fileInput" accept="image/*">
               <img id="preview" style="display: none;" />
@@ -448,26 +448,43 @@
       <div class="canvas-content">
         <div class="canvas-info-container">
           <img id="canvas-cover" src="">
-          <div class="h1-section" id="h1-display" stlye="display: none"></div>
-          <div class="h2-section" id="h2-display" stlye="display: none"></div>
+          <div class="h1-section" id="h1-display" style="display: none"></div>
+          <div class="h2-section" id="h2-display" style="display: none"></div>
           <div class="canvas-platform-container">
-            <div class="platform-icon-section" id="platform-icon-display" stlye="display: none"></div>
-            <div class="platform-text-section" id="platform-text-display" stlye="display: none">
-              <svg class="canva-icon">
+            <div id="platform-icon-display">
+              <svg id="canvas-internal-icon" style="display: none">
                 <use href="" />
               </svg>
+              <img id="canvas-external-icon" src="" style="display: none">
+            </div>
+            <div class="platform-text-section" id="platform-text-display" style="display: none">
             </div>
           </div>
         </div>
-        <div class="rating-section" id="rating-display">★★★★★</div>
-        <img class="canvas-logo" src="/assets/icons/logo-white.svg">
+        <div class="star-rating-canvas" id="rating-display">
+          <svg class="rating-canvas icon star unrated" data-value="1">
+            <use href="#icon-star" />
+          </svg>
+          <svg class="rating-canvas icon star unrated" data-value="2">
+            <use href="#icon-star" />
+          </svg>
+          <svg class="rating-canvas icon star unrated" data-value="3">
+            <use href="#icon-star" />
+          </svg>
+          <svg class="rating-canvas icon star unrated" data-value="4">
+            <use href="#icon-star" />
+          </svg>
+          <svg class="rating-canvas icon star unrated" data-value="5">
+            <use href="#icon-star" />
+          </svg>
         </div>
+        <img class="canvas-logo" src="/assets/icons/logo-white.svg">
       </div>
     </div>
 
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script type="module" src="assets/js/app.js"></script>
 
   <!-- Symbols -->

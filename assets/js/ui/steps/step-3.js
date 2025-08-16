@@ -19,6 +19,7 @@ export function resetStep3() {
     COVER = '';
     resetImageUpload();
     loadStars(document.querySelectorAll('.rating'), RATING);
+    resetStarRatingLabel();
 }
 
 function setNextVisibility() {
@@ -74,6 +75,7 @@ function handleFile(file) {
 
     const dropzone = document.getElementById('dropzone');
     const preview = document.getElementById('preview');
+    const uploadText = document.getElementById('upload-text');
 
     const reader = new FileReader();
     reader.onload = e => {
@@ -84,6 +86,7 @@ function handleFile(file) {
         };
         COVER = e.target.result;
         preview.src = COVER;
+        uploadText.textContent = translate('label.upload-edit');
     };
     reader.readAsDataURL(file);
 }
@@ -92,6 +95,7 @@ function resetImageUpload() {
     const dropzone = document.getElementById('dropzone');
     const preview = document.getElementById('preview');
     const fileInput = document.getElementById('fileInput');
+    const uploadText = document.getElementById('upload-text');
 
     preview.src = '';
     preview.style.display = 'none';
@@ -101,6 +105,8 @@ function resetImageUpload() {
 
     fileInput.value = '';
     COVER = '';
+
+    uploadText.textContent = translate('label.upload-add');
 }
 
 function loadStarRatingEventListeners() {
@@ -123,4 +129,8 @@ function loadStarRatingEventListeners() {
             setNextVisibility();
         });
     });
+}
+
+function resetStarRatingLabel() {
+    document.getElementById('star-rating-label').textContent = translate('rating.0');
 }

@@ -1,6 +1,6 @@
-import { getRadioCheckedID } from "./ui/forms.js";
-import { TYPE, MACROTYPE } from "./ui/steps/step-1.js";
-import { PLATFORM, getPlatformProperties } from "./ui/steps/step-2.js";
+import { getRadioCheckedID, loadStars } from "./ui/forms.js";
+import { MACROTYPE, TYPE } from "./ui/steps/step-1.js";
+import { PLATFORM, getPlatformProperties, updatePlatformIcon } from "./ui/steps/step-2.js";
 import { COVER, RATING } from "./ui/steps/step-3.js";
 
 let GENERATED_IMAGE = '';
@@ -15,7 +15,7 @@ export async function generateCanvas() {
     renderPlatformIcon();
     renderText('platform-text-display', getPlatformText());
 
-    renderText('rating-display', getRating());
+    renderStars();
 
     await renderCanvas();
 }
@@ -63,7 +63,15 @@ async function renderCanvas() {
     const canvasContainer = document.getElementById('canvas-container');
     canvasContainer.style.display = 'flex';
 
-    const canvas = await html2canvas(canvasContainer, { backgroundColor: null });
+    const svgElements = canvasContainer.querySelectorAll('svg');
+    svgElements.forEach(function(item) {
+        item.setAttribute("width", item.getBoundingClientRect().width);
+        item.setAttribute("height", item.getBoundingClientRect().height);
+        item.style.width = null;
+        item.style.height= null;
+    });
+
+    const canvas = await html2canvas(canvasContainer);
     const dataUrl = canvas.toDataURL('image/png');
     GENERATED_IMAGE = dataUrl;
 
@@ -78,9 +86,15 @@ function renderText(id, value) {
     }
 }
 
-function renderPlatformIcon() {
-    const simplified = getPlatformProperties(PLATFORM)['has-simplified-icon'] ? '-simplified' : '';
-    document.querySelector('.canva-icon use').setAttribute('href', `#icon-${PLATFORM}${simplified}`);
+export function renderPlatformIcon(type = 'canvas') {
+    const internalIcon = document.getElementById(`${type}-internal-icon`);
+    const externalIcon = document.getElementById(`${type}-external-icon`);
+    const properties = getPlatformProperties(PLATFORM, `${type}-icon`);
+    updatePlatformIcon(internalIcon, externalIcon, PLATFORM, properties);
+}
+
+function renderStars() {
+    loadStars(document.querySelectorAll('.rating-canvas'), RATING);
 }
 
 // Getters
@@ -146,6 +160,3 @@ export function getPlatformText() {
     return id || translate(`${MACROTYPE}.platform.${PLATFORM}`);
 }
 
-function getRating() {
-    return '★'.repeat(RATING) + '☆'.repeat(5 - RATING);
-}

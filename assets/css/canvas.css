@@ -21,7 +21,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3em;
+    gap: 5em;
 }
 
 .canvas-info-container {
@@ -59,17 +59,27 @@
     gap: 1em;
 }
 
-.canva-icon {
+.canvas-icon {
     height: 32px;
     width: 32px;
     fill: #888;
 }
 
-.rating-section {
-    color: #E5A000;
-    font-size: 60px;
+.star-rating-canvas {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.rating-canvas.icon.star {
+    width: 52px;
+    height: 48px;
+    stroke-width: 2.5;
 }
 
 .canvas-logo {
     width: 200px;
+    height: auto;
 }
