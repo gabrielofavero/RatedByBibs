@@ -410,14 +410,23 @@ a {
     height: 100%;
 }
 
-#step-5-title {
-    margin-top: 24px;
+.step-5-title {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
     line-height: 24px;
 }
+
+#step-5-h1 {
+    margin-top: 24px;
+    font-size: 18px;
+    text-decoration: bold;
+}
+
+#step-5-h2 {
+    font-size: 16px;
+}
+
 
 .step-content.step-5 {
     display: flex;

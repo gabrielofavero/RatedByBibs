@@ -1,5 +1,6 @@
+import { generateCanvas } from "../../canvas.js";
+import { disableBack, hideNext } from "../forms.js";
 import { nextStep } from "./step-navigation.js";
-import { hideNext, disableBack } from "../forms.js";
 
 export function loadStep4() {
   disableBack();
@@ -14,10 +15,12 @@ function startLoading() {
   const bar = document.getElementById('loaderBar');
   header.style.visibility = 'hidden';
 
+  // Reset the loading bar if it exists
   if (bar._loadingTimeout) {
     clearTimeout(bar._loadingTimeout);
   }
 
+  generateCanvas();
   bar.style.transition = 'none';
   bar.style.width = '0%';
   container.classList.add('visible');

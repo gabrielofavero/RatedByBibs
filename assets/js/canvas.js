@@ -1,23 +1,22 @@
-import { TYPE } from "./ui/steps/step-1.js";
-import { PLATFORM } from "./ui/steps/step-2.js";
-import { COVER, RATING } from "./ui/steps/step-3.js";
 import { getRadioCheckedID } from "./ui/forms.js";
+import { TYPE, MACROTYPE } from "./ui/steps/step-1.js";
+import { PLATFORM, getPlatformProperties } from "./ui/steps/step-2.js";
+import { COVER, RATING } from "./ui/steps/step-3.js";
 
 let GENERATED_IMAGE = '';
 
 // Main Functions
 export async function generateCanvas() {
     renderCover();
-    
+
     renderText('h1-display', getH1());
     renderText('h2-display', getH2());
-    renderText('h3-display', getH3());
-    
+
     renderPlatformIcon();
     renderText('platform-text-display', getPlatformText());
 
-    renderText('star-rating', getRating());
-    
+    renderText('rating-display', getRating());
+
     await renderCanvas();
 }
 
@@ -45,22 +44,22 @@ export async function shareCanvas() {
             await navigator.share({
                 files: [file],
                 title: 'Rated! By Bibs',
-                text: `I rated a game ${RATING}/5 on ${document.getElementById('platform-select').value}! 🎮`
+                text: `I rated ${RATING}/5 on ${document.getElementById('h1-display').innerText}!`
             });
         } catch (err) {
-            alert("Sharing failed: " + err.message);
+            downloadCanvas();
         }
     } else {
-        alert("Sharing not supported on this browser/device.");
+        downloadCanvas();
     }
 }
 
 // Renderers
 function renderCover() {
-    document.getElementById('canvas-cover').style.backgroundImage = `url(${COVER})`;
+    document.getElementById('canvas-cover').src = COVER;
 }
 
-export async function renderCanvas() {
+async function renderCanvas() {
     const canvasContainer = document.getElementById('canvas-container');
     canvasContainer.style.display = 'flex';
 
@@ -68,14 +67,7 @@ export async function renderCanvas() {
     const dataUrl = canvas.toDataURL('image/png');
     GENERATED_IMAGE = dataUrl;
 
-    const img = document.createElement('img');
-    img.src = dataUrl;
-    const preview = document.getElementById('preview');
-    preview.innerHTML = '';
-    preview.appendChild(img);
-
     canvasContainer.style.display = 'none';
-    document.getElementById('download-share-buttons').style.display = 'block';
 }
 
 function renderText(id, value) {
@@ -87,15 +79,12 @@ function renderText(id, value) {
 }
 
 function renderPlatformIcon() {
-    const platformIcon = document.createElement('img');
-    platformIcon.src = `assets/icons/${PLATFORM}.png`;
-    platformIcon.style.height = '40px';
-    document.getElementById('platform-display').innerHTML = '';
-    document.getElementById('platform-display').appendChild(platformIcon);
+    const simplified = getPlatformProperties(PLATFORM)['has-simplified-icon'] ? '-simplified' : '';
+    document.querySelector('.canva-icon use').setAttribute('href', `#icon-${PLATFORM}${simplified}`);
 }
 
 // Getters
-function getH1() {
+export function getH1() {
     switch (TYPE) {
         case "music":
             return getMusicH1();
@@ -117,10 +106,10 @@ function getH1() {
     }
 }
 
-function getH2() {
+export function getH2() {
     switch (TYPE) {
         case "tv":
-            return getTvH2(); 
+            return getTvH2();
         case "music":
             return getMusicH2();
         default:
@@ -142,40 +131,20 @@ function getH2() {
 
     function getMusicH2() {
         const artist = document.getElementById('music-artist-name').value.trim();
-        const album = document.getElementById('music-album-title').value.trim();
         switch (getRadioCheckedID('.radios.music')) {
             case 'music-radio-album':
+            case 'music-radio-song':
                 return artist;
-            case 'music-radio-song':
-                return album || artist;
             default:
                 return '';
         }
     }
 }
 
-function getH3() {
-    switch (TYPE) {
-        case "music":
-            return getMusicH3();
-        default:
-            return '';
-    }
-
-    function getMusicH3() {
-        switch (getRadioCheckedID('.radios.music')) {
-            case 'music-radio-song':
-                return document.getElementById('music-album-title').value.trim();
-            default:
-                return '';
-        }
-    }
+export function getPlatformText() {
+    const id = document.getElementById(`${TYPE}-id`)?.value;
+    return id || translate(`${MACROTYPE}.platform.${PLATFORM}`);
 }
-
-function getPlatformText() {
-
-}
-
 
 function getRating() {
     return '★'.repeat(RATING) + '☆'.repeat(5 - RATING);

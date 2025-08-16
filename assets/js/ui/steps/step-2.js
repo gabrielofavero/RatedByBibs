@@ -1,8 +1,8 @@
 import { NAVIAGATION_LABELS } from "../../app.js";
 import { USER_LANGUAGE, translate } from "../../translation/translation.js";
 import { BOTTOMSHEET, OVERLAY, closeSheet } from "../bottomsheet.js";
-import { disableNext, enableBack, enableNext, enableButton, disableButton, hasMissingRequiredInputs, restrictToPositiveInputs, updateNextTextContent } from "../forms.js";
-import { TYPE, TYPES } from "./step-1.js";
+import { disableButton, disableNext, enableBack, enableButton, enableNext, hasMissingRequiredInputs, restrictToPositiveInputs, updateNextTextContent } from "../forms.js";
+import { MACROTYPE, TYPE, TYPES } from "./step-1.js";
 
 export let PLATFORM;
 let PLATFORMS;
@@ -10,15 +10,6 @@ let PLATFORMS;
 const SUBTYPE = {
     tv: '',
     music: ''
-}
-
-export const MACROTYPE = {
-    movie: 'video',
-    tv: 'video',
-    game: 'game',
-    music: 'music',
-    book: 'book',
-    other: 'other'
 }
 
 let TYPE_PLATFORMS;
@@ -274,7 +265,7 @@ function processPlatform(platform, j, containerName) {
 }
 
 export function getPlatformProperties(platform, iconClass = 'icon') {
-    const properties = PLATFORMS?.properties?.[MACROTYPE[TYPE]]?.[platform] || {};
+    const properties = PLATFORMS?.properties?.[MACROTYPE]?.[platform] || {};
     properties.class = iconClass;
     return properties;
 }
@@ -306,7 +297,7 @@ function resetPlatformSlot({ div, background, internalIcon, externalIcon, label 
 
 function updatePlatformSlot({ div, background, internalIcon, externalIcon, label }, platform, properties) {
     div.setAttribute('platform', platform);
-    label.textContent = translate(`${MACROTYPE[TYPE]}.platform.${platform}`);
+    label.textContent = translate(`${MACROTYPE}.platform.${platform}`);
 
     background.classList.add(properties.background || platform);
 

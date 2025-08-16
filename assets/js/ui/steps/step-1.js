@@ -1,8 +1,18 @@
 import { NAVIAGATION_LABELS } from "../../app.js";
-import { disableBack, disableNext, enableNext, updateNextTextContent, showNext } from "../forms.js";
+import { disableBack, disableNext, enableNext, showNext, updateNextTextContent } from "../forms.js";
 
-export const TYPES = ['movie', 'tv', 'game', 'music', 'book', 'other']
 export let TYPE;
+export const TYPES = ['movie', 'tv', 'game', 'music', 'book', 'other']
+
+export let MACROTYPE;
+const MACROTYPES = {
+    movie: 'video',
+    tv: 'video',
+    game: 'game',
+    music: 'music',
+    book: 'book',
+    other: 'other'
+}
 
 export function loadStep1() {
     setNextVisibility();
@@ -18,6 +28,7 @@ export function loadStep1Listeners() {
             const unselected = TYPE === type.id;
             const newType = unselected ? '' : type.id;
             TYPE = newType;
+            MACROTYPE = MACROTYPES[TYPE];
 
             for (const innerDiv of types) {
                 const criteria = unselected ? false : innerDiv.id === type.id;
