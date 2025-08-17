@@ -15,15 +15,13 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
-  - 🏆 **F018:** [E007] Adapt Canvas generation
-
 ### Backlog
 
 - 🐞 **B001:** Platform bottomsheet can only confirm once
 - 🐞 **B002:** Required fields for step 2 not always considered
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Padronize styling with Figma prototype
+- 📈 **I003:** Adjust canvas platform icon to use max width
 - ⚔️ **E008:** Create Sticker Canvas
 - ⚔️ **E009:** Get boxarts via API
 
@@ -31,6 +29,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
   - 🏆 **F017:** [E007] Create Final page elements
+  - 🏆 **F018:** [E007] Adapt Canvas generation
 - ⚔️ **E006:** Implement "Step 4": Loading screen
   - 🏆 **F014:** [E006] Dynamically hide next button
   - 🏆 **F015:** [E006] Create loading bar (style + dynamic load)
