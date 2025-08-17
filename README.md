@@ -27,6 +27,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 🏆 **F020:** Create confirm bottomsheet
 
 ### Done
+- 🐞 **B006:** Music canvas not loading when all fields are typed
 - 🐞 **B005:** Next not enabling on step 3 if rating is before image upload
 - 🏆 **F021:** Create new canvas icons for better visibility
 - 🐞 **B001:** Platform bottomsheet can only confirm once and does not select first option

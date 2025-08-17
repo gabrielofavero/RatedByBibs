@@ -142,11 +142,11 @@ export function getH1() {
     function getMusicH1() {
         switch (getRadioCheckedID('.radios.music')) {
             case 'music-radio-album':
-                return document.getElementById('music-album-title').value.trim();
+                return document.getElementById('music-album').value.trim();
             case 'music-radio-artist':
-                return document.getElementById('music-artist-name').value.trim();
+                return document.getElementById('music-artist').value.trim();
             case 'music-radio-song':
-                return document.getElementById('music-song-title').value.trim();
+                return document.getElementById('music-song').value.trim();
             default:
                 return '';
         }
@@ -177,7 +177,7 @@ export function getH2() {
     }
 
     function getMusicH2() {
-        const artist = document.getElementById('music-artist-name').value.trim();
+        const artist = document.getElementById('music-artist').value.trim();
         switch (getRadioCheckedID('.radios.music')) {
             case 'music-radio-album':
             case 'music-radio-song':
