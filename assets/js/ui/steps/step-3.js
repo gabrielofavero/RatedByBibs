@@ -38,7 +38,10 @@ function loadImageUploadEventListeners() {
     const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('fileInput');
 
-    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', () => {
+        fileInput.click();
+        setNextVisibility();
+    });
 
     fileInput.addEventListener('change', event => {
         const files = event.target.files;
@@ -86,10 +89,9 @@ function handleFile(file) {
         COVER = e.target.result;
         preview.src = COVER;
         uploadText.textContent = translate('label.upload-edit');
+        setNextVisibility();
     };
     reader.readAsDataURL(file);
-
-    setNextVisibility();
 }
 
 function resetImageUpload() {
