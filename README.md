@@ -15,7 +15,6 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 📈 **I004:** Adjust canvas platform icon to use max width
 - 🐞 **B008:** Types SVGs not loading on iOS
 - 🏆 **F023:** Add "None" to music and video, and "Media" to video 
 - 🏆 **F024:** Add some legacy platforms to games
@@ -32,6 +31,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 🏆 **F020:** Create confirm bottomsheet
 
 ### Done
+- 📈 **I004:** Adjust canvas platform icon to use max width
 - 🐞 **B009:** Not all subtitles and platforms are being correctly displayed
 - 🏆 **F025:** Share with link
 - 🐞 **B007:** Step 5 canvas preview not in the correct styling

@@ -138,6 +138,7 @@ function renderText(id, value) {
 
 export function renderPlatformIcon(id = 'canvas-icon') {
     const icon = document.getElementById(id);
+    icon.innerHTML = '<use href="" />';
     const canvas = getPlatformProperties(PLATFORM)?.canvas;
     const platform = canvas?.['has-canvas-icon'] ? `${PLATFORM}-canvas` : PLATFORM;
     const widthMultiplier = canvas?.['width-multiplier'];
@@ -235,40 +236,40 @@ function getShareText() {
             default:
                 return '';
         }
-    
+
         function getBookContent() {
             const title = document.getElementById('book-title').value.trim();
             const author = document.getElementById('book-author').value.trim();
             return translate('book.share-content', { title, author });
         }
-    
+
         function getGameContent() {
             const title = document.getElementById('game-title').value.trim();
             const platform = translate(`${TYPE}.platform.${PLATFORM}`);
             return translate('game.share-content', { title, platform });
         }
-    
+
         function getTitleContent() {
             const title = document.getElementById(`${TYPE}-title`).value.trim();
             return translate(`${TYPE}.share-content`, { title });
         }
-    
+
         function getMusicContent() {
             const song = document.getElementById('music-song').value.trim();
             const artist = document.getElementById('music-artist').value.trim();
             const album = document.getElementById('music-album').value.trim();
             return translate(`music.share-content.${RADIO_VALUES.music.subtype}`, { song, artist, album });
         }
-    
+
         function getTvContent() {
             const title = document.getElementById('tv-title').value.trim();
             const season = document.getElementById('tv-season').value.trim();
             const episode = document.getElementById('tv-episode').value.trim();
             return translate(`tv.share-content.${RADIO_VALUES.tv.subtype}`, { title, season, episode });
         }
-    
+
     }
-    
+
     function getShareEmoji() {
         switch (RATING) {
             case 1:
@@ -291,5 +292,5 @@ function getSeasonEpisode(seasonValue, episodeValue) {
     const season = String(parseInt(seasonValue)).padStart(2, '0');
     const episode = String(parseInt(episodeValue)).padStart(2, '0');
     return translate('tv.full-season-episode', { season, episode });
-  }
+}
 

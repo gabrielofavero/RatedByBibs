@@ -142,22 +142,29 @@
                     "icon": "default"
                 }
             },
+            "ea": {
+                "canvas": {
+                    "width-multiplier": 0.9230769230769231
+                }
+            },
             "google": {
                 "canvas": {
                     "has-canvas-icon": true,
-                    "hide-default-label": true
+                    "hide-default-label": true,
+                    "width-multiplier": 3.333333333333333
                 }
             },
             "itch": {
                 "canvas": {
                     "has-canvas-icon": true,
-                    "hide-default-label": true
+                    "hide-default-label": true,
+                    "width-multiplier": 2.820512820512821
                 }
             },
             "humble": {
                 "canvas": {
                     "hide-default-label": true,
-                    "width-multiplier": 2.051282051282051
+                    "width-multiplier": 2.564102564102564
                 }
             },
             "pc": {
@@ -166,23 +173,46 @@
                     "icon": "default"
                 }
             },
+            "steam": {
+                "canvas": {
+                    "width-multiplier": 0.7692307692307692
+                }
+            },
+            "switch": {
+                "canvas": {
+                    "width-multiplier": 0.7692307692307692
+                }
+            },
             "switch2": {
                 "canvas": {
                     "width-multiplier": 1.282051282051282
                 }
+            },
+            "ubisoft": {
+                "canvas": {
+                    "width-multiplier": 0.9230769230769231
+                }
             }
         },
         "music": {
-            "deezer": {
+            "amazon-music": {
                 "canvas": {
                     "has-canvas-icon": true,
-                    "hide-default-label": true
+                    "hide-default-label": true,
+                    "width-multiplier": 3.846153846153846
+                }
+            },
+            "apple-music": {
+                "canvas": {
+                    "hide-default-label": true,
+                    "width-multiplier": 3.076923076923077
                 }
             },
             "pandora": {
                 "canvas": {
                     "has-canvas-icon": true,
-                    "hide-default-label": true
+                    "hide-default-label": true,
+                    "width-multiplier": 3.076923076923077
                 },
                 "platform": {
                     "has-svg": true,
@@ -201,28 +231,38 @@
                     "icon": "default"
                 }
             },
+            "qobuz": {
+                "canvas": {
+                    "hide-default-label": true,
+                    "width-multiplier": 2.051282051282051
+                }
+            },
             "soundcloud": {
                 "canvas": {
                     "has-canvas-icon": true,
-                    "hide-default-label": true
+                    "hide-default-label": true,
+                    "width-multiplier": 4.615384615384615
                 }
             },
             "spotify": {
                 "canvas": {
                     "has-canvas-icon": true,
-                    "hide-default-label": true
+                    "hide-default-label": true,
+                    "width-multiplier": 3.076923076923077
                 }
             },
             "tidal": {
                 "canvas": {
                     "has-canvas-icon": true,
-                    "hide-default-label": true
+                    "hide-default-label": true,
+                    "width-multiplier": 3.846153846153846
                 }
             },
             "youtube-music": {
                 "canvas": {
                     "has-canvas-icon": true,
-                    "hide-default-label": true
+                    "hide-default-label": true,
+                    "width-multiplier": 2.564102564102564
                 }
             }
         },
