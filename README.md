@@ -2,7 +2,7 @@
 
 A quick way to rate your favorite content and share it to social network 😁
 
-Development made by Bibs [me!](https://www.linkedin.com/in/gabrielfavero/) using plain HTML, CSS and JS. This is a simple proof of concept, so let's keep it simple :)
+Development made by Bibs [me!](https://www.linkedin.com/in/gabrielfavero/) using plain HTML, CSS and JS. My original plan was to share it as an Instagram Stories native sticker, but since it requires an API that can only be used in mobile apps, this version generates an image canvas that you can export to your favorite social network. I might do a native mobile version in the future for that, but no promises!
 
 Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado-1797a31bb/). You can find his Figma template [here](https://www.figma.com/design/pAblSLtZEBadSkxbuGNwB5/Rated--by-bibs?node-id=0-1&t=mz8OdJOHVDZHonEO-1).
 
@@ -16,6 +16,11 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 ### Doing
 
 - 📈 **I004:** Adjust canvas platform icon to use max width
+- 🐞 **B008:** Types SVGs not loading on iOS
+- 🏆 **F023:** Add "None" to music and video, and "Media" to video 
+- 🏆 **F024:** Add some legacy platforms to games
+- 🏆 **F026:** Hide game-id if platform does not have a username
+- 🏆 **F027:** Store game-id in localStorage according to platform
 
 ### Backlog
 
@@ -27,6 +32,8 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 🏆 **F020:** Create confirm bottomsheet
 
 ### Done
+- 🐞 **B009:** Not all subtitles and platforms are being correctly displayed
+- 🏆 **F025:** Share with link
 - 🐞 **B007:** Step 5 canvas preview not in the correct styling
 - 🐞 **B006:** Music canvas not loading when all fields are typed
 - 🐞 **B005:** Next not enabling on step 3 if rating is before image upload

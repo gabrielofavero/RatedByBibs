@@ -29,7 +29,12 @@ function loadTitles() {
 }
 
 function loadPlatform() {
-    if (!PLATFORM) return;
+    const container = document.getElementById('step-5-platform-container');
+    if (!PLATFORM) {
+        container.style.display = 'none';
+        return;
+    };
+    container.style.display = 'flex';
     renderPlatformLabel('step-5-platform');
     renderPlatformIcon('step-5-icon');
 }
