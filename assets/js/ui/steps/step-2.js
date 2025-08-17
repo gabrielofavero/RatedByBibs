@@ -207,7 +207,7 @@ function getOptionVisibilityObject(type, value) {
             return {
                 song: value === 'song',
                 artist: true,
-                album: ['song', 'album'].includes(value)
+                album: value === 'album'
             }
         default:
             return {}
