@@ -1,0 +1,128 @@
+{
+    "movie": {
+        "title": "Filme",
+        "title-input": "Nome do filme"
+    },
+    "tv": {
+        "title": "Série",
+        "title-input": "Nome da série",
+        "season": "Temporada",
+        "episode": "Episódio",
+        "se": "S{{season}}E{{episode}}",
+        "radio": {
+            "tv": "Uma série",
+            "season": "Uma temporada",
+            "episode": "Um episódio"
+        }
+    },
+    "video": {
+        "platform": {
+            "cinema": "Cinema",
+            "tv": "TV",
+            "streaming": "Streaming",
+            "amazon": "Prime Video",
+            "apple-tv": "Apple TV",
+            "crunchyroll": "Crunchyroll",
+            "discovery": "Discovery+",
+            "disney": "Disney+",
+            "globo": "GloboPlay",
+            "hbo-max": "HBO Max",
+            "hulu": "Hulu",
+            "mubi": "MUBI",
+            "netflix": "Netflix",
+            "paramount": "Paramount+",
+            "peacock": "Peacock",
+            "starplus": "Star+",
+            "youtube": "YouTube",
+            "piracy": "Outro 😏"
+        }
+    },
+    "game": {
+        "title": "Game",
+        "title-input": "Nome do jogo",
+        "id": {
+            "default": "ID de Jogador",
+            "steam": "Steam ID",
+            "playstation": "PSN ID",
+            "xbox": "Gamertag",
+            "nintendo": "Nintendo Account"
+        },
+        "platform": {
+            "pc": "PC",
+            "console": "Console",
+            "apple": "Apple",
+            "battlenet": "Battlenet",
+            "ea": "EA Play",
+            "epic": "Epic Games",
+            "gog": "GOG",
+            "google": "Google Play",
+            "humble": "Humble",
+            "itch": "itch.io",
+            "playstation": "Playstation",
+            "steam": "Steam",
+            "switch": "Switch",
+            "switch2": "Switch 2",
+            "ubisoft": "Ubisoft",
+            "xbox": "Xbox"
+        }
+    },
+    "music": {
+        "title": "Música",
+        "song": "Música",
+        "artist": "Artista",
+        "album": "Álbum",
+        "radio": {
+            "song": "Uma música",
+            "artist": "Um artista",
+            "album": "Um álbum"
+        },
+        "platform": {
+            "amazon-music": "Amazon Music",
+            "apple-music": "Apple Music",
+            "deezer": "Deezer",
+            "qobuz": "Qobuz",
+            "soundcloud": "SoundCloud",
+            "spotify": "Spotify",
+            "tidal": "TIDAL",
+            "youtube-music": "YouTube Music",
+            "pandora": "Pandora",
+            "piracy": "Outro 😏"
+        }
+    },
+    "book": {
+        "title": "Livro",
+        "author": "Autor"
+    },
+    "other": {
+        "title": "Outro",
+        "title-input": "Título",
+        "subtitle": "Subtítulo"
+    },
+    "rating": {
+        "0": "Selecione uma nota",
+        "1": "Péssimo",
+        "2": "Ruim",
+        "3": "Mediano",
+        "4": "Bom",
+        "5": "Ótimo"
+    },
+    "label": {
+        "description": "Uma forma rápida de avaliar seu conteúdo favorito e compartilhar nas redes sociais",
+        "language_confirmation": "Alterar o idioma irá recarregar a página e descartar qualquer progresso não salvo. Tem certeza de que deseja continuar?",
+        "upload-add": "Clique ou arraste para adicionar uma capa",
+        "upload-edit": "Clique ou arraste para editar a capa",
+        "loading": "Gerando sua avaliação...",
+        "required": "Obrigatório",
+        "optional": "Opcional",
+        "none": "Nenhum",
+        "more": "Mais",
+        "im-rating": "Estou avaliando:",
+        "platform": "Plataforma",
+        "confirm": "Confirmar",
+        "begin": "Começar avaliação",
+        "next": "Continuar",
+        "finish": "Gerar avaliação",
+        "restart": "Reiniciar",
+        "download": "Baixar"
+    }
+}

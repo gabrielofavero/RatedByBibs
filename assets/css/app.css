@@ -1,13 +1,21 @@
 /* =======================
    Page Base
    ======================= */
+:root {
+    --next-container-height: 91px;
+    --theme-color: #E5A000;
+    --theme-color-hover: #FFB300;
+}
 
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #121212;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #1A1A1A, #000000);
     color: #fff;
     text-align: center;
-    padding: 2rem;
+    margin: 0;
+    padding-top: 1rem;
+    padding-bottom: var(--next-container-height);
+    min-height: calc(100vh + var(--next-container-height) + 42px);
 }
 
 a {
@@ -19,31 +27,410 @@ a {
     font-weight: bold;
 }
 
-/* =======================
-   Logo
-   ======================= */
-
-.logo,
-.logo-canvas {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
+.gradient {
+    background: linear-gradient(45deg, #FDC090 0%, #B8B7F7 100%);
 }
+
+/* =======================
+   Logo and description
+   ======================= */
 
 .logo {
     margin: 1.5rem;
+    margin-top: 0;
+    width: 210px;
+    height: 40px;
 }
 
-.rated,
-.rated-canvas {
-    color: #ffcc00;
+.description {
+    font-weight: 400;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 100%;
+    padding: 0 2em;
+    margin-bottom: 30px
 }
 
-.rated {
-    font-size: 2.5rem;
-    margin-right: 0.3em;
+@media screen and (min-width: 580px) {
+    .description {
+        margin-bottom: 48px;
+    }
 }
 
-.by-bibs {
-    font-size: 1.5rem;
+
+/* =======================
+   Header and Content
+   ======================= */
+
+.header-bar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 1em;
+}
+
+@media screen and (min-width: 820px) {
+    .header-bar {
+        width: 800px;
+        margin: auto;
+    }
+}
+
+#back {
+    cursor: pointer;
+}
+
+/* =======================
+   Page Navigation (Steps)
+   ======================= */
+
+.step-wrapper {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.step-slider {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.step {
+    width: 100vw;
+    flex-shrink: 0;
+    visibility: hidden;
+
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.step-label {
+    font-weight: 600;
+    font-size: 18px;
+    font-style: normal;
+    line-height: 24px;
+    letter-spacing: -0.01px;
+    color: #F5F5F5;
+    text-align: left;
+}
+
+.step.visible {
+    visibility: visible;
+}
+
+.step-content {
+    margin: 0;
+}
+
+#previous {
+    cursor: pointer;
+}
+
+#back {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 1;
+}
+
+#back.disabled {
+    opacity: 0;
+    cursor: auto;
+}
+
+#platform-container {
+    margin-top: 48px;
+}
+
+#platform-label {
+    margin-bottom: 24px;
+}
+
+@media screen and (max-width: 433px) {
+    #platform-container {
+        margin-left: 9vw;
+        margin-right: 9vw;
+    }
+}
+
+/* =======================
+   Navigation: Next Button
+   ======================= */
+
+.next-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: var(--next-container-height);
+    pointer-events: auto;
+    z-index: 5;
+    margin-top: 0;
+    background: #1A1A1A;
+}
+
+.btn-box {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 345px;
+    height: 49px;
+    background: var(--theme-color);
+    color: #2C2C2C;
+    border-radius: 16px;
+    transition: background 0.3s ease;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--theme-color-hover);
+}
+
+.btn.secondary {
+    background: none;
+    color: var(--theme-color);
+    border: 1.5px solid var(--theme-color);
+}
+
+.btn.secondary:hover {
+    color: var(--theme-color-hover);
+    border: 1.5px solid var(--theme-color-hover);
+    background: rgba(229, 160, 0, 0.1)
+}
+
+@media screen and (max-width: 475px) {
+    .btn {
+        width: 90vw;
+    }
+}
+
+.btn.disabled {
+    background: #D9D9D9;
+    color: #757575;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.next-icon {
+    width: 25px;
+    height: 25px;
+}
+
+/* =======================
+   Bottomsheet
+   ======================= */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.bottomsheet {
+    z-index: 15;
+}
+
+.bottomsheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    background: #1A1A1A;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 24px 24px 0px 0px;
+    transition: transform 0.6s ease-in-out;
+    max-height: 80%;
+    display: flex;
+}
+
+.bottomsheet.active {
+    transform: translateY(0);
+}
+
+.sheet-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottomsheet-title {
+    padding: 12px 16px;
+    flex-shrink: 0;
+}
+
+.bottomsheet-title {
+    padding-top: 8px;
+}
+
+.drag-handle {
+    width: 36px;
+    height: 4px;
+    background: #d0d0d0;
+    border-radius: 999px;
+    margin: 8px auto 4px;
+    touch-action: none;
+    cursor: grab;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+.bottomsheet-body {
+    overflow-y: auto;
+    flex: 1;
+    width: 100%;
+}
+
+.bottomsheet-button {
+    margin-top: 24px;
+}
+
+/* =======================
+   Loading Screen
+   ======================= */
+
+.loading-container {
+    position: fixed;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 15;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.loading-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.loading-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 110%;
+    color: #F5F5F5;
+    text-align: left;
+    margin-bottom: 16px;
+    width: 80vw;
+}
+
+.loading-bar-container {
+    width: 80vw;
+    max-width: 600px;
+    height: 4px;
+    background: #E6E4E4;
+    border-radius: 100px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #000;
+}
+
+@media screen and (min-width: 730px) {
+
+    .loading-label,
+    .loading-bar-container {
+        width: 600px;
+    }
+}
+
+.loading-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--theme-color);
+    transition: width 1.5s ease;
+}
+
+/* =======================
+   Step-exclusive Content
+   ======================= */
+
+#step-4 {
+    height: 100%;
+}
+
+.step-5-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+#step-5-h1 {
+    margin-top: 24px;
+    font-size: 18px;
+    text-decoration: bold;
+}
+
+#step-5-h2 {
+    font-size: 16px;
+}
+
+
+.step-content.step-5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#step-5-platform-container {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 8px
+}
+
+#step-5-platform {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: #767676;
 }
