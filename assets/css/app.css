@@ -403,7 +403,7 @@ a {
 #step-5-h1 {
     margin-top: 24px;
     font-size: 18px;
-    text-decoration: bold;
+    font-weight: 600;
 }
 
 #step-5-h2 {

@@ -458,8 +458,18 @@ label {
     background-color: #2d291f;
 }
 
-.image-box.step-5 {
+.image-box-step-5 {
     cursor: auto;
+}
+
+#step-5-image {
+    border-radius: 16px;
+    max-width: 235px;
+    max-height: 352.5px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 input[type="file"] {
