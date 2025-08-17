@@ -56,11 +56,9 @@ export function loadStep2Listeners() {
         }, 1000);
     });
 
-    const confirmBtn = document.getElementById('confirm-bottomsheet');
-    confirmBtn.addEventListener('click', () => {
-        setNewPlatform();
-        closeSheet();
-        confirmBtn.disabled = true;
+    document.getElementById('confirm-bottomsheet').addEventListener('click', () => {
+            setNewPlatform();
+    closeSheet();
     });
 }
 
@@ -81,13 +79,16 @@ export function resetStep2() {
     for (const platform of platforms) {
         document.getElementById(platform).classList.remove('selected');
     }
+
+    loadCheckboxInput('tv');
+    loadCheckboxInput('music');
 }
 
 
 // Step Logic Control
 function isNextDisabled() {
     if (!TYPE) return true;
-    const emptyRequired = hasMissingRequiredInputs();
+    const emptyRequired = hasMissingRequiredInputs(`step-2.input.${TYPE}`);
     const isPlatformInvalid = ['book', 'other'].includes(TYPE) ? false : !PLATFORM;
     return emptyRequired || isPlatformInvalid;
 }
@@ -154,19 +155,20 @@ function loadMorePlatforms() {
 }
 
 function setNewPlatform() {
-    document.getElementById('more').classList.remove('selected');
     if (!PLATFORM) {
         return;
     }
 
     const platformIndex = TYPE_PLATFORMS.indexOf(PLATFORM);
-    if (platformIndex > -1) {
-        document.getElementById(`platform-${platformIndex + 1}`).classList.add('selected');
-    } else {
-        document.getElementById('platform-1').classList.add('selected');
+    let platformID = `platform-${platformIndex + 1}`;
+
+    if (platformIndex < 0) {
         processPlatform(PLATFORM, 1, 'platform');
-        setNextVisibility();
+        platformID = 'platform-1';
     }
+
+    document.getElementById(platformID).classList.add('selected');
+    setNextVisibility();
 }
 
 // Input Handling and Dynamic UI
@@ -178,18 +180,16 @@ function loadCheckboxInput(type) {
         return;
     }
 
-    const shouldBeVisible = getOptionVisibilityObject(type, value)
+    const shouldBeVisible = getOptionVisibilityObject(type, value);
+    const shouldBeRequired = getOptionRequiredObject(type, value);
 
     for (const key in shouldBeVisible) {
         const option = document.getElementById(`${type}-${key}-option`);
         const input = document.getElementById(`${type}-${key}`);
 
-        input.required = shouldBeVisible[key];
-        if (shouldBeVisible[key] === true) {
-            option.classList.remove('hidden');
-        } else {
-            option.classList.add('hidden');
-        }
+        option.classList.toggle('hidden', !shouldBeVisible[key]);
+        input.required = shouldBeRequired[key];
+        input.placeholder = translate(`label.${shouldBeRequired[key] ? 'required' : 'optional'}`);
     }
 
     SUBTYPE[type] = value;
@@ -208,6 +208,25 @@ function getOptionVisibilityObject(type, value) {
                 song: value === 'song',
                 artist: true,
                 album: ['song', 'album'].includes(value)
+            }
+        default:
+            return {}
+    }
+}
+
+function getOptionRequiredObject(type, value) {
+    switch (type) {
+        case 'tv':
+            return {
+                title: true,
+                season: ['episode', 'season'].includes(value),
+                episode: value === 'episode'
+            }
+        case "music":
+            return {
+                song: value === 'song',
+                artist: true,
+                album: value === 'album'
             }
         default:
             return {}
@@ -241,7 +260,7 @@ function loadStep2Platforms() {
 
     if (currentTypePlatforms.length === 5 && currentTypePlatforms.every(obj => obj.type === TYPE)) return;
 
-    TYPE_PLATFORMS = PLATFORMS?.[TYPE]?.[USER_LANGUAGE]?.slice(0, 5);
+    TYPE_PLATFORMS = PLATFORMS?.platform?.[TYPE]?.[USER_LANGUAGE]?.slice(0, 5);
     if (!Array.isArray(TYPE_PLATFORMS) || TYPE_PLATFORMS.length === 0) return;
 
     processPlatformContainer();
@@ -299,26 +318,26 @@ function updatePlatformSlot({ div, background, internalIcon, externalIcon, label
     div.setAttribute('platform', platform);
     label.textContent = translate(`${MACROTYPE}.platform.${platform}`);
 
-    background.classList.add(properties.background || platform);
+    background.classList.add(properties?.platform?.background || platform);
 
     updatePlatformIcon(internalIcon, externalIcon, platform, properties);
 }
 
-export function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
-    const hasSvg = properties['has-svg'] === true;
-    const iconClasses = `${properties.class} ${properties.icon || platform}`
+function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
+    const hasSvg = properties?.platform?.['has-svg'] === true;
+    const iconClasses = `${properties.class} ${properties?.platform?.icon || platform}`
 
     if (hasSvg) {
         externalIcon.src = `/assets/icons/${platform}.svg`;
 
-        if (properties.svg?.width) {
-            externalIcon.setAttribute("width", properties.svg.width);
+        if (properties?.platform?.svg?.width) {
+            externalIcon.setAttribute("width", properties.platform.svg.width);
         } else {
             externalIcon.removeAttribute("width");
         }
 
-        if (properties.svg?.height) {
-            externalIcon.setAttribute("height", properties.svg.height);
+        if (properties?.platform?.svg?.height) {
+            externalIcon.setAttribute("height", properties.platform.svg.height);
         } else {
             externalIcon.removeAttribute("height");
         }
@@ -326,15 +345,27 @@ export function updatePlatformIcon(internalIcon, externalIcon, platform, propert
         externalIcon.setAttribute('class', iconClasses);
         externalIcon.style.display = 'block';
     } else {
-        const use = internalIcon.querySelector('use');
-        if (use) use.setAttribute('href', `#icon-${platform}`);
-
-        internalIcon.setAttribute('class', iconClasses);
+        updateInternalIcon(internalIcon, platform, iconClasses);
         internalIcon.style.display = 'block';
+    }
+}
+
+export function updateInternalIcon(internalIcon, platform, iconClasses, widthMultiplier) {
+    const use = internalIcon.querySelector('use');
+    if (use) use.setAttribute('href', `#icon-${platform}`);
+    internalIcon.setAttribute('class', iconClasses);
+
+    if (widthMultiplier) {
+        const height = parseInt(window.getComputedStyle(internalIcon).height.split('px')[0]);
+        if (height) {
+            internalIcon.style.width = `${height * widthMultiplier}px`;
+        }
+    } else {
+        internalIcon.style.width = '';
     }
 }
 
 // Data Utilities
 function getAllPlatforms() {
-    return PLATFORMS?.[TYPE]?.all || [];
+    return PLATFORMS?.platform?.[TYPE]?.all || [];
 }

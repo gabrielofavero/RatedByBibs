@@ -15,18 +15,25 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
+- 📈 **I004:** Adjust canvas platform icon to use max width
+- 🐞 **B005:** Next not enabling on step 3 if rating is before image upload
+
 ### Backlog
 
-- 🐞 **B001:** Platform bottomsheet can only confirm once
-- 🐞 **B002:** Required fields for step 2 not always considered
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Padronize styling with Figma prototype
-- 📈 **I003:** Adjust canvas platform icon to use max width
 - ⚔️ **E008:** Create Sticker Canvas
 - ⚔️ **E009:** Get boxarts via API
+- 🏆 **F019:** Create error bottomsheet
+- 🏆 **F020:** Create confirm bottomsheet
 
 ### Done
-
+- 🏆 **F021:** Create new canvas icons for better visibility
+- 🐞 **B001:** Platform bottomsheet can only confirm once and does not select first option
+- 🐞 **B002:** Required fields for step 2 not always considered
+- 🐞 **B003:** Canvas image not showing correctly if too small
+- 🐞 **B004:** Canvas not downloading on iOS
+- 🏆 **F022:** Make album optional if rating a song
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
   - 🏆 **F017:** [E007] Create Final page elements
   - 🏆 **F018:** [E007] Adapt Canvas generation

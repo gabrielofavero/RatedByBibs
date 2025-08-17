@@ -1,4 +1,4 @@
-import { downloadCanvas, getH1, getH2, getPlatformText, renderPlatformIcon } from "../../canvas.js";
+import { downloadOrShareCanvas, getH1, getH2, renderPlatformIcon, renderPlatformLabel } from "../../canvas.js";
 import { disableBack, hideNext, loadStars } from "../forms.js";
 import { PLATFORM } from "./step-2.js";
 import { COVER, RATING } from "./step-3.js";
@@ -15,7 +15,7 @@ export function loadStep5() {
 }
 
 export function loadStep5Listeners() {
-    document.getElementById('download').addEventListener('click', downloadCanvas);
+    document.getElementById('download').addEventListener('click', downloadOrShareCanvas);
     document.getElementById('restart').addEventListener('click', resetSteps);
 }
 
@@ -30,10 +30,6 @@ function loadTitles() {
 
 function loadPlatform() {
     if (!PLATFORM) return;
-    loadPlatformLabel();
-    renderPlatformIcon('step-5');
-}
-
-function loadPlatformLabel() {
-    document.getElementById('step-5-platform').textContent = getPlatformText();
+    renderPlatformLabel('step-5-platform');
+    renderPlatformIcon('step-5-icon');
 }

@@ -47,7 +47,6 @@ function loadImageUploadEventListeners() {
         } else {
             handleFile(files[0]);
         }
-        setNextVisibility();
     });
 
     dropzone.addEventListener('dragover', event => {
@@ -89,6 +88,8 @@ function handleFile(file) {
         uploadText.textContent = translate('label.upload-edit');
     };
     reader.readAsDataURL(file);
+
+    setNextVisibility();
 }
 
 function resetImageUpload() {

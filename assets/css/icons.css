@@ -3,7 +3,6 @@
    ======================= */
 
 :root {
-    --icon-gray: #888;
     --icon-theme: #E5A000;
 }
 
@@ -25,16 +24,10 @@
     fill: #fff
 }
 
-.icon-canvas {
-    fill: var(--icon-gray);
-    height: 40px;
-    width: 40px;
-}
-
 .step-5-icon {
-    fill: var(--icon-gray);
-    height: 16px;
-    width: 16px;
+    fill: #888;
+    height: 19.6px;
+    width: 19.6px;
 }
 
 .back {
@@ -288,10 +281,6 @@
     width: 40px;
 }
 
-.icon.pandora.gray {
-    fill: var(--icon-gray)
-}
-
 /* Qobuz */
 .background.qobuz {
     background: black
@@ -386,11 +375,6 @@
     width: 26px;
 }
 
-.icon.discovery.gray {
-    fill: var(--icon-gray);
-    width: 26px;
-}
-
 /* Disney Plus */
 .background.disney {
     background: linear-gradient(to bottom, #002336, #00a0a6);
@@ -462,14 +446,6 @@
     fill: var(--red-strong, #FA0000);
 }
 
-.netflix-gray-solid-1 {
-    fill: var(--gray-base, #555555);
-}
-
-.netflix-gray-solid-2 {
-    fill: var(--gray-strong, rgb(107, 107, 107));
-}
-
 .netflix-color-gradient-1 {
     fill: url(#grad-netflix-1);
 }
@@ -497,10 +473,6 @@
     width: 26px;
 }
 
-.icon.peacock.gray {
-    fill: var(--icon-gray);
-}
-
 /* Star Plus */
 .background.starplus {
     background: #090e21
@@ -513,11 +485,6 @@
 
 .starplus-starplus {
     fill: #fd5231;
-}
-
-.icon.starplus.gray {
-    width: 34px;
-    fill: var(--icon-gray);
 }
 
 /* Streaming */

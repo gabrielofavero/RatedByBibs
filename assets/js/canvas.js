@@ -1,6 +1,7 @@
+import { translate } from "./translation/translation.js";
 import { getRadioCheckedID, loadStars } from "./ui/forms.js";
 import { MACROTYPE, TYPE } from "./ui/steps/step-1.js";
-import { PLATFORM, getPlatformProperties, updatePlatformIcon } from "./ui/steps/step-2.js";
+import { PLATFORM, getPlatformProperties, updateInternalIcon } from "./ui/steps/step-2.js";
 import { COVER, RATING } from "./ui/steps/step-3.js";
 
 let GENERATED_IMAGE = '';
@@ -13,14 +14,22 @@ export async function generateCanvas() {
     renderText('h2-display', getH2());
 
     renderPlatformIcon();
-    renderText('platform-text-display', getPlatformText());
+    renderPlatformLabel();
 
     renderStars();
 
     await renderCanvas();
 }
 
-export async function downloadCanvas() {
+export async function downloadOrShareCanvas() {
+    if (window.innerWidth < 1200) {
+        await shareCanvas();
+    } else {
+        await downloadCanvas();
+    }
+}
+
+async function downloadCanvas() {
     if (!GENERATED_IMAGE) {
         await generateCanvas();
     }
@@ -30,9 +39,8 @@ export async function downloadCanvas() {
     a.click();
 }
 
-export async function shareCanvas() {
+async function shareCanvas() {
     if (!GENERATED_IMAGE) {
-        await generateCanvas();
     }
 
     const res = await fetch(GENERATED_IMAGE);
@@ -75,37 +83,47 @@ async function renderCanvas() {
 function renderInlineSvgUses(root = document) {
     const uses = root.querySelectorAll("svg use");
     uses.forEach(use => {
-      const href = use.getAttribute("href") || use.getAttribute("xlink:href");
-      if (href && href.startsWith("#")) {
-        const symbol = document.querySelector(href);
-        if (symbol) {
-          const parentSvg = use.closest("svg");
-          if (symbol.getAttribute("viewBox")) {
-            parentSvg.setAttribute("viewBox", symbol.getAttribute("viewBox"));
-          }
-          const cloned = symbol.cloneNode(true);
-          while (cloned.firstChild) {
-            parentSvg.appendChild(cloned.firstChild);
-          }
-          use.remove();
+        const href = use.getAttribute("href") || use.getAttribute("xlink:href");
+        if (href && href.startsWith("#")) {
+            const symbol = document.querySelector(href);
+            if (symbol) {
+                const parentSvg = use.closest("svg");
+                if (symbol.getAttribute("viewBox")) {
+                    parentSvg.setAttribute("viewBox", symbol.getAttribute("viewBox"));
+                }
+                const cloned = symbol.cloneNode(true);
+                while (cloned.firstChild) {
+                    parentSvg.appendChild(cloned.firstChild);
+                }
+                use.remove();
+            }
         }
-      }
     });
-  }
-
-function renderText(id, value) {
-    if (value) {
-        const div = document.getElementById(id);
-        div.textContent = value;
-        div.style.display = 'block';
-    }
 }
 
-export function renderPlatformIcon(type = 'canvas') {
-    const internalIcon = document.getElementById(`${type}-internal-icon`);
-    const externalIcon = document.getElementById(`${type}-external-icon`);
-    const properties = getPlatformProperties(PLATFORM, `${type}-icon`);
-    updatePlatformIcon(internalIcon, externalIcon, PLATFORM, properties);
+function renderText(id, value) {
+    const div = document.getElementById(id);
+    if (!value) {
+        div.style.display = 'none';
+        return;
+    }
+    div.textContent = value;
+    div.style.display = 'block';
+}
+
+export function renderPlatformIcon(id = 'canvas-icon') {
+    const icon = document.getElementById(id);
+    const canvas = getPlatformProperties(PLATFORM)?.canvas;
+    const platform = canvas?.['has-canvas-icon'] ? `${PLATFORM}-canvas` : PLATFORM;
+    const widthMultiplier = canvas?.['width-multiplier'];
+    updateInternalIcon(icon, platform, id, widthMultiplier);
+}
+
+export function renderPlatformLabel(id = 'platform-text-display') {
+    const hideLabel = getPlatformProperties(PLATFORM)?.canvas?.['hide-default-label'] || false;
+    const customPlatform = document.getElementById(`${TYPE}-id`)?.value;
+    const textContent = customPlatform || (hideLabel ? '' : translate(`${MACROTYPE}.platform.${PLATFORM}`));
+    renderText(id, textContent);
 }
 
 function renderStars() {
@@ -168,10 +186,5 @@ export function getH2() {
                 return '';
         }
     }
-}
-
-export function getPlatformText() {
-    const id = document.getElementById(`${TYPE}-id`)?.value;
-    return id || translate(`${MACROTYPE}.platform.${PLATFORM}`);
 }
 
