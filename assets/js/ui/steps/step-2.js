@@ -328,7 +328,7 @@ function updatePlatformIcon(internalIcon, externalIcon, platform, properties) {
     const iconClasses = `${properties.class} ${properties?.platform?.icon || platform}`
 
     if (hasSvg) {
-        externalIcon.src = `/assets/icons/${platform}.svg`;
+        externalIcon.src = `/assets/icons/platform/${platform}.svg`;
 
         if (properties?.platform?.svg?.width) {
             externalIcon.setAttribute("width", properties.platform.svg.width);

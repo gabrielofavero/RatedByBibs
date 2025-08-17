@@ -289,6 +289,7 @@ label {
     border-radius: 16px;
     cursor: pointer;
     height: 110px;
+    gap: 8px;
 }
 
 .grid-item.type {
@@ -313,7 +314,6 @@ label {
 .grid-label {
     color: white;
     font-size: 14px;
-    margin-top: 1em;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
