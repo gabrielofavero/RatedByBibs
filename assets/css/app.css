@@ -36,27 +36,10 @@ a {
    ======================= */
 
 .logo {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.logo {
     margin: 1.5rem;
     margin-top: 0;
-}
-
-.logo .rated {
-    color: var(--theme-color);
-}
-
-.logo .rated {
-    font-size: 48px;
-    margin-right: 0.3em;
-}
-
-.by-bibs {
-    font-size: 2rem;
+    width: 210px;
+    height: 40px;
 }
 
 .description {

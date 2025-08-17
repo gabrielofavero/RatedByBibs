@@ -20,9 +20,8 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Backlog
 
-- 🐞 **B001:** Fix visibility issues with Portrait Canvas
-- 🐞 **B002:** Platform bottomsheet can only confirm once
-- 🐞 **B003:** Required fields for step 2 not always considered
+- 🐞 **B001:** Platform bottomsheet can only confirm once
+- 🐞 **B002:** Required fields for step 2 not always considered
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Padronize styling with Figma prototype
 - ⚔️ **E008:** Create Sticker Canvas

@@ -26,7 +26,7 @@ export async function downloadCanvas() {
     }
     const a = document.createElement('a');
     a.href = GENERATED_IMAGE;
-    a.download = 'game-story.png';
+    a.download = 'rated-content.png';
     a.click();
 }
 
@@ -63,13 +63,7 @@ async function renderCanvas() {
     const canvasContainer = document.getElementById('canvas-container');
     canvasContainer.style.display = 'flex';
 
-    const svgElements = canvasContainer.querySelectorAll('svg');
-    svgElements.forEach(function(item) {
-        item.setAttribute("width", item.getBoundingClientRect().width);
-        item.setAttribute("height", item.getBoundingClientRect().height);
-        item.style.width = null;
-        item.style.height= null;
-    });
+    renderInlineSvgUses(canvasContainer);
 
     const canvas = await html2canvas(canvasContainer);
     const dataUrl = canvas.toDataURL('image/png');
@@ -77,6 +71,27 @@ async function renderCanvas() {
 
     canvasContainer.style.display = 'none';
 }
+
+function renderInlineSvgUses(root = document) {
+    const uses = root.querySelectorAll("svg use");
+    uses.forEach(use => {
+      const href = use.getAttribute("href") || use.getAttribute("xlink:href");
+      if (href && href.startsWith("#")) {
+        const symbol = document.querySelector(href);
+        if (symbol) {
+          const parentSvg = use.closest("svg");
+          if (symbol.getAttribute("viewBox")) {
+            parentSvg.setAttribute("viewBox", symbol.getAttribute("viewBox"));
+          }
+          const cloned = symbol.cloneNode(true);
+          while (cloned.firstChild) {
+            parentSvg.appendChild(cloned.firstChild);
+          }
+          use.remove();
+        }
+      }
+    });
+  }
 
 function renderText(id, value) {
     if (value) {
