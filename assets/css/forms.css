@@ -276,7 +276,8 @@ label {
 }
 
 .grid-container.more-platform,
-.bottomsheet-label {
+.bottomsheet-label,
+.bottomsheet-close-container {
     width: calc((var(--platform-grid-item-width) * 8) + (var(--grid-item-gap) * 7));
 }
 
@@ -324,7 +325,8 @@ label {
 @media screen and (max-width: 1150px) {
 
     .grid-container.more-platform,
-    .bottomsheet-label {
+    .bottomsheet-label,
+    .bottomsheet-close-container {
         width: calc((var(--platform-grid-item-width) * 7) + (var(--grid-item-gap) * 6));
     }
 }
@@ -332,7 +334,8 @@ label {
 @media screen and (max-width: 980px) {
 
     .grid-container.more-platform,
-    .bottomsheet-label {
+    .bottomsheet-label,
+    .bottomsheet-close-container {
         width: calc((var(--platform-grid-item-width) * 6) + (var(--grid-item-gap) * 5));
     }
 }
@@ -340,7 +343,8 @@ label {
 @media screen and (max-width: 845px) {
 
     .grid-container.more-platform,
-    .bottomsheet-label {
+    .bottomsheet-label,
+    .bottomsheet-close-container {
         width: calc((var(--platform-grid-item-width) * 5) + (var(--grid-item-gap) * 4));
     }
 }
@@ -348,7 +352,8 @@ label {
 @media screen and (max-width: 735px) {
 
     .grid-container.more-platform,
-    .bottomsheet-label {
+    .bottomsheet-label,
+    .bottomsheet-close-container {
         width: calc((var(--platform-grid-item-width) * 4) + (var(--grid-item-gap) * 3));
     }
 }
@@ -356,15 +361,17 @@ label {
 @media screen and (max-width: 600px) {
 
     .grid-container.more-platform,
-    .bottomsheet-label {
+    .bottomsheet-label,
+    .bottomsheet-close-container {
         width: calc((var(--platform-grid-item-width) * 3) + (var(--grid-item-gap) * 2));
     }
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 430px) {
 
     .grid-container.more-platform,
-    .bottomsheet-label {
+    .bottomsheet-label,
+    .bottomsheet-close-container {
         width: calc((var(--platform-grid-item-width) * 2) + (var(--grid-item-gap) * 1));
     }
 }
@@ -377,16 +384,9 @@ label {
 
 @media screen and (max-width: 320px) {
 
-    .grid-container.more-platform,
-    .bottomsheet-label {
-        width: var(--platform-grid-item-width);
-    }
-}
-
-@media (max-width: 293px) {
-
     .grid-container.platform,
-    .grid-container.more-platform {
+    .grid-container.more-platform,
+    .bottomsheet-close-container {
         width: 100%;
     }
 

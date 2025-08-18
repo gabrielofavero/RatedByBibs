@@ -15,8 +15,6 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 📈 **I002:** improve bottomsheet behavior
-
 ### Backlog
 
 - 📈 **I001:** Improve page visibility and responsiviness
@@ -30,6 +28,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 📈 **I002:** Improve bottomsheet behavior
 - 🏆 **F023:** Add "None" to music and video, and "Media" to video
 - 🐞 **B008:** Types SVGs not loading on iOS
 - 📈 **I004:** Adjust canvas platform icon to use max width
