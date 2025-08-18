@@ -1,7 +1,7 @@
-import { NAVIAGATION_LABELS } from "../../app.js";
 import { USER_LANGUAGE, translate } from "../../translation/translation.js";
 import { closeSheet, openSheet } from "../bottomsheet.js";
 import { disableButton, disableNext, enableBack, enableButton, enableNext, hasMissingRequiredInputs, restrictToPositiveInputs, updateNextTextContent } from "../forms.js";
+import { NAVIAGATION_LABELS, adaptPageHeight } from "../ui.js";
 import { MACROTYPE, TYPE, TYPES } from "./step-1.js";
 
 export let PLATFORM;
@@ -36,6 +36,7 @@ export function loadStep2Listeners() {
         radio.onchange = () => {
             loadCheckboxInput(type);
             setNextVisibility();
+            setTimeout(adaptPageHeight, 300);
         }
     });
 
@@ -43,6 +44,7 @@ export function loadStep2Listeners() {
         input.addEventListener('input', () => {
             restrictToPositiveInputs(input);
             setNextVisibility();
+            setTimeout(adaptPageHeight, 300);
         });
     });
 

@@ -57,7 +57,7 @@ export function loadBottomsheetEventListeners() {
     window.addEventListener('touchend', onDragEnd);
 }
 
-function onWidthChange(e = window.matchMedia('(max-width: 768px)').matches) {
+function onWidthChange(e = window.matchMedia('(max-width: 768px)')) {
     HANDLE.style.visibility = e.matches ? 'visible' : 'hidden';
     HANDLE.style.cursor = e.matches ? 'grab' : 'default';
     CLOSE.style.visibility = e.matches ? 'hidden' : 'visible';

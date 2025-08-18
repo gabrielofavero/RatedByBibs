@@ -1,3 +1,4 @@
+import { adaptPageHeight, scrollToTop } from "../ui.js";
 import { loadStep1, resetStep1 } from "./step-1.js";
 import { loadStep2, resetStep2 } from "./step-2.js";
 import { loadStep3, resetStep3 } from "./step-3.js";
@@ -7,6 +8,11 @@ import { loadStep5 } from "./step-5.js";
 export let CURRENT_STEP = 1;
 
 let IS_ANIMATING = false;
+
+export function loadStepNavigation() {
+    adaptPageHeight();
+    window.addEventListener('resize', adaptPageHeight);
+}
 
 export function nextStep() {
     transitionStep('next');
@@ -44,6 +50,8 @@ function transitionStep(direction) {
 
     loadStepActions();
     animate(previousStep);
+    adaptPageHeight();
+    scrollToTop();
 }
 
 function animate(previousStep) {

@@ -1,5 +1,5 @@
-import { NAVIAGATION_LABELS } from "../../app.js";
 import { disableBack, disableNext, enableNext, showNext, updateNextTextContent } from "../forms.js";
+import { NAVIAGATION_LABELS } from "../ui.js";
 
 export let TYPE;
 export const TYPES = ['movie', 'tv', 'game', 'music', 'book', 'other']
