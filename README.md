@@ -15,18 +15,18 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
- - 🏆 **F024:** Add some legacy platforms to games
-- 🏆 **F026:** Hide game-id if platform does not have a username
-- 🏆 **F027:** Store game-id in localStorage according to platform
+- 📈 **I002:** improve bottomsheet behavior
 
 ### Backlog
 
 - 📈 **I001:** Improve page visibility and responsiviness
-- 📈 **I002:** Padronize styling with Figma prototype
 - ⚔️ **E008:** Create Sticker Canvas
 - ⚔️ **E009:** Get boxarts via API
 - 🏆 **F019:** Create error bottomsheet
 - 🏆 **F020:** Create confirm bottomsheet
+- 🏆 **F024:** Add some legacy platforms to games
+- 🏆 **F026:** Hide game-id if platform does not have a username
+- 🏆 **F027:** Store game-id in localStorage according to platform
 
 ### Done
 
