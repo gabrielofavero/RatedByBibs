@@ -15,11 +15,10 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 📈 **I002:** improve bottomsheet behavior
+- 📈 **I001:** Improve page visibility and responsiviness
 
 ### Backlog
 
-- 📈 **I001:** Improve page visibility and responsiviness
 - ⚔️ **E008:** Create Sticker Canvas
 - ⚔️ **E009:** Get boxarts via API
 - 🏆 **F019:** Create error bottomsheet
@@ -30,6 +29,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 📈 **I002:** Improve bottomsheet behavior
 - 🏆 **F023:** Add "None" to music and video, and "Media" to video
 - 🐞 **B008:** Types SVGs not loading on iOS
 - 📈 **I004:** Adjust canvas platform icon to use max width

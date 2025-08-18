@@ -1,6 +1,6 @@
 import { NAVIAGATION_LABELS } from "../../app.js";
 import { USER_LANGUAGE, translate } from "../../translation/translation.js";
-import { BOTTOMSHEET, OVERLAY, closeSheet } from "../bottomsheet.js";
+import { closeSheet, openSheet } from "../bottomsheet.js";
 import { disableButton, disableNext, enableBack, enableButton, enableNext, hasMissingRequiredInputs, restrictToPositiveInputs, updateNextTextContent } from "../forms.js";
 import { MACROTYPE, TYPE, TYPES } from "./step-1.js";
 
@@ -49,16 +49,15 @@ export function loadStep2Listeners() {
     const more = document.getElementById('more');
     more.addEventListener('click', () => {
         loadMorePlatforms();
-        BOTTOMSHEET.classList.add('active');
-        OVERLAY.classList.add('active');
+        openSheet();
         setTimeout(() => {
             more.classList.remove('selected');
         }, 1000);
     });
 
     document.getElementById('confirm-bottomsheet').addEventListener('click', () => {
-            setNewPlatform();
-    closeSheet();
+        setNewPlatform();
+        closeSheet();
     });
 }
 
