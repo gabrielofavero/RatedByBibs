@@ -15,8 +15,6 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 📈 **I001:** Improve page visibility and responsiviness
-
 ### Backlog
 
 - ⚔️ **E008:** Create Sticker Canvas
@@ -29,6 +27,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Improve bottomsheet behavior
 - 🏆 **F023:** Add "None" to music and video, and "Media" to video
 - 🐞 **B008:** Types SVGs not loading on iOS
