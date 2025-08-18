@@ -15,7 +15,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 🏆 **F028:** Add webpage image for previews
+
 - 🏆 **F029:** Make platform optional
 
 ### Backlog
@@ -30,6 +30,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 🏆 **F028:** Add webpage image for previews
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Improve bottomsheet behavior
 - 🏆 **F023:** Add "None" to music and video, and "Media" to video
