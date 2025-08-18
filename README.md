@@ -15,9 +15,10 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
+- 📈 **I001:** Improve page visibility and responsiviness
+
 ### Backlog
 
-- 📈 **I001:** Improve page visibility and responsiviness
 - ⚔️ **E008:** Create Sticker Canvas
 - ⚔️ **E009:** Get boxarts via API
 - 🏆 **F019:** Create error bottomsheet
