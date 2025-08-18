@@ -316,7 +316,7 @@ function resetPlatformSlot({ div, background, internalIcon, externalIcon, label 
 
 function updatePlatformSlot({ div, background, internalIcon, externalIcon, label }, platform, properties) {
     div.setAttribute('platform', platform);
-    label.textContent = translate(`${MACROTYPE}.platform.${platform}`);
+    label.textContent = translate(`type.${MACROTYPE}.platform.${platform}`);
 
     background.classList.add(properties?.platform?.background || platform);
 

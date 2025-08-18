@@ -163,7 +163,7 @@ export function renderPlatformLabel(id = 'platform-text-display') {
 
     let text = '';
     if (!hideLabel) {
-        text = customPlatform || translate(canvas.label || `${MACROTYPE}.platform.${PLATFORM}`);
+        text = customPlatform || translate(canvas.label || `type.${MACROTYPE}.platform.${PLATFORM}`);
     }
 
     renderText(id, text);
@@ -209,7 +209,7 @@ export function getH2() {
             case 'episode':
                 return getSeasonEpisode(season, episode);
             case 'season':
-                return `${translate('tv.season')} ${season}`
+                return `${translate('type.tv.season')} ${season}`
             default:
                 return '';
         }
@@ -253,32 +253,32 @@ function getShareText() {
         function getBookContent() {
             const title = document.getElementById('book-title').value.trim();
             const author = document.getElementById('book-author').value.trim();
-            return translate('book.share-content', { title, author });
+            return translate('type.book.share-content', { title, author });
         }
 
         function getGameContent() {
             const title = document.getElementById('game-title').value.trim();
-            const platform = translate(`${TYPE}.platform.${PLATFORM}`);
-            return translate('game.share-content', { title, platform });
+            const platform = translate(`type.${TYPE}.platform.${PLATFORM}`);
+            return translate('type.game.share-content', { title, platform });
         }
 
         function getTitleContent() {
             const title = document.getElementById(`${TYPE}-title`).value.trim();
-            return translate(`${TYPE}.share-content`, { title });
+            return translate(`type.${TYPE}.share-content`, { title });
         }
 
         function getMusicContent() {
             const song = document.getElementById('music-song').value.trim();
             const artist = document.getElementById('music-artist').value.trim();
             const album = document.getElementById('music-album').value.trim();
-            return translate(`music.share-content.${RADIO_VALUES.music.subtype}`, { song, artist, album });
+            return translate(`type.music.share-content.${RADIO_VALUES.music.subtype}`, { song, artist, album });
         }
 
         function getTvContent() {
             const title = document.getElementById('tv-title').value.trim();
             const season = document.getElementById('tv-season').value.trim();
             const episode = document.getElementById('tv-episode').value.trim();
-            return translate(`tv.share-content.${RADIO_VALUES.tv.subtype}`, { title, season, episode });
+            return translate(`type.tv.share-content.${RADIO_VALUES.tv.subtype}`, { title, season, episode });
         }
 
     }
@@ -304,6 +304,6 @@ function getShareText() {
 function getSeasonEpisode(seasonValue, episodeValue) {
     const season = String(parseInt(seasonValue)).padStart(2, '0');
     const episode = String(parseInt(episodeValue)).padStart(2, '0');
-    return translate('tv.full-season-episode', { season, episode });
+    return translate('type.tv.full-season-episode', { season, episode });
 }
 

@@ -1,39 +1,4 @@
 {
-    "book": {
-        "author": "Autor",
-        "share-content": "o livro \"{{title}}\" de \"{{author}}\"",
-        "title": "Livro"
-    },
-    "game": {
-        "id": {
-            "default": "ID de Jogador",
-            "nintendo": "Nintendo Account",
-            "playstation": "PSN ID",
-            "steam": "Steam ID",
-            "xbox": "Gamertag"
-        },
-        "platform": {
-            "apple": "Apple",
-            "battlenet": "Battlenet",
-            "console": "Console",
-            "ea": "EA Play",
-            "epic": "Epic Games",
-            "gog": "GOG",
-            "google": "Google Play",
-            "humble": "Humble",
-            "itch": "itch.io",
-            "pc": "PC",
-            "playstation": "Playstation",
-            "steam": "Steam",
-            "switch": "Switch",
-            "switch2": "Switch 2",
-            "ubisoft": "Ubisoft",
-            "xbox": "Xbox"
-        },
-        "share-content": "o jogo de {{platform}} \"{{title}}\"",
-        "title": "Game",
-        "title-input": "Nome do jogo"
-    },
     "label": {
         "begin": "Começar avaliação",
         "confirm": "Confirmar",
@@ -49,6 +14,14 @@
         "none": "Nenhum",
         "optional": "Opcional",
         "platform": "Plataforma",
+        "rating": {
+            "0": "Selecione uma nota",
+            "1": "Péssimo",
+            "2": "Ruim",
+            "3": "Aceitável",
+            "4": "Bom",
+            "5": "Excelente"
+        },
         "required": "Obrigatório",
         "restart": "Reiniciar",
         "share-text": "Eu avaliei {{content}} em {{rating}} no Rated! By Bibs {{emoji}}",
@@ -56,95 +29,124 @@
         "upload-add": "Clique ou arraste para adicionar uma capa",
         "upload-edit": "Clique ou arraste para editar a capa"
     },
-    "movie": {
-        "share-content": "o filme \"{{title}}\"",
-        "title": "Filme",
-        "title-input": "Nome do filme"
-    },
-    "music": {
-        "album": "Álbum",
-        "artist": "Artista",
-        "platform": {
-            "amazon-music": "Amazon Music",
-            "apple-music": "Apple Music",
-            "deezer": "Deezer",
-            "pandora": "Pandora",
-            "piracy": "Outro 😏",
-            "media": "Mídia",
-            "none": "Nenhum",
-            "qobuz": "Qobuz",
-            "soundcloud": "SoundCloud",
-            "spotify": "Spotify",
-            "tidal": "TIDAL",
-            "youtube-music": "YouTube Music"
+    "type": {
+        "book": {
+            "author": "Autor",
+            "share-content": "o livro \"{{title}}\" de \"{{author}}\"",
+            "title": "Livro"
         },
-        "radio": {
-            "album": "Um álbum",
-            "artist": "Um artista",
-            "song": "Uma música"
+        "game": {
+            "id": {
+                "default": "ID de Jogador",
+                "nintendo": "Nintendo Account",
+                "playstation": "PSN ID",
+                "steam": "Steam ID",
+                "xbox": "Gamertag"
+            },
+            "platform": {
+                "apple": "Apple",
+                "battlenet": "Battlenet",
+                "console": "Console",
+                "ea": "EA Play",
+                "epic": "Epic Games",
+                "gog": "GOG",
+                "google": "Google Play",
+                "humble": "Humble",
+                "itch": "itch.io",
+                "pc": "PC",
+                "playstation": "Playstation",
+                "steam": "Steam",
+                "switch": "Switch",
+                "switch2": "Switch 2",
+                "ubisoft": "Ubisoft",
+                "xbox": "Xbox"
+            },
+            "share-content": "o jogo de {{platform}} \"{{title}}\"",
+            "title": "Game",
+            "title-input": "Nome do jogo"
         },
-        "share-content": {
-            "album": "o álbum \"{{album}}\" de \"{{artist}}\"",
-            "artist": "o(a) artista \"{{artist}}\"",
-            "song": "a música \"{{song}}\" de \"{{artist}}\""
+        "movie": {
+            "share-content": "o filme \"{{title}}\"",
+            "title": "Filme",
+            "title-input": "Nome do filme"
         },
-        "song": "Música",
-        "title": "Música"
-    },
-    "other": {
-        "share-content": "\"{{title}}\"",
-        "subtitle": "Subtítulo",
-        "title": "Outro",
-        "title-input": "Título"
-    },
-    "rating": {
-        "0": "Selecione uma nota",
-        "1": "Péssimo",
-        "2": "Ruim",
-        "3": "Aceitável",
-        "4": "Bom",
-        "5": "Excelente"
-    },
-    "tv": {
-        "episode": "Episódio",
-        "full-season": "Temporada {{season}}",
-        "full-season-episode": "S{{season}}E{{episode}}",
-        "radio": {
-            "episode": "Um episódio",
-            "season": "Uma temporada",
-            "tv": "Uma série"
+        "music": {
+            "album": "Álbum",
+            "artist": "Artista",
+            "platform": {
+                "amazon-music": "Amazon Music",
+                "apple-music": "Apple Music",
+                "deezer": "Deezer",
+                "media": "Mídia",
+                "none": "Nenhum",
+                "pandora": "Pandora",
+                "piracy": "Outro 😏",
+                "qobuz": "Qobuz",
+                "soundcloud": "SoundCloud",
+                "spotify": "Spotify",
+                "tidal": "TIDAL",
+                "youtube-music": "YouTube Music"
+            },
+            "radio": {
+                "album": "Um álbum",
+                "artist": "Um artista",
+                "song": "Uma música"
+            },
+            "share-content": {
+                "album": "o álbum \"{{album}}\" de \"{{artist}}\"",
+                "artist": "o(a) artista \"{{artist}}\"",
+                "song": "a música \"{{song}}\" de \"{{artist}}\""
+            },
+            "song": "Música",
+            "title": "Música"
         },
-        "season": "Temporada",
-        "share-content": {
-            "episode": "o episódio {{episode}} da temporada {{season}} de \"{{title}}\"",
-            "season": "a temporada {{season}} da série \"{{title}}\"",
-            "title": "a série \"{{title}}\" em"
+        "other": {
+            "share-content": "\"{{title}}\"",
+            "subtitle": "Subtítulo",
+            "title": "Outro",
+            "title-input": "Título"
         },
-        "title": "Série",
-        "title-input": "Nome da série"
-    },
-    "video": {
-        "platform": {
-            "amazon": "Prime Video",
-            "apple-tv": "Apple TV",
-            "cinema": "Cinema",
-            "crunchyroll": "Crunchyroll",
-            "discovery": "Discovery+",
-            "disney": "Disney+",
-            "globo": "GloboPlay",
-            "hbo-max": "HBO Max",
-            "hulu": "Hulu",
-            "media": "Mídia",
-            "mubi": "MUBI",
-            "netflix": "Netflix",
-            "none": "Nenhum",
-            "paramount": "Paramount+",
-            "peacock": "Peacock",
-            "piracy": "Outro 😏",
-            "starplus": "Star+",
-            "streaming": "Streaming",
-            "tv": "TV",
-            "youtube": "YouTube"
+        "tv": {
+            "episode": "Episódio",
+            "full-season": "Temporada {{season}}",
+            "full-season-episode": "S{{season}}E{{episode}}",
+            "radio": {
+                "episode": "Um episódio",
+                "season": "Uma temporada",
+                "tv": "Uma série"
+            },
+            "season": "Temporada",
+            "share-content": {
+                "episode": "o episódio {{episode}} da temporada {{season}} de \"{{title}}\"",
+                "season": "a temporada {{season}} da série \"{{title}}\"",
+                "title": "a série \"{{title}}\" em"
+            },
+            "title": "Série",
+            "title-input": "Nome da série"
+        },
+        "video": {
+            "platform": {
+                "amazon": "Prime Video",
+                "apple-tv": "Apple TV",
+                "cinema": "Cinema",
+                "crunchyroll": "Crunchyroll",
+                "discovery": "Discovery+",
+                "disney": "Disney+",
+                "globo": "GloboPlay",
+                "hbo-max": "HBO Max",
+                "hulu": "Hulu",
+                "media": "Mídia",
+                "mubi": "MUBI",
+                "netflix": "Netflix",
+                "none": "Nenhum",
+                "paramount": "Paramount+",
+                "peacock": "Peacock",
+                "piracy": "Outro 😏",
+                "starplus": "Star+",
+                "streaming": "Streaming",
+                "tv": "TV",
+                "youtube": "YouTube"
+            }
         }
     }
 }

@@ -15,8 +15,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 🏆 **F023:** Add "None" to music and video, and "Media" to video 
-- 🏆 **F024:** Add some legacy platforms to games
+ - 🏆 **F024:** Add some legacy platforms to games
 - 🏆 **F026:** Hide game-id if platform does not have a username
 - 🏆 **F027:** Store game-id in localStorage according to platform
 
@@ -31,6 +30,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 🏆 **F023:** Add "None" to music and video, and "Media" to video
 - 🐞 **B008:** Types SVGs not loading on iOS
 - 📈 **I004:** Adjust canvas platform icon to use max width
 - 🐞 **B009:** Not all subtitles and platforms are being correctly displayed
