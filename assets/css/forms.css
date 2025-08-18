@@ -367,16 +367,14 @@ label {
     }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 400px) {
 
     .grid-container.more-platform,
     .bottomsheet-label,
     .bottomsheet-close-container {
         width: calc((var(--platform-grid-item-width) * 2) + (var(--grid-item-gap) * 1));
     }
-}
 
-@media screen and (max-width: 430px) {
     .grid-item.type {
         width: 80%;
     }
