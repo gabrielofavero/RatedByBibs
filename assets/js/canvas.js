@@ -46,7 +46,7 @@ async function downloadCanvas() {
     }
     const a = document.createElement('a');
     a.href = GENERATED_IMAGE;
-    a.download = 'rated-content.png';
+    a.download = `rated-${TYPE}.png`;
     a.click();
 }
 

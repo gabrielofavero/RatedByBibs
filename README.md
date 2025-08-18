@@ -15,6 +15,9 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
+- 🏆 **F028:** Add webpage image for previews
+- 🏆 **F029:** Make platform optional
+
 ### Backlog
 
 - ⚔️ **E008:** Create Sticker Canvas
