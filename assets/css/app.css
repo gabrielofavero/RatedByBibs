@@ -180,7 +180,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    margin-top: 48px;
 }
 
 .btn {
@@ -393,6 +392,12 @@ a {
     height: 100%;
 }
 
+.step-content.step-5 {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
 .step-5-title {
     font-family: 'Inter';
     font-style: normal;
@@ -400,16 +405,35 @@ a {
     line-height: 24px;
 }
 
+.step-5-canvas{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#step-5-image {
+    border-radius: 16px;
+    max-width: 235px;
+    max-height: 352.5px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    cursor: auto;
+}
+
+#step-5-stars {
+    margin-top: 0px;
+}
+
 #step-5-h1 {
-    margin-top: 24px;
     font-size: 18px;
-    text-decoration: bold;
+    font-weight: 600;
 }
 
 #step-5-h2 {
     font-size: 16px;
 }
-
 
 .step-content.step-5 {
     display: flex;
@@ -418,8 +442,15 @@ a {
     text-align: center;
 }
 
+.step-5-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+}
+
 #step-5-platform-container {
-    margin-top: 8px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -434,3 +465,4 @@ a {
     line-height: 140%;
     color: #767676;
 }
+

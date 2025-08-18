@@ -83,7 +83,7 @@ function initUserLanguage() {
 function updateUserLanguage(language) {
     const previousLang = localStorage.getItem("userLanguage");
 
-    if (language == previousLang || (TYPE && !window.confirm(translate('language_confirmation')))) {
+    if (language == previousLang || (TYPE && !window.confirm(translate('label.language_confirmation')))) {
         return;
     }
 

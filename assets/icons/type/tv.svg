@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="0 0 24 24">
+    <defs>
+        <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FDC090" />
+            <stop offset="100%" stop-color="#B8B7F7" />
+        </linearGradient>
+    </defs>
+    <path fill="none" stroke="url(#strokeGradient)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M12 7h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm0 0L8 3m4 4l4-4" />
+</svg>

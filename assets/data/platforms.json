@@ -1,204 +1,459 @@
 {
-    "movie": {
-        "all": [
-            "cinema",
-            "streaming",
-            "tv",
-            "amazon",
-            "apple-tv",
-            "crunchyroll",
-            "discovery",
-            "disney",
-            "globo",
-            "hbo-max",
-            "hulu",
-            "mubi",
-            "netflix",
-            "paramount",
-            "peacock",
-            "starplus",
-            "youtube",
-            "piracy"
-        ],
-        "en": [
-            "cinema",
-            "netflix",
-            "amazon",
-            "disney",
-            "hbo-max"
-        ],
-        "pt": [
-            "cinema",
-            "netflix",
-            "globo",
-            "amazon",
-            "disney"
-        ]
-    },
-    "tv": {
-        "all": [
-            "streaming",
-            "tv",
-            "amazon",
-            "apple-tv",
-            "crunchyroll",
-            "discovery",
-            "disney",
-            "globo",
-            "hbo-max",
-            "hulu",
-            "mubi",
-            "netflix",
-            "paramount",
-            "peacock",
-            "starplus",
-            "youtube",
-            "piracy"
-        ],
-        "en": [
-            "netflix",
-            "amazon",
-            "disney",
-            "hbo-max",
-            "hulu"
-        ],
-        "pt": [
-            "netflix",
-            "globo",
-            "amazon",
-            "disney",
-            "youtube"
-        ]
-    },
-    "game": {
-        "all": [
-            "pc",
-            "console",
-            "apple",
-            "battlenet",
-            "ea",
-            "epic",
-            "gog",
-            "google",
-            "humble",
-            "itch",
-            "playstation",
-            "steam",
-            "switch",
-            "switch2",
-            "ubisoft",
-            "xbox"
-        ],
-        "en": [
-            "xbox",
-            "playstation",
-            "steam",
-            "switch",
-            "switch2"
-        ],
-        "pt": [
-            "xbox",
-            "playstation",
-            "steam",
-            "switch",
-            "switch2"
-        ]
-    },
-    "music": {
-        "all": [
-            "amazon-music",
-            "apple-music",
-            "deezer",
-            "qobuz",
-            "soundcloud",
-            "spotify",
-            "tidal",
-            "youtube-music",
-            "piracy"
-        ],
-        "en": [
-            "spotify",
-            "apple-music",
-            "amazon-music",
-            "youtube-music",
-            "pandora"
-        ],
-        "pt": [
-            "spotify",
-            "youtube-music",
-            "deezer",
-            "apple-music",
-            "amazon-music"
-        ]
+    "platform": {
+        "game": {
+            "all": [
+                "pc",
+                "console",
+                "apple",
+                "battlenet",
+                "ea",
+                "epic",
+                "gog",
+                "google",
+                "humble",
+                "itch",
+                "playstation",
+                "steam",
+                "switch",
+                "switch2",
+                "ubisoft",
+                "xbox"
+            ],
+            "en": [
+                "xbox",
+                "playstation",
+                "steam",
+                "switch",
+                "switch2"
+            ],
+            "pt": [
+                "xbox",
+                "playstation",
+                "steam",
+                "switch",
+                "switch2"
+            ]
+        },
+        "movie": {
+            "all": [
+                "cinema",
+                "streaming",
+                "tv",
+                "media",
+                "piracy",
+                "none",
+                "amazon",
+                "apple-tv",
+                "crunchyroll",
+                "discovery",
+                "disney",
+                "globo",
+                "hbo-max",
+                "hulu",
+                "mubi",
+                "netflix",
+                "paramount",
+                "peacock",
+                "starplus",
+                "youtube"
+            ],
+            "en": [
+                "cinema",
+                "netflix",
+                "amazon",
+                "disney",
+                "hbo-max"
+            ],
+            "pt": [
+                "cinema",
+                "netflix",
+                "globo",
+                "amazon",
+                "disney"
+            ]
+        },
+        "music": {
+            "all": [
+                "media",
+                "none",
+                "amazon-music",
+                "apple-music",
+                "deezer",
+                "pandora",
+                "qobuz",
+                "soundcloud",
+                "spotify",
+                "tidal",
+                "youtube-music",
+                "piracy"
+            ],
+            "en": [
+                "spotify",
+                "apple-music",
+                "amazon-music",
+                "youtube-music",
+                "pandora"
+            ],
+            "pt": [
+                "spotify",
+                "youtube-music",
+                "deezer",
+                "apple-music",
+                "amazon-music"
+            ]
+        },
+        "tv": {
+            "all": [
+                "streaming",
+                "tv",
+                "media",
+                "piracy",
+                "none",
+                "amazon",
+                "apple-tv",
+                "crunchyroll",
+                "discovery",
+                "disney",
+                "globo",
+                "hbo-max",
+                "hulu",
+                "mubi",
+                "netflix",
+                "paramount",
+                "peacock",
+                "starplus",
+                "youtube"
+            ],
+            "en": [
+                "netflix",
+                "amazon",
+                "disney",
+                "hbo-max",
+                "hulu"
+            ],
+            "pt": [
+                "netflix",
+                "globo",
+                "amazon",
+                "disney",
+                "youtube"
+            ]
+        }
     },
     "properties": {
-        "video": {
-            "cinema": {
-                "background": "default",
-                "icon": "default"
-            },
-            "tv": {
-                "background": "default",
-                "icon": "default"
-            },
-            "streaming": {
-                "background": "default",
-                "icon": "default"
-            },
-            "piracy": {
-                "background": "default",
-                "icon": "default"
-            },
-            "discovery": {
-                "has-svg": true,
-                "svg": {
-                    "height": 26,
-                    "width": 26
-                },
-                "has-simplified-icon": true
-            },
-            "netflix": {
-                "has-simplified-icon": true,
-                "preserve-icon-color": true
-            },
-            "peacock": {
-                "has-svg": true,
-                "svg": {
-                    "width": 26
-                },
-                "has-simplified-icon": true
-            },
-            "starplus": {
-                "has-svg": true,
-                "svg": {
-                    "height": 34,
-                    "width": 34
-                },
-                "has-simplified-icon": true
-            }
-        },
         "game": {
-            "pc": {
-                "background": "default",
-                "icon": "default"
-            },
             "console": {
-                "background": "default",
-                "icon": "default"
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "ea": {
+                "canvas": {
+                    "width-multiplier": 0.9230769230769231
+                }
+            },
+            "google": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.333333333333333
+                }
+            },
+            "itch": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 2.820512820512821
+                }
+            },
+            "humble": {
+                "canvas": {
+                    "hide-default-label": true,
+                    "width-multiplier": 2.564102564102564
+                }
+            },
+            "pc": {
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "steam": {
+                "canvas": {
+                    "width-multiplier": 0.7692307692307692
+                }
+            },
+            "switch": {
+                "canvas": {
+                    "width-multiplier": 0.7692307692307692
+                }
+            },
+            "switch2": {
+                "canvas": {
+                    "width-multiplier": 1.282051282051282
+                }
+            },
+            "ubisoft": {
+                "canvas": {
+                    "width-multiplier": 0.9230769230769231
+                }
             }
         },
         "music": {
-            "piracy": {
-                "background": "default",
-                "icon": "default"
+            "amazon-music": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.846153846153846
+                }
+            },
+            "apple-music": {
+                "canvas": {
+                    "hide-default-label": true,
+                    "width-multiplier": 3.076923076923077
+                }
+            },
+            "media": {
+                "canvas": {
+                    "label": "label.media"
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "none": {
+                "canvas": {
+                    "hide": true
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
             },
             "pandora": {
-                "has-svg": true,
-                "svg": {
-                    "height": 40,
-                    "width": 40
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.076923076923077
                 },
-                "has-simplified-icon": true
+                "platform": {
+                    "has-svg": true,
+                    "svg": {
+                        "height": 40,
+                        "width": 40
+                    }
+                }
+            },
+            "piracy": {
+                "canvas": {
+                    "hide-default-label": true
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "qobuz": {
+                "canvas": {
+                    "hide-default-label": true,
+                    "width-multiplier": 2.051282051282051
+                }
+            },
+            "soundcloud": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 4.615384615384615
+                }
+            },
+            "spotify": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.076923076923077
+                }
+            },
+            "tidal": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.846153846153846
+                }
+            },
+            "youtube-music": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 2.564102564102564
+                }
+            }
+        },
+        "video": {
+            "amazon": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.333333333333333
+                }
+            },
+            "apple-tv": {
+                "canvas": {
+                    "hide-default-label": true,
+                    "width-multiplier": 1.794871794871795
+                }
+            },
+            "cinema": {
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "crunchyroll": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.58974358974359
+                }
+            },
+            "discovery": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.58974358974359
+                },
+                "platform": {
+                    "has-svg": true,
+                    "svg": {
+                        "height": 26,
+                        "width": 26
+                    }
+                }
+            },
+            "disney": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 2.564102564102564
+                }
+            },
+            "globo": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.333333333333333
+                }
+            },
+            "hbo-max": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.076923076923077
+                }
+            },
+            "hulu": {
+                "canvas": {
+                    "hide-default-label": true,
+                    "width-multiplier": 2.051282051282051
+                }
+            },
+            "media": {
+                "canvas": {
+                    "label": "label.media"
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "mubi": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 2.564102564102564
+                }
+            },
+            "netflix": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 2.820512820512821
+                }
+            },
+            "none": {
+                "canvas": {
+                    "hide": true
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "paramount": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.333333333333333
+                }
+            },
+            "peacock": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 2.820512820512821
+                },
+                "platform": {
+                    "has-svg": true,
+                    "svg": {
+                        "width": 26
+                    }
+                }
+            },
+            "piracy": {
+                "canvas": {
+                    "hide-default-label": true
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "starplus": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 2.564102564102564
+                },
+                "platform": {
+                    "has-svg": true,
+                    "svg": {
+                        "height": 34,
+                        "width": 34
+                    }
+                }
+            },
+            "streaming": {
+                "canvas": {
+                    "label": "label.streaming"
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "tv": {
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "youtube": {
+                "canvas": {
+                    "has-canvas-icon": true,
+                    "hide-default-label": true,
+                    "width-multiplier": 3.333333333333333
+                }
             }
         }
     }

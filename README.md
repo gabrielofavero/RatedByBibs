@@ -2,7 +2,7 @@
 
 A quick way to rate your favorite content and share it to social network 😁
 
-Development made by Bibs [me!](https://www.linkedin.com/in/gabrielfavero/) using plain HTML, CSS and JS. This is a simple proof of concept, so let's keep it simple :)
+Development made by Bibs [me!](https://www.linkedin.com/in/gabrielfavero/) using plain HTML, CSS and JS. My original plan was to share it as an Instagram Stories native sticker, but since it requires an API that can only be used in mobile apps, this version generates an image canvas that you can export to your favorite social network. I might do a native mobile version in the future for that, but no promises!
 
 Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado-1797a31bb/). You can find his Figma template [here](https://www.figma.com/design/pAblSLtZEBadSkxbuGNwB5/Rated--by-bibs?node-id=0-1&t=mz8OdJOHVDZHonEO-1).
 
@@ -15,18 +15,35 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
+ - 🏆 **F024:** Add some legacy platforms to games
+- 🏆 **F026:** Hide game-id if platform does not have a username
+- 🏆 **F027:** Store game-id in localStorage according to platform
+
 ### Backlog
 
-- 🐞 **B001:** Platform bottomsheet can only confirm once
-- 🐞 **B002:** Required fields for step 2 not always considered
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Padronize styling with Figma prototype
-- 📈 **I003:** Adjust canvas platform icon to use max width
 - ⚔️ **E008:** Create Sticker Canvas
 - ⚔️ **E009:** Get boxarts via API
+- 🏆 **F019:** Create error bottomsheet
+- 🏆 **F020:** Create confirm bottomsheet
 
 ### Done
 
+- 🏆 **F023:** Add "None" to music and video, and "Media" to video
+- 🐞 **B008:** Types SVGs not loading on iOS
+- 📈 **I004:** Adjust canvas platform icon to use max width
+- 🐞 **B009:** Not all subtitles and platforms are being correctly displayed
+- 🏆 **F025:** Share with link
+- 🐞 **B007:** Step 5 canvas preview not in the correct styling
+- 🐞 **B006:** Music canvas not loading when all fields are typed
+- 🐞 **B005:** Next not enabling on step 3 if rating is before image upload
+- 🏆 **F021:** Create new canvas icons for better visibility
+- 🐞 **B001:** Platform bottomsheet can only confirm once and does not select first option
+- 🐞 **B002:** Required fields for step 2 not always considered
+- 🐞 **B003:** Canvas image not showing correctly if too small
+- 🐞 **B004:** Canvas not downloading on iOS
+- 🏆 **F022:** Make album optional if rating a song
 - ⚔️ **E007:** Implement "Step 5": Preview and Download / Share
   - 🏆 **F017:** [E007] Create Final page elements
   - 🏆 **F018:** [E007] Adapt Canvas generation

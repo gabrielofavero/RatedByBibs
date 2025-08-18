@@ -1,128 +1,152 @@
 {
-    "movie": {
-        "title": "Movie",
-        "title-input": "Movie"
-    },
-    "tv": {
-        "title": "TV Show",
-        "title-input": "TV Show",
-        "season": "Season",
-        "episode": "Episode",
-        "se": "S{{season}}E{{episode}}",
-        "radio": {
-            "tv": "A TV Show",
-            "season": "A Season",
-            "episode": "An Episode"
-        }
-    },
-    "video": {
-        "platform": {
-            "cinema": "Cinema",
-            "tv": "TV",
-            "streaming": "Streaming",
-            "amazon": "Prime Video",
-            "apple-tv": "Apple TV",
-            "crunchyroll": "Crunchyroll",
-            "discovery": "Discovery+",
-            "disney": "Disney+",
-            "globo": "GloboPlay",
-            "hbo-max": "HBO Max",
-            "hulu": "Hulu",
-            "mubi": "MUBI",
-            "netflix": "Netflix",
-            "paramount": "Paramount+",
-            "peacock": "Peacock",
-            "starplus": "Star+",
-            "youtube": "YouTube",
-            "piracy": "Other 😏"
-        }
-    },
-    "game": {
-        "title": "Game",
-        "title-input": "Game",
-        "id": {
-            "default": "Gaming ID",
-            "steam": "Steam ID",
-            "playstation": "PSN ID",
-            "xbox": "Gamertag",
-            "nintendo": "Nintendo Account"
-        },
-        "platform": {
-            "pc": "PC",
-            "console": "Console",
-            "apple": "Apple",
-            "battlenet": "Battlenet",
-            "ea": "EA Play",
-            "epic": "Epic Games",
-            "gog": "GOG",
-            "google": "Google Play",
-            "humble": "Humble",
-            "itch": "itch.io",
-            "playstation": "Playstation",
-            "steam": "Steam",
-            "switch": "Switch",
-            "switch2": "Switch 2",
-            "ubisoft": "Ubisoft",
-            "xbox": "Xbox"
-        }
-    },
-    "music": {
-        "title": "Music",
-        "song": "Song",
-        "artist": "Artist",
-        "album": "Album",
-        "radio": {
-            "song": "A song",
-            "artist": "An artist",
-            "album": "An album"
-        },
-        "platform": {
-            "amazon-music": "Amazon Music",
-            "apple-music": "Apple Music",
-            "deezer": "Deezer",
-            "qobuz": "Qobuz",
-            "soundcloud": "SoundCloud",
-            "spotify": "Spotify",
-            "tidal": "TIDAL",
-            "youtube-music": "YouTube Music",
-            "pandora": "Pandora",
-            "piracy": "Other 😏"
-        }
-    },
-    "book": {
-        "title": "Book",
-        "author": "Author"
-    },
-    "other": {
-        "title": "Other",
-        "title-input": "Title",
-        "subtitle": "Subtitle"
-    },
-    "rating": {
-        "0": "Select a rating",
-        "1": "Terrible",
-        "2": "Bad",
-        "3": "Okay",
-        "4": "Good",
-        "5": "Excelent"
-    },
     "label": {
-        "description": "A quick way to rate your favorite content and share it to social network",
-        "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
-        "upload-add": "Click or drag to add a cover art",
-        "upload-edit": "Click or drag to add a cover art",
-        "loading": "Generating your rating...",
-        "required": "Required",
-        "optional": "Optional",
-        "none": "None",
-        "more": "More",
-        "im-rating": "I'm rating:",
-        "platform": "Platform",
-        "confirm": "Confirm",
         "begin": "Begin rating",
-        "next": "Continue",
+        "confirm": "Confirm",
+        "description": "A quick way to rate your favorite content and share it to social network",
+        "download": "Download",
         "finish": "Generate rating",
+        "im-rating": "I'm rating:",
+        "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
+        "loading": "Generating your rating...",
+        "media": "Physical Media",
+        "more": "More",
+        "next": "Continue",
+        "none": "None",
+        "optional": "Optional",
+        "platform": "Platform",
+        "rating": {
+            "0": "Select a rating",
+            "1": "Terrible",
+            "2": "Bad",
+            "3": "Okay",
+            "4": "Good",
+            "5": "Excelent"
+        },
+        "required": "Required",
         "restart": "Restart",
-        "download": "Download"
+        "share-text": "I rated {{content}} {{rating}} on Rated! By Bibs {{emoji}}",
+        "streaming": "Streaming Service",
+        "upload-add": "Click or drag to add a cover art",
+        "upload-edit": "Click or drag to add a cover art"
+    },
+    "type": {
+        "book": {
+            "author": "Author",
+            "share-content": "the book \"{{title}}\" by \"{{author}}\"",
+            "title": "Book"
+        },
+        "game": {
+            "id": {
+                "default": "Gaming ID",
+                "nintendo": "Nintendo Account",
+                "playstation": "PSN ID",
+                "steam": "Steam ID",
+                "xbox": "Gamertag"
+            },
+            "platform": {
+                "apple": "Apple",
+                "battlenet": "Battlenet",
+                "console": "Console",
+                "ea": "EA Play",
+                "epic": "Epic Games",
+                "gog": "GOG",
+                "google": "Google Play",
+                "humble": "Humble",
+                "itch": "itch.io",
+                "pc": "PC",
+                "playstation": "Playstation",
+                "steam": "Steam",
+                "switch": "Switch",
+                "switch2": "Switch 2",
+                "ubisoft": "Ubisoft",
+                "xbox": "Xbox"
+            },
+            "share-content": "the game \"{{title}}\" on {{platform}}",
+            "title": "Game",
+            "title-input": "Game"
+        },
+        "movie": {
+            "share-content": "the movie \"{{title}}\"",
+            "title": "Movie",
+            "title-input": "Movie"
+        },
+        "music": {
+            "album": "Album",
+            "artist": "Artist",
+            "platform": {
+                "amazon-music": "Amazon Music",
+                "apple-music": "Apple Music",
+                "deezer": "Deezer",
+                "media": "Media",
+                "none": "None",
+                "pandora": "Pandora",
+                "piracy": "Other 😏",
+                "qobuz": "Qobuz",
+                "soundcloud": "SoundCloud",
+                "spotify": "Spotify",
+                "tidal": "TIDAL",
+                "youtube-music": "YouTube Music"
+            },
+            "radio": {
+                "album": "An album",
+                "artist": "An artist",
+                "song": "A song"
+            },
+            "share-content": {
+                "album": "the album \"{{album}}\" by \"{{artist}}\"",
+                "artist": "the artist \"{{artist}}\"",
+                "song": "the song \"{{song}}\" by \"{{artist}}\""
+            },
+            "song": "Song",
+            "title": "Music"
+        },
+        "other": {
+            "share-content": "\"{{title}}\"",
+            "subtitle": "Subtitle",
+            "title": "Other",
+            "title-input": "Title"
+        },
+        "tv": {
+            "episode": "Episode",
+            "full-season": "Season {{season}}",
+            "full-season-episode": "S{{season}}E{{episode}}",
+            "radio": {
+                "episode": "An Episode",
+                "season": "A Season",
+                "tv": "A TV Show"
+            },
+            "season": "Season",
+            "share-content": {
+                "episode": "the S{{season}}E{{episode}} of {{title}}",
+                "season": "the season {{season}} of {{title}}",
+                "title": "the TV show {{title}}"
+            },
+            "title": "TV Show",
+            "title-input": "TV Show"
+        },
+        "video": {
+            "platform": {
+                "amazon": "Prime Video",
+                "apple-tv": "Apple TV",
+                "cinema": "Cinema",
+                "crunchyroll": "Crunchyroll",
+                "discovery": "Discovery+",
+                "disney": "Disney+",
+                "globo": "GloboPlay",
+                "hbo-max": "HBO Max",
+                "hulu": "Hulu",
+                "media": "Media",
+                "mubi": "MUBI",
+                "netflix": "Netflix",
+                "none": "None",
+                "paramount": "Paramount+",
+                "peacock": "Peacock",
+                "piracy": "Other 😏",
+                "starplus": "Star+",
+                "streaming": "Streaming",
+                "tv": "TV",
+                "youtube": "YouTube"
+            }
+        }
     }
 }

@@ -38,7 +38,10 @@ function loadImageUploadEventListeners() {
     const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('fileInput');
 
-    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', () => {
+        fileInput.click();
+        setNextVisibility();
+    });
 
     fileInput.addEventListener('change', event => {
         const files = event.target.files;
@@ -47,7 +50,6 @@ function loadImageUploadEventListeners() {
         } else {
             handleFile(files[0]);
         }
-        setNextVisibility();
     });
 
     dropzone.addEventListener('dragover', event => {
@@ -87,6 +89,7 @@ function handleFile(file) {
         COVER = e.target.result;
         preview.src = COVER;
         uploadText.textContent = translate('label.upload-edit');
+        setNextVisibility();
     };
     reader.readAsDataURL(file);
 }
@@ -125,12 +128,12 @@ function loadStarRatingEventListeners() {
 
             loadStars(stars, RATING);
 
-            label.textContent = translate(`rating.${RATING}`);
+            label.textContent = translate(`label.rating.${RATING}`);
             setNextVisibility();
         });
     });
 }
 
 function resetStarRatingLabel() {
-    document.getElementById('star-rating-label').textContent = translate('rating.0');
+    document.getElementById('star-rating-label').textContent = translate('label.rating.0');
 }
