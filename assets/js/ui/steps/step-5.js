@@ -36,5 +36,5 @@ function loadPlatform() {
     };
     container.style.display = 'flex';
     renderPlatformLabel('step-5-platform');
-    renderPlatformIcon('step-5-icon');
+    renderPlatformIcon('step-5');
 }

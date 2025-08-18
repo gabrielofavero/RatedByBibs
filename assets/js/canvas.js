@@ -136,13 +136,19 @@ function renderText(id, value) {
     div.style.display = 'block';
 }
 
-export function renderPlatformIcon(id = 'canvas-icon') {
+export function renderPlatformIcon(type = 'canvas') {
+    const id = `${type}-icon`;
     const icon = document.getElementById(id);
     icon.innerHTML = '<use href="" />';
-    const canvas = getPlatformProperties(PLATFORM)?.canvas;
+    const canvas = getPlatformProperties(PLATFORM)?.canvas ?? {};
     const platform = canvas?.['has-canvas-icon'] ? `${PLATFORM}-canvas` : PLATFORM;
     const widthMultiplier = canvas?.['width-multiplier'];
     updateInternalIcon(icon, platform, id, widthMultiplier);
+
+    if (canvas.hide) {
+        document.getElementById(`${type}-platform-container`).style.display = 'none';
+        return;
+    }
 }
 
 export function renderPlatformLabel(id = 'platform-text-display') {
@@ -150,10 +156,17 @@ export function renderPlatformLabel(id = 'platform-text-display') {
         renderText(id, '');
         return;
     }
-    const hideLabel = getPlatformProperties(PLATFORM)?.canvas?.['hide-default-label'] || false;
+
+    const canvas = getPlatformProperties(PLATFORM)?.canvas ?? {};
+    const hideLabel = canvas['hide-default-label'] ?? false;
     const customPlatform = document.getElementById(`${TYPE}-id`)?.value;
-    const textContent = customPlatform || (hideLabel ? '' : translate(`${MACROTYPE}.platform.${PLATFORM}`));
-    renderText(id, textContent);
+
+    let text = '';
+    if (!hideLabel) {
+        text = customPlatform || translate(canvas.label || `${MACROTYPE}.platform.${PLATFORM}`);
+    }
+
+    renderText(id, text);
 }
 
 function renderStars() {

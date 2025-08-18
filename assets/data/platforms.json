@@ -39,6 +39,9 @@
                 "cinema",
                 "streaming",
                 "tv",
+                "media",
+                "piracy",
+                "none",
                 "amazon",
                 "apple-tv",
                 "crunchyroll",
@@ -52,8 +55,7 @@
                 "paramount",
                 "peacock",
                 "starplus",
-                "youtube",
-                "piracy"
+                "youtube"
             ],
             "en": [
                 "cinema",
@@ -72,6 +74,8 @@
         },
         "music": {
             "all": [
+                "media",
+                "none",
                 "amazon-music",
                 "apple-music",
                 "deezer",
@@ -102,6 +106,9 @@
             "all": [
                 "streaming",
                 "tv",
+                "media",
+                "piracy",
+                "none",
                 "amazon",
                 "apple-tv",
                 "crunchyroll",
@@ -115,8 +122,7 @@
                 "paramount",
                 "peacock",
                 "starplus",
-                "youtube",
-                "piracy"
+                "youtube"
             ],
             "en": [
                 "netflix",
@@ -206,6 +212,24 @@
                 "canvas": {
                     "hide-default-label": true,
                     "width-multiplier": 3.076923076923077
+                }
+            },
+            "media": {
+                "canvas": {
+                    "label": "label.media"
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
+            "none": {
+                "canvas": {
+                    "hide": true
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
                 }
             },
             "pandora": {
@@ -334,6 +358,15 @@
                     "width-multiplier": 2.051282051282051
                 }
             },
+            "media": {
+                "canvas": {
+                    "label": "label.media"
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
+                }
+            },
             "mubi": {
                 "canvas": {
                     "has-canvas-icon": true,
@@ -346,6 +379,15 @@
                     "has-canvas-icon": true,
                     "hide-default-label": true,
                     "width-multiplier": 2.820512820512821
+                }
+            },
+            "none": {
+                "canvas": {
+                    "hide": true
+                },
+                "platform": {
+                    "background": "default",
+                    "icon": "default"
                 }
             },
             "paramount": {
@@ -392,6 +434,9 @@
                 }
             },
             "streaming": {
+                "canvas": {
+                    "label": "label.streaming"
+                },
                 "platform": {
                     "background": "default",
                     "icon": "default"
