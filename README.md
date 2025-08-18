@@ -15,7 +15,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
- - 🏆 **F024:** Add some legacy platforms to games
+- 🏆 **F024:** Add some legacy platforms to games
 - 🏆 **F026:** Hide game-id if platform does not have a username
 - 🏆 **F027:** Store game-id in localStorage according to platform
 
