@@ -247,7 +247,7 @@ a {
     background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease;
     z-index: 10;
 }
 
@@ -269,7 +269,7 @@ a {
     background: #1A1A1A;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
     border-radius: 24px 24px 0px 0px;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     max-height: 80%;
     display: flex;
 }
