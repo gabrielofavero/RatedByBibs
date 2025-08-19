@@ -59,6 +59,7 @@ export function loadStep2Listeners() {
 
     document.getElementById('confirm-bottomsheet').addEventListener('click', () => {
         setNewPlatform();
+        loadPlatformIdVisibility();
         closeSheet();
     });
 }
@@ -123,6 +124,7 @@ function loadGridPlatformListeners(platformID = 'platform', buttonID = 'next') {
             } else {
                 enableButton(buttonID);
             }
+            loadPlatformIdVisibility();
         });
     };
 }
@@ -241,6 +243,7 @@ function loadStep2Inputs() {
 
     loadCheckboxInput('tv');
     loadCheckboxInput('music');
+    loadPlatformIdVisibility();
 }
 
 function loadStep2Platforms() {
@@ -265,6 +268,19 @@ function loadStep2Platforms() {
     if (!Array.isArray(TYPE_PLATFORMS) || TYPE_PLATFORMS.length === 0) return;
 
     processPlatformContainer();
+}
+
+function loadPlatformIdVisibility() {
+    const id = document.getElementById(`${TYPE}-id-option`);
+    if (!id) return;
+
+    const properties = getPlatformProperties(PLATFORM).platform;
+
+    const hideId = properties?.['hide-id'] === true;
+    id.classList.toggle('hidden', hideId || !PLATFORM);
+
+    const labelID = properties?.['label-id'];
+    document.getElementById(`${TYPE}-id-label`).textContent = labelID ? translate(`type.${TYPE}.label-id.${labelID}`) : translate(`label.${TYPE}.label-id.default`);
 }
 
 // Platform Slot Processing
