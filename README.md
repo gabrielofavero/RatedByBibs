@@ -29,6 +29,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 🏆 **F020:** Create confirm bottomsheet
 - 🏆 **F024:** Add some legacy platforms to games
 - 🏆 **F029:** Add search bar to platform
+- 📈 **I006:** Make scroll down bottomsheet action easier
 
 ### Done
 
