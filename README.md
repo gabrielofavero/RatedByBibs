@@ -8,20 +8,27 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ## Taks
 
-- ⚔️: Epic
-- 🐞: Bug
-- 🏆: Feature
-- 📈: Improvement
+| Type            | Latest | Done | Pending |
+| --------------- |--------|------|---------|
+| ⚔️: Epic        | E009   | 7    | 2       |
+| 🐞: Bug         | B008   | 8    | 0       |
+| 🏆: Feature     | F033   | 25   | 8       |
+| 📈: Improvement | I005   | 5    | 0       |
 
 ### Doing
 
 ### Backlog
 
-- ⚔️ **E008:** Create Sticker Canvas
+- ⚔️ **E008:** Customize how canvas is displayed
+  - 🏆 **F030:** [E008] Create new step initial files + layout
+  - 🏆 **F031:** [E008] Adjust layout via js
 - ⚔️ **E009:** Get boxarts via API
+  - 🏆 **F032:** [E009] Gather APIs, credentials and create poc
+  - 🏆 **F033:** [E009] Apply APIs (auto image, title search)
 - 🏆 **F019:** Create error bottomsheet
 - 🏆 **F020:** Create confirm bottomsheet
 - 🏆 **F024:** Add some legacy platforms to games
+- 🏆 **F029:** Add search bar to platform
 
 ### Done
 
