@@ -15,7 +15,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-- 📈 **I005:** Speed-up bottomsheet animations
+
 - 🏆 **F027:** Store game-id in localStorage according to platform
 
 ### Backlog
@@ -27,6 +27,8 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 🏆 **F024:** Add some legacy platforms to games
 
 ### Done
+
+- 📈 **I005:** Speed-up bottomsheet animations
 - 🏆 **F026:** Hide game-id if platform does not have a username
 - 🏆 **F028:** Add webpage image for previews
 - 📈 **I001:** Improve page visibility and responsiviness
