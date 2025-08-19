@@ -142,9 +142,15 @@
     },
     "properties": {
         "game": {
+            "apple": {
+                "platform": {
+                    "hide-id": true
+                }
+            },
             "console": {
                 "platform": {
                     "background": "default",
+                    "hide-id": true,
                     "icon": "default"
                 }
             },
@@ -153,11 +159,19 @@
                     "width-multiplier": 0.9230769230769231
                 }
             },
+            "gog": {
+                "platform": {
+                    "hide-id": true
+                }
+            },
             "google": {
                 "canvas": {
                     "has-canvas-icon": true,
                     "hide-default-label": true,
                     "width-multiplier": 3.333333333333333
+                },
+                "platform": {
+                    "hide-id": true
                 }
             },
             "itch": {
@@ -165,38 +179,64 @@
                     "has-canvas-icon": true,
                     "hide-default-label": true,
                     "width-multiplier": 2.820512820512821
+                },
+                "platform": {
+                    "hide-id": true
                 }
             },
             "humble": {
                 "canvas": {
                     "hide-default-label": true,
                     "width-multiplier": 2.564102564102564
+                },
+                "platform": {
+                    "hide-id": true
                 }
             },
             "pc": {
                 "platform": {
                     "background": "default",
+                    "hide-id": true,
                     "icon": "default"
+                }
+            },
+            "playstation": {
+                "platform": {
+                    "label-id": "playstation"
                 }
             },
             "steam": {
                 "canvas": {
                     "width-multiplier": 0.7692307692307692
+                },
+                "platform": {
+                    "label-id": "steam"
                 }
             },
             "switch": {
                 "canvas": {
                     "width-multiplier": 0.7692307692307692
+                },
+                "platform": {
+                    "label-id": "nintendo"
                 }
             },
             "switch2": {
                 "canvas": {
                     "width-multiplier": 1.282051282051282
+                },
+                "platform": {
+                    "label-id": "nintendo"
                 }
             },
             "ubisoft": {
                 "canvas": {
                     "width-multiplier": 0.9230769230769231
+                }
+            },
+            "xbox": {
+                "platform": {
+                    "label-id": "xbox"
                 }
             }
         },

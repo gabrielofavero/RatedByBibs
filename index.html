@@ -15,10 +15,20 @@
   <meta name="apple-mobile-web-app-title" content="Rated!" />
   <link rel="manifest" href="site.webmanifest" />
 
-  <!-- Description -->
-  <meta content="A quick way to rate your favorite content and share it to social network" name="description">
+  <!-- Metadata -->
+  <meta property="og:title" content="Rated! By Bibs" />
+  <meta content="A quick way to rate your favorite content" name="description">
   <meta property="og:description" content="A quick way to rate your favorite content and share it to social network">
-  <meta content="" name="keywords">
+  <meta property="og:url" content="https://gabrielofavero.github.io/RatedByBibs/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/gabrielofavero/RatedByBibs/refs/heads/develop/banner.jpg" />
+  <meta property="og:image:alt" content="Rated! By Bibs" />
+
+  <!-- X Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rated! By Bibs" />
+  <meta name="twitter:description" content="A quick way to rate your favorite content" />
+  <meta name="twitter:image" content="https://gabrielofavero.github.io/RatedByBibs/" />
 
   <!-- Mobile Metadata -->
   <meta name="mobile-web-app-capable" content="yes" />
@@ -174,8 +184,8 @@
                   <input class="step-2 input game" type="text" id="game-title" maxlength="50" data-translate="label.required"
                     required />
                 </div>
-                <div class="option">
-                  <label for="game-id" data-translate="type.game.id.default"></label>
+                <div class="option" id="game-id-option">
+                  <label for="game-id" id="game-id-label" data-translate="type.game.label-id.default"></label>
                   <input class="step-2 input game" type="text" id="game-id" maxlength="32" data-translate="label.optional" />
                 </div>
               </div>

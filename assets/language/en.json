@@ -36,7 +36,7 @@
             "title": "Book"
         },
         "game": {
-            "id": {
+            "label-id": {
                 "default": "Gaming ID",
                 "nintendo": "Nintendo Account",
                 "playstation": "PSN ID",

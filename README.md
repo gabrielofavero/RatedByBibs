@@ -22,11 +22,13 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - 🏆 **F019:** Create error bottomsheet
 - 🏆 **F020:** Create confirm bottomsheet
 - 🏆 **F024:** Add some legacy platforms to games
-- 🏆 **F026:** Hide game-id if platform does not have a username
-- 🏆 **F027:** Store game-id in localStorage according to platform
 
 ### Done
 
+- 🏆 **F027:** Store game-id in localStorage according to platform
+- 📈 **I005:** Speed-up bottomsheet animations
+- 🏆 **F026:** Hide game-id if platform does not have a username
+- 🏆 **F028:** Add webpage image for previews
 - 📈 **I001:** Improve page visibility and responsiviness
 - 📈 **I002:** Improve bottomsheet behavior
 - 🏆 **F023:** Add "None" to music and video, and "Media" to video

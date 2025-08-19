@@ -22,6 +22,7 @@ export function setPlatforms(value) {
 export function loadStep2() {
     loadStep2Inputs();
     loadStep2Platforms();
+    loadPlatformIdData();
 
     enableBack();
     setNextVisibility();
@@ -59,8 +60,11 @@ export function loadStep2Listeners() {
 
     document.getElementById('confirm-bottomsheet').addEventListener('click', () => {
         setNewPlatform();
+        loadPlatformIdVisibility();
         closeSheet();
     });
+
+    document.getElementById('game-id').onchange = () => setPlatformIdData();
 }
 
 export function resetStep2() {
@@ -123,6 +127,7 @@ function loadGridPlatformListeners(platformID = 'platform', buttonID = 'next') {
             } else {
                 enableButton(buttonID);
             }
+            loadPlatformIdVisibility();
         });
     };
 }
@@ -170,6 +175,21 @@ function setNewPlatform() {
 
     document.getElementById(platformID).classList.add('selected');
     setNextVisibility();
+}
+
+function loadPlatformIdData() {
+    const id = `${TYPE}-id`;
+    const localData = localStorage.getItem(`${TYPE}-id`);
+    const input = document.getElementById(id);
+    if (!localData || !input) return;
+    input.value = localData;
+}
+
+function setPlatformIdData() {
+    const id = `${TYPE}-id`;
+    const value = document.getElementById(id)?.value;
+    if (!value) return;
+    localStorage.setItem(id, value);
 }
 
 // Input Handling and Dynamic UI
@@ -241,6 +261,7 @@ function loadStep2Inputs() {
 
     loadCheckboxInput('tv');
     loadCheckboxInput('music');
+    loadPlatformIdVisibility();
 }
 
 function loadStep2Platforms() {
@@ -265,6 +286,19 @@ function loadStep2Platforms() {
     if (!Array.isArray(TYPE_PLATFORMS) || TYPE_PLATFORMS.length === 0) return;
 
     processPlatformContainer();
+}
+
+function loadPlatformIdVisibility() {
+    const id = document.getElementById(`${TYPE}-id-option`);
+    if (!id) return;
+
+    const properties = getPlatformProperties(PLATFORM).platform;
+
+    const hideId = properties?.['hide-id'] === true;
+    id.classList.toggle('hidden', hideId || !PLATFORM);
+
+    const labelID = properties?.['label-id'];
+    document.getElementById(`${TYPE}-id-label`).textContent = labelID ? translate(`type.${TYPE}.label-id.${labelID}`) : translate(`type.${TYPE}.label-id.default`);
 }
 
 // Platform Slot Processing
