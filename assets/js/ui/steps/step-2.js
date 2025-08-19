@@ -22,6 +22,7 @@ export function setPlatforms(value) {
 export function loadStep2() {
     loadStep2Inputs();
     loadStep2Platforms();
+    loadPlatformIdData();
 
     enableBack();
     setNextVisibility();
@@ -62,6 +63,8 @@ export function loadStep2Listeners() {
         loadPlatformIdVisibility();
         closeSheet();
     });
+
+    document.getElementById('game-id').onchange = () => setPlatformIdData();
 }
 
 export function resetStep2() {
@@ -174,6 +177,21 @@ function setNewPlatform() {
     setNextVisibility();
 }
 
+function loadPlatformIdData() {
+    const id = `${TYPE}-id`;
+    const localData = localStorage.getItem(`${TYPE}-id`);
+    const input = document.getElementById(id);
+    if (!localData || !input) return;
+    input.value = localData;
+}
+
+function setPlatformIdData() {
+    const id = `${TYPE}-id`;
+    const value = document.getElementById(id)?.value;
+    if (!value) return;
+    localStorage.setItem(id, value);
+}
+
 // Input Handling and Dynamic UI
 function loadCheckboxInput(type) {
     const value = document.querySelector(`input[name="${type}-radio"]:checked`)?.value;
@@ -280,7 +298,7 @@ function loadPlatformIdVisibility() {
     id.classList.toggle('hidden', hideId || !PLATFORM);
 
     const labelID = properties?.['label-id'];
-    document.getElementById(`${TYPE}-id-label`).textContent = labelID ? translate(`type.${TYPE}.label-id.${labelID}`) : translate(`label.${TYPE}.label-id.default`);
+    document.getElementById(`${TYPE}-id-label`).textContent = labelID ? translate(`type.${TYPE}.label-id.${labelID}`) : translate(`type.${TYPE}.label-id.default`);
 }
 
 // Platform Slot Processing

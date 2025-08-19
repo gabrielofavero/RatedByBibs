@@ -15,9 +15,6 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Doing
 
-
-- 🏆 **F027:** Store game-id in localStorage according to platform
-
 ### Backlog
 
 - ⚔️ **E008:** Create Sticker Canvas
@@ -28,6 +25,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 🏆 **F027:** Store game-id in localStorage according to platform
 - 📈 **I005:** Speed-up bottomsheet animations
 - 🏆 **F026:** Hide game-id if platform does not have a username
 - 🏆 **F028:** Add webpage image for previews
