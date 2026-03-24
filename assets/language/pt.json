@@ -16,10 +16,15 @@
         "platform": "Plataforma",
         "rating": {
             "0": "Selecione uma nota",
+            "0.5": "Horrível",
             "1": "Péssimo",
+            "1.5": "Muito Ruim",
             "2": "Ruim",
+            "2.5": "Abaixo da Média",
             "3": "Aceitável",
+            "3.5": "Acima da Média",
             "4": "Bom",
+            "4.5": "Muito Bom",
             "5": "Excelente"
         },
         "required": "Obrigatório",

@@ -117,8 +117,14 @@ function loadStarRatingEventListeners() {
     const label = document.getElementById('star-rating-label');
 
     stars.forEach(star => {
-        star.addEventListener('click', () => {
-            const selectedValue = parseInt(star.dataset.value);
+        // Click on left half = 0.5, right half = 1.0
+        star.addEventListener('click', (e) => {
+            const starValue = parseInt(star.dataset.value);
+            const rect = star.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isLeftHalf = clickX < rect.width / 2;
+            
+            const selectedValue = isLeftHalf ? starValue - 0.5 : starValue;
 
             if (RATING === selectedValue) {
                 RATING = 0;

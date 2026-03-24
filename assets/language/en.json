@@ -16,11 +16,16 @@
         "platform": "Platform",
         "rating": {
             "0": "Select a rating",
+            "0.5": "Awful",
             "1": "Terrible",
+            "1.5": "Very Bad",
             "2": "Bad",
+            "2.5": "Below Average",
             "3": "Okay",
+            "3.5": "Above Average",
             "4": "Good",
-            "5": "Excelent"
+            "4.5": "Very Good",
+            "5": "Excellent"
         },
         "required": "Required",
         "restart": "Restart",

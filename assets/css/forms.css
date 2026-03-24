@@ -528,10 +528,19 @@ input[type="file"] {
 
 .icon.star {
     transition: fill 0.5s ease, stroke 0.5s ease;
+    position: relative;
 }
 
 .rating.icon.star {
     cursor: pointer;
+}
+
+.icon.star.half-rated {
+    position: relative;
+}
+
+.icon.star.half-rated path {
+    fill: url(#half-star-gradient);
 }
 
 #star-rating-label {

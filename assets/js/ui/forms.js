@@ -74,11 +74,13 @@ export function updateNextTextContent(textContent) {
 export function loadStars(stars, rating) {
     stars.forEach(s => {
         const val = parseInt(s.dataset.value);
-        if (val <= rating) {
+        s.classList.remove('rated', 'half-rated', 'unrated');
+        
+        if (val <= Math.floor(rating)) {
             s.classList.add('rated');
-            s.classList.remove('unrated');
+        } else if (val === Math.ceil(rating) && rating % 1 !== 0) {
+            s.classList.add('half-rated');
         } else {
-            s.classList.remove('rated');
             s.classList.add('unrated');
         }
     });

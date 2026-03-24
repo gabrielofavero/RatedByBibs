@@ -12,7 +12,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 | --------------- |--------|------|---------|
 | ⚔️: Epic        | E009   | 7    | 2       |
 | 🐞: Bug         | B008   | 8    | 0       |
-| 🏆: Feature     | F033   | 25   | 8       |
+| 🏆: Feature     | F034   | 26   | 8       |
 | 📈: Improvement | I005   | 5    | 0       |
 
 ### Doing
@@ -33,6 +33,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 🏆 **F034:** Add Half star system
 - 🏆 **F027:** Store game-id in localStorage according to platform
 - 📈 **I005:** Speed-up bottomsheet animations
 - 🏆 **F026:** Hide game-id if platform does not have a username
