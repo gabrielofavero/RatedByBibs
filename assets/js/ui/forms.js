@@ -72,16 +72,29 @@ export function updateNextTextContent(textContent) {
 
 // Custom Components
 export function loadStars(stars, rating) {
+    const floor = Math.floor(rating);
+    const hasHalf = rating % 1 !== 0;
+    const ceil = Math.ceil(rating);
+
     stars.forEach(s => {
         const val = parseInt(s.dataset.value);
-        s.classList.remove('rated', 'half-rated', 'unrated');
-        
-        if (val <= Math.floor(rating)) {
-            s.classList.add('rated');
-        } else if (val === Math.ceil(rating) && rating % 1 !== 0) {
-            s.classList.add('half-rated');
-        } else {
-            s.classList.add('unrated');
+        const use = s.querySelector('use');
+
+        const isFull = val <= floor;
+        const isHalf = val === ceil && hasHalf;
+        const rated = isFull || isHalf;
+
+        s.classList.toggle('rated', rated);
+        s.classList.toggle('unrated', !rated);
+
+        if (use) {
+            const icon = isFull
+                ? '#icon-star'
+                : isHalf
+                    ? '#icon-star-half'
+                    : '#icon-star';
+
+            use.setAttribute('href', icon);
         }
     });
 }

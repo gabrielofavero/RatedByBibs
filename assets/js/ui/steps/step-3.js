@@ -134,7 +134,8 @@ function loadStarRatingEventListeners() {
 
             loadStars(stars, RATING);
 
-            label.textContent = translate(`label.rating.${RATING}`);
+            const ratingKey = RATING.toString().replace(".", ",");
+            label.textContent = translate(`label.rating.${ratingKey}`);
             setNextVisibility();
         });
     });

@@ -11,7 +11,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 | Type            | Latest | Done | Pending |
 | --------------- |--------|------|---------|
 | ⚔️: Epic        | E009   | 7    | 2       |
-| 🐞: Bug         | B008   | 8    | 0       |
+| 🐞: Bug         | B008   | 9    | 0       |
 | 🏆: Feature     | F034   | 26   | 8       |
 | 📈: Improvement | I005   | 5    | 0       |
 
@@ -33,6 +33,7 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 🐞 **B009:** Half star system not working
 - 🏆 **F034:** Add Half star system
 - 🏆 **F027:** Store game-id in localStorage according to platform
 - 📈 **I005:** Speed-up bottomsheet animations
