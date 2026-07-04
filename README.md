@@ -11,9 +11,9 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 | Type            | Latest | Done | Pending |
 | --------------- |--------|------|---------|
 | ⚔️: Epic        | E009   | 9    | 0       |
-| 🐞: Bug         | B012   | 12   | 0       |
+| 🐞: Bug         | B013   | 13   | 0       |
 | 🏆: Feature     | F035   | 34   | 0       |
-| 📈: Improvement | I008   | 8    | 0       |
+| 📈: Improvement | I009   | 9    | 0       |
 
 ### Doing
 
@@ -21,6 +21,8 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ### Done
 
+- 📈 **I009:** Replace mocked loading screen with real progress tracking (stages, percentage, timeout safety, error notification)
+- 🐞 **B013:** Service Worker intercepting `no-cors` image requests causing 65-second canvas generation delay — fixed SW to skip `no-cors` mode and use image proxy (weserv.nl) for conversion
 - 🐞 **B012:** Half-star gradients and SteamGrid posters not rendering in html2canvas capture
 - 🏆 **F035:** Add loading indicator on preview image when advancing before API poster fetch completes
 - 📈 **I008:** Replaced separate half-star symbol with CSS gradient approach for cleaner half-star rendering

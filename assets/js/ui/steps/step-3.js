@@ -65,7 +65,19 @@ export function setCoverFromUrl(dataUrl) {
         return;
     }
 
-    // Set handlers BEFORE src — data URLs can load synchronously
+    // Remove any stale handlers from a previous setCoverFromUrl call
+    preview.onload = null;
+    preview.onerror = null;
+
+    // Force the browser to re-evaluate the image even when the data URL
+    // is the same as before (e.g. after a restart).  Without this the
+    // browser may serve a cached version and skip firing onload.
+    preview.removeAttribute('src');
+
+    // Capture the URL we are about to set so the onerror handler can
+    // check whether it is still the current COVER before clearing it.
+    const urlBeingSet = dataUrl;
+
     preview.onload = () => {
         console.debug(`[Step3] preview.onload → ${preview.naturalWidth}x${preview.naturalHeight}`);
         dropzone.style.aspectRatio = `${preview.naturalWidth} / ${preview.naturalHeight}`;
@@ -74,17 +86,31 @@ export function setCoverFromUrl(dataUrl) {
         dropzone.classList.remove('poster-loading');
     };
     preview.onerror = () => {
-        console.debug("[Step3] preview.onerror → invalid image data");
-        COVER = '';
+        console.debug("[Step3] preview.onerror → image failed to load");
+        // Only clear COVER if it hasn't been changed by another call
+        // in the meantime (e.g. the user picked a different result).
+        if (COVER === urlBeingSet) {
+            COVER = '';
+        }
         dropzone.classList.remove('poster-loading');
     };
 
     COVER = dataUrl;
     preview.src = COVER;
 
-    // Safety: if onload already fired (sync load), force display
+    // Safety: data URLs and cached images may load synchronously,
+    // in which case onload never fires.  Use a rAF fallback as well
+    // for browsers that don't set complete/naturalWidth immediately.
     if (preview.complete && preview.naturalWidth > 0) {
         preview.onload();
+    } else {
+        // One-frame safety net — some browsers need an extra tick
+        // before the cached image's dimensions are available.
+        requestAnimationFrame(() => {
+            if (COVER === urlBeingSet && preview.complete && preview.naturalWidth > 0) {
+                preview.onload();
+            }
+        });
     }
 
     uploadText.textContent = translate('label.upload-edit');
@@ -100,6 +126,33 @@ export function loadStep3() {
     const dropzone = document.getElementById('dropzone');
     if (dropzone && POSTER_LOADING) {
         dropzone.classList.add('poster-loading');
+    }
+
+    // Ensure the preview reflects the current COVER.
+    // If setCoverFromUrl was called while step-3 was hidden and the
+    // onload handler never fired (e.g. browser cache quirk), we force
+    // a re-display here so the user never sees a blank dropzone.
+    const preview = document.getElementById('preview');
+    if (preview && COVER && (!preview.complete || preview.naturalWidth === 0 || preview.style.display === 'none')) {
+        console.debug("[Step3] loadStep3 → forcing preview refresh for existing COVER");
+        preview.onload = null;
+        preview.onerror = null;
+        preview.removeAttribute('src');
+        const currentCover = COVER;
+        preview.onload = () => {
+            preview.style.display = 'block';
+            dropzone.style.aspectRatio = `${preview.naturalWidth} / ${preview.naturalHeight}`;
+            dropzone.classList.add('has-image');
+            dropzone.classList.remove('poster-loading');
+        };
+        preview.onerror = () => {
+            if (COVER === currentCover) COVER = '';
+            dropzone.classList.remove('poster-loading');
+        };
+        preview.src = currentCover;
+        if (preview.complete && preview.naturalWidth > 0) {
+            preview.onload();
+        }
     }
 }
 
@@ -180,13 +233,34 @@ function handleFile(file) {
 
     const reader = new FileReader();
     reader.onload = e => {
+        // Remove stale handlers and force re-evaluation
+        preview.onload = null;
+        preview.onerror = null;
+        preview.removeAttribute('src');
+
         preview.onload = () => {
             dropzone.style.aspectRatio = `${preview.naturalWidth} / ${preview.naturalHeight}`;
             preview.style.display = 'block';
             dropzone.classList.add('has-image');
         };
+        preview.onerror = () => {
+            COVER = '';
+        };
+
         COVER = e.target.result;
         preview.src = COVER;
+
+        // Safety check for synchronous loads
+        if (preview.complete && preview.naturalWidth > 0) {
+            preview.onload();
+        } else {
+            requestAnimationFrame(() => {
+                if (COVER === e.target.result && preview.complete && preview.naturalWidth > 0) {
+                    preview.onload();
+                }
+            });
+        }
+
         uploadText.textContent = translate('label.upload-edit');
         setNextVisibility();
     };
@@ -198,6 +272,12 @@ function resetImageUpload() {
     const preview = document.getElementById('preview');
     const fileInput = document.getElementById('fileInput');
     const uploadText = document.getElementById('upload-text');
+
+    // Clear stale onload/onerror handlers from a previous setCoverFromUrl
+    // call before changing src.  Otherwise the browser may fire the old
+    // handlers asynchronously after we set src='' below.
+    preview.onload = null;
+    preview.onerror = null;
 
     preview.src = '';
     preview.style.display = 'none';

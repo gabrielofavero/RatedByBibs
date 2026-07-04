@@ -15,6 +15,8 @@
         "im-rating": "I'm rating:",
         "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
         "loading": "Generating your rating...",
+        "loading_starting": "Preparing…",
+        "loading_done": "Done!",
         "media": "Physical Media",
         "more": "More",
         "next": "Continue",

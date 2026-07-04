@@ -21,19 +21,34 @@ const RADIO_VALUES = {
 }
 
 // Main Functions
-export async function generateCanvas() {
+
+/**
+ * Generate the final canvas image.
+ *
+ * @param {object} [options]
+ * @param {(status: string, pct: number) => void} [options.onProgress]
+ *        Called with a human-readable status and 0-100 percentage.
+ * @returns {Promise<void>} Resolves when GENERATED_IMAGE is ready.
+ */
+export async function generateCanvas({ onProgress } = {}) {
+    const progress = (status, pct) => {
+        console.debug(`[Canvas] ${status} (${pct}%)`);
+        onProgress?.(status, pct);
+    };
+
+    progress("Preparing layout…", 5);
     loadRadioValues();
     renderCover();
-
     renderText('h1-display', getH1());
     renderText('h2-display', getH2());
-
     renderPlatformIcon();
     renderPlatformLabel();
-
     renderStars();
 
-    await renderCanvas();
+    progress("Rendering canvas…", 20);
+    await renderCanvas(progress);
+
+    progress("Done!", 100);
 }
 
 export async function downloadOrShareCanvas() {
@@ -98,17 +113,51 @@ function renderCover() {
     img.src = COVER;
 }
 
-async function renderCanvas() {
+async function renderCanvas(onProgress) {
     const canvasContainer = document.getElementById('canvas-container');
     canvasContainer.style.display = 'flex';
 
+    onProgress?.("Inlining SVG icons…", 25);
     renderInlineSvgUses(canvasContainer);
     fixHalfStarGradients(canvasContainer);
-    await ensureCoverCompatible();
 
+    onProgress?.("Converting cover image…", 35);
+
+    // Wait for the cover image to finish loading (or fail / time out).
+    const coverImg = document.getElementById('canvas-cover');
+    const coverPromise = new Promise((resolve) => {
+        if (!coverImg || coverImg.complete) {
+            // Already loaded (or no image element)
+            resolve();
+            return;
+        }
+        coverImg.addEventListener('load', () => resolve(), { once: true });
+        coverImg.addEventListener('error', () => resolve(), { once: true });
+    });
+
+    // Safety net — if cover conversion stalls, don't block forever.
+    // We clean up the timer when coverPromise resolves first so we
+    // don't get a stale "timed out" message after success.
+    const COVER_TIMEOUT = 30_000;
+    let timerId;
+    const coverTimeout = new Promise((resolve) => {
+        timerId = setTimeout(() => {
+            console.debug("[Canvas] Cover conversion timed out, proceeding without it");
+            resolve();
+        }, COVER_TIMEOUT);
+    });
+    // If coverPromise wins, cancel the timeout
+    coverPromise.then(() => clearTimeout(timerId));
+
+    await Promise.race([coverPromise, coverTimeout]);
+    onProgress?.("Cover ready", 50);
+
+    onProgress?.("Capturing with html2canvas…", 55);
     const canvas = await html2canvas(canvasContainer, {
         useCORS: true,  // Enables crossOrigin for all images; SW adds CORS headers
     });
+
+    onProgress?.("Encoding final image…", 90);
     const dataUrl = canvas.toDataURL('image/png');
     GENERATED_IMAGE = dataUrl;
 
@@ -204,7 +253,9 @@ async function ensureCoverCompatible() {
 
     console.debug("[Canvas] Cover is remote URL, converting to data URL…");
 
-    const dataUrl = await raceProxies(src, 15_000);
+    // 30 s timeout — large images (e.g. 851 KB SteamGridDB PNGs) can
+    // take 15–25 s through image proxies on slower connections.
+    const dataUrl = await raceProxies(src, 30_000);
     if (dataUrl) {
         img.src = dataUrl;
         await img.decode().catch(() => {});
@@ -248,12 +299,26 @@ async function raceProxies(imageUrl, timeoutMs) {
 async function tryOneProxy(proxy, imageUrl, controller) {
     const url = proxy.build(imageUrl);
     console.debug(`[Canvas] Racing ${proxy.name}…`);
-    const res = await fetch(url, { signal: controller.signal });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    let res;
+    try {
+        res = await fetch(url, { signal: controller.signal });
+    } catch (err) {
+        // AbortError → another proxy already won or deadline fired.
+        // Silently re-throw so we don't log a confusing "won" after
+        // the race is already over.
+        if (err.name === "AbortError") throw err;
+        console.debug(`[Canvas] ${proxy.name} → fetch failed: ${err.message}`);
+        throw err;
+    }
+    if (!res.ok) {
+        console.debug(`[Canvas] ${proxy.name} → HTTP ${res.status}`);
+        throw new Error(`HTTP ${res.status}`);
+    }
     const blob = await res.blob();
-    // Accept any non-empty blob — some proxies return valid images
-    // without an image/* MIME type.
-    if (!blob.size) throw new Error("Empty response");
+    if (!blob.size) {
+        console.debug(`[Canvas] ${proxy.name} → empty response`);
+        throw new Error("Empty response");
+    }
     console.debug(`[Canvas] ${proxy.name} → won (${blob.size} bytes, type=${blob.type || "none"})`);
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
