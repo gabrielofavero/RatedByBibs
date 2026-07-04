@@ -1,5 +1,6 @@
 import { disableBack, disableNext, enableNext, showNext, updateNextTextContent } from "../forms.js";
 import { NAVIAGATION_LABELS } from "../ui.js";
+import { resetCover, setPosterOptions } from "./step-3.js";
 
 export let TYPE;
 export const TYPES = ['movie', 'tv', 'game', 'music', 'book', 'other']
@@ -27,6 +28,13 @@ export function loadStep1Listeners() {
         type.addEventListener('click', () => {
             const unselected = TYPE === type.id;
             const newType = unselected ? '' : type.id;
+
+            // Reset cover data when changing category to avoid stale covers
+            if (newType && newType !== TYPE) {
+                resetCover();
+                setPosterOptions([]);
+            }
+
             TYPE = newType;
             MACROTYPE = MACROTYPES[TYPE];
 
@@ -41,6 +49,8 @@ export function loadStep1Listeners() {
 
 export function resetStep1() {
     TYPE = undefined;
+    resetCover();
+    setPosterOptions([]);
     const types = document.getElementsByClassName('grid-item type');
     for (const type of types) {
         type.classList.remove('selected');

@@ -86,15 +86,10 @@ export function loadStars(stars, rating) {
 
         s.classList.toggle('rated', rated);
         s.classList.toggle('unrated', !rated);
+        s.classList.toggle('half', isHalf);
 
         if (use) {
-            const icon = isFull
-                ? '#icon-star'
-                : isHalf
-                    ? '#icon-star-half'
-                    : '#icon-star';
-
-            use.setAttribute('href', icon);
+            use.setAttribute('href', '#icon-star');
         }
     });
 }

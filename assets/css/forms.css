@@ -514,6 +514,41 @@ input[type="file"] {
     display: none;
 }
 
+.poster-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Poster-loading spinner shown while API poster fetch is in progress */
+.image-box.poster-loading {
+    cursor: wait;
+}
+
+.image-box.poster-loading .icon.image {
+    display: none;
+}
+
+.image-box.poster-loading .upload-content::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #E5A000;
+    border-radius: 50%;
+    animation: poster-spin 0.8s linear infinite;
+    margin-bottom: 4px;
+}
+
+.image-box.poster-loading .upload-text {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes poster-spin {
+    to { transform: rotate(360deg); }
+}
+
 /* =======================
    Poster Options Carousel
    ======================= */
@@ -529,14 +564,50 @@ input[type="file"] {
     margin-bottom: 8px;
 }
 
+/* Wrapper holds arrows + carousel, centered */
+.poster-options-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Arrows */
+.poster-arrow {
+    flex-shrink: 0;
+    width: 28px;
+    height: 78px;
+    border: none;
+    border-radius: 6px;
+    background: #2a2a2a;
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease, background 0.15s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.poster-arrow:hover:not(:disabled) {
+    color: #fff;
+    background: #3a3a3a;
+}
+
+.poster-arrow:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
 .poster-options-carousel {
     display: flex;
     gap: 8px;
-    overflow-x: auto;
-    padding: 4px 0;
-    justify-content: center;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+    padding: 4px 6px;
     scroll-behavior: smooth;
+    width: 196px;  /* 3 * 56 + 2 * 8 + 2 * 6 padding */
 }
 
 .poster-option {
@@ -566,14 +637,9 @@ input[type="file"] {
     object-fit: cover;
 }
 
-/* Scrollbar for carousel */
+/* Hide scrollbar — carousel is paged via arrows */
 .poster-options-carousel::-webkit-scrollbar {
-    height: 3px;
-}
-
-.poster-options-carousel::-webkit-scrollbar-thumb {
-    background: #444;
-    border-radius: 2px;
+    display: none;
 }
 
 /* =======================
@@ -587,10 +653,17 @@ input[type="file"] {
     align-items: center;
     text-align: center;
     margin-top: 32px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
 }
 
 .icon.star {
     transition: fill 0.5s ease, stroke 0.5s ease;
+}
+
+.star-rating.dragging .icon.star {
+    transition: none;
 }
 
 .rating.icon.star {

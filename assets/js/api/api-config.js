@@ -27,8 +27,10 @@ export const API_CONFIG = {
     /**
      * RAWG — games (fallback when SteamGridDB doesn't find a match)
      * Get a key at: https://rawg.io/apidocs
+     *
+     * NOTE: Disabled — wasn't returning good results.
      */
-    rawg: "124eeaafab314c7ab7a4a370154d9c09",
+    rawg: "",
 
     // OpenLibrary and MusicBrainz don't need keys.
 };

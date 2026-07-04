@@ -5,6 +5,24 @@ import { showError } from "../alert-bottomsheet.js";
 export let RATING = 0;
 export let COVER;
 export let POSTER_OPTIONS = [];
+export let POSTER_LOADING = false;
+
+/**
+ * Signal whether a poster fetch is in progress.
+ * When true, step-3 shows a loading spinner on the dropzone preview.
+ * Called by step-2's autocomplete onSelect before/after the async fetch.
+ *
+ * @param {boolean} loading
+ */
+export function setPosterLoading(loading) {
+    POSTER_LOADING = loading;
+
+    // If step 3 is the active step, update the dropzone CSS class immediately
+    const dropzone = document.getElementById('dropzone');
+    if (dropzone) {
+        dropzone.classList.toggle('poster-loading', loading);
+    }
+}
 
 /**
  * Store multiple poster options (from multi-image providers like SteamGridDB)
@@ -17,6 +35,14 @@ export function setPosterOptions(posters) {
 }
 
 /**
+ * Reset the cover image to empty.
+ * Called when the user changes category or selects a new autocomplete result.
+ */
+export function resetCover() {
+    COVER = '';
+}
+
+/**
  * Set the cover image from an external URL (e.g. fetched from an API).
  * Updates both the COVER variable and the dropzone preview UI.
  * Called by step-2 when the user picks an autocomplete result.
@@ -25,6 +51,9 @@ export function setPosterOptions(posters) {
  */
 export function setCoverFromUrl(dataUrl) {
     if (!dataUrl) return;
+
+    // Clear the poster-loading state since the image has arrived
+    setPosterLoading(false);
 
     const dropzone = document.getElementById('dropzone');
     const preview = document.getElementById('preview');
@@ -42,10 +71,12 @@ export function setCoverFromUrl(dataUrl) {
         dropzone.style.aspectRatio = `${preview.naturalWidth} / ${preview.naturalHeight}`;
         preview.style.display = 'block';
         dropzone.classList.add('has-image');
+        dropzone.classList.remove('poster-loading');
     };
     preview.onerror = () => {
         console.debug("[Step3] preview.onerror → invalid image data");
         COVER = '';
+        dropzone.classList.remove('poster-loading');
     };
 
     COVER = dataUrl;
@@ -63,6 +94,13 @@ export function loadStep3() {
     enableBack();
     setNextVisibility();
     renderPosterCarousel();
+
+    // If a poster fetch is still in progress from step 2's autocomplete,
+    // show a loading spinner on the dropzone until it completes.
+    const dropzone = document.getElementById('dropzone');
+    if (dropzone && POSTER_LOADING) {
+        dropzone.classList.add('poster-loading');
+    }
 }
 
 export function loadStep3Listeners() {
@@ -174,31 +212,128 @@ function resetImageUpload() {
 }
 
 function loadStarRatingEventListeners() {
+    const container = document.getElementById('star-rating');
     const stars = document.querySelectorAll('.rating');
     const label = document.getElementById('star-rating-label');
 
-    stars.forEach(star => {
-        // Click on left half = 0.5, right half = 1.0
-        star.addEventListener('click', (e) => {
-            const starValue = parseInt(star.dataset.value);
-            const rect = star.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const isLeftHalf = clickX < rect.width / 2;
-            
-            const selectedValue = isLeftHalf ? starValue - 0.5 : starValue;
+    let isDragging = false;
+    let dragMoved = false;    // true once the pointer has moved during a drag
+    let dragStartValue = 0;   // rating value at drag-start (for click-to-toggle)
 
-            if (RATING === selectedValue) {
-                RATING = 0;
-            } else {
-                RATING = selectedValue;
+    /**
+     * Given a pointer clientX position, determine the rating value
+     * using per-star bounding rects.  Gaps between stars are assigned
+     * to the nearest half-star so there are no dead zones.
+     * @param {number} clientX
+     * @returns {number} rating value (e.g. 2.5, 4, 0)
+     */
+    function getRatingFromPosition(clientX) {
+        for (let i = 0; i < stars.length; i++) {
+            const rect = stars[i].getBoundingClientRect();
+
+            // Pointer is directly over this star
+            if (clientX >= rect.left && clientX <= rect.right) {
+                const starValue = parseInt(stars[i].dataset.value);
+                const relativeX = clientX - rect.left;
+                const isLeftHalf = relativeX < rect.width / 2;
+                return isLeftHalf ? starValue - 0.5 : starValue;
             }
 
-            loadStars(stars, RATING);
+            // Pointer is in the gap between this star and the next
+            if (i < stars.length - 1) {
+                const nextRect = stars[i + 1].getBoundingClientRect();
+                if (clientX > rect.right && clientX < nextRect.left) {
+                    const gapMid = (rect.right + nextRect.left) / 2;
+                    if (clientX < gapMid) {
+                        return parseInt(stars[i].dataset.value);           // full star i
+                    } else {
+                        return parseInt(stars[i + 1].dataset.value) - 0.5; // left-half of next
+                    }
+                }
+            }
+        }
 
-            const ratingKey = RATING.toString().replace(".", ",");
-            label.textContent = translate(`label.rating.${ratingKey}`);
-            setNextVisibility();
-        });
+        // Outside the star row entirely
+        const firstRect = stars[0].getBoundingClientRect();
+        if (clientX < firstRect.left) return 0;
+        return 5;
+    }
+
+    /**
+     * Apply the given rating value: update global RATING, re-render
+     * stars, update the label, and manage Next button visibility.
+     * @param {number} value
+     */
+    function applyRating(value) {
+        RATING = value;
+        loadStars(stars, RATING);
+        const ratingKey = RATING.toString().replace('.', ',');
+        label.textContent = translate(`label.rating.${ratingKey}`);
+        setNextVisibility();
+    }
+
+    // ---- Pointer-slide (mouse + touch) ----
+
+    container.addEventListener('mousedown', (e) => {
+        e.preventDefault(); // prevent text selection during drag
+        isDragging = true;
+        dragMoved = false;
+        dragStartValue = RATING;
+        container.classList.add('dragging');
+        const value = getRatingFromPosition(e.clientX);
+        applyRating(value);
+    });
+
+    container.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // prevent scroll on touch
+        isDragging = true;
+        dragMoved = false;
+        dragStartValue = RATING;
+        container.classList.add('dragging');
+        const touch = e.touches[0];
+        const value = getRatingFromPosition(touch.clientX);
+        applyRating(value);
+    }, { passive: false });
+
+    // Track move on the whole document so the drag continues even if
+    // the pointer leaves the star-rating container.
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const value = getRatingFromPosition(e.clientX);
+        if (value !== RATING) {
+            dragMoved = true;
+            applyRating(value);
+        }
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        const value = getRatingFromPosition(touch.clientX);
+        if (value !== RATING) {
+            dragMoved = true;
+            applyRating(value);
+        }
+    }, { passive: false });
+
+    document.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        // If the pointer didn't move (pure click), apply toggle behaviour:
+        // clicking the same rating resets to 0.
+        if (!dragMoved && RATING === dragStartValue && dragStartValue > 0) {
+            applyRating(0);
+        }
+        isDragging = false;
+        container.classList.remove('dragging');
+    });
+
+    document.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        if (!dragMoved && RATING === dragStartValue && dragStartValue > 0) {
+            applyRating(0);
+        }
+        isDragging = false;
+        container.classList.remove('dragging');
     });
 }
 
@@ -207,6 +342,9 @@ function resetStarRatingLabel() {
 }
 
 // ---- Poster carousel (multi-image providers) ----
+
+const POSTER_VISIBLE_COUNT = 3;
+let posterPage = 0;
 
 /**
  * Render the poster carousel below the dropzone when multiple
@@ -224,6 +362,7 @@ function renderPosterCarousel() {
     }
 
     container.style.display = 'block';
+    posterPage = 0;
 
     carousel.innerHTML = POSTER_OPTIONS.map((dataUrl, i) => `
         <div class="poster-option${i === 0 ? ' active' : ''}"
@@ -240,6 +379,55 @@ function renderPosterCarousel() {
             selectPosterOption(idx);
         });
     });
+
+    // Arrow navigation
+    setupPosterArrows();
+}
+
+/**
+ * Wire up left/right arrows with page-based navigation.
+ */
+function setupPosterArrows() {
+    const leftArrow = document.getElementById('poster-arrow-left');
+    const rightArrow = document.getElementById('poster-arrow-right');
+    const carousel = document.getElementById('poster-options-carousel');
+
+    if (!leftArrow || !rightArrow || !carousel) return;
+
+    const totalPages = Math.ceil(POSTER_OPTIONS.length / POSTER_VISIBLE_COUNT);
+    const totalItems = POSTER_OPTIONS.length;
+    const itemWidth = 56 + 8; // width + gap
+
+    const updateArrows = () => {
+        leftArrow.disabled = posterPage <= 0;
+        rightArrow.disabled = posterPage >= totalPages - 1;
+    };
+
+    leftArrow.onclick = () => {
+        if (posterPage <= 0) return;
+        posterPage--;
+        carousel.scrollLeft = posterPage * POSTER_VISIBLE_COUNT * itemWidth;
+        updateArrows();
+    };
+
+    rightArrow.onclick = () => {
+        if (posterPage >= totalPages - 1) return;
+        posterPage++;
+        carousel.scrollLeft = posterPage * POSTER_VISIBLE_COUNT * itemWidth;
+        updateArrows();
+    };
+
+    // Hide arrows if not enough items to scroll
+    if (totalItems <= POSTER_VISIBLE_COUNT) {
+        leftArrow.style.display = 'none';
+        rightArrow.style.display = 'none';
+    } else {
+        leftArrow.style.display = '';
+        rightArrow.style.display = '';
+    }
+
+    carousel.scrollLeft = 0;
+    updateArrows();
 }
 
 /**
@@ -272,4 +460,5 @@ function hidePosterCarousel() {
     if (carousel) {
         carousel.innerHTML = '';
     }
+    posterPage = 0;
 }

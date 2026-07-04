@@ -3,7 +3,7 @@ import { closeSheet, openSheet } from "../bottomsheet.js";
 import { disableButton, disableNext, enableBack, enableButton, enableNext, hasMissingRequiredInputs, restrictToPositiveInputs, updateNextTextContent } from "../forms.js";
 import { NAVIAGATION_LABELS, adaptPageHeight } from "../ui.js";
 import { MACROTYPE, TYPE, TYPES } from "./step-1.js";
-import { COVER, setCoverFromUrl, setPosterOptions } from "./step-3.js";
+import { resetCover, setCoverFromUrl, setPosterLoading, setPosterOptions } from "./step-3.js";
 import { attachAutocomplete } from "../autocomplete/autocomplete.js";
 import { apiManager } from "../../api/api-manager.js";
 
@@ -75,6 +75,17 @@ export function loadStep2Listeners() {
 
 export function resetStep2() {
     PLATFORM = undefined;
+
+    // Clean up any leftover autocomplete wrappers from hot reloads before
+    // clearing inputs (inputs must be moved out of wrappers first).
+    document.querySelectorAll('.autocomplete-wrapper').forEach(wrapper => {
+        const input = wrapper.querySelector('input');
+        if (input && wrapper.parentNode) {
+            wrapper.parentNode.insertBefore(input, wrapper);
+        }
+        wrapper.remove();
+    });
+
     const inputs = ['movie-title', 'tv-episode', 'tv-season', 'tv-title', 'game-title', 'game-id', 'music-song', 'music-album', 'music-artist', 'book-title', 'book-author', 'other-title', 'other-subtitle']
     const radios = ['tv-radio-episode', 'music-radio-song']
     const platforms = ['platform-1', 'platform-2', 'platform-3', 'platform-4', 'platform-5', 'more']
@@ -293,8 +304,9 @@ function _attachAutocompleteToInputs() {
 
         const { destroy } = attachAutocomplete(input, TYPE, {
             onSelect: async (result) => {
-                // Don't override a manually uploaded cover
-                if (COVER) return;
+                // Signal that a poster fetch is in progress so step-3 can show a loading spinner
+                resetCover();
+                setPosterLoading(true);
 
                 try {
                     console.debug(`[Step2] onSelect → fetching poster for "${result.title}"`);
@@ -313,6 +325,7 @@ function _attachAutocompleteToInputs() {
                             setCoverFromUrl(posters[0]);
                         } else {
                             console.debug("[Step2] onSelect → no posters returned");
+                            setPosterLoading(false);
                         }
                     } else {
                         // Single-image provider: standard flow
@@ -326,10 +339,12 @@ function _attachAutocompleteToInputs() {
                             setCoverFromUrl(poster);
                         } else {
                             console.debug("[Step2] onSelect → no poster returned");
+                            setPosterLoading(false);
                         }
                     }
                 } catch {
                     console.debug("[Step2] onSelect → poster fetch failed");
+                    setPosterLoading(false);
                 }
             },
         });

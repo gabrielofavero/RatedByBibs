@@ -160,7 +160,7 @@ export function attachAutocomplete(inputEl, mediaType, options = {}) {
                     }
                     <div class="ac-text">
                         <span class="ac-title">${escapeHtml(item.title)}</span>
-                        ${item.subtitle
+                        ${item.subtitle && item.showSubtitle !== false
                             ? `<span class="ac-subtitle">${escapeHtml(item.subtitle)}</span>`
                             : ""
                         }

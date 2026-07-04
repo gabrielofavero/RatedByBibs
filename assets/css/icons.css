@@ -60,6 +60,11 @@
     stroke: #E3E3E3;
 }
 
+.icon.star.half {
+    fill: url(#half-star-fill);
+    stroke: url(#half-star-stroke);
+}
+
 .icon.image {
     height: 24.11px;
     width: 24.11px;

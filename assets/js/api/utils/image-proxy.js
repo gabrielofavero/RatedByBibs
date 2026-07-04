@@ -4,8 +4,9 @@
  * Converts an external image URL into a data: URL so it can be used as
  * the COVER value in step-3 without CORS issues during canvas rendering.
  *
- * Falls back to the original URL if the conversion fails (some use-cases
- * may still work with the raw URL).
+ * Falls back to the original URL if the conversion fails quickly so the
+ * step-3 preview never hangs — canvas generation will retry conversion
+ * later with a longer timeout.
  */
 
 /**
@@ -17,45 +18,102 @@
  * @returns {Promise<string>} - data: URL, or the raw URL as fallback
  */
 export async function fetchImageAsDataURL(imageUrl) {
-    return new Promise((resolve, reject) => {
-        // Try via fetch + Blob first (handles CORS if server allows)
-        fetch(imageUrl, { mode: "cors" })
-            .then(res => {
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                return res.blob();
-            })
-            .then(blob => blobToDataURL(blob).then(resolve))
-            .catch(() => {
-                // Fallback 1: try via an <img> + <canvas> (works when the
-                // server sends CORS headers but fetch() is blocked)
-                imgToDataURL(imageUrl).then(resolve).catch(() => {
-                    // Fallback 2: route through a CORS proxy (handles
-                    // servers like SteamGridDB CDN that send no CORS headers).
-                    // Note: some proxies return non-2xx but still serve the
-                    // image in the body, so we skip the res.ok check.
-                    const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(imageUrl);
-                    console.debug("[ImageProxy] Trying CORS proxy for image…");
-                    fetch(proxyUrl)
-                        .then(res => res.blob())
-                        .then(blob => {
-                            console.debug(`[ImageProxy] CORS proxy → blob ${blob.type} (${blob.size} bytes)`);
-                            if (!blob.type.startsWith("image/")) {
-                                throw new Error(`Proxy returned non-image: ${blob.type}`);
-                            }
-                            return blobToDataURL(blob).then(resolve);
-                        })
-                        .catch(err => {
-                            // Final fallback: return the raw URL.
-                            // <img> tags can display cross-origin images
-                            // without CORS — only canvas export needs a
-                            // data URL, which we'll handle separately.
-                            console.debug("[ImageProxy] All conversions failed, using raw URL", err);
-                            resolve(imageUrl);
-                        });
-                });
-            });
-    });
+    // Attempt 1 — direct fetch (works when the server sends CORS headers,
+    // or when the service worker injects them for known CDN domains)
+    try {
+        const res = await fetch(imageUrl, { mode: "cors" });
+        if (res.ok) {
+            const blob = await res.blob();
+            console.debug("[ImageProxy] Direct fetch → OK");
+            return await blobToDataURL(blob);
+        }
+    } catch { /* fall through */ }
+
+    // Attempt 2 — <img> + <canvas> (works with CORS headers; SW enables this)
+    try {
+        const dataUrl = await imgToDataURL(imageUrl);
+        console.debug("[ImageProxy] img+canvas → OK");
+        return dataUrl;
+    } catch { /* fall through */ }
+
+    // Attempt 3 — race all proxies (image proxies first, general CORS last).
+    // Use a short timeout so the step-3 spinner doesn't hang.
+    const dataUrl = await raceProxies(imageUrl, 8_000);
+    if (dataUrl) return dataUrl;
+
+    // All attempts failed — return the raw URL.
+    // <img> tags can display cross-origin images without CORS, so the
+    // step-3 preview still works.  Canvas generation will retry later.
+    console.debug("[ImageProxy] All attempts failed, using raw URL");
+    return imageUrl;
 }
+
+// ---------------------------------------------------------------------------
+// Proxy racing
+// ---------------------------------------------------------------------------
+
+/** @type {Array<{name: string, build: (url: string) => string}>} */
+const CORS_PROXIES = [
+    // Dedicated image proxies (try first — CDNs are less likely to block these)
+    { name: "weserv",       build: (u) => `https://images.weserv.nl/?url=${encodeURIComponent(u)}` },
+    { name: "wsrv",         build: (u) => `https://wsrv.nl/?url=${encodeURIComponent(u)}` },
+    // General-purpose CORS proxies (fallback)
+    { name: "corsproxy.io",  build: (u) => `https://corsproxy.io/?${encodeURIComponent(u)}` },
+    { name: "allorigins",    build: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}` },
+    { name: "corsanywhere",  build: (u) => `https://cors-anywhere.herokuapp.com/${u}` },
+    { name: "corsbridge",    build: (u) => `https://cors.bridged.cc/${u}` },
+];
+
+/**
+ * Fire every proxy in parallel and return the first successful data: URL.
+ * If none respond within `timeoutMs`, abort all and return null.
+ *
+ * @param {string} imageUrl
+ * @param {number} timeoutMs
+ * @returns {Promise<string|null>}
+ */
+async function raceProxies(imageUrl, timeoutMs) {
+    const controllers = CORS_PROXIES.map(() => new AbortController());
+
+    const attempts = CORS_PROXIES.map((proxy, i) =>
+        tryOneProxy(proxy, imageUrl, controllers[i]).then(dataUrl => {
+            // Abort all other in-flight requests — we already have a winner
+            controllers.forEach((c, j) => { if (j !== i) c.abort(); });
+            return dataUrl;
+        })
+    );
+
+    // Global deadline — if no proxy responds in time, give up
+    const deadline = new Promise((_, reject) =>
+        setTimeout(() => {
+            controllers.forEach(c => c.abort());
+            reject(new Error("Proxy race timed out"));
+        }, timeoutMs)
+    );
+
+    try {
+        return await Promise.race([...attempts, deadline]);
+    } catch {
+        return null;
+    }
+}
+
+async function tryOneProxy(proxy, imageUrl, controller) {
+    const url = proxy.build(imageUrl);
+    console.debug(`[ImageProxy] Racing ${proxy.name}…`);
+    const res = await fetch(url, { signal: controller.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const blob = await res.blob();
+    // Accept any non-empty blob — some proxies return valid images
+    // without an image/* MIME type.
+    if (!blob.size) throw new Error("Empty response");
+    console.debug(`[ImageProxy] ${proxy.name} → won (${blob.size} bytes, type=${blob.type || "none"})`);
+    return blobToDataURL(blob);
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
 
 /**
  * Convert a Blob to a data: URL.

@@ -65,6 +65,7 @@ class ApiManager {
                         providerKey: provider.key,
                         searchReturnsImage: provider.searchReturnsImage,
                         hasMultipleImages: provider.hasMultipleImages,
+                        showSubtitle: provider.showSubtitle,
                     }));
                 }
                 console.debug(`[ApiManager] ${provider.name} → no results, trying next…`);
