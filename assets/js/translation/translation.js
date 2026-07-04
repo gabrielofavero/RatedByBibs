@@ -1,5 +1,6 @@
 import { getJson } from "../app.js";
 import { TYPE } from "../ui/steps/step-1.js";
+import { showConfirm } from "../ui/alert-bottomsheet.js";
 
 export let USER_LANGUAGE;
 let LANGUAGE_PACK;
@@ -80,11 +81,20 @@ function initUserLanguage() {
     USER_LANGUAGE = language;
 }
 
-function updateUserLanguage(language) {
+async function updateUserLanguage(language) {
     const previousLang = localStorage.getItem("userLanguage");
 
-    if (language == previousLang || (TYPE && !window.confirm(translate('label.language_confirmation')))) {
-        return;
+    if (language == previousLang) return;
+
+    if (TYPE) {
+        const confirmed = await showConfirm(
+            translate('label.language_confirmation'),
+            {
+                confirmLabel: translate('label.confirm'),
+                cancelLabel: translate('label.cancel')
+            }
+        );
+        if (!confirmed) return;
     }
 
     localStorage.setItem("userLanguage", language);

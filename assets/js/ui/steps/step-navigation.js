@@ -4,6 +4,8 @@ import { loadStep2, resetStep2 } from "./step-2.js";
 import { loadStep3, resetStep3 } from "./step-3.js";
 import { loadStep4 } from "./step-4.js";
 import { loadStep5 } from "./step-5.js";
+import { showError } from "../alert-bottomsheet.js";
+import { translate } from "../../translation/translation.js";
 
 export let CURRENT_STEP = 1;
 
@@ -43,6 +45,9 @@ function transitionStep(direction) {
 
     if (currentStep < 1 || currentStep > 5) {
         console.error('Cannot navigate to an inexistent step');
+        showError(translate('label.error.navigation'), {
+            buttonLabel: translate('label.ok')
+        });
         return;
     }
 

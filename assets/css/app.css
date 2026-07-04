@@ -394,6 +394,151 @@ a {
 }
 
 /* =======================
+   Alert Bottomsheet (Confirm & Error)
+   ======================= */
+
+.alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 20;
+}
+
+.alert-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.alert-bottomsheet {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #1A1A1A;
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    z-index: 25;
+    width: 345px;
+    max-width: 90vw;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.alert-bottomsheet.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.alert-sheet-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px 24px;
+    gap: 20px;
+}
+
+.alert-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert-icon {
+    width: 48px;
+    height: 48px;
+    fill: var(--theme-color);
+}
+
+.alert-icon.error-icon {
+    fill: #E5484D;
+}
+
+.alert-icon.warning-icon {
+    fill: var(--theme-color);
+}
+
+.alert-message {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: #F5F5F5;
+    text-align: center;
+    white-space: pre-line;
+}
+
+.alert-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.alert-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 49px;
+    border-radius: 16px;
+    transition: background 0.3s ease;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    cursor: pointer;
+    border: none;
+    padding: 0 24px;
+    min-width: 120px;
+}
+
+.alert-btn.primary {
+    background: var(--theme-color);
+    color: #2C2C2C;
+    flex: 1;
+}
+
+.alert-btn.primary:hover {
+    background: var(--theme-color-hover);
+}
+
+.alert-btn.secondary {
+    background: none;
+    color: var(--theme-color);
+    border: 1.5px solid var(--theme-color);
+    flex: 1;
+}
+
+.alert-btn.secondary:hover {
+    color: var(--theme-color-hover);
+    border-color: var(--theme-color-hover);
+    background: rgba(229, 160, 0, 0.1);
+}
+
+.alert-btn.danger {
+    background: #E5484D;
+    color: #fff;
+    flex: 1;
+}
+
+.alert-btn.danger:hover {
+    background: #D43D42;
+}
+
+/* =======================
    Step-exclusive Content
    ======================= */
 

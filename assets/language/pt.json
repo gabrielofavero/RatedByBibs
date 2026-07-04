@@ -1,9 +1,16 @@
 {
     "label": {
         "begin": "Começar avaliação",
+        "cancel": "Cancelar",
         "confirm": "Confirmar",
         "description": "Uma forma rápida de avaliar seu conteúdo favorito e compartilhar nas redes sociais",
         "download": "Baixar",
+        "error": {
+            "canvas": "Falha ao gerar sua avaliação.\nTente novamente.",
+            "image_load": "Não foi possível carregar a imagem.\nVerifique a URL e tente novamente.",
+            "invalid_file": "Tipo de arquivo inválido.\nSelecione uma imagem (JPG, PNG, GIF, WebP).",
+            "navigation": "Erro de navegação.\nReinicie e tente novamente."
+        },
         "finish": "Gerar avaliação",
         "im-rating": "Estou avaliando:",
         "language_confirmation": "Alterar o idioma irá recarregar a página e descartar qualquer progresso não salvo. Tem certeza de que deseja continuar?",
@@ -12,6 +19,7 @@
         "more": "Mais",
         "next": "Continuar",
         "none": "Nenhum",
+        "ok": "OK",
         "optional": "Opcional",
         "platform": "Plataforma",
         "rating": {
@@ -29,10 +37,12 @@
         },
         "required": "Obrigatório",
         "restart": "Reiniciar",
+        "restart_confirmation": "Tem certeza de que deseja reiniciar?\nTodo o seu progresso será perdido.",
         "share-text": "Eu avaliei {{content}} em {{rating}} no Rated! By Bibs {{emoji}}",
         "streaming": "Serviço de Streaming",
         "upload-add": "Clique ou arraste para adicionar uma capa",
-        "upload-edit": "Clique ou arraste para editar a capa"
+        "upload-edit": "Clique ou arraste para editar a capa",
+        "choose_image": "Escolha uma imagem:"
     },
     "type": {
         "book": {

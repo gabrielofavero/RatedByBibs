@@ -1,9 +1,16 @@
 {
     "label": {
         "begin": "Begin rating",
+        "cancel": "Cancel",
         "confirm": "Confirm",
         "description": "A quick way to rate your favorite content and share it to social network",
         "download": "Download",
+        "error": {
+            "canvas": "Failed to generate your rating.\nPlease try again.",
+            "image_load": "Could not load the image.\nPlease check the URL and try again.",
+            "invalid_file": "Invalid file type.\nPlease select an image (JPG, PNG, GIF, WebP).",
+            "navigation": "Navigation error.\nPlease restart and try again."
+        },
         "finish": "Generate rating",
         "im-rating": "I'm rating:",
         "language_confirmation": "Changing the current language will reload the page and discard any unsaved progress. Are you sure you want to continue?",
@@ -12,6 +19,7 @@
         "more": "More",
         "next": "Continue",
         "none": "None",
+        "ok": "OK",
         "optional": "Optional",
         "platform": "Platform",
         "rating": {
@@ -29,10 +37,12 @@
         },
         "required": "Required",
         "restart": "Restart",
+        "restart_confirmation": "Are you sure you want to restart?\nAll your progress will be lost.",
         "share-text": "I rated {{content}} {{rating}} on Rated! By Bibs {{emoji}}",
         "streaming": "Streaming Service",
         "upload-add": "Click or drag to add a cover art",
-        "upload-edit": "Click or drag to add a cover art"
+        "upload-edit": "Click or drag to add a cover art",
+        "choose_image": "Choose an image:"
     },
     "type": {
         "book": {
