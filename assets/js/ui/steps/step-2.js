@@ -3,6 +3,9 @@ import { closeSheet, openSheet } from "../bottomsheet.js";
 import { disableButton, disableNext, enableBack, enableButton, enableNext, hasMissingRequiredInputs, restrictToPositiveInputs, updateNextTextContent } from "../forms.js";
 import { NAVIAGATION_LABELS, adaptPageHeight } from "../ui.js";
 import { MACROTYPE, TYPE, TYPES } from "./step-1.js";
+import { COVER, setCoverFromUrl, setPosterOptions } from "./step-3.js";
+import { attachAutocomplete } from "../autocomplete/autocomplete.js";
+import { apiManager } from "../../api/api-manager.js";
 
 export let PLATFORM;
 let PLATFORMS;
@@ -13,6 +16,9 @@ const SUBTYPE = {
 }
 
 let TYPE_PLATFORMS;
+
+// Autocomplete instances (to destroy on reset / type switch)
+let _autocompleteDestroyers = {};
 
 // Step Initialization and Reset
 export function setPlatforms(value) {
@@ -84,6 +90,8 @@ export function resetStep2() {
     for (const platform of platforms) {
         document.getElementById(platform).classList.remove('selected');
     }
+
+    _destroyAutocompletes();
 
     loadCheckboxInput('tv');
     loadCheckboxInput('music');
@@ -262,6 +270,102 @@ function loadStep2Inputs() {
     loadCheckboxInput('tv');
     loadCheckboxInput('music');
     loadPlatformIdVisibility();
+
+    // Attach autocomplete to the current type's title input(s)
+    _attachAutocompleteToInputs();
+}
+
+/**
+ * Attach the autocomplete dropdown to title inputs for the current TYPE.
+ * The onSelect callback fetches the poster from the API and sets COVER in step-3.
+ */
+function _attachAutocompleteToInputs() {
+    // Destroy any existing autocomplete instances first
+    _destroyAutocompletes();
+
+    if (!TYPE || !apiManager.hasProviders(TYPE)) return;
+
+    const titleInputIds = _getTitleInputIdsForType(TYPE);
+
+    for (const inputId of titleInputIds) {
+        const input = document.getElementById(inputId);
+        if (!input) continue;
+
+        const { destroy } = attachAutocomplete(input, TYPE, {
+            onSelect: async (result) => {
+                // Don't override a manually uploaded cover
+                if (COVER) return;
+
+                try {
+                    console.debug(`[Step2] onSelect → fetching poster for "${result.title}"`);
+
+                    if (result.hasMultipleImages) {
+                        // Fetch ALL posters and store them for step-3's carousel
+                        const posters = await apiManager.fetchPosters(
+                            TYPE,
+                            result.providerKey,
+                            result.id
+                        );
+                        if (posters.length) {
+                            console.debug(`[Step2] onSelect → ${posters.length} posters, showing carousel`);
+                            setPosterOptions(posters);
+                            // Set first poster as default COVER
+                            setCoverFromUrl(posters[0]);
+                        } else {
+                            console.debug("[Step2] onSelect → no posters returned");
+                        }
+                    } else {
+                        // Single-image provider: standard flow
+                        const poster = await apiManager.fetchPoster(
+                            TYPE,
+                            result.providerKey,
+                            result.id
+                        );
+                        if (poster) {
+                            console.debug("[Step2] onSelect → poster set as COVER");
+                            setCoverFromUrl(poster);
+                        } else {
+                            console.debug("[Step2] onSelect → no poster returned");
+                        }
+                    }
+                } catch {
+                    console.debug("[Step2] onSelect → poster fetch failed");
+                }
+            },
+        });
+
+        _autocompleteDestroyers[inputId] = destroy;
+    }
+}
+
+/**
+ * Map media type to the title input ID(s) that should have autocomplete.
+ */
+function _getTitleInputIdsForType(type) {
+    switch (type) {
+        case 'movie':
+            return ['movie-title'];
+        case 'tv':
+            return ['tv-title'];
+        case 'game':
+            return ['game-title'];
+        case 'music':
+            // For music, the "main" title depends on radio (song vs album)
+            return ['music-song', 'music-album'];
+        case 'book':
+            return ['book-title'];
+        case 'other':
+            return ['other-title'];
+        default:
+            return [];
+    }
+}
+
+function _destroyAutocompletes() {
+    for (const key of Object.keys(_autocompleteDestroyers)) {
+        try { _autocompleteDestroyers[key](); } catch { /* ignore */ }
+    }
+    _autocompleteDestroyers = {};
 }
 
 function loadStep2Platforms() {

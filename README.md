@@ -8,23 +8,29 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 
 ## Taks
 
-- ⚔️: Epic
-- 🐞: Bug
-- 🏆: Feature
-- 📈: Improvement
+| Type            | Latest | Done | Pending |
+| --------------- |--------|------|---------|
+| ⚔️: Epic        | E009   | 9    | 0       |
+| 🐞: Bug         | B008   | 9    | 0       |
+| 🏆: Feature     | F034   | 33   | 1       |
+| 📈: Improvement | I006   | 5    | 0       |
 
 ### Doing
 
 ### Backlog
 
-- ⚔️ **E008:** Create Sticker Canvas
-- ⚔️ **E009:** Get boxarts via API
-- 🏆 **F019:** Create error bottomsheet
-- 🏆 **F020:** Create confirm bottomsheet
 - 🏆 **F024:** Add some legacy platforms to games
 
 ### Done
 
+- 📈 **I006:** Split SVG icons into external sprite (brands.svg) reducing page weight by 78% (181KB → 39KB)
+- ⚔️ **E009:** Get boxarts via API
+  - 🏆 **F032:** [E009] Gather APIs, credentials and create poc
+  - 🏆 **F033:** [E009] Apply APIs (auto image, title search)
+- 🏆 **F019:** Create error bottomsheet
+- 🏆 **F020:** Create confirm bottomsheet
+- 🐞 **B009:** Half star system not working
+- 🏆 **F034:** Add Half star system
 - 🏆 **F027:** Store game-id in localStorage according to platform
 - 📈 **I005:** Speed-up bottomsheet animations
 - 🏆 **F026:** Hide game-id if platform does not have a username
@@ -71,3 +77,9 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 - ⚔️ **E003:** Implement "Step 1": Select a content type
 - ⚔️ **E002:** Create navigation elements (single-page)
 - ⚔️ **E001:** Alpha version (POC, no design elements)
+
+### Discarted
+- ⚔️ **E008:** Customize how canvas is displayed
+  - 🏆 **F030:** [E008] Create new step initial files + layout
+  - 🏆 **F031:** [E008] Adjust layout via js
+- 📈 **I006:** Make scroll down bottomsheet action easier

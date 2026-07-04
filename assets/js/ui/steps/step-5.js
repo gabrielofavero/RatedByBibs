@@ -3,6 +3,8 @@ import { disableBack, hideNext, loadStars } from "../forms.js";
 import { PLATFORM } from "./step-2.js";
 import { COVER, RATING } from "./step-3.js";
 import { resetSteps } from "./step-navigation.js";
+import { showConfirm } from "../alert-bottomsheet.js";
+import { translate } from "../../translation/translation.js";
 
 export function loadStep5() {
     loadCover();
@@ -16,7 +18,17 @@ export function loadStep5() {
 
 export function loadStep5Listeners() {
     document.getElementById('download').addEventListener('click', downloadOrShareCanvas);
-    document.getElementById('restart').addEventListener('click', resetSteps);
+    document.getElementById('restart').addEventListener('click', async () => {
+        const confirmed = await showConfirm(
+            translate('label.restart_confirmation'),
+            {
+                confirmLabel: translate('label.restart'),
+                cancelLabel: translate('label.cancel'),
+                confirmStyle: 'danger'
+            }
+        );
+        if (confirmed) resetSteps();
+    });
 }
 
 function loadCover() {

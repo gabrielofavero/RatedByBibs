@@ -1,6 +1,8 @@
 import { generateCanvas } from "../../canvas.js";
 import { disableBack, hideNext } from "../forms.js";
 import { nextStep } from "./step-navigation.js";
+import { showError } from "../alert-bottomsheet.js";
+import { translate } from "../../translation/translation.js";
 
 export function loadStep4() {
   disableBack();
@@ -20,21 +22,30 @@ function startLoading() {
     clearTimeout(bar._loadingTimeout);
   }
 
-  generateCanvas();
-  bar.style.transition = 'none';
-  bar.style.width = '0%';
-  container.classList.add('visible');
+  generateCanvas()
+    .then(() => {
+      bar.style.transition = 'none';
+      bar.style.width = '0%';
+      container.classList.add('visible');
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      bar.style.transition = 'width 1.5s ease';
-      bar.style.width = '100%';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          bar.style.transition = 'width 1.5s ease';
+          bar.style.width = '100%';
 
-      bar._loadingTimeout = setTimeout(() => {
-        header.style.visibility = 'visible';
-        container.classList.remove('visible');
-        nextStep();
-      }, 1500);
+          bar._loadingTimeout = setTimeout(() => {
+            header.style.visibility = 'visible';
+            container.classList.remove('visible');
+            nextStep();
+          }, 1500);
+        });
+      });
+    })
+    .catch(() => {
+      header.style.visibility = 'visible';
+      container.classList.remove('visible');
+      showError(translate('label.error.canvas'), {
+        buttonLabel: translate('label.ok')
+      });
     });
-  });
 }

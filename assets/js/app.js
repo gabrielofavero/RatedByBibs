@@ -7,9 +7,11 @@ import { loadStep3Listeners } from "./ui/steps/step-3.js";
 import { loadStep5Listeners } from "./ui/steps/step-5.js";
 import { loadStepNavigation } from "./ui/steps/step-navigation.js";
 import { setNavigationLabels } from "./ui/ui.js";
+import { loadBrandIcons } from "./ui/icons-loader.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
     await loadUserLanguage();
+    await loadBrandIcons();
     loadStaticData();
     loadEventListeners();
     loadStepNavigation();
