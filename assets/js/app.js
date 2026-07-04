@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     await loadUserLanguage();
     await loadBrandIcons();
     setNavigationLabels();
-    registerServiceWorker();
     loadStaticData();
     loadEventListeners();
     loadStepNavigation();
@@ -41,35 +40,3 @@ function loadEventListeners() {
     loadBottomsheetEventListeners();
 }
 
-/**
- * Register the service worker that injects CORS headers for CDN images
- * (SteamGridDB etc.).  Without this, html2canvas cannot render those
- * images because the CDNs don't send Access-Control-Allow-Origin.
- */
-function registerServiceWorker() {
-    if (!("serviceWorker" in navigator)) return;
-
-    navigator.serviceWorker
-        .register("./sw.js")
-        .then((reg) => {
-            console.debug("[SW] Registered, scope:", reg.scope);
-
-            // If there's an updated worker waiting, let the user get it
-            // on the next page load (skipWaiting + reload).
-            if (reg.waiting) {
-                reg.waiting.postMessage({ type: "SKIP_WAITING" });
-            }
-            reg.addEventListener("updatefound", () => {
-                const newWorker = reg.installing;
-                if (!newWorker) return;
-                newWorker.addEventListener("statechange", () => {
-                    if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
-                        console.debug("[SW] New version available — reload to activate");
-                    }
-                });
-            });
-        })
-        .catch((err) => {
-            console.debug("[SW] Registration failed:", err.message);
-        });
-}

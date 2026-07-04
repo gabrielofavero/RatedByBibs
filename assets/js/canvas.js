@@ -109,7 +109,7 @@ function loadRadioValues() {
 // Renderers
 function renderCover() {
     const img = document.getElementById('canvas-cover');
-    img.crossOrigin = "anonymous";  // SW injects CORS headers for CDN images
+    img.crossOrigin = "anonymous";
     img.src = COVER;
 }
 
@@ -152,9 +152,14 @@ async function renderCanvas(onProgress) {
     await Promise.race([coverPromise, coverTimeout]);
     onProgress?.("Cover ready", 50);
 
+    // Convert SteamGridDB CDN URLs to data URLs via Cloudflare Worker.
+    // Non-SteamGridDB images are already data URLs — this returns immediately.
+    onProgress?.("Proxying cover for canvas…", 52);
+    await ensureCoverCompatible();
+
     onProgress?.("Capturing with html2canvas…", 55);
     const canvas = await html2canvas(canvasContainer, {
-        useCORS: true,  // Enables crossOrigin for all images; SW adds CORS headers
+        useCORS: true,  // Enables crossOrigin for all images
     });
 
     onProgress?.("Encoding final image…", 90);
@@ -228,23 +233,32 @@ function fixHalfStarGradients(root = document) {
 
 /** @type {Array<{name: string, build: (url: string) => string}>} */
 const CORS_PROXIES = [
-    // Dedicated image proxies (try first — CDNs are less likely to block these)
-    { name: "weserv",       build: (u) => `https://images.weserv.nl/?url=${encodeURIComponent(u)}` },
-    { name: "wsrv",         build: (u) => `https://wsrv.nl/?url=${encodeURIComponent(u)}` },
-    // General-purpose CORS proxies (fallback)
-    { name: "corsproxy.io",  build: (u) => `https://corsproxy.io/?${encodeURIComponent(u)}` },
-    { name: "allorigins",    build: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}` },
-    { name: "corsanywhere",  build: (u) => `https://cors-anywhere.herokuapp.com/${u}` },
-    { name: "corsbridge",    build: (u) => `https://cors.bridged.cc/${u}` },
+    // Cloudflare Worker — reliable, free, you control it
+    { name: "my-worker", build: (u) => `https://img-proxy.gabriel-o-favero.workers.dev/?url=${encodeURIComponent(u)}` },
 ];
+
+/**
+ * Returns true if the URL points to a SteamGridDB CDN domain.
+ * Only SteamGridDB images need CORS proxying; all other providers
+ * (TMDB, OpenLibrary, MusicBrainz) send proper CORS headers.
+ */
+function isSteamGridDBUrl(url) {
+    try {
+        const host = new URL(url).host;
+        return host.endsWith("steamgriddb.com");
+    } catch {
+        return false;
+    }
+}
 
 /**
  * Ensure the cover image is a data: URL so html2canvas can render it
  * without CORS tainting.
  *
- * Races all proxies with a generous timeout (image proxies like weserv.nl
- * are tried first).  If every attempt fails we hide the cover image so the
- * rest of the card still renders correctly.
+ * Only SteamGridDB CDN URLs go through the Cloudflare Worker proxy.
+ * All other providers already have data URLs at this point and return
+ * immediately.  If the proxy fails, the cover is hidden so the rest
+ * of the card still renders correctly.
  */
 async function ensureCoverCompatible() {
     const img = document.getElementById('canvas-cover');
@@ -273,6 +287,9 @@ async function ensureCoverCompatible() {
  * If none respond within `timeoutMs`, abort all and return null.
  */
 async function raceProxies(imageUrl, timeoutMs) {
+    // Only SteamGridDB CDN URLs need CORS proxying — skip for everything else
+    if (!isSteamGridDBUrl(imageUrl)) return null;
+
     const controllers = CORS_PROXIES.map(() => new AbortController());
 
     const attempts = CORS_PROXIES.map((proxy, i) =>
