@@ -54,14 +54,10 @@ export async function fetchImageAsDataURL(imageUrl) {
 
 /** @type {Array<{name: string, build: (url: string) => string}>} */
 const CORS_PROXIES = [
-    // Dedicated image proxies (try first — CDNs are less likely to block these)
-    { name: "weserv",       build: (u) => `https://images.weserv.nl/?url=${encodeURIComponent(u)}` },
-    { name: "wsrv",         build: (u) => `https://wsrv.nl/?url=${encodeURIComponent(u)}` },
-    // General-purpose CORS proxies (fallback)
-    { name: "corsproxy.io",  build: (u) => `https://corsproxy.io/?${encodeURIComponent(u)}` },
-    { name: "allorigins",    build: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}` },
-    { name: "corsanywhere",  build: (u) => `https://cors-anywhere.herokuapp.com/${u}` },
-    { name: "corsbridge",    build: (u) => `https://cors.bridged.cc/${u}` },
+    // No proxies configured at selection time.
+    // SteamGridDB CORS proxying is handled at render time by canvas.js
+    // (ensureCoverCompatible via Cloudflare Worker).
+    // Raw CDN URLs work fine in <img> tags for the step-3 preview.
 ];
 
 /**
@@ -73,29 +69,10 @@ const CORS_PROXIES = [
  * @returns {Promise<string|null>}
  */
 async function raceProxies(imageUrl, timeoutMs) {
-    const controllers = CORS_PROXIES.map(() => new AbortController());
-
-    const attempts = CORS_PROXIES.map((proxy, i) =>
-        tryOneProxy(proxy, imageUrl, controllers[i]).then(dataUrl => {
-            // Abort all other in-flight requests — we already have a winner
-            controllers.forEach((c, j) => { if (j !== i) c.abort(); });
-            return dataUrl;
-        })
-    );
-
-    // Global deadline — if no proxy responds in time, give up
-    const deadline = new Promise((_, reject) =>
-        setTimeout(() => {
-            controllers.forEach(c => c.abort());
-            reject(new Error("Proxy race timed out"));
-        }, timeoutMs)
-    );
-
-    try {
-        return await Promise.race([...attempts, deadline]);
-    } catch {
-        return null;
-    }
+    // CORS proxying is deferred to canvas.js (ensureCoverCompatible).
+    // At selection time, raw CDN URLs work fine in <img> previews.
+    // The Cloudflare Worker is only invoked during canvas rendering.
+    return null;
 }
 
 async function tryOneProxy(proxy, imageUrl, controller) {
@@ -114,6 +91,20 @@ async function tryOneProxy(proxy, imageUrl, controller) {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
+
+/**
+ * Returns true if the URL points to a SteamGridDB CDN domain.
+ * Only SteamGridDB images need CORS proxying; all other providers
+ * (TMDB, OpenLibrary, MusicBrainz) send proper CORS headers.
+ */
+function isSteamGridDBUrl(url) {
+    try {
+        const host = new URL(url).host;
+        return host.endsWith("steamgriddb.com");
+    } catch {
+        return false;
+    }
+}
 
 /**
  * Convert a Blob to a data: URL.
