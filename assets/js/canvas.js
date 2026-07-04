@@ -5,6 +5,10 @@ import { PLATFORM, getPlatformProperties, updateInternalIcon } from "./ui/steps/
 import { COVER, RATING } from "./ui/steps/step-3.js";
 
 let GENERATED_IMAGE = '';
+
+export function resetCanvasState() {
+    GENERATED_IMAGE = '';
+}
 const RADIO_VALUES = {
     music: {
         type: '',
@@ -89,7 +93,9 @@ function loadRadioValues() {
 
 // Renderers
 function renderCover() {
-    document.getElementById('canvas-cover').src = COVER;
+    const img = document.getElementById('canvas-cover');
+    img.crossOrigin = "anonymous";  // SW injects CORS headers for CDN images
+    img.src = COVER;
 }
 
 async function renderCanvas() {
@@ -97,8 +103,12 @@ async function renderCanvas() {
     canvasContainer.style.display = 'flex';
 
     renderInlineSvgUses(canvasContainer);
+    fixHalfStarGradients(canvasContainer);
+    await ensureCoverCompatible();
 
-    const canvas = await html2canvas(canvasContainer);
+    const canvas = await html2canvas(canvasContainer, {
+        useCORS: true,  // Enables crossOrigin for all images; SW adds CORS headers
+    });
     const dataUrl = canvas.toDataURL('image/png');
     GENERATED_IMAGE = dataUrl;
 
@@ -123,6 +133,133 @@ function renderInlineSvgUses(root = document) {
                 use.remove();
             }
         }
+    });
+}
+
+/**
+ * html2canvas cannot resolve cross-element SVG gradient references
+ * (e.g. fill: url(#half-star-fill) when the gradient is defined in a
+ * separate hidden SVG).  This function clones the half-star gradient
+ * definitions directly into each .half star SVG so the references stay
+ * self-contained during canvas serialisation.
+ */
+function fixHalfStarGradients(root = document) {
+    const halfStars = root.querySelectorAll("svg.icon.star.half");
+    halfStars.forEach((svg, index) => {
+        // Already patched — skip
+        if (svg.querySelector("defs > linearGradient[id^='_hsf']")) return;
+
+        const NS = "http://www.w3.org/2000/svg";
+        const defs = document.createElementNS(NS, "defs");
+
+        const fillId = `_hsf-fill-${index}`;
+        const strokeId = `_hsf-stroke-${index}`;
+
+        defs.innerHTML =
+            `<linearGradient id="${fillId}" x1="0" y1="0" x2="1" y2="0">` +
+            `<stop offset="50%" stop-color="#E5A000"/>` +
+            `<stop offset="50%" stop-color="transparent"/>` +
+            `</linearGradient>` +
+            `<linearGradient id="${strokeId}" x1="0" y1="0" x2="1" y2="0">` +
+            `<stop offset="50%" stop-color="#E5A000"/>` +
+            `<stop offset="50%" stop-color="#E3E3E3"/>` +
+            `</linearGradient>`;
+
+        svg.insertBefore(defs, svg.firstChild);
+
+        // Override CSS-driven fill/stroke with inline styles that point to
+        // the local gradients — inline styles beat author CSS.
+        const path = svg.querySelector("path");
+        if (path) {
+            path.style.fill = `url(#${fillId})`;
+            path.style.stroke = `url(#${strokeId})`;
+        }
+    });
+}
+
+/** @type {Array<{name: string, build: (url: string) => string}>} */
+const CORS_PROXIES = [
+    // Dedicated image proxies (try first — CDNs are less likely to block these)
+    { name: "weserv",       build: (u) => `https://images.weserv.nl/?url=${encodeURIComponent(u)}` },
+    { name: "wsrv",         build: (u) => `https://wsrv.nl/?url=${encodeURIComponent(u)}` },
+    // General-purpose CORS proxies (fallback)
+    { name: "corsproxy.io",  build: (u) => `https://corsproxy.io/?${encodeURIComponent(u)}` },
+    { name: "allorigins",    build: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}` },
+    { name: "corsanywhere",  build: (u) => `https://cors-anywhere.herokuapp.com/${u}` },
+    { name: "corsbridge",    build: (u) => `https://cors.bridged.cc/${u}` },
+];
+
+/**
+ * Ensure the cover image is a data: URL so html2canvas can render it
+ * without CORS tainting.
+ *
+ * Races all proxies with a generous timeout (image proxies like weserv.nl
+ * are tried first).  If every attempt fails we hide the cover image so the
+ * rest of the card still renders correctly.
+ */
+async function ensureCoverCompatible() {
+    const img = document.getElementById('canvas-cover');
+    const src = img?.src;
+    if (!src || src.startsWith('data:')) return;
+
+    console.debug("[Canvas] Cover is remote URL, converting to data URL…");
+
+    const dataUrl = await raceProxies(src, 15_000);
+    if (dataUrl) {
+        img.src = dataUrl;
+        await img.decode().catch(() => {});
+        console.debug("[Canvas] Cover converted to data URL successfully");
+    } else {
+        // All proxies failed — hide the cover so html2canvas can still
+        // render the rest of the card without a SecurityError.
+        console.debug("[Canvas] All proxies failed, hiding cover for canvas render");
+        img.style.display = 'none';
+    }
+}
+
+/**
+ * Fire every proxy in parallel; return the first successful data: URL.
+ * If none respond within `timeoutMs`, abort all and return null.
+ */
+async function raceProxies(imageUrl, timeoutMs) {
+    const controllers = CORS_PROXIES.map(() => new AbortController());
+
+    const attempts = CORS_PROXIES.map((proxy, i) =>
+        tryOneProxy(proxy, imageUrl, controllers[i]).then(dataUrl => {
+            controllers.forEach((c, j) => { if (j !== i) c.abort(); });
+            return dataUrl;
+        })
+    );
+
+    const deadline = new Promise((_, reject) =>
+        setTimeout(() => {
+            controllers.forEach(c => c.abort());
+            reject(new Error("Proxy race timed out"));
+        }, timeoutMs)
+    );
+
+    try {
+        return await Promise.race([...attempts, deadline]);
+    } catch {
+        return null;
+    }
+}
+
+async function tryOneProxy(proxy, imageUrl, controller) {
+    const url = proxy.build(imageUrl);
+    console.debug(`[Canvas] Racing ${proxy.name}…`);
+    const res = await fetch(url, { signal: controller.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const blob = await res.blob();
+    // Accept any non-empty blob — some proxies return valid images
+    // without an image/* MIME type.
+    if (!blob.size) throw new Error("Empty response");
+    console.debug(`[Canvas] ${proxy.name} → won (${blob.size} bytes, type=${blob.type || "none"})`);
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
     });
 }
 

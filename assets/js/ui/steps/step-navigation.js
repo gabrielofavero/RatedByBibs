@@ -6,6 +6,7 @@ import { loadStep4 } from "./step-4.js";
 import { loadStep5 } from "./step-5.js";
 import { showError } from "../alert-bottomsheet.js";
 import { translate } from "../../translation/translation.js";
+import { resetCanvasState } from "../../canvas.js";
 
 export let CURRENT_STEP = 1;
 
@@ -31,6 +32,12 @@ export function resetSteps() {
     resetStep1();
     resetStep2();
     resetStep3();
+    resetCanvasState();
+
+    // Clear all type-specific localStorage IDs to prevent stale data
+    ['movie', 'tv', 'game', 'music', 'book', 'other'].forEach(type => {
+        localStorage.removeItem(`${type}-id`);
+    });
 
     loadStepActions();
     animate(previousStep);

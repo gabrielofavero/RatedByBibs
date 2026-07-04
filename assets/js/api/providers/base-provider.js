@@ -18,13 +18,15 @@ export class BaseProvider {
      * @param {string[]} config.mediaTypes - Which types this provider handles
      * @param {boolean} [config.searchReturnsImage=true] - Whether search() returns poster URLs directly
      * @param {boolean} [config.hasMultipleImages=false] - Whether getPosters() can return multiple image options
+     * @param {boolean} [config.showSubtitle=true] - Whether to show the subtitle in autocomplete dropdown
      */
-    constructor({ name, key, mediaTypes, searchReturnsImage = true, hasMultipleImages = false }) {
+    constructor({ name, key, mediaTypes, searchReturnsImage = true, hasMultipleImages = false, showSubtitle = true }) {
         this.name = name;
         this.key = key;
         this.mediaTypes = mediaTypes;
         this.searchReturnsImage = searchReturnsImage;
         this.hasMultipleImages = hasMultipleImages;
+        this.showSubtitle = showSubtitle;
     }
 
     /**

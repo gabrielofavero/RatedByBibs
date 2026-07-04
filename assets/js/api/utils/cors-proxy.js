@@ -16,6 +16,15 @@ const PROXIES = [
 let _workingProxy = null;
 
 /**
+ * Returns the cached working proxy base URL (e.g. "https://corsproxy.io/?"),
+ * or null if no proxy has been validated yet.
+ * @returns {string|null}
+ */
+export function getWorkingProxy() {
+    return _workingProxy;
+}
+
+/**
  * Fetch a URL through a CORS proxy.
  * Behaves like fetch() but routes the request through a proxy.
  *

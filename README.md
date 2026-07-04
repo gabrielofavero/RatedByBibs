@@ -11,18 +11,22 @@ Design made by [Guilherme Machado](https://www.linkedin.com/in/guilherme-machado
 | Type            | Latest | Done | Pending |
 | --------------- |--------|------|---------|
 | ⚔️: Epic        | E009   | 9    | 0       |
-| 🐞: Bug         | B008   | 9    | 0       |
-| 🏆: Feature     | F034   | 33   | 1       |
-| 📈: Improvement | I006   | 5    | 0       |
+| 🐞: Bug         | B012   | 12   | 0       |
+| 🏆: Feature     | F035   | 34   | 0       |
+| 📈: Improvement | I008   | 8    | 0       |
 
 ### Doing
 
 ### Backlog
 
-- 🏆 **F024:** Add some legacy platforms to games
-
 ### Done
 
+- 🐞 **B012:** Half-star gradients and SteamGrid posters not rendering in html2canvas capture
+- 🏆 **F035:** Add loading indicator on preview image when advancing before API poster fetch completes
+- 📈 **I008:** Replaced separate half-star symbol with CSS gradient approach for cleaner half-star rendering
+- 🐞 **B011:** Poster carousel overflow breaking alignment and preview centering
+- 🐞 **B010:** Stale cover not updating when re-selecting title via autocomplete or changing category
+- 📈 **I007:** Add `showSubtitle` provider setting to control autocomplete dropdown subtitle (disabled for SteamGridDB)
 - 📈 **I006:** Split SVG icons into external sprite (brands.svg) reducing page weight by 78% (181KB → 39KB)
 - ⚔️ **E009:** Get boxarts via API
   - 🏆 **F032:** [E009] Gather APIs, credentials and create poc

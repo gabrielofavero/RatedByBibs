@@ -24,6 +24,7 @@ export class SteamGridDBProvider extends BaseProvider {
             mediaTypes: ["game"],
             searchReturnsImage: false,
             hasMultipleImages: true,
+            showSubtitle: false,
         });
         this.#apiKey = apiKey;
     }
